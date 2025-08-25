@@ -19,19 +19,21 @@ const Navigation = ({ docs }) => {
   
   return (
     <nav className="w-full md:w-64 flex-shrink-0">
-      <div className="bg-white rounded-lg shadow p-4 sticky top-4">
-        <h3 className="font-bold text-lg mb-3">Documentation</h3>
-        <ul className="space-y-1">
+      <div className="bg-wiki-content-bg rounded-lg shadow-lg p-4 sticky top-4 border border-wiki-border">
+        <h3 className="font-bold text-lg mb-3 text-wiki-text-light">Documentation</h3>
+        <ul className="space-y-2">
           {sortedGroups.map(letter => (
             <li key={letter} className="mb-3">
-              <div className="font-semibold text-gray-700">{letter}</div>
+              <div className="font-semibold text-wiki-accent mb-1">{letter}</div>
               <ul className="ml-2 mt-1 space-y-1">
                 {groupedDocs[letter].map(doc => (
                   <li key={doc.slug}>
                     <Link 
                       href={`/docs/${doc.slug}`}
-                      className={`block py-1 px-2 rounded hover:bg-gray-100 ${
-                        router.query.slug === doc.slug ? 'bg-wiki-blue text-white' : 'text-gray-600'
+                      className={`block py-2 px-3 rounded-lg transition-all duration-200 ${
+                        router.query.slug === doc.slug 
+                          ? 'bg-wiki-blue text-white shadow-md' 
+                          : 'text-wiki-text-muted hover:bg-wiki-content-bg-hover hover:text-wiki-text-light'
                       }`}
                     >
                       {doc.title}

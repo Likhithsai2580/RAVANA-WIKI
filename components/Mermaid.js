@@ -12,10 +12,10 @@ const Mermaid = ({ chart }) => {
         // Import mermaid dynamically
         const { default: mermaid } = await import('mermaid');
         
-        // Initialize mermaid
+        // Initialize mermaid with dark theme
         mermaid.initialize({
           startOnLoad: false,
-          theme: 'default',
+          theme: 'dark',
           securityLevel: 'loose',
           flowchart: { useMaxWidth: true }
         });

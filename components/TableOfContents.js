@@ -32,8 +32,8 @@ const TableOfContents = () => {
   if (headings.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 mb-6">
-      <h3 className="font-bold text-lg mb-3">Table of Contents</h3>
+    <div className="bg-wiki-content-bg rounded-lg shadow p-4 mb-6 border border-wiki-border">
+      <h3 className="font-bold text-lg mb-3 text-wiki-text-light">Table of Contents</h3>
       <ul className="space-y-1">
         {headings.map((heading, index) => (
           <li 
@@ -42,7 +42,7 @@ const TableOfContents = () => {
           >
             <button
               onClick={() => scrollToHeading(heading.id)}
-              className="text-left text-gray-700 hover:text-wiki-blue py-1 px-2 rounded hover:bg-gray-100 w-full text-sm"
+              className="text-left text-wiki-text-muted hover:text-wiki-blue py-1 px-2 rounded hover:bg-wiki-content-bg-hover w-full text-sm transition-colors duration-200"
             >
               {heading.text}
             </button>

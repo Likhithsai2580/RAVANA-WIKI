@@ -27,6 +27,9 @@ export default function DocPage({ doc, docs }) {
       <Head>
         <title>{doc.title ? `${doc.title} - RAVANA AGI Documentation` : 'RAVANA AGI Documentation'}</title>
         <meta name="description" content={doc.title ? `Documentation for ${doc.title}` : 'RAVANA AGI Documentation'} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
       
       {/* Prism scripts */}
@@ -39,12 +42,12 @@ export default function DocPage({ doc, docs }) {
         strategy="beforeInteractive" 
       />
       
-      <header className="bg-wiki-blue text-white p-4 shadow-md">
+      <header className="bg-wiki-content-bg text-wiki-text-light p-4 shadow-xl border-b border-wiki-border">
         <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">RAVANA AGI Documentation</h1>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-wiki-blue to-wiki-accent bg-clip-text text-transparent">RAVANA AGI Documentation</h1>
           <nav>
             <ul className="flex space-x-4">
-              <li><Link href="/" className="hover:underline">Home</Link></li>
+              <li><Link href="/" className="hover:text-wiki-blue transition-colors duration-200">Home</Link></li>
             </ul>
           </nav>
         </div>
@@ -58,8 +61,8 @@ export default function DocPage({ doc, docs }) {
         <main className="flex-grow">
           <Breadcrumb doc={doc} />
           <div className="flex flex-col md:flex-row gap-6">
-            <article className="prose max-w-none bg-white p-6 rounded-lg shadow flex-grow">
-              <h1>{doc.title}</h1>
+            <article className="prose max-w-none bg-wiki-content-bg p-6 rounded-lg shadow-xl flex-grow border border-wiki-border">
+              <h1 className="text-wiki-text-light">{doc.title}</h1>
               <MermaidRenderer content={doc.content} />
             </article>
             
@@ -70,9 +73,9 @@ export default function DocPage({ doc, docs }) {
         </main>
       </div>
       
-      <footer className="bg-wiki-dark text-white p-4">
+      <footer className="bg-wiki-content-bg text-wiki-text-light p-6 border-t border-wiki-border">
         <div className="container mx-auto text-center">
-          <p>© {new Date().getFullYear()} RAVANA AGI System Documentation</p>
+          <p className="text-wiki-text-muted">© {new Date().getFullYear()} RAVANA AGI System Documentation</p>
         </div>
       </footer>
     </div>
