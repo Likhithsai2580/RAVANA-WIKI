@@ -9,48 +9,24 @@ import Link from 'next/link';
 import Navigation from '../../components/Navigation';
 import Breadcrumb from '../../components/Breadcrumb';
 import TableOfContents from '../../components/TableOfContents';
+import MermaidRenderer from '../../components/MermaidRenderer';
 
 export default function DocPage({ doc, docs }) {
   const router = useRouter();
   
-  // Client-side effects for code highlighting and mermaid initialization
+  // Client-side effects for code highlighting
   useEffect(() => {
     // Syntax highlighting
     if (typeof window !== 'undefined' && window.Prism) {
       window.Prism.highlightAll();
     }
-    
-    // Initialize mermaid diagrams
-    const initMermaid = async () => {
-      if (typeof window !== 'undefined') {
-        try {
-          const { default: mermaid } = await import('mermaid');
-          
-          // Initialize mermaid
-          mermaid.initialize({
-            startOnLoad: false,
-            theme: 'default',
-            securityLevel: 'loose',
-            flowchart: { useMaxWidth: true }
-          });
-          
-          // Render all diagrams
-          mermaid.run();
-        } catch (error) {
-          console.error('Error initializing mermaid:', error);
-        }
-      }
-    };
-    
-    // Initialize mermaid with a slight delay to ensure DOM is ready
-    setTimeout(initMermaid, 100);
   }, [doc]);
   
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
-        <title>{doc.title} - RAVANA AGI Documentation</title>
-        <meta name="description" content={`Documentation for ${doc.title}`} />
+        <title>{doc.title ? `${doc.title} - RAVANA AGI Documentation` : 'RAVANA AGI Documentation'}</title>
+        <meta name="description" content={doc.title ? `Documentation for ${doc.title}` : 'RAVANA AGI Documentation'} />
       </Head>
       
       {/* Prism scripts */}
@@ -84,7 +60,7 @@ export default function DocPage({ doc, docs }) {
           <div className="flex flex-col md:flex-row gap-6">
             <article className="prose max-w-none bg-white p-6 rounded-lg shadow flex-grow">
               <h1>{doc.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: doc.content }} />
+              <MermaidRenderer content={doc.content} />
             </article>
             
             <div className="w-full md:w-64 flex-shrink-0">

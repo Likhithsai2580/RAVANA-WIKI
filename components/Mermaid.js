@@ -27,8 +27,13 @@ const Mermaid = ({ chart }) => {
         containerRef.current.innerHTML = '';
         
         // Render the chart
-        const { svg } = await mermaid.render(id, chart);
+        const { svg, bindFunctions } = await mermaid.render(id, chart);
         containerRef.current.innerHTML = svg;
+        
+        // Bind functions if they exist (for interactivity)
+        if (bindFunctions) {
+          bindFunctions(containerRef.current);
+        }
       } catch (error) {
         console.error('Error rendering mermaid chart:', error);
         containerRef.current.innerHTML = `<pre class="text-red-500 p-2 bg-red-100 rounded">Error rendering chart: ${error.message}</pre>`;

@@ -1,4 +1,10 @@
 {
+  "components\\Mermaid.js -> mermaid": {
+    "id": "components\\Mermaid.js -> mermaid",
+    "files": [
+      "static/chunks/node_modules_mermaid_dist_mermaid_core_mjs.js"
+    ]
+  },
   "node_modules\\mermaid\\dist\\mermaid-ad1dc92f.js -> ./blockDiagram-68f4deed.js": {
     "id": "node_modules\\mermaid\\dist\\mermaid-ad1dc92f.js -> ./blockDiagram-68f4deed.js",
     "files": [
@@ -139,12 +145,6 @@
   },
   "pages\\_app.js -> mermaid": {
     "id": "pages\\_app.js -> mermaid",
-    "files": [
-      "static/chunks/node_modules_mermaid_dist_mermaid_core_mjs.js"
-    ]
-  },
-  "pages\\docs\\[slug].js -> mermaid": {
-    "id": "pages\\docs\\[slug].js -> mermaid",
     "files": [
       "static/chunks/node_modules_mermaid_dist_mermaid_core_mjs.js"
     ]
