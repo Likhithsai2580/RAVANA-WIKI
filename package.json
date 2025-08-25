@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "node scripts/deploy.js"
+    "lint": "next lint"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
