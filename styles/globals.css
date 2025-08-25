@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-wiki-light text-wiki-dark;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold mb-4 mt-6;
+  }
+  
+  h1 {
+    @apply text-3xl;
+  }
+  
+  h2 {
+    @apply text-2xl border-b border-gray-200 pb-2;
+  }
+  
+  h3 {
+    @apply text-xl;
+  }
+  
+  p {
+    @apply mb-4;
+  }
+  
+  a {
+    @apply text-wiki-blue hover:underline;
+  }
+  
+  code {
+    @apply bg-gray-100 rounded px-1 py-0.5 text-sm font-mono;
+  }
+  
+  pre {
+    @apply bg-gray-800 text-white p-4 rounded-lg overflow-x-auto mb-4;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0;
+  }
+  
+  blockquote {
+    @apply border-l-4 border-wiki-blue pl-4 italic my-4;
+  }
+  
+  ul, ol {
+    @apply mb-4 ml-8;
+  }
+  
+  li {
+    @apply mb-2;
+  }
+  
+  table {
+    @apply min-w-full border-collapse mb-4;
+  }
+  
+  th, td {
+    @apply border border-gray-300 px-4 py-2;
+  }
+  
+  th {
+    @apply bg-gray-100 font-bold;
+  }
+}
+
+.mermaid {
+  @apply text-center my-8;
+}

@@ -1,12 +1,108 @@
-This repository contains a markdown-based wiki. A GitHub Actions workflow is included to build the site using MkDocs and deploy it to GitHub Pages.
+# RAVANA AGI Documentation System
 
-Quick start (local preview):
+This is a Node.js-based documentation website for the RAVANA AGI system, built with Next.js, Tailwind CSS, and supporting Mermaid diagrams.
 
-1. Create and activate a Python 3 virtual environment.
-2. Install dependencies: pip install -r requirements.txt
-3. Serve locally: mkdocs serve
+## Features
 
-Notes:
-- The site home page is configured to `Project Overview.md` in `mkdocs.yml`.
-- The workflow triggers on pushes to the `main` branch. If your default branch is different, update `.github/workflows/deploy-wiki.yml`.
-- GitHub Pages will be populated by the workflow using `peaceiris/actions-gh-pages`.
+- **Next.js Framework**: Modern React-based framework for production-ready applications
+- **Markdown Support**: Full support for Markdown files with GitHub Flavored Markdown
+- **Mermaid Diagrams**: Automatic rendering of Mermaid diagrams in documentation
+- **Code Syntax Highlighting**: Syntax highlighting for multiple programming languages
+- **Responsive Design**: Mobile-friendly interface with Tailwind CSS
+- **GitHub Pages Deployment**: Automated deployment via GitHub Actions
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm (comes with Node.js)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd wiki
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the documentation.
+
+### Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+To serve the production build locally:
+
+```bash
+npm run start
+```
+
+## Project Structure
+
+```
+/wiki-nodejs/
+├── pages/                  # Next.js pages
+│   ├── index.js            # Main documentation index
+│   ├── docs/[slug].js      # Dynamic documentation pages
+│   └── 404.js              # Custom 404 page
+├── lib/                    # Business logic and utilities
+│   └── markdown.js         # Markdown processing utilities
+├── styles/                 # Global styles
+│   └── globals.css         # Tailwind CSS and custom styles
+├── docs/                   # Documentation content (existing Markdown files)
+├── public/                 # Static assets
+└── components/             # Reusable UI components (to be added)
+```
+
+## Documentation Format
+
+The documentation system supports:
+
+1. **Standard Markdown**: All GitHub Flavored Markdown features
+2. **Mermaid Diagrams**: Enclosed in ```mermaid code blocks
+3. **Code Syntax Highlighting**: For JavaScript, TypeScript, Python, Bash, JSON, YAML, and more
+4. **Frontmatter**: YAML frontmatter for page metadata (optional)
+
+Example Mermaid diagram:
+```markdown
+\```mermaid
+graph TD
+  A[Start] --> B[Process]
+  B --> C[End]
+\```
+```
+
+## Deployment
+
+The documentation is automatically deployed to GitHub Pages using GitHub Actions. The workflow is defined in `.github/workflows/deploy-wiki.yml`.
+
+## Contributing
+
+To contribute to the documentation:
+
+1. Edit the Markdown files in the `docs/` directory
+2. Submit a pull request with your changes
+
+The documentation website will be automatically updated when changes are merged to the `main` branch.

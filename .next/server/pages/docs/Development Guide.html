@@ -1,0 +1,406 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta charSet="utf-8"/><title>Development Guide<!-- --> - RAVANA AGI Documentation</title><meta name="description" content="Documentation for Development Guide"/><meta name="next-head-count" content="4"/><link rel="preload" href="/_next/static/css/aa7d986e9c238cc1.css" as="style"/><link rel="stylesheet" href="/_next/static/css/aa7d986e9c238cc1.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js" defer="" data-nscript="beforeInteractive"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" defer="" data-nscript="beforeInteractive"></script><script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.0/dist/mermaid.min.js" defer="" data-nscript="beforeInteractive"></script><script src="/_next/static/chunks/webpack-8fa1640cc84ba8fe.js" defer=""></script><script src="/_next/static/chunks/framework-64ad27b21261a9ce.js" defer=""></script><script src="/_next/static/chunks/main-eb143115b8bf2786.js" defer=""></script><script src="/_next/static/chunks/pages/_app-a41459f5c0b49356.js" defer=""></script><script src="/_next/static/chunks/664-d254d21a6fe56bff.js" defer=""></script><script src="/_next/static/chunks/pages/docs/%5Bslug%5D-37d587d3c8e56222.js" defer=""></script><script src="/_next/static/QHWQNiRZOuW15nbk5-ngt/_buildManifest.js" defer=""></script><script src="/_next/static/QHWQNiRZOuW15nbk5-ngt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="min-h-screen flex flex-col"><div class="min-h-screen flex flex-col"><header class="bg-wiki-blue text-white p-4 shadow-md"><div class="container mx-auto flex justify-between items-center"><h1 class="text-2xl font-bold">RAVANA AGI Documentation</h1><nav><ul class="flex space-x-4"><li><a class="hover:underline" href="/">Home</a></li></ul></nav></div></header><div class="flex-grow container mx-auto p-4 flex flex-col md:flex-row gap-6"><div class="w-full md:w-64 flex-shrink-0"><nav class="w-full md:w-64 flex-shrink-0"><div class="bg-white rounded-lg shadow p-4 sticky top-4"><h3 class="font-bold text-lg mb-3">Documentation</h3><ul class="space-y-1"><li class="mb-3"><div class="font-semibold text-gray-700">A</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Action%20System">Action System</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/API%20Reference">API Reference</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Architecture%20&amp;%20Design">Architecture &amp; Design</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">C</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Configuration">Configuration</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Conversational%20AI%20Communication%20Framework">Conversational AI Communication Framework</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Core%20System">Core System</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">D</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Database%20Schema">Database Schema</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Decision-Making%20System">Decision-Making System</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Deployment%20&amp;%20Operations">Deployment &amp; Operations</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 bg-wiki-blue text-white" href="/docs/Development%20Guide">Development Guide</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">E</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Emotional%20Intelligence">Emotional Intelligence</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Enhanced%20Snake%20Agent">Enhanced Snake Agent</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Enhanced%20Snake%20Agent%20Architecture">Enhanced Snake Agent Architecture</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">G</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Graceful%20Shutdown">Graceful Shutdown</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">L</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/LLM%20Integration">LLM Integration</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">M</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Memory%20Systems">Memory Systems</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Multi-Modal%20Memory">Multi-Modal Memory</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">P</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Project%20Overview">Project Overview</a></li></ul></li><li class="mb-3"><div class="font-semibold text-gray-700">S</div><ul class="ml-2 mt-1 space-y-1"><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Self-Improvement">Self-Improvement</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Services">Services</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Snake%20Agent%20Configuration">Snake Agent Configuration</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Specialized%20Modules-57f9b30b-b165-48d3-8e89-196940d26190">Specialized Modules</a></li><li><a class="block py-1 px-2 rounded hover:bg-gray-100 text-gray-600" href="/docs/Specialized%20Modules">Specialized Modules</a></li></ul></li></ul></div></nav></div><main class="flex-grow"><nav class="mb-4 text-sm"><ol class="list-none p-0 inline-flex"><li class="flex items-center"><a class="text-wiki-blue hover:underline" href="/">Home</a><svg class="fill-current w-3 h-3 mx-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg></li><li class="flex items-center"><span class="text-gray-500">Development Guide</span></li></ol></nav><div class="flex flex-col md:flex-row gap-6"><article class="prose max-w-none bg-white p-6 rounded-lg shadow flex-grow"><h1>Development Guide</h1><div><h1>Development Guide</h1>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#setup-and-environment-configuration">Setup and Environment Configuration</a></li>
+<li><a href="#adding-new-actions-using-the-registry-pattern">Adding New Actions Using the Registry Pattern</a></li>
+<li><a href="#creating-new-modules">Creating New Modules</a></li>
+<li><a href="#testing-procedures-and-best-practices">Testing Procedures and Best Practices</a></li>
+<li><a href="#debugging-and-logging">Debugging and Logging</a></li>
+<li><a href="#contribution-guidelines">Contribution Guidelines</a></li>
+<li><a href="#common-pitfalls-and-integration-challenges">Common Pitfalls and Integration Challenges</a></li>
+<li><a href="#recommended-tools-and-ide-setup">Recommended Tools and IDE Setup</a></li>
+</ol>
+<h2>Introduction</h2>
+<p>This Development Guide provides comprehensive instructions for developers contributing to the RAVANA AGI project. It covers setup, module creation, action registration, testing, debugging, and contribution workflows. The guide is designed to help developers understand the system's architecture and best practices for extending its functionality.</p>
+<h2>Project Structure</h2>
+<p>The RAVANA project follows a modular architecture with clearly defined components. The main directories include:</p>
+<ul>
+<li><strong>core</strong>: Contains the central system logic, action management, and state handling</li>
+<li><strong>modules</strong>: Houses specialized functional modules like self-reflection, decision engine, and emotional intelligence</li>
+<li><strong>services</strong>: Provides data, memory, knowledge, and multi-modal services</li>
+<li><strong>database</strong>: Manages database engine and models</li>
+<li><strong>tests</strong>: Includes unit, integration, and validation tests</li>
+<li><strong>prompts</strong>: Stores prompt templates for various system functions</li>
+</ul>
+<pre><code class="language-mermaid">graph TB
+subgraph "Core System"
+ActionManager[Action Manager]
+ActionRegistry[Action Registry]
+System[AGI System]
+State[State Management]
+end
+subgraph "Modules"
+SelfReflection[Self-Reflection]
+DecisionEngine[Decision Engine]
+EmotionalIntelligence[Emotional Intelligence]
+CuriosityTrigger[Curiosity Trigger]
+end
+subgraph "Services"
+DataService[Data Service]
+MemoryService[Memory Service]
+KnowledgeService[Knowledge Service]
+end
+subgraph "External"
+Database[(Database)]
+LLM[(LLM)]
+end
+ActionManager --> ActionRegistry
+System --> ActionManager
+System --> State
+System --> SelfReflection
+System --> DecisionEngine
+System --> EmotionalIntelligence
+System --> CuriosityTrigger
+SelfReflection --> MemoryService
+DecisionEngine --> DataService
+EmotionalIntelligence --> State
+CuriosityTrigger --> System
+DataService --> Database
+MemoryService --> Database
+KnowledgeService --> LLM
+ActionManager --> LLM
+</code></pre>
+<p><strong>Diagram sources</strong></p>
+<ul>
+<li><a>README.md</a></li>
+<li><a>core/action_manager.py</a></li>
+</ul>
+<p><strong>Section sources</strong></p>
+<ul>
+<li><a>README.md</a></li>
+</ul>
+<h2>Setup and Environment Configuration</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Python 3.13 or higher</li>
+<li>uv (Python package manager)</li>
+</ul>
+<h3>Installation</h3>
+<pre><code class="language-bash">git clone https://github.com/OpenSource-Syndicate/RAVANA.git
+cd RAVANA
+uv venv
+# Activate virtual environment:
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+uv pip install -e .
+</code></pre>
+<h3>Dependency Management</h3>
+<p>The project uses <code>pyproject.toml</code> for dependency management. Core dependencies include:</p>
+<ul>
+<li><strong>AI/ML</strong>: torch, transformers, langchain, sentence-transformers</li>
+<li><strong>Database</strong>: asyncpg, psycopg2-binary, pgvector, chromadb</li>
+<li><strong>Web/API</strong>: fastapi, aiohttp, uvicorn</li>
+<li><strong>Utilities</strong>: numpy, pandas, watchdog, python-json-logger</li>
+</ul>
+<p>Optional dependencies are available for conversational AI:</p>
+<pre><code class="language-toml">[project.optional-dependencies]
+conversational-ai = [
+    "discord.py>=2.0.0",
+    "python-telegram-bot>=20.0",
+]
+</code></pre>
+<h3>Running the System</h3>
+<pre><code class="language-bash">uv run main.py
+</code></pre>
+<p><strong>Section sources</strong></p>
+<ul>
+<li><a>README.md</a></li>
+<li><a>pyproject.toml</a></li>
+</ul>
+<h2>Adding New Actions Using the Registry Pattern</h2>
+<p>The action registry pattern enables dynamic registration and management of executable behaviors within the AGI system.</p>
+<h3>Action Registry Implementation</h3>
+<p>The <code>ActionRegistry</code> class manages all available actions:</p>
+<pre><code class="language-python">class ActionRegistry:
+    def __init__(self, system: 'AGISystem', data_service: 'DataService') -> None:
+        self.actions: Dict[str, Action] = {}
+        # Pre-register core actions
+        self._register_action(ProposeAndTestInventionAction(system, data_service))
+        self._register_action(LogMessageAction(system, data_service))
+        # ... other actions
+</code></pre>
+<h3>Creating a New Action</h3>
+<ol>
+<li>Create a new Python file in <code>core/actions/</code> (e.g., <code>my_action.py</code>)</li>
+<li>Implement the action by extending the <code>Action</code> base class:</li>
+</ol>
+<pre><code class="language-python">from core.actions.action import Action
+from typing import Any, Dict, List
+
+class MyCustomAction(Action):
+    def __init__(self, system: 'AGISystem', data_service: 'DataService'):
+        super().__init__(system, data_service)
+
+    @property
+    def name(self) -> str:
+        return "my_custom_action"
+
+    @property
+    def description(self) -> str:
+        return "Performs a custom operation defined by the developer."
+
+    @property
+    def parameters(self) -> List[Dict[str, Any]]:
+        return [
+            {
+                "name": "parameter_name",
+                "type": "string",
+                "description": "Description of the parameter",
+                "required": True,
+            }
+        ]
+
+    async def execute(self, **kwargs: Any) -> Any:
+        # Validate parameters
+        self.validate_params(kwargs)
+        
+        # Implement action logic here
+        parameter_value = kwargs.get("parameter_name")
+        
+        # Return result
+        return {"status": "success", "message": f"Executed with {parameter_value}"}
+</code></pre>
+<h3>Registering the Action</h3>
+<p>Add the action to the registry in <code>core/actions/registry.py</code>:</p>
+<pre><code class="language-python">from core.actions.my_action import MyCustomAction
+
+# In ActionRegistry.__init__():
+self._register_action(MyCustomAction(system, data_service))
+</code></pre>
+<h3>Action Execution Flow</h3>
+<pre><code class="language-mermaid">sequenceDiagram
+participant System as AGI System
+participant AM as ActionManager
+participant Registry as ActionRegistry
+participant Action as MyCustomAction
+System->>AM : execute_action("my_custom_action", params)
+AM->>Registry : get_action("my_custom_action")
+Registry-->>AM : Action instance
+AM->>Action : validate_params(params)
+AM->>Action : execute(**params)
+Action-->>AM : result
+AM->>AM : log_action_execution()
+AM-->>System : result
+</code></pre>
+<p><strong>Diagram sources</strong></p>
+<ul>
+<li><a>core/actions/registry.py</a></li>
+<li><a>core/action_manager.py</a></li>
+</ul>
+<p><strong>Section sources</strong></p>
+<ul>
+<li><a>core/actions/registry.py</a></li>
+<li><a>core/actions/action.py</a></li>
+</ul>
+<h2>Creating New Modules</h2>
+<p>The system supports modular extensions that can be developed independently.</p>
+<h3>Module Structure</h3>
+<p>A typical module follows this structure:</p>
+<pre><code>modules/my_module/
+├── main.py
+├── pyproject.toml
+├── requirements.txt
+├── my_module.py
+└── test_my_module.py
+</code></pre>
+<h3>Module Implementation</h3>
+<p>Using the agent_self_reflection module as a template:</p>
+<ol>
+<li><strong>Create main.py</strong>: Entry point with command-line interface</li>
+</ol>
+<pre><code class="language-python">def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Module Description")
+    subparsers = parser.add_subparsers(dest="command", help="Command to run")
+    
+    # Add subcommands
+    reflect_parser = subparsers.add_parser('reflect', help='Generate a reflection')
+    reflect_parser.add_argument('--task', type=str, required=True)
+    reflect_parser.add_argument('--outcome', type=str, required=True)
+    
+    args = parser.parse_args()
+    
+    if args.command == 'reflect':
+        result = reflect_on_task(args.task, args.outcome)
+        print(json.dumps(result, indent=2))
+</code></pre>
+<ol start="2">
+<li><strong>Define dependencies</strong> in pyproject.toml:</li>
+</ol>
+<pre><code class="language-toml">[project]
+name = "my-module"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "google-genai>=1.23.0",
+    "openai>=1.93.0",
+    "requests>=2.32.4",
+]
+</code></pre>
+<ol start="3">
+<li><strong>List specific package versions</strong> in requirements.txt (generated from dependency resolution)</li>
+</ol>
+<h3>Module Integration</h3>
+<p>Modules can integrate with core services:</p>
+<ul>
+<li>Import core components: <code>from core.llm import call_llm</code></li>
+<li>Access shared state: <code>from core.state import SharedState</code></li>
+<li>Use data services: <code>from services.data_service import DataService</code></li>
+</ul>
+<p><strong>Section sources</strong></p>
+<ul>
+<li><a>modules/agent_self_reflection/main.py</a></li>
+<li><a>modules/agent_self_reflection/pyproject.toml</a></li>
+<li><a>modules/agent_self_reflection/requirements.txt</a></li>
+</ul>
+<h2>Testing Procedures and Best Practices</h2>
+<p>The project includes a comprehensive testing framework using pytest.</p>
+<h3>Test Structure</h3>
+<p>Tests are organized in the <code>tests/</code> directory with naming convention <code>test_&#x3C;component>.py</code>.</p>
+<h3>Writing Unit Tests</h3>
+<p>Example test structure from test_system.py:</p>
+<pre><code class="language-python">import pytest
+import asyncio
+from unittest.mock import AsyncMock, MagicMock
+
+from core.system import AGISystem
+
+@pytest.fixture
+def agi_system(mock_engine):
+    return AGISystem(mock_engine)
+
+@pytest.mark.asyncio
+async def test_agi_system_initialization(agi_system):
+    assert agi_system is not None
+    assert isinstance(agi_system.shared_state, SharedState)
+
+@pytest.mark.asyncio
+async def test_execute_action_unknown_action(agi_system):
+    decision = {"action": "unknown_action", "params": {}}
+    output = await agi_system.execute_action(decision)
+    assert output == "No action taken."
+</code></pre>
+<h3>Test Types</h3>
+<ul>
+<li><strong>Unit tests</strong>: Test individual components in isolation</li>
+<li><strong>Integration tests</strong>: Verify interactions between components</li>
+<li><strong>Validation scripts</strong>: Check structural completeness (e.g., validate_memory_integration_manager.py)</li>
+<li><strong>End-to-end tests</strong>: Test complete workflows</li>
+</ul>
+<h3>Testing Best Practices</h3>
+<ol>
+<li>Use <code>pytest.mark.asyncio</code> for asynchronous tests</li>
+<li>Mock external dependencies using <code>unittest.mock</code></li>
+<li>Test edge cases and error handling</li>
+<li>Include test coverage for critical paths</li>
+<li>Use descriptive test names that explain the scenario</li>
+</ol>
+<h3>Running Tests</h3>
+<pre><code class="language-bash"># Run all tests
+pytest
+
+# Run specific test file
+pytest tests/test_system.py
+
+# Run with verbose output
+pytest -v
+</code></pre>
+<p><strong>Section sources</strong></p>
+<ul>
+<li><a>tests/test_system.py</a></li>
+</ul>
+<h2>Debugging and Logging</h2>
+<h3>Logging Configuration</h3>
+<p>The system uses Python's logging module with structured logging via python-json-logger.</p>
+<h3>Debugging Techniques</h3>
+<ol>
+<li><strong>Enable verbose logging</strong>: Check log files in the system's logging directory</li>
+<li><strong>Use breakpoints</strong>: Add <code>import pdb; pdb.set_trace()</code> in code</li>
+<li><strong>Analyze action logs</strong>: Review saved action logs in the database</li>
+<li><strong>Monitor state changes</strong>: Track shared state modifications</li>
+</ol>
+<h3>Performance Profiling</h3>
+<ol>
+<li>Use Python's cProfile for performance analysis</li>
+<li>Monitor memory usage with psutil</li>
+<li>Track action execution times in logs</li>
+<li>Use the built-in performance monitoring in VLTM components</li>
+</ol>
+<h2>Contribution Guidelines</h2>
+<h3>Code Style</h3>
+<ul>
+<li>Follow PEP 8 guidelines</li>
+<li>Use type hints for all functions and variables</li>
+<li>Write comprehensive docstrings</li>
+<li>Keep functions focused and small</li>
+</ul>
+<h3>Pull Request Workflow</h3>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Implement changes with tests</li>
+<li>Ensure all tests pass</li>
+<li>Submit pull request with detailed description</li>
+</ol>
+<h3>Code Review Expectations</h3>
+<ul>
+<li>Clear documentation of changes</li>
+<li>Appropriate test coverage</li>
+<li>No breaking changes without justification</li>
+<li>Performance considerations addressed</li>
+</ul>
+<h2>Common Pitfalls and Integration Challenges</h2>
+<h3>Common Issues</h3>
+<ul>
+<li><strong>Circular imports</strong>: Avoid importing from modules that depend on core</li>
+<li><strong>Async/sync mixing</strong>: Ensure proper async handling in coroutines</li>
+<li><strong>Dependency conflicts</strong>: Use uv to manage dependencies</li>
+<li><strong>Memory leaks</strong>: Properly manage object lifecycles</li>
+</ul>
+<h3>Integration Challenges</h3>
+<ul>
+<li><strong>State synchronization</strong>: Ensure shared state is properly coordinated</li>
+<li><strong>Action naming conflicts</strong>: Use unique action names</li>
+<li><strong>Database schema changes</strong>: Handle migrations carefully</li>
+<li><strong>LLM response parsing</strong>: Validate and sanitize LLM outputs</li>
+</ul>
+<h2>Recommended Tools and IDE Setup</h2>
+<h3>Development Tools</h3>
+<ul>
+<li><strong>IDE</strong>: VS Code or PyCharm</li>
+<li><strong>Python Manager</strong>: uv</li>
+<li><strong>Testing</strong>: pytest, pytest-asyncio</li>
+<li><strong>Formatting</strong>: black, isort</li>
+<li><strong>Linting</strong>: flake8, mypy</li>
+</ul>
+<h3>IDE Configuration</h3>
+<ol>
+<li>Set up virtual environment interpreter</li>
+<li>Install Python extension (VS Code) or configure project SDK (PyCharm)</li>
+<li>Enable linting and type checking</li>
+<li>Configure test discovery for pytest</li>
+<li>Set up debugging configuration for main.py</li>
+</ol>
+<h3>Productivity Tips</h3>
+<ul>
+<li>Use code snippets for common patterns</li>
+<li>Configure auto-format on save</li>
+<li>Set up test runners in IDE</li>
+<li>Use version control integration</li>
+<li>Enable Git pre-commit hooks for linting</li>
+</ul>
+<p><strong>Referenced Files in This Document</strong></p>
+<ul>
+<li><a>README.md</a></li>
+<li><a>pyproject.toml</a></li>
+<li><a>core/actions/registry.py</a></li>
+<li><a>core/actions/action.py</a></li>
+<li><a>core/action_manager.py</a></li>
+<li><a>modules/agent_self_reflection/main.py</a></li>
+<li><a>modules/agent_self_reflection/pyproject.toml</a></li>
+<li><a>modules/agent_self_reflection/requirements.txt</a></li>
+<li><a>tests/test_system.py</a></li>
+</ul>
+</div></article><div class="w-full md:w-64 flex-shrink-0"></div></div></main></div><footer class="bg-wiki-dark text-white p-4"><div class="container mx-auto text-center"><p>© <!-- -->2025<!-- --> RAVANA AGI System Documentation</p></div></footer></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"doc":{"slug":"Development Guide","title":"Development Guide","content":"\u003ch1\u003eDevelopment Guide\u003c/h1\u003e\n\u003ch2\u003eTable of Contents\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\"#introduction\"\u003eIntroduction\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#project-structure\"\u003eProject Structure\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#setup-and-environment-configuration\"\u003eSetup and Environment Configuration\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#adding-new-actions-using-the-registry-pattern\"\u003eAdding New Actions Using the Registry Pattern\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#creating-new-modules\"\u003eCreating New Modules\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#testing-procedures-and-best-practices\"\u003eTesting Procedures and Best Practices\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#debugging-and-logging\"\u003eDebugging and Logging\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#contribution-guidelines\"\u003eContribution Guidelines\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#common-pitfalls-and-integration-challenges\"\u003eCommon Pitfalls and Integration Challenges\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#recommended-tools-and-ide-setup\"\u003eRecommended Tools and IDE Setup\u003c/a\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2\u003eIntroduction\u003c/h2\u003e\n\u003cp\u003eThis Development Guide provides comprehensive instructions for developers contributing to the RAVANA AGI project. It covers setup, module creation, action registration, testing, debugging, and contribution workflows. The guide is designed to help developers understand the system's architecture and best practices for extending its functionality.\u003c/p\u003e\n\u003ch2\u003eProject Structure\u003c/h2\u003e\n\u003cp\u003eThe RAVANA project follows a modular architecture with clearly defined components. The main directories include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003ecore\u003c/strong\u003e: Contains the central system logic, action management, and state handling\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003emodules\u003c/strong\u003e: Houses specialized functional modules like self-reflection, decision engine, and emotional intelligence\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eservices\u003c/strong\u003e: Provides data, memory, knowledge, and multi-modal services\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003edatabase\u003c/strong\u003e: Manages database engine and models\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003etests\u003c/strong\u003e: Includes unit, integration, and validation tests\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eprompts\u003c/strong\u003e: Stores prompt templates for various system functions\u003c/li\u003e\n\u003c/ul\u003e\n\u003cpre\u003e\u003ccode class=\"language-mermaid\"\u003egraph TB\nsubgraph \"Core System\"\nActionManager[Action Manager]\nActionRegistry[Action Registry]\nSystem[AGI System]\nState[State Management]\nend\nsubgraph \"Modules\"\nSelfReflection[Self-Reflection]\nDecisionEngine[Decision Engine]\nEmotionalIntelligence[Emotional Intelligence]\nCuriosityTrigger[Curiosity Trigger]\nend\nsubgraph \"Services\"\nDataService[Data Service]\nMemoryService[Memory Service]\nKnowledgeService[Knowledge Service]\nend\nsubgraph \"External\"\nDatabase[(Database)]\nLLM[(LLM)]\nend\nActionManager --\u003e ActionRegistry\nSystem --\u003e ActionManager\nSystem --\u003e State\nSystem --\u003e SelfReflection\nSystem --\u003e DecisionEngine\nSystem --\u003e EmotionalIntelligence\nSystem --\u003e CuriosityTrigger\nSelfReflection --\u003e MemoryService\nDecisionEngine --\u003e DataService\nEmotionalIntelligence --\u003e State\nCuriosityTrigger --\u003e System\nDataService --\u003e Database\nMemoryService --\u003e Database\nKnowledgeService --\u003e LLM\nActionManager --\u003e LLM\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eDiagram sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003eREADME.md\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/action_manager.py\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003eSection sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003eREADME.md\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eSetup and Environment Configuration\u003c/h2\u003e\n\u003ch3\u003ePrerequisites\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003ePython 3.13 or higher\u003c/li\u003e\n\u003cli\u003euv (Python package manager)\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eInstallation\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"language-bash\"\u003egit clone https://github.com/OpenSource-Syndicate/RAVANA.git\ncd RAVANA\nuv venv\n# Activate virtual environment:\n# Windows: .venv\\Scripts\\activate\n# macOS/Linux: source .venv/bin/activate\nuv pip install -e .\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eDependency Management\u003c/h3\u003e\n\u003cp\u003eThe project uses \u003ccode\u003epyproject.toml\u003c/code\u003e for dependency management. Core dependencies include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eAI/ML\u003c/strong\u003e: torch, transformers, langchain, sentence-transformers\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDatabase\u003c/strong\u003e: asyncpg, psycopg2-binary, pgvector, chromadb\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eWeb/API\u003c/strong\u003e: fastapi, aiohttp, uvicorn\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eUtilities\u003c/strong\u003e: numpy, pandas, watchdog, python-json-logger\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eOptional dependencies are available for conversational AI:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-toml\"\u003e[project.optional-dependencies]\nconversational-ai = [\n    \"discord.py\u003e=2.0.0\",\n    \"python-telegram-bot\u003e=20.0\",\n]\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eRunning the System\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"language-bash\"\u003euv run main.py\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eSection sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003eREADME.md\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003epyproject.toml\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eAdding New Actions Using the Registry Pattern\u003c/h2\u003e\n\u003cp\u003eThe action registry pattern enables dynamic registration and management of executable behaviors within the AGI system.\u003c/p\u003e\n\u003ch3\u003eAction Registry Implementation\u003c/h3\u003e\n\u003cp\u003eThe \u003ccode\u003eActionRegistry\u003c/code\u003e class manages all available actions:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-python\"\u003eclass ActionRegistry:\n    def __init__(self, system: 'AGISystem', data_service: 'DataService') -\u003e None:\n        self.actions: Dict[str, Action] = {}\n        # Pre-register core actions\n        self._register_action(ProposeAndTestInventionAction(system, data_service))\n        self._register_action(LogMessageAction(system, data_service))\n        # ... other actions\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eCreating a New Action\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003eCreate a new Python file in \u003ccode\u003ecore/actions/\u003c/code\u003e (e.g., \u003ccode\u003emy_action.py\u003c/code\u003e)\u003c/li\u003e\n\u003cli\u003eImplement the action by extending the \u003ccode\u003eAction\u003c/code\u003e base class:\u003c/li\u003e\n\u003c/ol\u003e\n\u003cpre\u003e\u003ccode class=\"language-python\"\u003efrom core.actions.action import Action\nfrom typing import Any, Dict, List\n\nclass MyCustomAction(Action):\n    def __init__(self, system: 'AGISystem', data_service: 'DataService'):\n        super().__init__(system, data_service)\n\n    @property\n    def name(self) -\u003e str:\n        return \"my_custom_action\"\n\n    @property\n    def description(self) -\u003e str:\n        return \"Performs a custom operation defined by the developer.\"\n\n    @property\n    def parameters(self) -\u003e List[Dict[str, Any]]:\n        return [\n            {\n                \"name\": \"parameter_name\",\n                \"type\": \"string\",\n                \"description\": \"Description of the parameter\",\n                \"required\": True,\n            }\n        ]\n\n    async def execute(self, **kwargs: Any) -\u003e Any:\n        # Validate parameters\n        self.validate_params(kwargs)\n        \n        # Implement action logic here\n        parameter_value = kwargs.get(\"parameter_name\")\n        \n        # Return result\n        return {\"status\": \"success\", \"message\": f\"Executed with {parameter_value}\"}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eRegistering the Action\u003c/h3\u003e\n\u003cp\u003eAdd the action to the registry in \u003ccode\u003ecore/actions/registry.py\u003c/code\u003e:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-python\"\u003efrom core.actions.my_action import MyCustomAction\n\n# In ActionRegistry.__init__():\nself._register_action(MyCustomAction(system, data_service))\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eAction Execution Flow\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"language-mermaid\"\u003esequenceDiagram\nparticipant System as AGI System\nparticipant AM as ActionManager\nparticipant Registry as ActionRegistry\nparticipant Action as MyCustomAction\nSystem-\u003e\u003eAM : execute_action(\"my_custom_action\", params)\nAM-\u003e\u003eRegistry : get_action(\"my_custom_action\")\nRegistry--\u003e\u003eAM : Action instance\nAM-\u003e\u003eAction : validate_params(params)\nAM-\u003e\u003eAction : execute(**params)\nAction--\u003e\u003eAM : result\nAM-\u003e\u003eAM : log_action_execution()\nAM--\u003e\u003eSystem : result\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eDiagram sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003ecore/actions/registry.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/action_manager.py\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003eSection sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003ecore/actions/registry.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/actions/action.py\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eCreating New Modules\u003c/h2\u003e\n\u003cp\u003eThe system supports modular extensions that can be developed independently.\u003c/p\u003e\n\u003ch3\u003eModule Structure\u003c/h3\u003e\n\u003cp\u003eA typical module follows this structure:\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003emodules/my_module/\n├── main.py\n├── pyproject.toml\n├── requirements.txt\n├── my_module.py\n└── test_my_module.py\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eModule Implementation\u003c/h3\u003e\n\u003cp\u003eUsing the agent_self_reflection module as a template:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eCreate main.py\u003c/strong\u003e: Entry point with command-line interface\u003c/li\u003e\n\u003c/ol\u003e\n\u003cpre\u003e\u003ccode class=\"language-python\"\u003edef main():\n    import argparse\n    parser = argparse.ArgumentParser(description=\"Module Description\")\n    subparsers = parser.add_subparsers(dest=\"command\", help=\"Command to run\")\n    \n    # Add subcommands\n    reflect_parser = subparsers.add_parser('reflect', help='Generate a reflection')\n    reflect_parser.add_argument('--task', type=str, required=True)\n    reflect_parser.add_argument('--outcome', type=str, required=True)\n    \n    args = parser.parse_args()\n    \n    if args.command == 'reflect':\n        result = reflect_on_task(args.task, args.outcome)\n        print(json.dumps(result, indent=2))\n\u003c/code\u003e\u003c/pre\u003e\n\u003col start=\"2\"\u003e\n\u003cli\u003e\u003cstrong\u003eDefine dependencies\u003c/strong\u003e in pyproject.toml:\u003c/li\u003e\n\u003c/ol\u003e\n\u003cpre\u003e\u003ccode class=\"language-toml\"\u003e[project]\nname = \"my-module\"\nversion = \"0.1.0\"\nrequires-python = \"\u003e=3.13\"\ndependencies = [\n    \"google-genai\u003e=1.23.0\",\n    \"openai\u003e=1.93.0\",\n    \"requests\u003e=2.32.4\",\n]\n\u003c/code\u003e\u003c/pre\u003e\n\u003col start=\"3\"\u003e\n\u003cli\u003e\u003cstrong\u003eList specific package versions\u003c/strong\u003e in requirements.txt (generated from dependency resolution)\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eModule Integration\u003c/h3\u003e\n\u003cp\u003eModules can integrate with core services:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eImport core components: \u003ccode\u003efrom core.llm import call_llm\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eAccess shared state: \u003ccode\u003efrom core.state import SharedState\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eUse data services: \u003ccode\u003efrom services.data_service import DataService\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003eSection sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/main.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/pyproject.toml\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/requirements.txt\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eTesting Procedures and Best Practices\u003c/h2\u003e\n\u003cp\u003eThe project includes a comprehensive testing framework using pytest.\u003c/p\u003e\n\u003ch3\u003eTest Structure\u003c/h3\u003e\n\u003cp\u003eTests are organized in the \u003ccode\u003etests/\u003c/code\u003e directory with naming convention \u003ccode\u003etest_\u0026#x3C;component\u003e.py\u003c/code\u003e.\u003c/p\u003e\n\u003ch3\u003eWriting Unit Tests\u003c/h3\u003e\n\u003cp\u003eExample test structure from test_system.py:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-python\"\u003eimport pytest\nimport asyncio\nfrom unittest.mock import AsyncMock, MagicMock\n\nfrom core.system import AGISystem\n\n@pytest.fixture\ndef agi_system(mock_engine):\n    return AGISystem(mock_engine)\n\n@pytest.mark.asyncio\nasync def test_agi_system_initialization(agi_system):\n    assert agi_system is not None\n    assert isinstance(agi_system.shared_state, SharedState)\n\n@pytest.mark.asyncio\nasync def test_execute_action_unknown_action(agi_system):\n    decision = {\"action\": \"unknown_action\", \"params\": {}}\n    output = await agi_system.execute_action(decision)\n    assert output == \"No action taken.\"\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eTest Types\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eUnit tests\u003c/strong\u003e: Test individual components in isolation\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eIntegration tests\u003c/strong\u003e: Verify interactions between components\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eValidation scripts\u003c/strong\u003e: Check structural completeness (e.g., validate_memory_integration_manager.py)\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eEnd-to-end tests\u003c/strong\u003e: Test complete workflows\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eTesting Best Practices\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003eUse \u003ccode\u003epytest.mark.asyncio\u003c/code\u003e for asynchronous tests\u003c/li\u003e\n\u003cli\u003eMock external dependencies using \u003ccode\u003eunittest.mock\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003eTest edge cases and error handling\u003c/li\u003e\n\u003cli\u003eInclude test coverage for critical paths\u003c/li\u003e\n\u003cli\u003eUse descriptive test names that explain the scenario\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eRunning Tests\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class=\"language-bash\"\u003e# Run all tests\npytest\n\n# Run specific test file\npytest tests/test_system.py\n\n# Run with verbose output\npytest -v\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003e\u003cstrong\u003eSection sources\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003etests/test_system.py\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eDebugging and Logging\u003c/h2\u003e\n\u003ch3\u003eLogging Configuration\u003c/h3\u003e\n\u003cp\u003eThe system uses Python's logging module with structured logging via python-json-logger.\u003c/p\u003e\n\u003ch3\u003eDebugging Techniques\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eEnable verbose logging\u003c/strong\u003e: Check log files in the system's logging directory\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eUse breakpoints\u003c/strong\u003e: Add \u003ccode\u003eimport pdb; pdb.set_trace()\u003c/code\u003e in code\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAnalyze action logs\u003c/strong\u003e: Review saved action logs in the database\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMonitor state changes\u003c/strong\u003e: Track shared state modifications\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003ePerformance Profiling\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003eUse Python's cProfile for performance analysis\u003c/li\u003e\n\u003cli\u003eMonitor memory usage with psutil\u003c/li\u003e\n\u003cli\u003eTrack action execution times in logs\u003c/li\u003e\n\u003cli\u003eUse the built-in performance monitoring in VLTM components\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2\u003eContribution Guidelines\u003c/h2\u003e\n\u003ch3\u003eCode Style\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eFollow PEP 8 guidelines\u003c/li\u003e\n\u003cli\u003eUse type hints for all functions and variables\u003c/li\u003e\n\u003cli\u003eWrite comprehensive docstrings\u003c/li\u003e\n\u003cli\u003eKeep functions focused and small\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003ePull Request Workflow\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003eFork the repository\u003c/li\u003e\n\u003cli\u003eCreate a feature branch\u003c/li\u003e\n\u003cli\u003eImplement changes with tests\u003c/li\u003e\n\u003cli\u003eEnsure all tests pass\u003c/li\u003e\n\u003cli\u003eSubmit pull request with detailed description\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eCode Review Expectations\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eClear documentation of changes\u003c/li\u003e\n\u003cli\u003eAppropriate test coverage\u003c/li\u003e\n\u003cli\u003eNo breaking changes without justification\u003c/li\u003e\n\u003cli\u003ePerformance considerations addressed\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eCommon Pitfalls and Integration Challenges\u003c/h2\u003e\n\u003ch3\u003eCommon Issues\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eCircular imports\u003c/strong\u003e: Avoid importing from modules that depend on core\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAsync/sync mixing\u003c/strong\u003e: Ensure proper async handling in coroutines\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDependency conflicts\u003c/strong\u003e: Use uv to manage dependencies\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMemory leaks\u003c/strong\u003e: Properly manage object lifecycles\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eIntegration Challenges\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eState synchronization\u003c/strong\u003e: Ensure shared state is properly coordinated\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAction naming conflicts\u003c/strong\u003e: Use unique action names\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDatabase schema changes\u003c/strong\u003e: Handle migrations carefully\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eLLM response parsing\u003c/strong\u003e: Validate and sanitize LLM outputs\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2\u003eRecommended Tools and IDE Setup\u003c/h2\u003e\n\u003ch3\u003eDevelopment Tools\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eIDE\u003c/strong\u003e: VS Code or PyCharm\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003ePython Manager\u003c/strong\u003e: uv\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eTesting\u003c/strong\u003e: pytest, pytest-asyncio\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eFormatting\u003c/strong\u003e: black, isort\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eLinting\u003c/strong\u003e: flake8, mypy\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3\u003eIDE Configuration\u003c/h3\u003e\n\u003col\u003e\n\u003cli\u003eSet up virtual environment interpreter\u003c/li\u003e\n\u003cli\u003eInstall Python extension (VS Code) or configure project SDK (PyCharm)\u003c/li\u003e\n\u003cli\u003eEnable linting and type checking\u003c/li\u003e\n\u003cli\u003eConfigure test discovery for pytest\u003c/li\u003e\n\u003cli\u003eSet up debugging configuration for main.py\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3\u003eProductivity Tips\u003c/h3\u003e\n\u003cul\u003e\n\u003cli\u003eUse code snippets for common patterns\u003c/li\u003e\n\u003cli\u003eConfigure auto-format on save\u003c/li\u003e\n\u003cli\u003eSet up test runners in IDE\u003c/li\u003e\n\u003cli\u003eUse version control integration\u003c/li\u003e\n\u003cli\u003eEnable Git pre-commit hooks for linting\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003eReferenced Files in This Document\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ca\u003eREADME.md\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003epyproject.toml\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/actions/registry.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/actions/action.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003ecore/action_manager.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/main.py\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/pyproject.toml\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003emodules/agent_self_reflection/requirements.txt\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca\u003etests/test_system.py\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n"},"docs":[{"slug":"Action System","title":"Action System"},{"slug":"API Reference","title":"API Reference"},{"slug":"Architecture \u0026 Design","title":"Architecture \u0026 Design"},{"slug":"Configuration","title":"Configuration"},{"slug":"Conversational AI Communication Framework","title":"Conversational AI Communication Framework"},{"slug":"Core System","title":"Core System"},{"slug":"Database Schema","title":"Database Schema"},{"slug":"Decision-Making System","title":"Decision-Making System"},{"slug":"Deployment \u0026 Operations","title":"Deployment \u0026 Operations"},{"slug":"Development Guide","title":"Development Guide"},{"slug":"Emotional Intelligence","title":"Emotional Intelligence"},{"slug":"Enhanced Snake Agent","title":"Enhanced Snake Agent"},{"slug":"Enhanced Snake Agent Architecture","title":"Enhanced Snake Agent Architecture"},{"slug":"Graceful Shutdown","title":"Graceful Shutdown"},{"slug":"LLM Integration","title":"LLM Integration"},{"slug":"Memory Systems","title":"Memory Systems"},{"slug":"Multi-Modal Memory","title":"Multi-Modal Memory"},{"slug":"Project Overview","title":"Project Overview"},{"slug":"Self-Improvement","title":"Self-Improvement"},{"slug":"Services","title":"Services"},{"slug":"Snake Agent Configuration","title":"Snake Agent Configuration"},{"slug":"Specialized Modules-57f9b30b-b165-48d3-8e89-196940d26190","title":"Specialized Modules"},{"slug":"Specialized Modules","title":"Specialized Modules"}]},"__N_SSG":true},"page":"/docs/[slug]","query":{"slug":"Development Guide"},"buildId":"QHWQNiRZOuW15nbk5-ngt","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
