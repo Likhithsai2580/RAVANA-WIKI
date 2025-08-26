@@ -133,7 +133,7 @@ The `ShutdownCoordinator` class is the central orchestrator of the graceful shut
 #### Shutdown Phases Flowchart
 ``mermaid
 flowchart TD
-Start([Initiate Shutdown]) --> Phase1["Phase 1: Pre-shutdown Validation"]
+Start("Initiate Shutdown") --> Phase1["Phase 1: Pre-shutdown Validation"]
 Phase1 --> Phase2["Phase 2: Signal Received"]
 Phase2 --> Phase3["Phase 3: Component Notification"]
 Phase3 --> Phase4["Phase 4: Stop Background Tasks"]
@@ -156,19 +156,19 @@ participant Coordinator as ShutdownCoordinator
 participant Component as Component
 participant System as AGI System
 participant Logger as Logger
-Logger->>Coordinator : Log initialization
-Coordinator->>System : Register shutdown handlers
-System->>Coordinator : Register components
-Coordinator->>Coordinator : initiate_shutdown(reason)
-Coordinator->>Logger : Log shutdown initiation
-Coordinator->>Coordinator : _execute_shutdown_phases()
+Logger-->>Coordinator : Log initialization
+Coordinator-->>System : Register shutdown handlers
+System-->>Coordinator : Register components
+Coordinator-->>Coordinator : initiate_shutdown(reason)
+Coordinator-->>Logger : Log shutdown initiation
+Coordinator-->>Coordinator : _execute_shutdown_phases()
 loop Each Phase
-Coordinator->>Coordinator : _execute_phase(phase, handler)
-Coordinator->>Logger : Log phase start
-Coordinator->>Coordinator : Execute phase handler
-Coordinator->>Logger : Log phase completion
+Coordinator-->>Coordinator : _execute_phase(phase, handler)
+Coordinator-->>Logger : Log phase start
+Coordinator-->>Coordinator : Execute phase handler
+Coordinator-->>Logger : Log phase completion
 end
-Coordinator->>Logger : Log shutdown summary
+Coordinator-->>Logger : Log shutdown summary
 ```
 
 **Section sources**
@@ -180,7 +180,7 @@ The graceful shutdown behavior is highly configurable through environment variab
 #### Shutdown Configuration Parameters
 ``mermaid
 flowchart TD
-A[Shutdown Configuration] --> B["SHUTDOWN_TIMEOUT: 30s"]
+A("Shutdown Configuration") --> B["SHUTDOWN_TIMEOUT: 30s"]
 A --> C["FORCE_SHUTDOWN_AFTER: 60s"]
 A --> D["STATE_PERSISTENCE_ENABLED: True"]
 A --> E["SHUTDOWN_STATE_FILE: shutdown_state.json"]
@@ -250,7 +250,7 @@ When issues occur during graceful shutdown, the following patterns and solutions
 ### Common Issues and Solutions
 ``mermaid
 flowchart TD
-A[Shutdown Issues] --> B{"Timeout Exceeded?"}
+A("Shutdown Issues") --> B{"Timeout Exceeded?"}
 B --> |Yes| C["Check COMPONENT_SHUTDOWN_TIMEOUT setting"]
 B --> |No| D{"Errors in Logs?"}
 D --> |Yes| E["Review component-specific shutdown methods"]

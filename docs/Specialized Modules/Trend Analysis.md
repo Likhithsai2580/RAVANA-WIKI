@@ -76,7 +76,7 @@ The trend_engine.py module implements the core functionality for data ingestion 
 #### Data Ingestion Flow
 ```mermaid
 flowchart TD
-Start([Start]) --> FetchFeeds["Fetch RSS Feeds"]
+Start([("Start")]) --> FetchFeeds["Fetch RSS Feeds"]
 FetchFeeds --> ParseEntries["Parse Feed Entries"]
 ParseEntries --> SaveArticle["Save Article to Database"]
 SaveArticle --> NextFeed["Next Feed URL?"]

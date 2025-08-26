@@ -269,25 +269,25 @@ This cycle is continuous, with each iteration building on the previous one to cr
 
 ```mermaid
 sequenceDiagram
-participant SG as SituationGenerator
-participant DE as DecisionEngine
-participant AM as ActionManager
-participant EI as EmotionalIntelligence
-participant EM as EpisodicMemory
-participant KC as KnowledgeCompression
-participant SR as AgentSelfReflection
-SG->>DE : Generated situation
-DE->>AM : Decision
-AM->>AM : Execute action
-AM->>EI : Update mood
-AM->>EM : Store action log
-EI->>EM : Store mood state
-EM->>KC : Trigger compression
-KC->>EM : Store compressed memory
-EM->>SR : Provide memory for reflection
-SR->>SG : Modify behavior
-SR->>DE : Update hypotheses
-SR->>AM : Update action registry
+participant SG as ("SituationGenerator")
+participant DE as ("DecisionEngine")
+participant AM as ("ActionManager")
+participant EI as ("EmotionalIntelligence")
+participant EM as ("EpisodicMemory")
+participant KC as ("KnowledgeCompression")
+participant SR as ("AgentSelfReflection")
+SG-->>DE : Generated situation
+DE-->>AM : Decision
+AM-->>AM : Execute action
+AM-->>EI : Update mood
+AM-->>EM : Store action log
+EI-->>EM : Store mood state
+EM-->>KC : Trigger compression
+KC-->>EM : Store compressed memory
+EM-->>SR : Provide memory for reflection
+SR-->>SG : Modify behavior
+SR-->>DE : Update hypotheses
+SR-->>AM : Update action registry
 ```
 
 **Diagram sources**

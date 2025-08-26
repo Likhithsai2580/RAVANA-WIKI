@@ -94,9 +94,9 @@ The MemoryService class provides the primary interface for memory operations wit
 #### For API/Service Components:
 ```mermaid
 sequenceDiagram
-participant Client as "Client App"
-participant MemoryService as "MemoryService"
-participant MemoryAPI as "Memory API"
+participant Client as ("Client App")
+participant MemoryService as ("MemoryService")
+participant MemoryAPI as ("Memory API")
 Client->>MemoryService : save_memories(memories)
 MemoryService->>MemoryAPI : save_memories(memories)
 MemoryAPI-->>MemoryService : StatusResponse

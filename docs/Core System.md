@@ -406,33 +406,33 @@ participant AGISystem as "AGISystem"
 participant Coordinator as "ShutdownCoordinator"
 participant Components as "Registered Components"
 participant StateManager as "StateManager"
-AGISystem->>Coordinator : initiate_shutdown(reason)
-Coordinator->>Coordinator : Set shutdown_in_progress = true
-Coordinator->>Coordinator : Record shutdown_start_time
-Coordinator->>Components : _phase_pre_shutdown_validation()
-Coordinator->>AGISystem : _phase_signal_received()
-AGISystem->>AGISystem : _shutdown.set()
-Coordinator->>Components : _phase_component_notification()
+AGISystem-->>Coordinator : initiate_shutdown(reason)
+Coordinator-->>Coordinator : Set shutdown_in_progress = true
+Coordinator-->>Coordinator : Record shutdown_start_time
+Coordinator-->>Components : _phase_pre_shutdown_validation()
+Coordinator-->>AGISystem : _phase_signal_received()
+AGISystem-->>AGISystem : _shutdown.set()
+Coordinator-->>Components : _phase_component_notification()
 loop For each component
-Components->>Components : prepare_shutdown()
+Components-->>Components : prepare_shutdown()
 end
-Coordinator->>AGISystem : _phase_stop_background_tasks()
-AGISystem->>AGISystem : Cancel background tasks
-Coordinator->>Coordinator : _phase_resource_cleanup()
-Coordinator->>Coordinator : Execute cleanup handlers
-Coordinator->>Components : _phase_service_shutdown()
+Coordinator-->>AGISystem : _phase_stop_background_tasks()
+AGISystem-->>AGISystem : Cancel background tasks
+Coordinator-->>Coordinator : _phase_resource_cleanup()
+Coordinator-->>Coordinator : Execute cleanup handlers
+Coordinator-->>Components : _phase_service_shutdown()
 loop For each component
-Components->>Components : shutdown()
+Components-->>Components : shutdown()
 end
-Coordinator->>Coordinator : _phase_state_persistence()
-Coordinator->>Coordinator : _collect_system_state()
-Coordinator->>Coordinator : _validate_state_data()
-Coordinator->>Coordinator : Save state to file
-Coordinator->>Coordinator : _create_state_backup()
-Coordinator->>Coordinator : _phase_final_validation()
-Coordinator->>Coordinator : Validate state file
-Coordinator->>Coordinator : Persist ChromaDB
-Coordinator->>Coordinator : _log_shutdown_summary()
+Coordinator-->>Coordinator : _phase_state_persistence()
+Coordinator-->>Coordinator : _collect_system_state()
+Coordinator-->>Coordinator : _validate_state_data()
+Coordinator-->>Coordinator : Save state to file
+Coordinator-->>Coordinator : _create_state_backup()
+Coordinator-->>Coordinator : _phase_final_validation()
+Coordinator-->>Coordinator : Validate state file
+Coordinator-->>Coordinator : Persist ChromaDB
+Coordinator-->>Coordinator : _log_shutdown_summary()
 ```
 
 **Diagram sources**

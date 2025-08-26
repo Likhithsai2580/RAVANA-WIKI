@@ -11,24 +11,6 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          
-          {/* Basic mermaid initialization */}
-          <script dangerouslySetInnerHTML={{
-            __html: `
-              // Initialize mermaid diagrams when available
-              if (typeof window !== 'undefined') {
-                document.addEventListener('DOMContentLoaded', function() {
-                  if (typeof mermaid !== 'undefined') {
-                    try {
-                      mermaid.initialize({ startOnLoad: true });
-                    } catch (e) {
-                      console.error('Mermaid initialization error:', e);
-                    }
-                  }
-                });
-              }
-            `
-          }} />
         </body>
       </Html>
     );

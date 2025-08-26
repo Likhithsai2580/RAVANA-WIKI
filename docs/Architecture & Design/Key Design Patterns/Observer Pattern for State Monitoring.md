@@ -95,16 +95,16 @@ participant System as AGI System
 participant EI as EmotionalIntelligence
 participant State as SharedState
 participant Reflection as ReflectionModule
-Action->>System : action_output
-System->>EI : process_action_natural(action_output)
-EI->>EI : process_action_natural
-EI->>EI : process_action_result
-EI->>State : update mood_vector
-System->>State : copy old_mood
-System->>State : append to mood_history
-System->>System : _did_mood_improve
+Action-->>System : action_output
+System-->>EI : process_action_natural(action_output)
+EI-->>EI : process_action_natural
+EI-->>EI : process_action_result
+EI-->>State : update mood_vector
+System-->>State : copy old_mood
+System-->>State : append to mood_history
+System-->>System : _did_mood_improve
 alt Mood not improved
-System->>Reflection : reflect(shared_state)
+System-->>Reflection : reflect(shared_state)
 end
 ```
 
@@ -204,14 +204,14 @@ participant EI as EmotionalIntelligence
 participant State as SharedState
 participant Reflection as ReflectionModule
 participant Knowledge as KnowledgeService
-System->>EI : process_action_natural
-EI->>State : update mood
-System->>System : calculate mood score change
+System-->>EI : process_action_natural
+EI-->>State : update mood
+System-->>System : calculate mood score change
 alt Mood not improved
-System->>Reflection : reflect(shared_state)
-Reflection->>Reflection : analyze mood_history
+System-->>Reflection : reflect(shared_state)
+Reflection-->>Reflection : analyze mood_history
 alt Significant findings
-Reflection->>Knowledge : add_knowledge(insight)
+Reflection-->>Knowledge : add_knowledge(insight)
 end
 end
 ```
@@ -272,15 +272,15 @@ participant Mood as _update_mood_and_reflect
 participant Reflection as ReflectionModule
 participant Sleep as asyncio.sleep
 loop Loop
-Loop->>Iteration : await run_iteration()
-Iteration->>Mood : await _update_mood_and_reflect()
+Loop-->>Iteration : await run_iteration()
+Iteration-->>Mood : await _update_mood_and_reflect()
 alt Mood not improved
-Mood->>Reflection : reflect(shared_state)
-Reflection->>Reflection : process reflection
+Mood-->>Reflection : reflect(shared_state)
+Reflection-->>Reflection : process reflection
 end
-Mood->>Iteration : return
-Iteration->>Sleep : await asyncio.sleep()
-Sleep->>Loop : continue
+Mood-->>Iteration : return
+Iteration-->>Sleep : await asyncio.sleep()
+Sleep-->>Loop : continue
 end loop
 ```
 

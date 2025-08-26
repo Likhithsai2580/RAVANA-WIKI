@@ -30,7 +30,7 @@ The Action System is a core component of the Ravana AGI framework, responsible f
 
 The `Action` class serves as the abstract base class for all executable actions within the system. It defines a standardized interface that ensures consistency across different types of actions.
 
-```
+```mermaid
 classDiagram
 class Action {
 <<abstract>>
@@ -78,7 +78,7 @@ The base class provides built-in validation through `validate_params`, which che
 
 The `ActionRegistry` is responsible for managing the collection of available actions and providing lookup functionality.
 
-```
+```mermaid
 classDiagram
 class ActionRegistry {
 -actions : Dict[str, Action]
@@ -128,7 +128,7 @@ This discovery mechanism enables plug-and-play extensibility - new actions can b
 
 The `ActionManager` orchestrates the execution of actions, handling the complete lifecycle from decision parsing to result return.
 
-```
+```mermaid
 sequenceDiagram
 participant DecisionEngine
 participant ActionManager
@@ -286,7 +286,7 @@ New blog-specific actions have been added to support autonomous content creation
 #### BlogPublishAction
 Orchestrates the complete blog publishing workflow, from content generation to platform publication.
 
-```
+```mermaid
 classDiagram
 class BlogPublishAction {
 +api_interface : BlogAPIInterface
@@ -338,7 +338,7 @@ New collaborative task actions have been added to support cross-system task dele
 #### CollaborativeTaskAction
 Manages collaborative tasks between RAVANA and users with feedback mechanisms.
 
-```
+```mermaid
 classDiagram
 class CollaborativeTaskAction {
 +system : AGISystem
@@ -397,7 +397,7 @@ The action integrates with the conversational AI system to send notifications an
 
 The system now features a centralized PromptManager that handles all prompt templates and their dynamic enhancement.
 
-```
+```mermaid
 classDiagram
 class PromptManager {
 +agi_system : AGISystem

@@ -9,11 +9,12 @@ const MermaidRenderer = ({ content }) => {
       return [{ type: 'text', content: '' }];
     }
     
-    const mermaidRegex = /<div class="mermaid">([\s\S]*?)<\/div>/g;
-    const diagrams = [];
+    // Enhanced regex to catch all variations of Mermaid div containers
+    // This pattern handles various class formats and whitespace variations
+    const mermaidRegex = /<div\s+class=["']mermaid["'][^>]*>([\s\S]*?)<\/div>|<div\s+[^>]*?class=["'][^"']*?mermaid[^"']*?["'][^>]*?>([\s\S]*?)<\/div>/gi;
+    const parts = [];
     let match;
     let lastIndex = 0;
-    const parts = [];
 
     while ((match = mermaidRegex.exec(htmlContent)) !== null) {
       // Add text before the match
@@ -24,10 +25,11 @@ const MermaidRenderer = ({ content }) => {
         });
       }
 
-      // Add the mermaid diagram
+      // Add the mermaid diagram (use whichever captured group contains content)
+      const diagramContent = match[1] || match[2];
       parts.push({
         type: 'mermaid',
-        content: match[1]
+        content: diagramContent.trim()
       });
 
       lastIndex = match.index + match[0].length;

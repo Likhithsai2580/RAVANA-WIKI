@@ -577,16 +577,16 @@ participant KnowledgeService as KnowledgeService
 participant MultiModalService as MultiModalService
 participant BlogScheduler as AutonomousBlogScheduler
 participant BlogGenerator as AutonomousLearningBlogGenerator
-System->>ActionManager : Initialize with services
-ActionManager->>DataService : Execute actions, log results
-ActionManager->>KnowledgeService : Add knowledge from action results
-ActionManager->>MultiModalService : Process multi-modal content
-MultiModalService->>KnowledgeService : Add analysis to knowledge base
-System->>MemoryService : Retrieve memories for decision making
-System->>MemoryService : Save new memories after actions
-System->>BlogScheduler : Register learning events
-BlogScheduler->>BlogGenerator : Generate specialized blog content
-BlogScheduler->>ActionManager : Trigger blog publishing
+System-->>ActionManager : Initialize with services
+ActionManager-->>DataService : Execute actions, log results
+ActionManager-->>KnowledgeService : Add knowledge from action results
+ActionManager-->>MultiModalService : Process multi-modal content
+MultiModalService-->>KnowledgeService : Add analysis to knowledge base
+System-->>MemoryService : Retrieve memories for decision making
+System-->>MemoryService : Save new memories after actions
+System-->>BlogScheduler : Register learning events
+BlogScheduler-->>BlogGenerator : Generate specialized blog content
+BlogScheduler-->>ActionManager : Trigger blog publishing
 ```
 
 **Diagram sources**

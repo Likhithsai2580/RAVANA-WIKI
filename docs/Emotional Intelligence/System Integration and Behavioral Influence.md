@@ -272,14 +272,14 @@ participant User as "User"
 participant ConversationalAI as "Conversational AI"
 participant RAVANACommunicator as "RAVANA Bridge"
 participant CoreSystem as "Core RAVANA System"
-User->>ConversationalAI : Send Message
-ConversationalAI->>ConversationalAI : Process with Emotional Intelligence
-ConversationalAI->>ConversationalAI : Generate Emotional Context
-ConversationalAI->>RAVANACommunicator : _synchronize_emotional_context()
-RAVANACommunicator->>CoreSystem : send_emotional_context_to_ravana()
-CoreSystem->>CoreSystem : Update Emotional State
-CoreSystem->>ConversationalAI : Apply Behavior Modifiers
-ConversationalAI->>User : Generate Response
+User-->>ConversationalAI : Send Message
+ConversationalAI-->>ConversationalAI : Process with Emotional Intelligence
+ConversationalAI-->>ConversationalAI : Generate Emotional Context
+ConversationalAI-->>RAVANACommunicator : _synchronize_emotional_context()
+RAVANACommunicator-->>CoreSystem : send_emotional_context_to_ravana()
+CoreSystem-->>CoreSystem : Update Emotional State
+CoreSystem-->>ConversationalAI : Apply Behavior Modifiers
+ConversationalAI-->>User : Generate Response
 ```
 
 **Diagram sources**

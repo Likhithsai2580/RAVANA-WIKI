@@ -61,7 +61,7 @@ The Situation Generator operates as a central orchestrator, pulling data from va
 
 ```mermaid
 flowchart TD
-Start([Generate Situation]) --> CheckSearch{"Search results available?"}
+Start([("Generate Situation")]) --> CheckSearch{"Search results available?"}
 CheckSearch --> |Yes| GenSearch[Generate Search Result Analysis]
 CheckSearch --> |No| CheckHypothesis{"New hypothesis?"}
 CheckHypothesis --> |Yes| GenHypothesis[Generate Hypothesis Test]
@@ -88,7 +88,7 @@ GenHypothetical --> Return
 GenEthical --> Return
 GenCreative --> Return
 GenReflection --> Return
-Return([Return Situation])
+Return([("Return Situation")])
 ```
 
 **Diagram sources**
@@ -101,22 +101,22 @@ The `generate_situation` method is the main entry point. It first checks for hig
 
 ```mermaid
 flowchart TD
-A[generate_situation] --> B{Has search_results?}
-B --> |Yes| C[generate_search_result_situation]
+A[("generate_situation")] --> B{Has search_results?}
+B --> |Yes| C[("generate_search_result_situation")]
 B --> |No| D{Has new_hypothesis?}
-D --> |Yes| E[generate_hypothesis_test_situation]
+D --> |Yes| E[("generate_hypothesis_test_situation")]
 D --> |No| F{Has active_experiment?}
-F --> |Yes| G[Return wait state]
+F --> |Yes| G[("Return wait state")]
 F --> |No| H{Has subconscious_mode?}
-H --> |Yes| I[generate_subconscious_situation]
-H --> |No| J[Randomly select type by weight]
-J --> K[generate_trending_topic_situation]
-J --> L[generate_curiosity_situation]
-J --> M[generate_technical_challenge]
-J --> N[generate_hypothetical_scenario]
-J --> O[generate_ethical_dilemma]
-J --> P[generate_creative_task]
-J --> Q[generate_simple_reflection_situation]
+H --> |Yes| I[("generate_subconscious_situation")]
+H --> |No| J[("Randomly select type by weight")]
+J --> K[("generate_trending_topic_situation")]
+J --> L[("generate_curiosity_situation")]
+J --> M[("generate_technical_challenge")]
+J --> N[("generate_hypothetical_scenario")]
+J --> O[("generate_ethical_dilemma")]
+J --> P[("generate_creative_task")]
+J --> Q[("generate_simple_reflection_situation")]
 ```
 
 **Diagram sources**

@@ -146,7 +146,7 @@ Q --> T
 ### System Initialization and Startup
 The system startup process begins with the execution of `main.py`, which sets up logging, parses command-line arguments, and initializes the database. The `AGISystem` is then instantiated with the database engine, triggering the initialization of all core services, modules, and the shared state. Signal handlers are registered to enable graceful shutdown on interruption. The enhanced Snake Agent is conditionally initialized based on configuration settings and integrated into the system's background tasks. The Conversational AI module is also conditionally initialized and started in a background thread with a configurable delay, allowing the main system to initialize first.
 
-``mermaid
+```
 sequenceDiagram
 participant Main as main.py
 participant System as AGISystem
@@ -155,24 +155,24 @@ participant Config as Config
 participant Logger as Logging
 participant Snake as EnhancedSnakeAgent
 participant ConversationalAI as ConversationalAI
-Main->>Logger : setup_logging()
-Main->>Config : Parse arguments
-Main->>DB : create_db_and_tables()
-Main->>System : AGISystem(engine)
-System->>System : Initialize services
-System->>System : Initialize modules
-System->>System : Initialize shared state
-System->>System : Register cleanup handlers
-System->>Snake : Initialize if SNAKE_AGENT_ENABLED
-Snake->>Snake : Initialize threading and process managers
-Snake->>Snake : Setup file monitoring
-System->>System : Register Snake cleanup handler
-System->>ConversationalAI : Initialize if CONVERSATIONAL_AI_ENABLED
-ConversationalAI->>ConversationalAI : Configure bots from config.json
-ConversationalAI->>ConversationalAI : Start in background thread
-System->>System : Register ConversationalAI cleanup handler
-Main->>Main : setup_signal_handlers()
-Main->>Main : Start event loop
+Main-->>Logger : setup_logging()
+Main-->>Config : Parse arguments
+Main-->>DB : create_db_and_tables()
+Main-->>System : AGISystem(engine)
+System-->>System : Initialize services
+System-->>System : Initialize modules
+System-->>System : Initialize shared state
+System-->>System : Register cleanup handlers
+System-->>Snake : Initialize if SNAKE_AGENT_ENABLED
+Snake-->>Snake : Initialize threading and process managers
+Snake-->>Snake : Setup file monitoring
+System-->>System : Register Snake cleanup handler
+System-->>ConversationalAI : Initialize if CONVERSATIONAL_AI_ENABLED
+ConversationalAI-->>ConversationalAI : Configure bots from config.json
+ConversationalAI-->>ConversationalAI : Start in background thread
+System-->>System : Register ConversationalAI cleanup handler
+Main-->>Main : setup_signal_handlers()
+Main-->>Main : Start event loop
 ```
 
 **Diagram sources**

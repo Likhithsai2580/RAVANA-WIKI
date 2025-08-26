@@ -162,9 +162,9 @@ This action enables batch processing of media files within a directory. It suppo
 
 ```mermaid
 sequenceDiagram
-participant A as AnalyzeDirectoryAction
-participant M as MultiModalService
-participant K as KnowledgeService
+participant A as ("AnalyzeDirectoryAction")
+participant M as ("MultiModalService")
+participant K as ("KnowledgeService")
 A->>M : process_directory(path, recursive)
 M->>M : rglob() or iterdir()
 M->>M : Filter by format
