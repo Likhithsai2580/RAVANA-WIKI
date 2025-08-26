@@ -1,5 +1,14 @@
 import { useEffect, useRef } from 'react';
 
+/**
+ * Renders a Mermaid chart based on the provided chart syntax.
+ *
+ * This function normalizes the chart syntax, handles potential errors during rendering, and attempts recovery of malformed charts. It dynamically imports the Mermaid library, initializes it with specific settings, and updates the DOM with the rendered SVG. If rendering fails, it attempts to recover the chart by fixing common syntax issues and re-renders it.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.chart - The Mermaid chart syntax to be rendered.
+ * @returns {JSX.Element} The rendered Mermaid chart component.
+ */
 const Mermaid = ({ chart }) => {
   const containerRef = useRef(null);
   
@@ -7,9 +16,31 @@ const Mermaid = ({ chart }) => {
     // Only run on client side
     if (typeof window === 'undefined' || !containerRef.current) return;
     
+    /**
+     * Renders a chart using the Mermaid library with enhanced syntax normalization and error recovery.
+     *
+     * The function first normalizes the chart syntax by removing unnecessary sections and handling style directives.
+     * It then initializes the Mermaid library and attempts to render the chart. If rendering fails, it attempts to recover
+     * the chart by fixing common syntax issues and re-renders it. If recovery also fails, it displays an error message.
+     *
+     * @param chart - The chart definition as a string that needs to be rendered.
+     * @param containerRef - A reference to the DOM element where the chart will be rendered.
+     * @returns A promise that resolves when the chart has been rendered or recovered.
+     * @throws Error If there is an issue during the rendering or recovery process.
+     */
     const renderChart = async () => {
       try {
         // Normalize chart syntax with improved handling
+        /**
+         * Normalize the syntax of a chart definition text.
+         *
+         * This function processes the input `chartText` by removing unnecessary sections, handling style directives,
+         * standardizing node and edge syntax, and ensuring a diagram type is declared. It also cleans up excessive
+         * whitespace and newlines to produce a well-formatted chart definition.
+         *
+         * @param chartText - The raw text of the chart definition to be normalized.
+         * @returns The normalized chart definition text.
+         */
         const normalizeChartSyntax = (chartText) => {
           // First, check if there's a "Diagram sources" section that needs to be removed
           if (chartText.includes('**Diagram sources**') || 
@@ -70,6 +101,16 @@ const Mermaid = ({ chart }) => {
         };
         
         // Function to attempt recovery of malformed charts
+        /**
+         * Attempt to recover and clean up chart text for diagram representation.
+         *
+         * The function processes the input `chartText` by removing specific sections, handling style directives,
+         * and cleaning invalid characters. It also ensures proper formatting for various diagram types and fixes
+         * common syntax issues, ultimately returning a cleaned version of the chart text.
+         *
+         * @param chartText - The raw text of the chart to be processed and cleaned.
+         * @returns The cleaned and formatted chart text.
+         */
         const attemptChartRecovery = (chartText) => {
           // Remove any "Diagram sources" or "Section sources" sections
           if (chartText.includes('**Diagram sources**') || 

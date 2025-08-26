@@ -1,6 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
+  /**
+   * Renders the HTML structure with styles and main components.
+   */
   render() {
     return (
       <Html>
