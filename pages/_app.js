@@ -2,6 +2,9 @@ import '../styles/globals.css';
 import Head from 'next/head';
 import Script from 'next/script';
 
+/**
+ * Main application component for RAVANA AGI Documentation.
+ */
 function MyApp({ Component, pageProps }) {
   return (
     <>
