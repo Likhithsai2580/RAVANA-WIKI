@@ -1,8 +1,29 @@
 import { useEffect } from 'react';
 import Mermaid from './Mermaid';
 
+/**
+ * Renders Mermaid diagrams from the provided content.
+ *
+ * The function extracts Mermaid diagrams from the HTML content using a regex pattern that captures various class formats and whitespace variations. It processes the content to separate text and diagram parts, ensuring that all content is rendered appropriately. If no diagrams are found, the original content is returned as text.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.content - The HTML content containing Mermaid diagrams.
+ * @returns {JSX.Element} The rendered Mermaid diagrams and text content.
+ */
 const MermaidRenderer = ({ content }) => {
   // Extract mermaid diagrams from content
+  /**
+   * Extracts Mermaid diagrams and text from the provided HTML content.
+   *
+   * This function processes the input `htmlContent` to identify and extract
+   * Mermaid diagram elements encapsulated within specific `<div>` tags. It uses
+   * a regular expression to match various class formats and whitespace variations.
+   * The function constructs an array of parts, distinguishing between text and
+   * diagram content, and handles cases where no diagrams are found or where the
+   * input content is null or undefined.
+   *
+   * @param {string} htmlContent - The HTML content to extract diagrams from.
+   */
   const extractDiagrams = (htmlContent) => {
     // Handle case where content might be null or undefined
     if (!htmlContent) {
