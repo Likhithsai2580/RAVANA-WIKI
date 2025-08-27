@@ -2,6 +2,7 @@ import os
 import re
 
 def fix_mermaid_syntax(file_path):
+    """Fixes the syntax of mermaid diagrams in the specified file."""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -26,6 +27,7 @@ def fix_mermaid_syntax(file_path):
             print(f"Error writing to {file_path}: {e}")
 
 def main():
+    """Fixes Mermaid syntax in Markdown files within the 'docs' directory."""
     docs_path = 'docs'
     for root, _, files in os.walk(docs_path):
         for file in files:
