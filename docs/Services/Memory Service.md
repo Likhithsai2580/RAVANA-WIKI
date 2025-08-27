@@ -186,13 +186,13 @@ The Knowledge Compression module is responsible for transforming episodic memori
 
 ```mermaid
 flowchart TD
-Start([("Start")]) --> LoadLogs["Load Logs from JSON"]
+Start(""Start"") --> LoadLogs["Load Logs from JSON"]
 LoadLogs --> GeneratePrompt["Generate Compression Prompt"]
 GeneratePrompt --> CallLLM["Call LLM with Prompt"]
 CallLLM --> GetSummary["Get Summary from LLM"]
 GetSummary --> CreateEntry["Create Summary Entry"]
 CreateEntry --> SaveSummary["Save Summary to JSON"]
-SaveSummary --> End([("End")])
+SaveSummary --> End(""End"")
 style Start fill:#4CAF50,stroke:#388E3C
 style End fill:#4CAF50,stroke:#388E3C
 ```

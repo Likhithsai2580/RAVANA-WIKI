@@ -329,7 +329,7 @@ This prevents oscillation by providing a stable reference for behavioral influen
 
 ``mermaid
 flowchart TD
-Start([Process Action Result]) --> Decay["Apply Decay (0.05)"]
+Start("Process Action Result") --> Decay["Apply Decay (0.05)"]
 Decay --> CheckTriggers["Check Action Result Triggers"]
 CheckTriggers --> TriggerExists{"Trigger Active?"}
 TriggerExists --> |Yes| GetUpdate["Retrieve Update Rule"]
@@ -341,7 +341,7 @@ ExtractJSON --> ApplyLLM["Apply LLM-Generated Deltas"]
 ApplyDirect --> UpdateComplete
 ApplyLLM --> UpdateComplete
 UpdateComplete --> LogState["Log Final Mood Vector"]
-LogState --> End([Update Complete])
+LogState --> End("Update Complete")
 TriggerExists --> |No| UpdateComplete
 ```
 

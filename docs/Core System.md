@@ -449,7 +449,7 @@ The main execution loop of the RAVANA AGI system is implemented in the run_auton
 #### Flowchart
 ``mermaid
 flowchart TD
-Start([Start Autonomous Loop]) --> BackgroundTasks["Start Background Tasks"]
+Start("Start Autonomous Loop") --> BackgroundTasks["Start Background Tasks"]
 BackgroundTasks --> LoopStart{Loop: Not Shutdown?}
 LoopStart --> |Yes| ExperimentCheck{"Active Experiment?"}
 ExperimentCheck --> |Yes| RunExperimentStep["Run Experimentation Engine Step"]
@@ -457,7 +457,7 @@ ExperimentCheck --> |No| RunIteration["Run Single Iteration"]
 RunExperimentStep --> Sleep["Sleep for LOOP_SLEEP_DURATION"]
 RunIteration --> Sleep
 Sleep --> LoopStart
-LoopStart --> |No| Stop([Stop Loop])
+LoopStart --> |No| Stop("Stop Loop")
 ```
 
 **Diagram sources**

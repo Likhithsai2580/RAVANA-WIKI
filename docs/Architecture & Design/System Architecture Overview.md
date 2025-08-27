@@ -559,7 +559,7 @@ The autonomous loop is the core execution flow of the RAVANA system, continuousl
 
 ``mermaid
 flowchart TD
-Start([Start Loop]) --> CheckResults["Check for Search Results"]
+Start("Start Loop") --> CheckResults["Check for Search Results"]
 CheckResults --> HandleModifiers["Handle Behavior Modifiers"]
 HandleModifiers --> HandleCuriosity["Handle Curiosity"]
 HandleCuriosity --> Decision{"Has Plan or Task?"}

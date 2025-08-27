@@ -125,11 +125,11 @@ These tools use UTF-8 encoding and preserve line endings. They are critical for 
 
 ```mermaid
 flowchart TD
-Start([read_file]) --> CheckExistence{"File exists?"}
+Start("read_file") --> CheckExistence{"File exists?"}
 CheckExistence --> |No| ReturnError["Return 'File not found'"]
 CheckExistence --> |Yes| ReadContent["Read all lines"]
 ReadContent --> Output["Return file content"]
-EditStart([edit_file]) --> ReadLines["Read all lines"]
+EditStart("edit_file") --> ReadLines["Read all lines"]
 ReadLines --> ValidateRange{"Valid line range?"}
 ValidateRange --> |No| RangeError["Return invalid range error"]
 ValidateRange --> |Yes| ReplaceLines["Replace lines start-end"]

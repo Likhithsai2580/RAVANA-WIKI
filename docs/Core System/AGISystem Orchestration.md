@@ -304,7 +304,7 @@ The AGISystem operates through a sophisticated autonomous execution loop that in
 #### Execution Flow
 ```mermaid
 flowchart TD
-Start([Start Iteration]) --> CheckResults["Check for Search Results"]
+Start("Start Iteration") --> CheckResults["Check for Search Results"]
 CheckResults --> HandleModifiers["Handle Behavior Modifiers"]
 HandleModifiers --> HandleCuriosity["Handle Curiosity"]
 HandleCuriosity --> DecideNext["Decide Next Action"]
@@ -430,7 +430,7 @@ The AGISystem incorporates adaptive learning through the AdaptiveLearningEngine,
 #### Learning Workflow
 ```mermaid
 flowchart TD
-Start([Start Learning Cycle]) --> AnalyzePatterns["Analyze Decision Patterns"]
+Start("Start Learning Cycle") --> AnalyzePatterns["Analyze Decision Patterns"]
 AnalyzePatterns --> IdentifyFactors["Identify Success Factors"]
 IdentifyFactors --> GenerateStrategies["Generate Adaptation Strategies"]
 GenerateStrategies --> ApplyToDecision["Apply to Next Decision"]

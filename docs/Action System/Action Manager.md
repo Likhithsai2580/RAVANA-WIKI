@@ -315,7 +315,7 @@ participant Semaphore as ("Semaphore")
 participant Task1 as ("Task1")
 participant Task2 as ("Task2")
 participant Task3 as ("Task3")
-Client-->>EAM : execute_parallel_actions([d1,d2,d3])
+Client-->>EAM : execute_parallel_actions("d1,d2,d3")
 EAM-->>Semaphore : Create with limit=3
 EAM-->>EAM : Create tasks with semaphore
 Task1-->>Semaphore : Acquire

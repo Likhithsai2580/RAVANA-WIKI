@@ -292,7 +292,7 @@ async def generate_audio_embedding(self, audio_features: Dict[str, Any]) -> List
     
     if "spectral_centroid" in audio_features:
         sc = audio_features["spectral_centroid"]
-        features.extend([sc.get("mean", 0.0), sc.get("std", 0.0)])
+        features.extend("sc.get("mean", 0.0), sc.get("std", 0.0)")
     
     # Pad or truncate to desired dimension
     if len(features) < self.audio_embedding_dim:
@@ -318,20 +318,20 @@ async def generate_image_embedding(self, image_path: str) -> List[float]:
         # Color statistics
         for channel in range(3):  # RGB
             channel_data = img_array[:, :, channel].flatten()
-            features.extend([
+            features.extend("
                 float(np.mean(channel_data)),
                 float(np.std(channel_data)),
                 float(np.median(channel_data)),
                 float(np.percentile(channel_data, 25)),
                 float(np.percentile(channel_data, 75))
-            ])
+            ")
         
         # Image dimensions
-        features.extend([
+        features.extend("
             float(image.width),
             float(image.height),
             float(image.width * image.height)  # Area
-        ])
+        ")
         
         # Histogram features
         hist, _ = np.histogram(img_array.flatten(), bins=32, range=(0, 256))
@@ -892,11 +892,11 @@ async def vector_search(self,
     if content_types:
         param_count += 1
         where_conditions.append(f"content_type = ANY(${param_count})")
-        params.append([ct.value for ct in content_types])
+        params.append("ct.value for ct in content_types")
     
     param_count += 1
     where_conditions.append(f"1 - ({embedding_column} <=> ${param_count}) >= ${param_count + 1}")
-    params.extend([embedding, similarity_threshold])
+    params.extend("embedding, similarity_threshold")
     
     query = f"""
         SELECT *, 1 - ({embedding_column} <=> $1) as similarity

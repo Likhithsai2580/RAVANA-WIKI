@@ -106,7 +106,7 @@ The final stage of event detection involves generating alerts for significant cl
 
 ```mermaid
 flowchart TD
-Start([("Clustered Documents")]) --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
+Start(""Clustered Documents"") --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
 SizeCheck --> |No| Skip["Skip Small Cluster"]
 SizeCheck --> |Yes| Valid["Valid Event Candidate"]
 Valid --> NoiseCheck{"Cluster ID = -1?<br/>(Noise)?"}
@@ -116,7 +116,7 @@ Generate --> Summary["Create Summary<br/>(First Document Text)"]
 Summary --> Keywords["Extract Keywords<br/>(Placeholder)"]
 Keywords --> Count["Count Documents<br/>(doc_count)"]
 Count --> Output["Create Event Object"]
-Output --> End([("Event Alert Generated")])
+Output --> End(""Event Alert Generated"")
 ```
 
 **Diagram sources**
