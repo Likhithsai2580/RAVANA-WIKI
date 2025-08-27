@@ -54,6 +54,7 @@ D --> D8[information_processing]
 D --> D9[knowledge_compression]
 D --> D10[personality]
 D --> D11[situation_generator]
+
 ```
 
 **Diagram sources**
@@ -124,6 +125,7 @@ P --> PA[Discord Bot]
 P --> PB[Telegram Bot]
 PA --> PC[Async Task Runner]
 PB --> PD[Async Task Runner]
+
 ```
 
 **Diagram sources**
@@ -218,6 +220,7 @@ AGISystem --> SnakeAgent : "uses"
 AGISystem --> ConversationalAI : "uses"
 AGISystem --> SharedState : "owns"
 AGISystem --> ShutdownCoordinator : "owns"
+
 ```
 
 **Diagram sources**
@@ -245,6 +248,7 @@ class SharedState {
 +__init__(initial_mood : Dict[str, float])
 }
 AGISystem --> SharedState : "owns"
+
 ```
 
 **Diagram sources**
@@ -313,6 +317,7 @@ AGISystem --> ShutdownCoordinator : "owns"
 ShutdownCoordinator --> ShutdownPhase : "uses"
 ShutdownCoordinator --> ShutdownPriority : "uses"
 ShutdownCoordinator --> ComponentRegistration : "contains"
+
 ```
 
 **Diagram sources**
@@ -346,6 +351,7 @@ class StateManager {
 +_cleanup_old_backups(max_backups : int) void
 }
 AGISystem --> StateManager : "uses"
+
 ```
 
 **Diagram sources**
@@ -386,6 +392,7 @@ AGISystem->>AGISystem : Sleep
 end
 end
 Main->>AGISystem : stop("system_shutdown")
+
 ```
 
 **Diagram sources**
@@ -433,6 +440,7 @@ Coordinator-->>Coordinator : _phase_final_validation()
 Coordinator-->>Coordinator : Validate state file
 Coordinator-->>Coordinator : Persist ChromaDB
 Coordinator-->>Coordinator : _log_shutdown_summary()
+
 ```
 
 **Diagram sources**
@@ -458,6 +466,7 @@ RunExperimentStep --> Sleep["Sleep for LOOP_SLEEP_DURATION"]
 RunIteration --> Sleep
 Sleep --> LoopStart
 LoopStart --> |No| Stop("Stop Loop")
+
 ```
 
 **Diagram sources**
@@ -505,6 +514,7 @@ V --> VA[Discord Bot]
 V --> VB[Telegram Bot]
 VA --> VC[Async Task Runner]
 VB --> VD[Async Task Runner]
+
 ```
 
 **Diagram sources**

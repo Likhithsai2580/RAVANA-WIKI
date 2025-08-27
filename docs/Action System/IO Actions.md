@@ -65,6 +65,7 @@ Action <|-- LogMessageAction
 Action <|-- WritePythonCodeAction
 Action <|-- ExecutePythonFileAction
 Action <|-- AnalyzeDirectoryAction
+
 ```
 
 **Diagram sources**
@@ -135,6 +136,7 @@ ValidateRange --> |No| RangeError["Return invalid range error"]
 ValidateRange --> |Yes| ReplaceLines["Replace lines start-end"]
 ReplaceLines --> WriteFile["Write updated content"]
 WriteFile --> Success["Return success message"]
+
 ```
 
 **Diagram sources**
@@ -175,6 +177,7 @@ M-->>A : List of results
 A->>M : generate_content_summary(results)
 A->>K : add_knowledge(summary)
 A-->>Client : Success with summary
+
 ```
 
 **Diagram sources**
@@ -217,6 +220,7 @@ F --> E[ExecutePythonFileAction]
 E --> S[Subprocess Execution]
 S --> C[Capture Output/Error]
 C --> R[Return Result]
+
 ```
 
 **Diagram sources**
@@ -259,6 +263,7 @@ class ExperimentLog {
 }
 DataService --> ActionLog : "Persists"
 DataService --> ExperimentLog : "Persists"
+
 ```
 
 **Diagram sources**

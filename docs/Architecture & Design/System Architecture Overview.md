@@ -65,6 +65,7 @@ E --> E1[data_service.py]
 E --> E2[knowledge_service.py]
 E --> E3[memory_service.py]
 E --> E4[multi_modal_service.py]
+
 ```
 
 **Diagram sources**
@@ -179,6 +180,7 @@ style ProcessManager fill:#795548,stroke:#5D4037
 style FileMonitor fill:#607D8B,stroke:#455A64
 style LogManager fill:#FF5722,stroke:#D84315
 style DB fill:#607D8B,stroke:#455A64
+
 ```
 
 **Diagram sources**
@@ -246,6 +248,7 @@ AGISystem --> EmotionalIntelligence : "uses"
 AGISystem --> CuriosityTrigger : "uses"
 AGISystem --> SharedState : "manages"
 AGISystem --> EnhancedSnakeAgent : "manages"
+
 ```
 
 **Diagram sources**
@@ -294,6 +297,7 @@ EnhancedActionManager --> ActionRegistry : "contains"
 ActionRegistry --> Action : "registers"
 EnhancedActionManager --> MultiModalService : "uses"
 EnhancedActionManager --> DataService : "logs to"
+
 ```
 
 **Diagram sources**
@@ -331,6 +335,7 @@ DataService --> MoodLog : "persists"
 DataService --> SituationLog : "persists"
 DataService --> DecisionLog : "persists"
 DataService --> ExperimentLog : "persists"
+
 ```
 
 **Diagram sources**
@@ -362,6 +367,7 @@ KnowledgeService --> Engine : "uses"
 KnowledgeService --> Summary : "persists"
 KnowledgeService --> FAISS : "uses"
 KnowledgeService --> SentenceTransformer : "uses"
+
 ```
 
 **Diagram sources**
@@ -381,6 +387,7 @@ class MemoryService {
 }
 MemoryService --> episodic_memory : "delegates"
 MemoryService --> API : "calls"
+
 ```
 
 **Diagram sources**
@@ -407,6 +414,7 @@ class MultiModalService {
 MultiModalService --> Gemini : "calls"
 MultiModalService --> LLM : "calls"
 MultiModalService --> tempfile : "uses"
+
 ```
 
 **Diagram sources**
@@ -441,6 +449,7 @@ class Personality {
 +pick_idea_to_pursue(ideas : List[Dict]) Dict
 }
 Personality --> AGISystem : "influences"
+
 ```
 
 **Diagram sources**
@@ -474,6 +483,7 @@ class EmotionalIntelligence {
 }
 EmotionalIntelligence --> Config : "loads"
 EmotionalIntelligence --> MoodProcessor : "uses"
+
 ```
 
 **Diagram sources**
@@ -515,6 +525,7 @@ CuriosityTrigger --> Reddit : "fetches from"
 CuriosityTrigger --> HackerNews : "fetches from"
 CuriosityTrigger --> arXiv : "fetches from"
 CuriosityTrigger --> LLM : "calls"
+
 ```
 
 **Diagram sources**
@@ -546,6 +557,7 @@ class AdaptiveLearningEngine {
 AdaptiveLearningEngine --> AGISystem : "uses"
 AdaptiveLearningEngine --> ActionLog : "reads from"
 AdaptiveLearningEngine --> DecisionLog : "reads from"
+
 ```
 
 **Diagram sources**
@@ -576,6 +588,7 @@ CheckPlan --> |No| EndLoop["End of Iteration"]
 ContinuePlan --> ExecuteAction
 style Start fill:#4CAF50,stroke:#388E3C
 style EndLoop fill:#F44336,stroke:#D32F2F
+
 ```
 
 **Diagram sources**
@@ -638,6 +651,7 @@ EnhancedSnakeAgent --> SnakeThreadingManager : "manages"
 EnhancedSnakeAgent --> SnakeProcessManager : "manages"
 EnhancedSnakeAgent --> ContinuousFileMonitor : "manages"
 EnhancedSnakeAgent --> LLM : "uses"
+
 ```
 
 **Diagram sources**
@@ -666,6 +680,7 @@ class SnakeAgentConfiguration {
 +to_dict() Dict[str, Any]
 +validate() List[str]
 }
+
 ```
 
 **Diagram sources**
@@ -720,6 +735,7 @@ SnakeThreadingManager --> SnakeAgentConfiguration : "uses"
 SnakeThreadingManager --> SnakeLogManager : "uses"
 SnakeThreadingManager --> ThreadState : "manages"
 SnakeThreadingManager --> WorkerMetrics : "manages"
+
 ```
 
 **Diagram sources**
@@ -768,6 +784,7 @@ class SnakeProcessManager {
 SnakeProcessManager --> SnakeAgentConfiguration : "uses"
 SnakeProcessManager --> SnakeLogManager : "uses"
 SnakeProcessManager --> ProcessState : "manages"
+
 ```
 
 **Diagram sources**
@@ -829,6 +846,7 @@ ContinuousFileMonitor --> SnakeAgentConfiguration : "uses"
 ContinuousFileMonitor --> SnakeLogManager : "uses"
 ContinuousFileMonitor --> FileMetadata : "manages"
 ContinuousFileMonitor --> FileChangeEvent : "creates"
+
 ```
 
 **Diagram sources**
@@ -878,6 +896,7 @@ SnakeLogManager --> ImprovementRecord : "logs"
 SnakeLogManager --> ExperimentRecord : "logs"
 SnakeLogManager --> AnalysisRecord : "logs"
 SnakeLogManager --> CommunicationRecord : "logs"
+
 ```
 
 **Diagram sources**
@@ -956,6 +975,7 @@ class ProcessState {
 FileChangeEvent --> ThreadState : "processed by"
 AnalysisTask --> ThreadState : "processed by"
 CommunicationMessage --> ThreadState : "processed by"
+
 ```
 
 **Diagram sources**
@@ -1027,6 +1047,7 @@ style Wikipedia fill:#FFEB3B,stroke:#FBC02D
 style Reddit fill:#FFEB3B,stroke:#FBC02D
 style HackerNews fill:#FFEB3B,stroke:#FBC02D
 style arXiv fill:#FFEB3B,stroke:#FBC02D
+
 ```
 
 **Diagram sources**

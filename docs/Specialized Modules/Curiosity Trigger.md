@@ -39,6 +39,7 @@ LLM --> call_llm
 CT --> Embeddings[Semantic Analysis]
 Embeddings --> SentenceTransformer
 Test --> CT
+
 ```
 
 **Diagram sources**
@@ -72,6 +73,7 @@ I --> J[Action Execution]
 K[External Sources] --> CT
 L[LLM] --> CT
 M[Caching Layer] --> CT
+
 ```
 
 **Diagram sources**
@@ -109,6 +111,7 @@ EnsureN --> CacheStore["Store in _TOPIC_CACHE"]
 CacheStore --> Return["Return topics"]
 Return --> End("End")
 ReturnCached --> End
+
 ```
 
 **Diagram sources**
@@ -156,6 +159,7 @@ CuriosityTrigger --> WikipediaSource
 CuriosityTrigger --> RedditSource
 CuriosityTrigger --> HackerNewsSource
 CuriosityTrigger --> ArXivSource
+
 ```
 
 **Diagram sources**
@@ -185,6 +189,7 @@ SG->>SS : Update context with curiosity data
 SG->>DE : Return curiosity_exploration situation
 DE->>DE : Prioritize curiosity-driven tasks
 DE->>DE : Generate action plan
+
 ```
 
 **Diagram sources**
@@ -210,6 +215,7 @@ SYS[AGISystem] --> CT
 SG[SituationGenerator] --> CT
 CT --> |Generates| SIT[Situations]
 SIT --> DE[DecisionEngine]
+
 ```
 
 **Diagram sources**

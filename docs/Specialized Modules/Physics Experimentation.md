@@ -46,6 +46,7 @@ E --> F[Sandboxed Execution]
 F --> G[Result Interpretation]
 G --> H[Online Validation]
 H --> I[Knowledge Storage]
+
 ```
 
 **Diagram sources**
@@ -106,6 +107,7 @@ Sandbox-->>LLM : Return results
 LLM->>Validator : Validate online
 Validator-->>LLM : Verification results
 LLM-->>User : Final verdict and insights
+
 ```
 
 **Diagram sources**
@@ -177,6 +179,7 @@ Phase2 --> Phase3["Phase 3: AGI Integration"]
 Phase3 --> Report["Generate Report"]
 Report --> Save["Save to physics_experiment_test_report.txt"]
 Save --> End("Test Complete")
+
 ```
 
 **Diagram sources**

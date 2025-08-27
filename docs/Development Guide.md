@@ -65,6 +65,7 @@ DataService --> Database
 MemoryService --> Database
 KnowledgeService --> LLM
 ActionManager --> LLM
+
 ```
 
 **Diagram sources**
@@ -198,6 +199,7 @@ AM->>Action : execute(**params)
 Action-->>AM : result
 AM->>AM : log_action_execution()
 AM-->>System : result
+
 ```
 
 **Diagram sources**

@@ -59,6 +59,7 @@ C6 --> C6b[emotional_intelligence]
 C6b --> C6b1[conversational_ei.py]
 C6 --> C6c[communication]
 C6c --> C6c1[ravana_bridge.py]
+
 ```
 
 **Diagram sources**
@@ -112,6 +113,7 @@ O --> P[RAVANA Bridge]
 P --> D
 D --> Q[Emotional State]
 Q --> N
+
 ```
 
 **Diagram sources**
@@ -157,6 +159,7 @@ class MoodProcessor {
 +_get_llm_mood_update(prompt_template : str, current_mood : Dict[str, float], action_result : dict) Dict[str, float]
 }
 EmotionalIntelligence --> MoodProcessor : "contains"
+
 ```
 
 **Diagram sources**
@@ -184,6 +187,7 @@ loop For each trigger
 EmotionalIntelligence->>EmotionalIntelligence : update_mood()
 end
 EmotionalIntelligence-->>MoodProcessor : Updated mood vector
+
 ```
 
 **Diagram sources**
@@ -213,6 +217,7 @@ I --> J[Decay Moods]
 J --> K[Store Updated Mood]
 K --> L[Generate Behavior Modifiers]
 L --> M[Influence Next Decision Cycle]
+
 ```
 
 **Diagram sources**
@@ -248,6 +253,7 @@ L[Persona] --> K
 M[System State] --> K
 K --> N[LLM Response]
 end
+
 ```
 
 **Diagram sources**
@@ -280,6 +286,7 @@ RAVANACommunicator-->>CoreSystem : send_emotional_context_to_ravana()
 CoreSystem-->>CoreSystem : Update Emotional State
 CoreSystem-->>ConversationalAI : Apply Behavior Modifiers
 ConversationalAI-->>User : Generate Response
+
 ```
 
 **Diagram sources**
@@ -316,6 +323,7 @@ K --> L[Decision Confidence]
 L --> M[Goal Prioritization]
 M --> N[Risk Assessment]
 N --> A
+
 ```
 
 **Diagram sources**

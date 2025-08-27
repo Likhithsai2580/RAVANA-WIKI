@@ -132,6 +132,7 @@ ReflectionEngine->>LLM : Diagnose test failure
 LLM-->>ReflectionEngine : New fix proposal
 end
 end
+
 ```
 
 **Diagram sources**
@@ -262,6 +263,7 @@ class MoodProcessor {
 +process_action_natural(action_output)
 }
 EmotionalIntelligence --> MoodProcessor : "uses"
+
 ```
 
 **Diagram sources**
@@ -313,6 +315,7 @@ CheckShutdown --> |No| StartLoop
 CheckShutdown --> |Yes| CancelTasks["Cancel Background Tasks"]
 CancelTasks --> CloseSession["Close DB Session"]
 CloseSession --> End("Shutdown Complete")
+
 ```
 
 **Diagram sources**

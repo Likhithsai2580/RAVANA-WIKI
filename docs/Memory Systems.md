@@ -86,6 +86,7 @@ VIM --> MI
 style EM fill:#f9f,stroke:#333
 style SM fill:#bbf,stroke:#333
 style VLTM fill:#9f9,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -142,6 +143,7 @@ class MultiModalMemoryService {
 PostgreSQLStore --> MemoryRecord : "stores"
 MultiModalMemoryService --> PostgreSQLStore : "uses"
 MultiModalMemoryService --> MemoryRecord : "manages"
+
 ```
 
 **Diagram sources**
@@ -237,6 +239,7 @@ I --> L[Generate Unified Embedding]
 J --> L
 K --> L
 L --> M[Store unified_embedding]
+
 ```
 
 **Diagram sources**
@@ -557,6 +560,7 @@ MultiModalMemoryService --> PostgreSQLStore : "uses"
 MultiModalMemoryService --> EmbeddingService : "uses"
 MultiModalMemoryService --> WhisperAudioProcessor : "uses"
 MultiModalMemoryService --> AdvancedSearchEngine : "uses"
+
 ```
 
 **Diagram sources**
@@ -741,6 +745,7 @@ D --> E[Deduplicate Redundant Info]
 E --> F[Generalize Specifics]
 F --> G[Create Summary]
 G --> H[Store in Semantic Memory]
+
 ```
 
 **Diagram sources**
@@ -819,6 +824,7 @@ class MemoryAPI {
 +consolidate_memories_api(request)
 }
 MemoryService --> MemoryAPI : "delegates"
+
 ```
 
 **Diagram sources**
@@ -999,6 +1005,7 @@ B --> C[Vector Search in PostgreSQL]
 C --> D[Filter by Similarity]
 D --> E[Update Access Metadata]
 E --> F[Return Results]
+
 ```
 
 **Diagram sources**
@@ -1168,6 +1175,7 @@ MemoryConsolidation "1" -- "0..*" ConsolidationPattern : has
 ConsolidationPattern "0..*" -- "0..*" MemoryPattern : links
 StrategicKnowledge "1" -- "0..*" PatternStrategicKnowledge : has
 PatternStrategicKnowledge "0..*" -- "0..*" MemoryPattern : links
+
 ```
 
 **Diagram sources**
@@ -1260,6 +1268,7 @@ MemoryIntegrationManager --> MemoryBridge : "manages"
 MemoryIntegrationManager --> IntegrationStats : "tracks"
 MemoryIntegrationManager --> MemoryFlowDirection : "uses"
 MemoryIntegrationManager --> IntegrationMode : "uses"
+
 ```
 
 **Diagram sources**

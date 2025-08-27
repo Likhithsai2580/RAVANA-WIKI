@@ -35,6 +35,7 @@ ActionManager[ActionManager] --> Registry
 ActionManager --> DataService[DataService]
 ActionManager --> System[AGISystem]
 LLMDecision[LLM Decision] --> ActionManager
+
 ```
 
 **Diagram sources**
@@ -120,6 +121,7 @@ Action <|-- LogMessageAction
 Action <|-- ProposeAndTestInventionAction
 ActionRegistry --> Action : "stores"
 ActionManager --> ActionRegistry : "uses"
+
 ```
 
 **Diagram sources**
@@ -146,6 +148,7 @@ class Action {
 +to_dict() : Dict
 +to_json() : str
 }
+
 ```
 
 **Diagram sources**
@@ -195,6 +198,7 @@ AM->>Action : execute(**params)
 Action-->>AM : Result or error
 AM->>DS : save_action_log()
 AM-->>LLM : Execution result
+
 ```
 
 **Diagram sources**
@@ -234,6 +238,7 @@ WritePythonCodeAction --> Action
 ExecutePythonFileAction --> Action
 LogMessageAction --> Action
 ProposeAndTestInventionAction --> Action
+
 ```
 
 **Diagram sources**

@@ -83,6 +83,7 @@ MultiModalService --> LLM
 MultiModalService --> Files
 BlogScheduler --> BlogAPI
 BlogGenerator --> LLM
+
 ```
 
 **Diagram sources**
@@ -188,6 +189,7 @@ string timestamp
 string hypothesis
 string results
 }
+
 ```
 
 **Diagram sources**
@@ -245,6 +247,7 @@ string source
 string category
 string content_hash UK
 }
+
 ```
 
 The service also manages a FAISS vector index for semantic search, stored in external files:
@@ -305,6 +308,7 @@ string last_accessed
 int access_count
 string type
 }
+
 ```
 
 Each memory record includes metadata such as creation time, access statistics, and type classification.
@@ -587,6 +591,7 @@ System-->>MemoryService : Save new memories after actions
 System-->>BlogScheduler : Register learning events
 BlogScheduler-->>BlogGenerator : Generate specialized blog content
 BlogScheduler-->>ActionManager : Trigger blog publishing
+
 ```
 
 **Diagram sources**

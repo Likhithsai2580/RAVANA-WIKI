@@ -48,6 +48,7 @@ System --> AdaptiveLearning
 System --> SituationGenerator
 System --> DataService
 DataService --> EventDetection
+
 ```
 
 **Diagram sources**
@@ -110,6 +111,7 @@ EI-->>SS : Update Mood
 DM->>AL : Record Outcome
 DM->>SS : Update State
 deactivate DM
+
 ```
 
 **Diagram sources**
@@ -143,6 +145,7 @@ class Goal {
 +context : str
 }
 GoalPlanner --> Goal : "manages"
+
 ```
 
 **Diagram sources**
@@ -173,6 +176,7 @@ ParseJSON --> |No| Fallback["Use fallback plan, log error"]
 UseData --> ReturnDecision["Return Decision"]
 Fallback --> ReturnDecision
 ReturnDecision --> End("End")
+
 ```
 
 **Diagram sources**
@@ -197,6 +201,7 @@ ED->>ED : cluster_documents()
 ED->>ED : generate_event_alerts()
 ED-->>DS : return events
 DS->>DB : save events to database
+
 ```
 
 **Diagram sources**
@@ -218,6 +223,7 @@ C --> D[Action Execution]
 D --> E[Mood Update]
 E --> F[Learning & Memory]
 F --> A
+
 ```
 
 **Section sources**
@@ -254,6 +260,7 @@ class AdaptiveLearningEngine {
 }
 SharedState <.. EmotionalIntelligence : "updates"
 SharedState <.. AdaptiveLearningEngine : "uses"
+
 ```
 
 **Diagram sources**
@@ -285,6 +292,7 @@ SituationGenerator --> EmotionalIntelligence
 SituationGenerator --> CuriosityTrigger
 DataService --> EventDetector
 DataService --> Database
+
 ```
 
 **Diagram sources**

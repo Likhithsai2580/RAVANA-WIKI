@@ -31,6 +31,7 @@ D --> |No| F["reflect_on_task()"]
 F --> G["Generate LLM Prompt"]
 G --> H["Call LLM"]
 H --> I["Save Reflection to JSON"]
+
 ```
 
 **Diagram sources**
@@ -67,6 +68,7 @@ class MoodProcessor {
 +_get_llm_mood_update(...) Dict[str, float]
 }
 EmotionalIntelligence --> MoodProcessor : "uses"
+
 ```
 
 **Diagram sources**
@@ -88,6 +90,7 @@ MemoryAPI->>ChromaDB : Query with embedding
 ChromaDB-->>MemoryAPI : Return top N memories
 MemoryAPI-->>MemoryClient : JSON response
 MemoryClient-->>ReflectionModule : List of relevant memories
+
 ```
 
 **Diagram sources**
@@ -142,6 +145,7 @@ Main->>Main : Create reflection entry with timestamp
 Main->>DB : save_reflection(entry)
 DB-->>Main : Success
 Main-->>User : Print JSON entry
+
 ```
 
 **Diagram sources**
@@ -172,6 +176,7 @@ I --> |Yes| K["Apply Patch with edit_file()"]
 K --> L["Log Success in Audit"]
 L --> M["Save Success Reflection"]
 M --> B
+
 ```
 
 **Diagram sources**

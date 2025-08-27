@@ -44,6 +44,7 @@ E --> H[Final Configuration]
 F --> H
 G --> H
 H --> I[RAVANA System]
+
 ```
 
 **Diagram sources**
@@ -188,6 +189,7 @@ LLM->>JSON : Read config.json file
 JSON-->>LLM : Return JSON content
 LLM->>LLM : Store in global config variable
 Main->>System : Use configuration from both sources
+
 ```
 
 **Diagram sources**
@@ -294,6 +296,7 @@ LLMProvider <|-- ZukiProvider
 LLMProvider <|-- ElectronHubProvider
 LLMProvider <|-- ZanityProvider
 LLMProvider <|-- A4FProvider
+
 ```
 
 **Diagram sources**

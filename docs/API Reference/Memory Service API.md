@@ -42,6 +42,7 @@ core --> services
 modules --> services
 episodic_memory --> memory_service
 emotional_intelligence --> episodic_memory
+
 ```
 
 **Diagram sources**
@@ -80,6 +81,7 @@ Processing --> Whisper[Whisper Processor]
 Processing --> ImageProcessor[Image Processor]
 classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
 class Client,API,Service,Storage,Processing,PostgreSQL,ChromaDB,EmbeddingService,Whisper,ImageProcessor default;
+
 ```
 
 **Diagram sources**
@@ -109,6 +111,7 @@ Client->>MemoryService : consolidate_memories()
 MemoryService->>MemoryAPI : consolidate_memories_api()
 MemoryAPI-->>MemoryService : StatusResponse
 MemoryService-->>Client : Return consolidation result
+
 ```
 
 **Diagram sources**
@@ -164,6 +167,7 @@ MemoryService --> MemoryRecord : "saves"
 MemoryService --> RelevantMemoriesResponse : "returns"
 MemoryService --> StatusResponse : "returns"
 MemoryService --> QueryRequest : "uses"
+
 ```
 
 **Diagram sources**
@@ -192,6 +196,7 @@ CreateImageMetadata --> CreateImageRecord["Create MemoryRecord"]
 CreateImageRecord --> GenerateImageEmbeddings["Generate embeddings"]
 GenerateImageEmbeddings --> SaveImageToDB["Save to PostgreSQL"]
 SaveImageToDB --> ReturnImageResult["Return saved record"]
+
 ```
 
 **Diagram sources**
@@ -216,6 +221,7 @@ MemoryService --> numpy
 MemoryService --> torch
 classDef library fill:#e0f7fa,stroke:#00695c;
 class FastAPI,ChromaDB,PostgreSQL,sentence_transformers,Whisper,PIL,asyncpg,numpy,torch library;
+
 ```
 
 **Diagram sources**

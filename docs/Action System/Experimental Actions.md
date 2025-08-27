@@ -40,6 +40,7 @@ C --> D["Sandboxed Execution"]
 D --> E["Result Analysis"]
 E --> F["Knowledge Integration"]
 F --> G["System Improvement"]
+
 ```
 
 **Diagram sources**
@@ -109,6 +110,7 @@ E --> |Yes| F["Log Results"]
 E --> |No| G["Handle Error"]
 G --> H["Restore Previous State"]
 F --> I["Integrate Knowledge"]
+
 ```
 
 **Diagram sources**
@@ -149,6 +151,7 @@ Engine-->>Action : Return results
 Action->>DataService : Save experiment log
 DataService-->>Action : Confirmation
 Action-->>User : Detailed response
+
 ```
 
 **Diagram sources**
@@ -221,6 +224,7 @@ B --> |No| D["Catch Exception"]
 D --> E["Log Error Details"]
 E --> F["Preserve State"]
 F --> G["Continue Operation"]
+
 ```
 
 **Section sources**
@@ -328,6 +332,7 @@ class ExperimentationModule {
 ProposeAndTestInventionAction --> AGIExperimentationEngine : "uses"
 ExperimentationModule --> AGIExperimentationEngine : "controls"
 AGIExperimentationEngine --> Config : "reads limits"
+
 ```
 
 **Diagram sources**

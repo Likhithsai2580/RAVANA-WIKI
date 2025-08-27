@@ -34,6 +34,7 @@ ActionError <|-- InvalidActionError
 ActionError <|-- InvalidActionParams
 Exception <|-- ActionError
 Exception <|-- ActionException
+
 ```
 
 **Diagram sources**
@@ -110,6 +111,7 @@ AM->>AM : Log error
 AM->>DB : Log error
 AM-->>Caller : Return error object
 end
+
 ```
 
 **Diagram sources**

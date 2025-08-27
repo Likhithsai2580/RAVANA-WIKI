@@ -64,6 +64,7 @@ A --> J
 A --> Q
 G --> Q
 J --> Q
+
 ```
 
 **Diagram sources**
@@ -112,6 +113,7 @@ H --> I[Database]
 D --> I
 F --> I
 G --> I
+
 ```
 
 **Diagram sources**
@@ -158,6 +160,7 @@ GenerateHypothetical --> Return
 GenerateEthical --> Return
 GenerateCreative --> Return
 GenerateReflection --> Return
+
 ```
 
 **Diagram sources**
@@ -196,6 +199,7 @@ ProposeInvention --> |No| Wait[Return wait action]
 CompleteTask --> ReturnDecision
 CreateNewGoal --> ReturnDecision
 ReturnDecision --> End("Return decision")
+
 ```
 
 **Diagram sources**
@@ -244,6 +248,7 @@ class ActionRegistry {
 }
 ActionManager <|-- EnhancedActionManager
 ActionManager --> ActionRegistry
+
 ```
 
 **Diagram sources**
@@ -288,6 +293,7 @@ EM-->>SR : Provide memory for reflection
 SR-->>SG : Modify behavior
 SR-->>DE : Update hypotheses
 SR-->>AM : Update action registry
+
 ```
 
 **Diagram sources**
@@ -331,6 +337,7 @@ D --> F[Fast Similarity Search]
 E --> G[Persistent Storage]
 F --> H[Retrieve Similar Memories]
 G --> I[Retrieve Complete Memory]
+
 ```
 
 **Diagram sources**
@@ -367,6 +374,7 @@ G --> H[New Actions]
 H --> A
 E --> |Hypothesis invalid| C
 F --> |No improvement| D
+
 ```
 
 **Diagram sources**
@@ -407,6 +415,7 @@ J --> K[Generate hypothesis for improvement]
 K --> L[Test hypothesis]
 L --> M[Implement fix]
 M --> N[Prevent future errors]
+
 ```
 
 **Diagram sources**
@@ -451,6 +460,7 @@ F --> I[Non-blocking execution]
 G --> I
 H --> I
 I --> J[Improve system responsiveness]
+
 ```
 
 **Diagram sources**

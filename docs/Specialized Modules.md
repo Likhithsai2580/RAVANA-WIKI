@@ -56,6 +56,7 @@ E --> F{"Score > Threshold?"}
 F --> |Yes| G["Generate Curiosity Event"]
 F --> |No| H["Continue Monitoring"]
 G --> I["Initiate Learning Process"]
+
 ```
 
 **Diagram sources**
@@ -87,6 +88,7 @@ B --> C["Generate Hypothetical Scenarios"]
 C --> D["Calibrate Scenario Difficulty"]
 D --> E["Apply Relevance Filters"]
 E --> F["Output Challenge Scenario"]
+
 ```
 
 **Diagram sources**
@@ -132,6 +134,7 @@ class DatabaseManager {
 +timestamp : INTEGER
 }
 TrendAnalysisEngine --> DatabaseManager : "uses"
+
 ```
 
 **Diagram sources**
@@ -167,6 +170,7 @@ E --> G
 F --> G
 G --> H["Normalize Score (0-1)"]
 H --> I["Add to Priority Queue"]
+
 ```
 
 **Section sources**
@@ -205,6 +209,7 @@ else Low Priority
 DE->>DE : Queue for later consideration
 end
 DE->>CT : Acknowledge processing
+
 ```
 
 **Diagram sources**

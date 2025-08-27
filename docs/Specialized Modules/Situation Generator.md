@@ -43,6 +43,7 @@ SG --> TA
 SG --> CT
 SG --> ED
 SG --> EI
+
 ```
 
 **Diagram sources**
@@ -61,7 +62,7 @@ The Situation Generator operates as a central orchestrator, pulling data from va
 
 ```mermaid
 flowchart TD
-Start(""Generate Situation"") --> CheckSearch{"Search results available?"}
+Start("("Generate Situation")") --> CheckSearch{"Search results available?"}
 CheckSearch --> |Yes| GenSearch[Generate Search Result Analysis]
 CheckSearch --> |No| CheckHypothesis{"New hypothesis?"}
 CheckHypothesis --> |Yes| GenHypothesis[Generate Hypothesis Test]
@@ -88,7 +89,8 @@ GenHypothetical --> Return
 GenEthical --> Return
 GenCreative --> Return
 GenReflection --> Return
-Return(""Return Situation"")
+Return("("Return Situation")")
+
 ```
 
 **Diagram sources**
@@ -117,6 +119,7 @@ J --> N[("generate_hypothetical_scenario")]
 J --> O[("generate_ethical_dilemma")]
 J --> P[("generate_creative_task")]
 J --> Q[("generate_simple_reflection_situation")]
+
 ```
 
 **Diagram sources**
@@ -203,6 +206,7 @@ LLM --> Electronhub[Electronhub API]
 LLM --> Zanity[Zanity API]
 LLM --> A4F[A4F API]
 LLM --> Gemini[Gemini API]
+
 ```
 
 **Diagram sources**

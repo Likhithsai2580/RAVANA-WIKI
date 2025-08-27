@@ -52,6 +52,7 @@ C --> Q
 C --> U
 I --> K
 M --> K
+
 ```
 
 **Diagram sources**
@@ -117,6 +118,7 @@ style B fill:#f9f,stroke:#333
 style C fill:#bbf,stroke:#333
 style D fill:#f96,stroke:#333
 style E fill:#6f9,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -208,6 +210,7 @@ AdvancedSearchEngine --> PostgreSQLStore : "uses"
 AdvancedSearchEngine --> EmbeddingService : "uses"
 AdvancedSearchEngine --> WhisperAudioProcessor : "uses"
 EmbeddingService --> WhisperAudioProcessor : "uses"
+
 ```
 
 **Diagram sources**
@@ -320,6 +323,7 @@ CROSS_MODAL
 MemoryRecord --> AudioMetadata : "has"
 MemoryRecord --> ImageMetadata : "has"
 MemoryRecord --> VideoMetadata : "has"
+
 ```
 
 **Diagram sources**
@@ -355,6 +359,7 @@ DB-->>Service : saved_record
 Service-->>API : ProcessingResult
 API-->>Client : 200 OK (ProcessingResult)
 Note over Client,DB : Audio memory processing flow
+
 ```
 
 **Diagram sources**
@@ -422,6 +427,7 @@ int height
 jsonb video_features
 string thumbnail_path
 }
+
 ```
 
 **Diagram sources**
@@ -458,6 +464,7 @@ style K fill:#f96,stroke:#333
 style L fill:#f96,stroke:#333
 style M fill:#f96,stroke:#333
 style N fill:#f96,stroke:#333
+
 ```
 
 **Diagram sources**

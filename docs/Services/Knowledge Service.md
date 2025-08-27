@@ -44,6 +44,7 @@ KS --> KCMain
 KCMain --> KCPrompt
 KCMain --> KCMemory
 KCMain --> LLM
+
 ```
 
 **Diagram sources**
@@ -89,6 +90,7 @@ KS->>DB : Save Summary object
 KS->>FAISS : Add embedding to index
 KS-->>Client : Return new summary
 end
+
 ```
 
 **Diagram sources**
@@ -132,6 +134,7 @@ KnowledgeService --> Summary : "stores"
 KnowledgeService --> "SentenceTransformer" : "uses"
 KnowledgeService --> "FAISS" : "uses"
 KnowledgeService --> "compress_knowledge" : "calls"
+
 ```
 
 **Diagram sources**
@@ -172,6 +175,7 @@ C --> D[Summary Text]
 D --> E["save_summary(entry)"]
 E --> F[compressed_memory.json]
 F --> G[Summary DB Table]
+
 ```
 
 **Diagram sources**
@@ -204,6 +208,7 @@ CM --> JSON[compressed_memory.json]
 style KS fill:#f9f,stroke:#333
 style DB fill:#ccf,stroke:#333
 style LLM fill:#cfc,stroke:#333
+
 ```
 
 **Diagram sources**

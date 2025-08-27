@@ -53,6 +53,7 @@ Registry --> MultiModal
 AM --> DataService
 EAM --> DataService
 EAM --> KnowledgeService
+
 ```
 
 **Diagram sources**
@@ -91,6 +92,7 @@ classDef component fill:#f9f,stroke:#333;
 class ActionManager,EnhancedActionManager component;
 class ActionRegistry component;
 class Action component;
+
 ```
 
 **Diagram sources**
@@ -144,6 +146,7 @@ Action <|-- LogMessageAction
 Action <|-- WritePythonCodeAction
 Action <|-- ExecutePythonFileAction
 Action <|-- ProcessImageAction
+
 ```
 
 **Diagram sources**
@@ -179,6 +182,7 @@ class ActionManager {
 }
 ActionManager --> ActionRegistry
 ActionRegistry --> Action
+
 ```
 
 **Diagram sources**
@@ -217,6 +221,7 @@ ReturnError1 --> End
 ReturnError2 --> End
 ReturnError3 --> End
 ReturnError4 --> End
+
 ```
 
 **Diagram sources**
@@ -257,6 +262,7 @@ end
 end
 end
 Registry-->>AM : Ready for action lookup
+
 ```
 
 **Diagram sources**
@@ -293,6 +299,7 @@ ApplyTimeout --> |Timeout| HandleTimeout["Return timeout error"]
 ReturnCached --> End("End")
 ReturnResult --> End
 HandleTimeout --> End
+
 ```
 
 **Diagram sources**
@@ -334,6 +341,7 @@ Task1-->>Semaphore : Release
 Task2-->>Semaphore : Release
 Task3-->>Semaphore : Release
 EAM-->>Client : Array of results
+
 ```
 
 **Diagram sources**

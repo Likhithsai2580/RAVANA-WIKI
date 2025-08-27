@@ -93,6 +93,7 @@ ExtraCheck --> |No| Success["Validation successful"]
 RaiseMissing --> End
 RaiseExtra --> End
 Success --> End
+
 ```
 
 **Diagram sources**
@@ -129,6 +130,7 @@ ActionManager->>Action : execute(**params)
 Action-->>ActionManager : Return result
 ActionManager->>DataService : save_action_log()
 ActionManager-->>DecisionEngine : Return execution result
+
 ```
 
 **Diagram sources**
@@ -189,6 +191,7 @@ ActionManager --> ActionRegistry : "uses"
 ActionRegistry --> Action : "contains"
 Action --> AGISystem : "references"
 Action --> DataService : "references"
+
 ```
 
 **Diagram sources**

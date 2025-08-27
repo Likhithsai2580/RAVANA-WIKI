@@ -27,6 +27,7 @@ string name PK
 json mood_multipliers
 string description
 }
+
 ```
 
 **Diagram sources**
@@ -91,6 +92,7 @@ class Personality {
 +influence_decision(decision_context) Dict~string, Any~
 +pick_idea_to_pursue(ideas) Dict~string, Any~
 }
+
 ```
 
 **Diagram sources**
@@ -132,6 +134,7 @@ MoodProcessor->>EmotionalIntelligence : process_action_result(triggers)
 EmotionalIntelligence->>EmotionalIntelligence : decay_moods()
 EmotionalIntelligence->>EmotionalIntelligence : update_mood(mood, delta * multiplier)
 EmotionalIntelligence-->>MoodProcessor : Updated mood vector
+
 ```
 
 **Diagram sources**
@@ -171,6 +174,7 @@ F --> H[Return Modifiers]
 G --> H
 D --> H
 H --> I[Modified Decision Context]
+
 ```
 
 **Diagram sources**
@@ -208,6 +212,7 @@ Stable --> IncreasedCreativity : Invention Success
 Stable --> DecreasedCreativity : Invention Failure
 IncreasedCreativity --> Stable : Bounded by 1.0
 DecreasedCreativity --> Stable : Bounded by 0.05
+
 ```
 
 **Diagram sources**

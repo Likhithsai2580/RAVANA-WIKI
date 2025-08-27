@@ -36,6 +36,7 @@ DataService --> Models
 DataService --> Engine
 DataService --> TrendAnalysis
 DataService --> EventDetection
+
 ```
 
 **Diagram sources**
@@ -87,6 +88,7 @@ EventDetector-->>DataService : {events : [...]}
 DataService->>Database : Save Event records
 Database-->>DataService : Commit
 DataService-->>Client : Count of new events
+
 ```
 
 **Diagram sources**
@@ -221,6 +223,7 @@ class ExperimentLog {
 +hypothesis : str
 +results : str (JSON)
 }
+
 ```
 
 **Diagram sources**
@@ -243,6 +246,7 @@ engine --> Config
 Config --> DATABASE_URL
 DataService --> embedding_model
 DataService --> sentiment_classifier
+
 ```
 
 **Diagram sources**

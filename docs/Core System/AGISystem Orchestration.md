@@ -100,6 +100,7 @@ W --> Y
 W --> Z
 W --> AA
 W --> AB
+
 ```
 
 **Diagram sources**
@@ -164,6 +165,7 @@ System->>State : Update shared state
 System->>System : Reflect if needed
 System->>System : Sleep between iterations
 end
+
 ```
 
 **Diagram sources**
@@ -287,6 +289,7 @@ ConversationalAI --> RAVANACommunicator : "uses"
 ConversationalAI --> SharedMemoryInterface : "uses"
 ConversationalAI --> UserProfileManager : "uses"
 ConversationalAI --> ConversationalEmotionalIntelligence : "uses"
+
 ```
 
 **Diagram sources**
@@ -329,6 +332,7 @@ StorePlan --> EndLoop["End of Loop"]
 ClearPlan --> EndLoop
 EndLoop --> Sleep["Sleep Before Next Iteration"]
 Sleep --> Start
+
 ```
 
 **Diagram sources**
@@ -378,6 +382,7 @@ AGISystem --> SharedState : "updates memories"
 AGISystem --> SharedState : "updates tasks"
 AGISystem --> EmotionalIntelligence : "reads mood"
 AGISystem --> Personality : "reads traits"
+
 ```
 
 **Diagram sources**
@@ -414,6 +419,7 @@ end
 MP-->>EI : Mood updates complete
 EI->>System : Return dominant mood
 System->>System : Apply behavior modifiers
+
 ```
 
 **Diagram sources**
@@ -449,6 +455,7 @@ IncreaseConfidence --> EndCycle["End Learning Cycle"]
 DecreaseConfidence --> EndCycle
 ExploitKnown --> EndCycle
 ExploreNew --> EndCycle
+
 ```
 
 **Diagram sources**
@@ -531,6 +538,7 @@ SnakeAgent --> SnakeRAVANACommunicator : "uses"
 SnakeThreadingManager --> SnakeLogManager : "logs to"
 SnakeProcessManager --> SnakeLogManager : "logs to"
 ContinuousFileMonitor --> SnakeLogManager : "logs to"
+
 ```
 
 **Diagram sources**
@@ -572,6 +580,7 @@ SA-->>TM : Start all threads
 SA-->>PM : Start all processes
 SA-->>FM : Start monitoring
 SA-->>System : Ready for operation
+
 ```
 
 **Diagram sources**
@@ -610,6 +619,7 @@ PM --> |Executed by| Ex[Experiment Process]
 Ex --> |Results to| IPC
 IPC --> |Reported to| AGI
 end
+
 ```
 
 **Diagram sources**
@@ -711,6 +721,7 @@ ConversationalAI --> ConversationalEmotionalIntelligence : "uses"
 ConversationalAI --> DiscordBot : "uses"
 ConversationalAI --> TelegramBot : "uses"
 RAVANACommunicator --> ConversationalAI : "communicates with"
+
 ```
 
 **Diagram sources**
@@ -790,6 +801,7 @@ CAI --> |Sent to| TB
 DB --> |Message to User| User
 TB --> |Message to User| User
 end
+
 ```
 
 **Diagram sources**

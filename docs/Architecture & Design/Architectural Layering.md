@@ -60,6 +60,7 @@ DecisionEngine --> MemoryService
 EmotionalIntelligence --> SharedState
 CuriosityTrigger --> SharedState
 ReflectionModule --> SharedState
+
 ```
 
 **Diagram sources**
@@ -114,6 +115,7 @@ class ActionRegistry {
 AGISystem --> ActionManager : "contains"
 ActionManager --> ActionRegistry : "uses"
 AGISystem --> AGISystem : "self-reference"
+
 ```
 
 **Diagram sources**
@@ -176,6 +178,7 @@ AGISystem --> MemoryService : "uses"
 AGISystem --> DataService : "uses"
 MemoryService --> "modules.episodic_memory.memory" : "delegates"
 DataService --> "database.models" : "persists"
+
 ```
 
 **Diagram sources**
@@ -226,6 +229,7 @@ K["Curiosity Trigger"] --> L["Generates topics in SharedState"]
 L --> M["Triggers exploration"]
 N["Reflection Module"] --> O["Analyzes SharedState"]
 O --> P["Proposes improvements"]
+
 ```
 
 **Diagram sources**
@@ -296,6 +300,7 @@ string mood_vector
 ARTICLE ||--o{ EVENT : "triggers"
 AGISYSTEM ||--o{ ACTIONLOG : "generates"
 AGISYSTEM ||--o{ MOODLOG : "records"
+
 ```
 
 **Diagram sources**
@@ -396,6 +401,7 @@ DecisionEngine->>MemoryService : get_relevant_memories(query)
 MemoryService-->>DecisionEngine : Return memories
 DecisionEngine->>ActionManager : Return decision
 ActionManager->>SharedState : Update state after execution
+
 ```
 
 **Diagram sources**
@@ -457,6 +463,7 @@ E --> |Uses| ActionManager
 F --> |Updates| SharedState
 G --> |Uses| DataService
 H --> |Uses| EmotionalIntelligence
+
 ```
 
 **Diagram sources**

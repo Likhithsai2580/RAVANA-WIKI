@@ -49,6 +49,7 @@ SG --> ET
 SG --> TA
 SG --> CT
 Models --> DB
+
 ```
 
 **Diagram sources**
@@ -83,6 +84,7 @@ B --> |Situations| E[Situation Generator]
 F[Config] --> |FEED_URLS| B
 G[LLM] --> E
 H[Curiosity] --> E
+
 ```
 
 **Diagram sources**
@@ -99,17 +101,18 @@ The Data Service ingests data primarily from RSS feeds using the `fetch_feeds` f
 
 ```mermaid
 flowchart TD
-Start(""Start"") --> Fetch["fetch_feeds(feed_urls)"]
+Start("("Start")") --> Fetch["fetch_feeds(feed_urls)"]
 Fetch --> Articles{"Articles Retrieved?"}
-Articles --> |No| End1(""No New Articles"")
+Articles --> |No| End1("("No New Articles")")
 Articles --> |Yes| Loop["For each article"]
 Loop --> Exists["Already in DB?"]
 Exists --> |Yes| Skip
 Exists --> |No| Create["Create Article Object"]
 Create --> Save["session.add(article)"]
 Save --> Commit["session.commit()"]
-Commit --> End2(""Saved"")
+Commit --> End2("("Saved")")
 Skip --> End2
+
 ```
 
 **Diagram sources**
@@ -139,6 +142,7 @@ ET->>ET : Filter by sentiment
 ET-->>DS : Detected events
 DS->>DB : Save Event objects
 DS->>SG : Trigger situation generation
+
 ```
 
 **Diagram sources**
@@ -194,6 +198,7 @@ DataService --> MoodLog : creates
 DataService --> SituationLog : creates
 DataService --> DecisionLog : creates
 DataService --> ExperimentLog : creates
+
 ```
 
 **Diagram sources**
@@ -219,6 +224,7 @@ SG --> ED
 SG --> TE
 SG --> CT[CuriosityTrigger]
 CFG --> DS
+
 ```
 
 **Diagram sources**

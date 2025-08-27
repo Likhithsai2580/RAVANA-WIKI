@@ -64,6 +64,7 @@ class ActionManager {
 ActionManager --> ActionRegistry : "uses"
 ActionRegistry --> Action : "contains"
 ActionManager --> Action : "executes"
+
 ```
 
 **Diagram sources**
@@ -152,6 +153,7 @@ class ProposeAndTestInventionAction {
 Action <|-- WritePythonCodeAction
 Action <|-- LogMessageAction
 Action <|-- ProposeAndTestInventionAction
+
 ```
 
 **Diagram sources**
@@ -231,6 +233,7 @@ end
 end
 end
 ActionRegistry-->>User : All actions discovered and registered
+
 ```
 
 **Diagram sources**
@@ -287,6 +290,7 @@ ReturnActionErrorResult --> End
 ReturnUnexpectedError --> End
 ReturnParseError --> End
 ReturnActionError --> End
+
 ```
 
 **Diagram sources**
@@ -349,6 +353,7 @@ HandleFormatError --> ReturnFormatError
 ReturnFormatError --> [*]
 HandleActionError --> ReturnActionNotFoundError
 ReturnActionNotFoundError --> [*]
+
 ```
 
 **Diagram sources**
@@ -454,6 +459,7 @@ Must implement :
 • parameters property
 • execute method
 end note
+
 ```
 
 **Diagram sources**
@@ -510,6 +516,7 @@ DataService-->>ActionManager : Log confirmation
 ActionManager-->>DecisionEngine : Return error response
 end
 end
+
 ```
 
 **Diagram sources**
