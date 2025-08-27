@@ -65,6 +65,7 @@ System --> KnowledgeService
 System --> MemoryService
 System --> Shutdown
 System --> Snake
+
 ```
 
 **Diagram sources**
@@ -114,6 +115,7 @@ Shutdown->>Snake : _cleanup_snake_agent()
 Shutdown->>Shutdown : _phase_state_persistence()
 Shutdown->>Shutdown : _collect_system_state()
 Shutdown-->>AGISystem : Shutdown complete
+
 ```
 
 **Diagram sources**
@@ -141,6 +143,7 @@ class SharedState {
 +__init__(initial_mood : Dict[str, float])
 +get_state_summary() str
 }
+
 ```
 
 **Diagram sources**
@@ -249,6 +252,7 @@ Action --> MoodUpdate["Update mood"]
 MoodUpdate --> End("End Iteration")
 style Start fill:#f9f,stroke:#333
 style End fill:#f9f,stroke:#333
+
 ```
 
 **Diagram sources**

@@ -28,6 +28,7 @@ B --> E[YouTubeTranscriptApi]
 B --> F[Whisper]
 B --> G[pytubefix]
 B --> H[langdetect]
+
 ```
 
 **Diagram sources**

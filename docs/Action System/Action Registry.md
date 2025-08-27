@@ -52,6 +52,7 @@ class Action {
 +to_json() : str
 }
 ActionRegistry --> Action : "contains"
+
 ```
 
 **Diagram sources**
@@ -92,6 +93,7 @@ ActionExists --> |Yes| ReturnAction["Return action instance"]
 ActionExists --> |No| RaiseError["Raise ValueError: Action not found"]
 ReturnAction --> End2("Retrieval Complete")
 RaiseError --> End2("Retrieval Complete")
+
 ```
 
 **Diagram sources**
@@ -164,6 +166,7 @@ Registry-->>Registry : Log error, continue with next class
 end
 end
 Registry-->>Client : Discovery complete
+
 ```
 
 **Diagram sources**
@@ -235,6 +238,7 @@ ImportModule --> FindClasses["Find Action subclasses"]
 FindClasses --> Instantiate["Instantiate action classes"]
 Instantiate --> RegisterActions["Register actions in dictionary"]
 RegisterActions --> Complete["Discovery Complete"]
+
 ```
 
 **Diagram sources**
@@ -314,6 +318,7 @@ Action-->>System : Access system resources
 Action-->>ActionManager : Return execution result
 ActionManager-->>ActionManager : Log action execution
 ActionManager-->>DecisionEngine : Return result
+
 ```
 
 **Diagram sources**
@@ -412,6 +417,7 @@ FindModule --> FindClass["Find Action subclass"]
 FindClass --> Instantiate["Instantiate the action"]
 Instantiate --> Register["Register in ActionRegistry"]
 Register --> Available["Action available for use"]
+
 ```
 
 **Diagram sources**
@@ -502,6 +508,7 @@ ProvideAll --> TestFix
 TestFix --> VerifySuccess{"Issue resolved?"}
 VerifySuccess --> |Yes| Complete["Troubleshooting complete"]
 VerifySuccess --> |No| Repeat["Repeat troubleshooting process"]
+
 ```
 
 **Section sources**

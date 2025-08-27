@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Universal regex pattern for all Mermaid formats
-const mermaidRegex = /(?:``mermaid\s+([\s\S]*?)```)|(?:```mermaid\s+([\s\S]*?)``)|(?:```(?:\s*\n)?\s*mermaid\s*([\s\S]*?)```)|(?:`{1,3}mermaid\s+([\s\S]*?)`{1,3})|(?:`{1,3}\s*\n\s*mermaid\s*([\s\S]*?)`{1,3})|(?:``(?:\s*\n)?\s*(?:graph|flowchart|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|journey|requirementDiagram|gitGraph|erDiagram|quadrantChart)\s*([\s\S]*?)``)|(?:`{2}\s*(?:graph|flowchart)\s+TD\s+[A-Za-z0-9_-]+(?:\[[^\]]+\]|\(\[[^\]]+\]\))\s*(?:-->|->)([\s\S]*?)`{2})/gs;
+const mermaidRegex = /(?:```(?:\s*\n)?\s*mermaid\s*([\s\S]*?)```)|(?:`{1,3}mermaid\s+([\s\S]*?)`{1,3})|(?:`{1,3}\s*\n\s*mermaid\s*([\s\S]*?)`{1,3})|(?:``(?:\s*\n)?\s*(?:graph|flowchart|sequenceDiagram|classDiagram)\s*([\s\S]*?)``)|(?:`{2}\s*(?:graph|flowchart)\s+TD\s+[A-Za-z0-9_-]+(?:\[[^\]]+\]|\(\[[^\]]+\]\))\s*(?:-->|->)([\s\S]*?)`{2})/gs;
 
 // Function to scan a file for Mermaid diagrams
 function scanFileForDiagrams(filePath) {

@@ -47,6 +47,7 @@ knowledge --> core
 services --> core
 services --> database
 style memory_service fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**
@@ -101,6 +102,7 @@ MultiModalService --> Whisper[Whisper Audio Processor]
 style MemoryService fill:#4CAF50,stroke:#388E3C
 style MemoryAPI fill:#2196F3,stroke:#1976D2
 style Compression fill:#FF9800,stroke:#F57C00
+
 ```
 
 **Diagram sources**
@@ -131,6 +133,7 @@ MemoryService --> "uses" extract_memories_api
 MemoryService --> "uses" save_memories
 MemoryService --> "uses" get_relevant_memories_api
 MemoryService --> "uses" consolidate_memories_api
+
 ```
 
 **Diagram sources**
@@ -173,6 +176,7 @@ MemoryRecord <|-- MemoryService
 QueryRequest <|-- get_relevant_memories_api
 RelevantMemoriesResponse <|-- get_relevant_memories_api
 ConsolidateRequest <|-- consolidate_memories_api
+
 ```
 
 **Diagram sources**
@@ -186,15 +190,16 @@ The Knowledge Compression module is responsible for transforming episodic memori
 
 ```mermaid
 flowchart TD
-Start(""Start"") --> LoadLogs["Load Logs from JSON"]
+Start("("Start")") --> LoadLogs["Load Logs from JSON"]
 LoadLogs --> GeneratePrompt["Generate Compression Prompt"]
 GeneratePrompt --> CallLLM["Call LLM with Prompt"]
 CallLLM --> GetSummary["Get Summary from LLM"]
 GetSummary --> CreateEntry["Create Summary Entry"]
 CreateEntry --> SaveSummary["Save Summary to JSON"]
-SaveSummary --> End(""End"")
+SaveSummary --> End("("End")")
 style Start fill:#4CAF50,stroke:#388E3C
 style End fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**
@@ -219,6 +224,7 @@ knowledge_compression --> json[json]
 core --> config[config]
 core --> llm[llm]
 style MemoryService fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**

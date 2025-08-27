@@ -30,6 +30,7 @@ E --> F[Execute Action]
 F --> A
 G[Environmental Feedback] --> A
 H[Performance Metrics] --> B
+
 ```
 
 **Diagram sources**
@@ -66,6 +67,7 @@ class AGISystem {
 +emotional_intelligence : EmotionalIntelligence
 }
 AdaptiveLearningEngine --> AGISystem : "references"
+
 ```
 
 **Diagram sources**
@@ -92,6 +94,7 @@ DB-->>LE : Return decision records
 LE->>LE : Calculate success rates
 LE->>LE : Identify top/underperforming actions
 LE-->>LE : Return analysis results
+
 ```
 
 **Diagram sources**
@@ -129,6 +132,7 @@ E --> H
 F --> H
 G --> H
 H --> I[Store Strategies]
+
 ```
 
 **Diagram sources**
@@ -164,6 +168,7 @@ Decision-->>LE : Return mood data
 LE->>LE : Calculate mood score
 LE->>LE : Apply mood adjustment
 LE-->>Decision : Return adaptations
+
 ```
 
 **Diagram sources**

@@ -48,8 +48,7 @@ The RAVANA project follows a layered, modular structure that separates concerns 
 
 This organization supports the system's philosophy of composability and emergent intelligence, allowing modules to evolve independently while being coordinated by the central AGISystem orchestrator.
 
-```
-mermaid
+```mermaid
 graph TD
 subgraph "Core Layer"
 A[AGISystem]
@@ -94,6 +93,7 @@ M --> P
 N --> P
 O --> P
 P --> Q
+
 ```
 
 **Diagram sources**
@@ -154,8 +154,7 @@ The system operates as a self-contained agent that interacts with the external w
 
 Components interact through well-defined interfaces with the AGISystem acting as the central coordinator. The system follows a dependency injection pattern where the AGISystem injects itself and necessary services into modules during initialization.
 
-```
-mermaid
+```mermaid
 graph LR
 A[AGISystem] --> B[SituationGenerator]
 A --> C[DecisionEngine]
@@ -191,6 +190,7 @@ M --> I
 M --> J
 M --> K
 M --> L
+
 ```
 
 **Diagram sources**
@@ -222,8 +222,7 @@ The constructor accepts a database engine and configures all dependent component
 
 The core of the AGISystem is the `run_autonomous_loop` method, which executes continuously in a loop. Each iteration follows a structured cognitive process:
 
-```
-mermaid
+```mermaid
 flowchart TD
 A[Check for Search Results] --> B[Handle Behavior Modifiers]
 B --> C[Handle Curiosity]
@@ -234,6 +233,7 @@ F --> G[Execute Action and Memorize]
 G --> H[Update Mood and Reflect]
 H --> I[Sleep Before Next Iteration]
 I --> A
+
 ```
 
 **Diagram sources**
@@ -304,8 +304,7 @@ The ActionRegistry in `core/actions/registry.py` implements the Registry pattern
 
 The registry enables dynamic action discovery and extensibility, allowing new actions to be added without modifying core orchestration logic.
 
-```
-mermaid
+```mermaid
 classDiagram
 class ActionRegistry {
 +actions : Dict[str, Action]
@@ -324,6 +323,7 @@ class Action {
 +execute(params : Dict) : Any
 }
 ActionRegistry --> Action : "contains"
+
 ```
 
 **Diagram sources**
@@ -489,8 +489,7 @@ The Enhanced Snake Agent is a new component that provides continuous code improv
 
 The Enhanced Snake Agent uses a multi-layered architecture with distinct threading and multiprocessing components:
 
-```
-mermaid
+```mermaid
 graph TD
 subgraph "Enhanced Snake Agent"
 subgraph "Threading Layer"
@@ -521,6 +520,7 @@ I --> E
 I --> F
 I --> G
 end
+
 ```
 
 **Diagram sources**
@@ -581,8 +581,7 @@ The Enhanced Snake Agent consists of several key components that work together t
 
 The Enhanced Snake Agent follows a coordinated workflow for processing file changes and improvements:
 
-```
-mermaid
+```mermaid
 flowchart TD
 A[File Change Detected] --> B[Queue Analysis Task]
 B --> C[Threaded Code Analysis]
@@ -598,6 +597,7 @@ J --> L[Safe Code Improvement Application]
 L --> M[Git Backup and Versioning]
 M --> N[Communication to RAVANA]
 N --> O[Log Improvement Applied]
+
 ```
 
 **Diagram sources**
@@ -685,8 +685,7 @@ The Enhanced Graceful Shutdown system provides a robust mechanism for terminatin
 
 The Enhanced Graceful Shutdown system uses a multi-phase approach to ensure all components are properly terminated:
 
-```
-mermaid
+```mermaid
 graph TD
 subgraph "Shutdown Coordinator"
 A[Pre-Shutdown Validation]
@@ -707,6 +706,7 @@ E --> F
 F --> G
 G --> H
 H --> I
+
 ```
 
 **Diagram sources**
@@ -758,8 +758,7 @@ The Enhanced Graceful Shutdown system consists of several key components that wo
 
 The Enhanced Graceful Shutdown system follows a coordinated workflow for terminating the system:
 
-```
-mermaid
+```mermaid
 flowchart TD
 A[Shutdown Initiated] --> B[Pre-Shutdown Validation]
 B --> C[Signal Received]
@@ -773,6 +772,7 @@ I --> J{Shutdown Complete?}
 J --> |Yes| K[Log Summary]
 J --> |No| L[Force Shutdown]
 L --> K
+
 ```
 
 **Diagram sources**

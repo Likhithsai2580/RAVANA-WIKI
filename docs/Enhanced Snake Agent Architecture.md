@@ -62,6 +62,7 @@ D --> M[MessageChannels]
 D --> N[ComponentRegistry]
 D --> O[MessageRouter]
 end
+
 ```
 
 **Diagram sources**
@@ -261,6 +262,7 @@ EnhancedSnakeAgent --> SnakeProcessManager
 EnhancedSnakeAgent --> SnakeIPCManager
 EnhancedSnakeAgent --> SnakeLogManager
 EnhancedSnakeAgent --> SnakeFileMonitor
+
 ```
 
 **Diagram sources**
@@ -322,6 +324,7 @@ EnhancedSnakeAgent --> |Log Events| K
 EnhancedSnakeAgent --> |Save State| M
 EnhancedSnakeAgent --> |Read Config| L
 end
+
 ```
 
 **Diagram sources**
@@ -367,6 +370,7 @@ InitLLM --> |Failure| LogError
 InitThreading --> |Failure| LogError
 InitProcess --> |Failure| LogError
 InitFileMonitor --> |Failure| LogError
+
 ```
 
 **Diagram sources**
@@ -454,6 +458,7 @@ class SnakeThreadingManager {
 }
 SnakeThreadingManager --> ThreadState
 SnakeThreadingManager --> WorkerMetrics
+
 ```
 
 **Diagram sources**
@@ -523,6 +528,7 @@ class SnakeProcessManager {
 +shutdown() bool
 }
 SnakeProcessManager --> ProcessState
+
 ```
 
 **Diagram sources**
@@ -576,6 +582,7 @@ end
 TM->>WT : Set Shutdown Event
 WT->>WT : Stop Processing
 WT->>TM : Thread Stopped
+
 ```
 
 **Diagram sources**
@@ -628,6 +635,7 @@ style E fill:#9f9,stroke:#333
 style F fill:#9f9,stroke:#333
 style G fill:#9f9,stroke:#333
 style H fill:#9f9,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -748,6 +756,7 @@ SnakeIPCManager --> MessageRouter
 SnakeIPCManager --> MessageChannel
 MessageChannel --> IPCMessage
 MessageRouter --> ComponentRegistry
+
 ```
 
 **Diagram sources**

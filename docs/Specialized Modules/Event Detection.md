@@ -49,6 +49,7 @@ DataService --> |Triggers| Detector
 end
 RSS --> TrendEngine
 WebContent --> TrendEngine
+
 ```
 
 **Diagram sources**
@@ -76,6 +77,7 @@ Threshold --> Groups["Form Document Groups<br/>(Clusters)"]
 Groups --> Filter["Filter Noise Clusters<br/>(ID: -1)"]
 Filter --> Output["Identify Event Clusters"]
 Output --> End("Event Detection Complete")
+
 ```
 
 **Diagram sources**
@@ -94,6 +96,7 @@ Result --> |Yes| Filter["Mark as Irrelevant"]
 Result --> |No| Keep["Mark as Relevant"]
 Filter --> End1("Filtered Out")
 Keep --> End2("Processed Further")
+
 ```
 
 **Diagram sources**
@@ -106,7 +109,7 @@ The final stage of event detection involves generating alerts for significant cl
 
 ```mermaid
 flowchart TD
-Start(""Clustered Documents"") --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
+Start("("Clustered Documents")") --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
 SizeCheck --> |No| Skip["Skip Small Cluster"]
 SizeCheck --> |Yes| Valid["Valid Event Candidate"]
 Valid --> NoiseCheck{"Cluster ID = -1?<br/>(Noise)?"}
@@ -116,7 +119,8 @@ Generate --> Summary["Create Summary<br/>(First Document Text)"]
 Summary --> Keywords["Extract Keywords<br/>(Placeholder)"]
 Keywords --> Count["Count Documents<br/>(doc_count)"]
 Count --> Output["Create Event Object"]
-Output --> End(""Event Alert Generated"")
+Output --> End("("Event Alert Generated")")
+
 ```
 
 **Diagram sources**
@@ -159,6 +163,7 @@ Generator-->>Generator : Select random significant event
 Generator-->>Generator : Create prompt from event summary
 Generator-->>DecisionEngine : Submit new situation
 DecisionEngine-->>DecisionEngine : Process situation as new task
+
 ```
 
 **Diagram sources**

@@ -563,6 +563,7 @@ N --> R["Operational"]
 O --> R
 P --> R
 Q --> R
+
 ```
 
 **Diagram sources**

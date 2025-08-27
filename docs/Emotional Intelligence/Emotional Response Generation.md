@@ -49,6 +49,7 @@ class MoodProcessor {
 +process_action_natural(action_output)
 }
 EmotionalIntelligence --> MoodProcessor : "contains"
+
 ```
 
 **Diagram sources**
@@ -98,6 +99,7 @@ J --> L[Update mood_vector]
 K --> L
 L --> M[Apply mood decay]
 M --> N[New emotional state]
+
 ```
 
 **Diagram sources**
@@ -163,6 +165,7 @@ EmotionalIntelligence->>EmotionalIntelligence : Apply LLM-generated deltas
 end
 end
 EmotionalIntelligence->>EmotionalIntelligence : decay_moods()
+
 ```
 
 **Diagram sources**
@@ -239,6 +242,7 @@ K --> P[Pessimistic dampens]
 L --> Q[Analytical amplifies]
 M --> R[Pessimistic amplifies]
 M --> S[Optimistic dampens]
+
 ```
 
 **Diagram sources**
@@ -300,6 +304,7 @@ end
 style D fill:#f9f,stroke:#333
 style H fill:#f9f,stroke:#333
 style I fill:#f9f,stroke:#333
+
 ```
 
 **Diagram sources**

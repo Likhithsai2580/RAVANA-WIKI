@@ -112,6 +112,7 @@ class EmotionalEvent {
 }
 EmotionalIntelligence --> MoodProcessor : "has"
 EmotionalIntelligence --> EmotionalEvent : "contains"
+
 ```
 
 **Diagram sources**
@@ -343,6 +344,7 @@ ApplyLLM --> UpdateComplete
 UpdateComplete --> LogState["Log Final Mood Vector"]
 LogState --> End("Update Complete")
 TriggerExists --> |No| UpdateComplete
+
 ```
 
 **Diagram sources**
@@ -477,6 +479,7 @@ note left of Frustrated
 Optimistic : ×0.5 gain<br/>
 Pessimistic : ×1.5 gain
 end note
+
 ```
 
 **Diagram sources**
@@ -598,6 +601,7 @@ LLM-->>MP : mood deltas
 MP->>EI : update_mood() for each delta
 EI->>A : influence_behavior()
 A->>M : store memory with mood_vector
+
 ```
 
 **Diagram sources**

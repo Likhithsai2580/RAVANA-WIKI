@@ -36,6 +36,7 @@ C --> D[Compressed Knowledge]
 D --> E[Knowledge Service]
 E --> F[(Database)]
 F --> G[Retrieval & Search]
+
 ```
 
 **Diagram sources**
@@ -72,6 +73,7 @@ LLM-->>Main : summary text
 Main->>Storage : save_summary(entry)
 Main->>DB : add_knowledge(summary)
 DB->>DB : Deduplicate & Store
+
 ```
 
 **Diagram sources**
@@ -141,6 +143,7 @@ class Summary {
 CompressedMemory --> "writes to" Summary : via KnowledgeService
 KnowledgeService --> Summary : manages
 Summary ..> "database" : stored in
+
 ```
 
 **Diagram sources**
@@ -290,6 +293,7 @@ E --> |Yes| D
 D --> G[Compression Candidate]
 G --> H[LLM Summarization]
 H --> I[Semantic Knowledge]
+
 ```
 
 **Diagram sources**
@@ -359,6 +363,7 @@ G --> H[Verify Deduplication Logic]
 D --> I[Test LLM Call Directly]
 F --> J[Check Database Service]
 H --> K[Review Content Hashing]
+
 ```
 
 **Diagram sources**

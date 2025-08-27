@@ -132,6 +132,7 @@ AGISystem --> AdaptiveLearningEngine : "uses"
 AGISystem --> MultiModalService : "uses"
 AGISystem --> Personality : "uses"
 AGISystem --> SharedState : "contains"
+
 ```
 
 **Diagram sources**
@@ -200,6 +201,7 @@ else Physics Experiment
 System-->>System : run_physics_experiment()
 end
 Main-->>System : await agi_system.stop() on exit
+
 ```
 
 **Diagram sources**
@@ -268,6 +270,7 @@ M --> Q[Curiosity Topics]
 M --> R[Search Results]
 M --> S[Current Task]
 style A fill:#f9f,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -353,6 +356,7 @@ M --> |No| N[Sleep & Repeat]
 M --> |Yes| O[Stop Background Tasks]
 O --> P[Close Session]
 P --> Q[Exit Loop]
+
 ```
 
 **Diagram sources**

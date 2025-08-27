@@ -28,8 +28,7 @@ The Enhanced Snake Agent is an autonomous AI system designed to continuously mon
 ## Project Structure
 The Enhanced Snake Agent is organized within the `core` directory of the RAVANA repository, with tightly integrated components for logging, threading, process management, and file monitoring. The system follows a modular design where each component has a single responsibility and communicates through well-defined interfaces and queues.
 
-```
-mermaid
+```mermaid
 graph TB
 subgraph "Enhanced Snake Agent Core"
 ESA[EnhancedSnakeAgent]
@@ -54,6 +53,7 @@ style LogManager fill:#96CEB4,stroke:#333
 style ThreadingManager fill:#FFEAA7,stroke:#333
 style ProcessManager fill:#DDA0DD,stroke:#333
 style FileMonitor fill:#F7DC6F,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -90,8 +90,7 @@ These components are initialized in sequence, with proper error handling and log
 ## Architecture Overview
 The Enhanced Snake Agent follows a layered architecture with clear separation between coordination, processing, and monitoring layers. The system uses a producer-consumer pattern across both threads and processes to ensure efficient resource utilization.
 
-```
-mermaid
+```mermaid
 graph TD
 A[RAVANA Codebase] --> |File Changes| B(ContinuousFileMonitor)
 B --> |FileChangeEvent| C(SnakeThreadingManager)
@@ -122,6 +121,7 @@ style G fill:#039BE5,stroke:#333
 style H fill:#0288D1,stroke:#333
 style I fill:#0277BD,stroke:#333
 style J fill:#01579B,stroke:#333,color:white
+
 ```
 
 **Diagram sources**
@@ -137,8 +137,7 @@ style J fill:#01579B,stroke:#333,color:white
 The EnhancedSnakeAgent class serves as the central orchestrator for the entire system. It manages the lifecycle of all components and coordinates their interactions through a main coordination loop.
 
 #### Class Diagram
-```
-mermaid
+```mermaid
 classDiagram
 class EnhancedSnakeAgent {
 +agi_system : Any
@@ -218,6 +217,7 @@ EnhancedSnakeAgent --> SnakeLogManager
 EnhancedSnakeAgent --> SnakeThreadingManager
 EnhancedSnakeAgent --> SnakeProcessManager
 EnhancedSnakeAgent --> ContinuousFileMonitor
+
 ```
 
 **Diagram sources**
@@ -235,8 +235,7 @@ EnhancedSnakeAgent --> ContinuousFileMonitor
 The Enhanced Snake Agent follows a strict initialization sequence to ensure all components are properly set up before starting autonomous operations.
 
 #### Sequence Diagram
-```
-mermaid
+```mermaid
 sequenceDiagram
 participant ESA as EnhancedSnakeAgent
 participant LM as SnakeLogManager
@@ -263,6 +262,7 @@ ESA->>ESA : _load_state()
 ESA->>ESA : Set initialized = true
 ESA->>ESA : Log initialization complete
 ESA-->>ESA : Return True
+
 ```
 
 **Diagram sources**
@@ -279,8 +279,7 @@ ESA-->>ESA : Return True
 Once initialized, the Enhanced Snake Agent enters a continuous coordination loop that manages health checks, performance logging, and state persistence.
 
 #### Flowchart
-```
-mermaid
+```mermaid
 flowchart TD
 Start("Start Autonomous Operation") --> InitCheck{"Initialized?"}
 InitCheck --> |No| Initialize[initialize()]
@@ -316,6 +315,7 @@ style Cleanup fill:#4ECDC4,stroke:#333
 style StopComponents fill:#4ECDC4,stroke:#333
 style SaveFinalState fill:#4ECDC4,stroke:#333
 style StopLogger fill:#4ECDC4,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -327,8 +327,7 @@ style StopLogger fill:#4ECDC4,stroke:#333
 ## Dependency Analysis
 The Enhanced Snake Agent has a well-defined dependency hierarchy where higher-level components depend on lower-level services. The system avoids circular dependencies through careful interface design and callback patterns.
 
-```
-mermaid
+```mermaid
 graph TD
 ESA[EnhancedSnakeAgent] --> LM[SnakeLogManager]
 ESA --> TM[SnakeThreadingManager]
@@ -353,6 +352,7 @@ style TM fill:#0288D1,stroke:#333,color:white
 style PM fill:#039BE5,stroke:#333,color:white
 style FM fill:#03A9F4,stroke:#333,color:white
 style Config fill:#29B6F6,stroke:#333,color:white
+
 ```
 
 **Diagram sources**

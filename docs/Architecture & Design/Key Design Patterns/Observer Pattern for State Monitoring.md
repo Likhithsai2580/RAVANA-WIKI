@@ -54,6 +54,7 @@ class SharedState {
 +current_task : str
 +get_state_summary() : str
 }
+
 ```
 
 **Diagram sources**
@@ -106,6 +107,7 @@ System-->>System : _did_mood_improve
 alt Mood not improved
 System-->>Reflection : reflect(shared_state)
 end
+
 ```
 
 **Diagram sources**
@@ -153,6 +155,7 @@ E --> F["MoodProcessor.process_action_result"]
 F --> G["Apply Mood Updates from Config"]
 G --> H["Update EmotionalIntelligence mood_vector"]
 H --> I["Return to AGI System"]
+
 ```
 
 **Diagram sources**
@@ -214,6 +217,7 @@ alt Significant findings
 Reflection-->>Knowledge : add_knowledge(insight)
 end
 end
+
 ```
 
 **Diagram sources**
@@ -282,6 +286,7 @@ Mood-->>Iteration : return
 Iteration-->>Sleep : await asyncio.sleep()
 Sleep-->>Loop : continue
 end loop
+
 ```
 
 **Diagram sources**
@@ -345,6 +350,7 @@ C --> E["Analyze Mood History"]
 E --> F["Generate Insights"]
 F --> G["Update Knowledge Base"]
 G --> H["Modify Future Behavior"]
+
 ```
 
 **Diagram sources**

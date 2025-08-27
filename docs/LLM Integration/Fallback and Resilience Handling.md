@@ -49,6 +49,7 @@ F --> |Yes| N
 H --> |Yes| N
 J --> |Yes| N
 L --> |Yes| N
+
 ```
 
 **Diagram sources**
@@ -89,6 +90,7 @@ SafeCaller->>SafeCaller : Wait 1.0s (backoff)
 SafeCaller->>LLMProvider : Attempt 3
 LLMProvider-->>SafeCaller : Failure
 SafeCaller-->>Client : "[LLM Error : ...]"
+
 ```
 
 **Diagram sources**
@@ -169,6 +171,7 @@ D --> H
 E --> H
 F --> H
 G --> H
+
 ```
 
 **Diagram sources**

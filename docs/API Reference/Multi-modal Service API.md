@@ -51,6 +51,7 @@ ActionManager --> MultiModalService
 ActionManager --> KnowledgeService
 LLM --> Gemini
 ActionRegistry --> ActionManager
+
 ```
 
 **Diagram sources**
@@ -78,6 +79,7 @@ class MultiModalService {
 +process_directory(directory_path : str, recursive : bool) : List[Dict]
 +cleanup_temp_files(max_age_hours : int) : None
 }
+
 ```
 
 **Diagram sources**
@@ -254,6 +256,7 @@ Gemini-->>LLM : Return image description
 LLM-->>Service : Return description
 Service->>Service : Extract metadata
 Service-->>Client : Return result dictionary
+
 ```
 
 **Diagram sources**
@@ -407,6 +410,7 @@ GatherResults --> LogCompletion[Log Completion]
 LogCompletion --> ReturnResults[Return Results]
 ReturnEmpty --> End("End")
 ReturnResults --> End
+
 ```
 
 The system uses a semaphore with a default parallel limit of 3 to prevent overwhelming external APIs or system resources.

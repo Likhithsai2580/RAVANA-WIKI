@@ -87,6 +87,7 @@ EmotionalIntelligence-->>MoodProcessor : updated mood vector
 MoodProcessor->>AGISystem : mood change detected
 AGISystem->>ReflectionModule : reflect(shared_state)
 ReflectionModule->>AGISystem : reflection report
+
 ```
 
 **Diagram sources**

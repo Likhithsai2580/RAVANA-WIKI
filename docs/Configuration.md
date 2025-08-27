@@ -54,6 +54,7 @@ D --> K[Emotional Triggers]
 D --> L[Behavior Influences]
 E --> M[Persona Definitions]
 E --> N[Mood Multipliers]
+
 ```
 
 **Diagram sources**
@@ -103,6 +104,7 @@ class ConfigLoader {
 +validate_settings(config : Dict) : bool
 }
 Config "1" -- "1" ConfigLoader : uses
+
 ```
 
 **Diagram sources**
@@ -207,6 +209,7 @@ else Success
 Provider-->>Config : 200 OK with response
 end
 Config-->>Client : Return response or error
+
 ```
 
 **Diagram sources**
@@ -376,6 +379,7 @@ G --> I
 H --> I
 I --> J[Store in Config Class]
 J --> K[Application Uses Config]
+
 ```
 
 **Diagram sources**
@@ -524,6 +528,7 @@ F --> G[Service Shutdown]
 G --> H[State Persistence]
 H --> I[Final Validation]
 I --> J[Shutdown Complete]
+
 ```
 
 ### Shutdown Phase Configuration
@@ -558,6 +563,7 @@ ServiceShutdown --> StatePersistence : services shutdown
 StatePersistence --> FinalValidation : state persisted
 FinalValidation --> ShutdownComplete : validation passed
 ShutdownComplete --> [*]
+
 ```
 
 ### Shutdown History and Logging

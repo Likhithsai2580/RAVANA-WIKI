@@ -44,6 +44,7 @@ O --> Q[Update Reflection DB]
 P --> Q
 Q --> R[Process Next Reflection]
 R --> B
+
 ```
 
 **Diagram sources**
@@ -99,6 +100,7 @@ SelfMod->>Sandbox : Execute tests (python test_self_reflection.py)
 Sandbox-->>SelfMod : Return test results (success/failure)
 SelfMod->>FileSystem : Restore original files (if failed)
 SelfMod->>FileSystem : Apply patch (if successful)
+
 ```
 
 **Diagram sources**
@@ -164,6 +166,7 @@ class Action {
 +execute(params) : Any
 }
 ActionRegistry --> Action : "registers"
+
 ```
 
 **Diagram sources**

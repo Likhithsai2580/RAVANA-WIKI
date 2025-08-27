@@ -35,6 +35,7 @@ B --> L[llm.py]
 D --> M[multi_modal_service.py]
 C --> N[decision_engine]
 C --> O[agi_experimentation_engine.py]
+
 ```
 
 **Diagram sources**
@@ -69,6 +70,7 @@ AM --> |Logs| DS[DataService]
 DS --> |Persists| DB[(Database)]
 style WPCA fill:#f9f,stroke:#333
 style EPFA fill:#f9f,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -96,6 +98,7 @@ DM->>AM : Execute decision
 AM->>WPCA : execute(file_path, hypothesis, test_plan)
 WPCA->>LLM : Send CODE_GENERATION_PROMPT
 LLM-->>WPCA : Response with code in
+
 ```python block
     WPCA->>WPCA: Extract code using regex
     WPCA->>FS: Write code to file_path

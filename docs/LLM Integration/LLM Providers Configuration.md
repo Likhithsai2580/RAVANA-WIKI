@@ -28,6 +28,7 @@ Default --> Validation["Validate Configuration"]
 Validation --> Ready["Configuration Ready"]
 style Start fill:#4CAF50,stroke:#388E3C
 style Ready fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**
@@ -107,6 +108,7 @@ class GeminiKeyStatus {
 +last_success : Optional[datetime]
 }
 GeminiKeyManager --> GeminiKeyStatus : "manages"
+
 ```
 
 **Diagram sources**
@@ -172,6 +174,7 @@ ModelSelect --> ClientSetup["Initialize API Client"]
 ClientSetup --> Ready["Provider Ready"]
 style InitStart fill:#4CAF50,stroke:#388E3C
 style Ready fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**
@@ -256,6 +259,7 @@ end
 end
 end
 end
+
 ```
 
 **Diagram sources**

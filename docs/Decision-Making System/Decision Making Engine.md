@@ -49,6 +49,7 @@ R --> X
 T --> X
 U --> X
 X --> Y[Final Decision]
+
 ```
 
 **Diagram sources**
@@ -109,6 +110,7 @@ D --> H[Apply Confidence Modifier]
 F --> H
 G --> H
 H --> I[Final Decision Confidence]
+
 ```
 
 **Diagram sources**
@@ -178,6 +180,7 @@ System->>System : Store in Shared State
 System->>Decision : Pass via rag_context
 Decision->>LLM : Include in Prompt
 LLM-->>Decision : Reasoning with External Data
+
 ```
 
 **Diagram sources**
@@ -251,6 +254,7 @@ I --> K
 J --> K
 K --> L[Enhanced Situation]
 L --> M[Decision Making]
+
 ```
 
 **Diagram sources**
@@ -315,6 +319,7 @@ D --> |No| F[Neutral Balance]
 C --> G[Encourage New Actions]
 E --> H[Prioritize Proven Actions]
 F --> I[Maintain Current Balance]
+
 ```
 
 **Diagram sources**

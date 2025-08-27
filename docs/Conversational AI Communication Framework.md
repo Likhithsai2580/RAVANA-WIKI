@@ -48,6 +48,7 @@ DB --> RB
 TB --> RB
 CHM --> RB
 EI --> RB
+
 ```
 
 **Diagram sources**
@@ -98,6 +99,7 @@ Communicator --> MQC
 MSC --> Memory[(Persistent Storage)]
 SSC --> State[(Real-time State)]
 MQC --> Queue[(Reliable Messaging)]
+
 ```
 
 **Diagram sources**
@@ -170,6 +172,7 @@ class MessageQueueChannel {
 RAVANACommunicator --> MemoryServiceChannel : "uses"
 RAVANACommunicator --> SharedStateChannel : "uses"
 RAVANACommunicator --> MessageQueueChannel : "uses"
+
 ```
 
 **Diagram sources**
@@ -212,6 +215,7 @@ alt Collaboration Proposal
 Communicator->>Communicator : _process_collaboration_proposal()
 Communicator->>Bot : Share collaboration idea
 end
+
 ```
 
 **Diagram sources**
@@ -264,6 +268,7 @@ class UserPlatformProfile {
 }
 CommunicationMessage --> CommunicationType : "has type"
 CommunicationMessage --> Priority : "has priority"
+
 ```
 
 **Diagram sources**

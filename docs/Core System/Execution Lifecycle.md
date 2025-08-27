@@ -66,6 +66,7 @@ S --> AC[Discord Bot]
 S --> AD[Telegram Bot]
 S --> AE[Emotional Intelligence]
 S --> AF[RAVANA Bridge]
+
 ```
 
 **Diagram sources**
@@ -132,6 +133,7 @@ E --> X
 E --> AE
 Q --> S
 Q --> T
+
 ```
 
 **Diagram sources**
@@ -225,6 +227,7 @@ AB --> AC[Generate Response]
 AC --> AD[Update User Profile]
 AD --> AE[Synchronize with AGI]
 AE --> Z
+
 ```
 
 **Diagram sources**
@@ -262,6 +265,7 @@ N --> |No| P[Log Results]
 O --> Q[Communicate with AGI]
 Q --> R[Apply Improvement]
 R --> A
+
 ```
 
 **Diagram sources**
@@ -300,6 +304,7 @@ R[Shutdown Signal] --> S[Stop Bots]
 S --> T[Stop Bridge]
 T --> U[Cleanup Resources]
 U --> V[Module Stopped]
+
 ```
 
 **Diagram sources**
@@ -313,8 +318,7 @@ U --> V[Module Stopped]
 ### Shutdown Coordination and Resource Cleanup
 The graceful shutdown process is managed by the `ShutdownCoordinator` class, which executes a series of phases to ensure proper cleanup of resources and persistence of state. The coordinator handles shutdown signals, stops background tasks, performs resource cleanup, and persists the system state before termination. The enhanced Snake Agent is integrated into this process with a dedicated cleanup handler that ensures proper shutdown of its threading and multiprocessing components. The Conversational AI module is also integrated into the shutdown process, with a dedicated cleanup handler that ensures proper shutdown of its background thread and bot interfaces.
 
-```
-mermaid
+```mermaid
 flowchart TD
 A[Shutdown Initiated] --> B[Signal Received]
 B --> C[Stop Background Tasks]
@@ -327,6 +331,7 @@ H --> I[Final Validation]
 I --> J[Shutdown Complete]
 style A fill:#f9f,stroke:#333
 style J fill:#9f9,stroke:#333
+
 ```
 
 **Diagram sources**
@@ -342,8 +347,7 @@ style J fill:#9f9,stroke:#333
 ### State Persistence and Recovery
 The system implements robust state persistence and recovery mechanisms through the `StateManager` and `ShutdownCoordinator` classes. State is saved during shutdown and can be recovered on startup, allowing the AGI to resume its cognitive state across sessions. The system creates backups and validates state data to ensure integrity. The enhanced Snake Agent state is now included in the persistence process, allowing it to maintain its analysis metrics and operational state across restarts. The Conversational AI module does not persist its state independently, as it relies on the shared memory infrastructure for user profiles and conversation history.
 
-```
-mermaid
+```mermaid
 flowchart TD
 A[Save State] --> B[Add Metadata]
 B --> C[Validate State]
@@ -366,6 +370,7 @@ S --> T[Save Analysis Metrics]
 T --> U[Restore on Startup]
 V[Conversational AI State] --> W[No Independent Persistence]
 W --> X[Rely on Shared Memory]
+
 ```
 
 **Diagram sources**
@@ -382,8 +387,7 @@ W --> X[Rely on Shared Memory]
 ## Dependency Analysis
 The execution lifecycle components are interconnected through a well-defined dependency structure. The `main.py` entry point depends on the `AGISystem` class, which in turn depends on various services, modules, and the shutdown coordinator. The shutdown coordinator depends on the state manager for state persistence, creating a hierarchical dependency chain that ensures proper initialization and cleanup order. The enhanced Snake Agent is now integrated into this dependency structure, with the AGISystem depending on it when enabled, and the shutdown coordinator depending on the Snake Agent for proper cleanup. The Conversational AI module is also integrated into this dependency structure, with the AGISystem depending on it when enabled, and the shutdown coordinator depending on the Conversational AI module for proper cleanup.
 
-```
-mermaid
+```mermaid
 graph TD
 A[main.py] --> B[AGISystem]
 B --> C[ShutdownCoordinator]
@@ -405,6 +409,7 @@ H --> R[RAVANACommunicator]
 H --> S[EmotionalIntelligence]
 I --> J
 B --> J
+
 ```
 
 **Diagram sources**

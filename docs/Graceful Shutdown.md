@@ -46,6 +46,7 @@ E --> F[Execute Shutdown Phases]
 F --> G[State Persistence]
 G --> H[Resource Cleanup]
 H --> I[Application Exit]
+
 ```
 
 **Diagram sources**
@@ -120,6 +121,7 @@ ShutdownCoordinator --> ComponentRegistration : "manages"
 ShutdownCoordinator --> ShutdownPhase : "uses"
 ShutdownCoordinator --> ShutdownPriority : "uses"
 ComponentRegistration --> Shutdownable : "implements"
+
 ```
 
 **Diagram sources**
@@ -144,6 +146,7 @@ Phase7 --> Phase8["Phase 8: Final Validation"]
 Phase8 --> Complete["Phase 9: Shutdown Complete"]
 style Start fill:#4CAF50,stroke:#388E3C
 style Complete fill:#4CAF50,stroke:#388E3C
+
 ```
 
 **Diagram sources**
@@ -169,6 +172,7 @@ Coordinator-->>Coordinator : Execute phase handler
 Coordinator-->>Logger : Log phase completion
 end
 Coordinator-->>Logger : Log shutdown summary
+
 ```
 
 **Section sources**
@@ -195,6 +199,7 @@ A --> M["ACTION_CACHE_PERSIST: True"]
 A --> N["RESOURCE_CLEANUP_TIMEOUT: 10s"]
 A --> O["SHUTDOWN_STATE_VALIDATION_ENABLED: True"]
 A --> P["SHUTDOWN_VALIDATION_ENABLED: True"]
+
 ```
 
 **Diagram sources**
@@ -222,6 +227,7 @@ ShutdownCoordinator --> TempFiles
 AGISystem --> ShutdownCoordinator : "registers components"
 ShutdownCoordinator --> StatePersistence : "handles state saving"
 StatePersistence --> BackupSystem : "creates backups"
+
 ```
 
 **Diagram sources**
@@ -264,6 +270,7 @@ J --> |No| L["Check file permissions for state directory"]
 A --> M{"Force Shutdown Triggered?"}
 M --> |Yes| N["Review _force_shutdown() logs"]
 M --> |No| O["Normal shutdown sequence"]
+
 ```
 
 **Section sources**

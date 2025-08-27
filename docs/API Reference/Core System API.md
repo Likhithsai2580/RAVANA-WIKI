@@ -55,6 +55,7 @@ AGISystem --> ReflectionModule
 AGISystem --> ExperimentationEngine
 AGISystem --> AdaptiveLearningEngine
 AGISystem --> Personality
+
 ```
 
 **Diagram sources**
@@ -105,6 +106,7 @@ Action-->>System : Return action output
 Loop->>System : Update mood and reflect
 Loop->>Memory : Memorize interaction
 Loop->>Loop : Sleep (LOOP_SLEEP_DURATION)
+
 ```
 
 **Diagram sources**
@@ -176,6 +178,7 @@ class SharedState {
 +current_task : str
 }
 AGISystem --> SharedState : "contains"
+
 ```
 
 **Diagram sources**
@@ -349,6 +352,7 @@ Registry-->>ActionManager : Return available actions
 ActionManager->>Action : Execute action based on decision
 Action-->>ActionManager : Return action output
 ActionManager-->>System : Return action output
+
 ```
 
 **Diagram sources**
@@ -373,6 +377,7 @@ E --> F[LLM generates response]
 F --> G[Parse JSON response]
 G --> H[Extract action and plan]
 H --> I[Return decision to AGISystem]
+
 ```
 
 **Diagram sources**
@@ -404,6 +409,7 @@ MemoryService : +get_relevant_memories(query)
 MemoryService : +extract_memories(content, context)
 MemoryService : +save_memories(memories)
 MemoryService : +consolidate_memories()
+
 ```
 
 **Diagram sources**
@@ -442,6 +448,7 @@ MemoryService --> EpisodicMemory
 ReflectionModule --> AGISystem
 AGIExperimentationEngine --> AGISystem
 AdaptiveLearningEngine --> AGISystem
+
 ```
 
 **Diagram sources**

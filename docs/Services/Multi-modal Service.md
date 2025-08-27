@@ -53,6 +53,7 @@ E --> J
 E --> K
 E --> L
 E --> M
+
 ```
 
 **Diagram sources**
@@ -93,6 +94,7 @@ LLM-->>Service : Return image description
 Service->>Service : Extract metadata
 Service->>Logger : Log success
 Service-->>Client : Return analysis results
+
 ```
 
 **Diagram sources**
@@ -117,6 +119,7 @@ LLM-->>Service : Return audio description
 Service->>Service : Extract metadata
 Service->>Logger : Log success
 Service-->>Client : Return analysis results
+
 ```
 
 **Diagram sources**
@@ -261,6 +264,7 @@ Action <|-- ProcessImageAction
 Action <|-- ProcessAudioAction
 Action <|-- AnalyzeDirectoryAction
 Action <|-- CrossModalAnalysisAction
+
 ```
 
 **Diagram sources**
@@ -290,6 +294,7 @@ Service-->>ActionManager : Return result
 ActionManager->>KnowledgeService : add_knowledge(description)
 KnowledgeService-->>ActionManager : Confirmation
 ActionManager-->>DecisionEngine : Return action result
+
 ```
 
 **Diagram sources**
@@ -320,6 +325,7 @@ J --> K[Store in Knowledge Base]
 K --> L[Cross-modal Analysis]
 L --> M[Generate Summary]
 M --> N[Structured Text Output]
+
 ```
 
 **Diagram sources**
@@ -373,6 +379,7 @@ C --> F[Return Transcribed Text]
 E --> F
 F --> G[Detect Language]
 G --> H[Return Results]
+
 ```
 
 **Diagram sources**

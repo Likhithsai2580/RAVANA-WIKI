@@ -58,6 +58,7 @@ AGISystem --> ActionManager
 ActionManager --> MultiModalService
 DecisionEngine --> MemoryService
 DecisionEngine --> KnowledgeService
+
 ```
 
 **Diagram sources**
@@ -154,6 +155,7 @@ AGISystem --> MultiModalService : "creates"
 AGISystem --> MemoryService : "injects"
 AGISystem --> KnowledgeService : "injects"
 AGISystem --> DataService : "injects"
+
 ```
 
 **Diagram sources**
@@ -331,6 +333,7 @@ MemoryService --> EpisodicMemoryClient
 style AGISystem fill:#f9f,stroke:#333
 style DataService fill:#bbf,stroke:#333
 style EnhancedActionManager fill:#f96,stroke:#333
+
 ```
 
 **Diagram sources**
