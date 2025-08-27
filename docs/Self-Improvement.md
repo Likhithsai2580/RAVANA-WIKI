@@ -206,7 +206,7 @@ The `run_self_modification` function orchestrates a multi-step process:
 
 ```mermaid
 flowchart TD
-Start([Start Self-Modification]) --> FindActionable["Find Actionable Reflections"]
+Start("Start Self-Modification") --> FindActionable["Find Actionable Reflections"]
 FindActionable --> CheckFound{"Found Any?"}
 CheckFound --> |No| EndNo["No Bugs Found"]
 CheckFound --> |Yes| ProcessEntry["Process Next Reflection"]
@@ -231,7 +231,7 @@ SkipEntry --> NextEntry
 NextEntry --> CheckMore{"More Reflections?"}
 CheckMore --> |Yes| ProcessEntry
 CheckMore --> |No| EndYes["Process Complete"]
-EndNo --> End([End])
+EndNo --> End("End")
 EndYes --> End
 ```
 

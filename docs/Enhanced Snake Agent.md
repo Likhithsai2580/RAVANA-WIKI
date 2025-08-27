@@ -282,7 +282,7 @@ Once initialized, the Enhanced Snake Agent enters a continuous coordination loop
 ```
 mermaid
 flowchart TD
-Start([Start Autonomous Operation]) --> InitCheck{"Initialized?"}
+Start("Start Autonomous Operation") --> InitCheck{"Initialized?"}
 InitCheck --> |No| Initialize[initialize()]
 InitCheck --> |Yes| SetRunning[Set running = true]
 SetRunning --> StartComponents[Start all components]
@@ -300,7 +300,7 @@ CoordinationLoop --> |Shutdown requested| Cleanup[Run _cleanup()]
 Cleanup --> StopComponents[Stop all components]
 StopComponents --> SaveFinalState[_save_state()]
 SaveFinalState --> StopLogger[Stop log_manager]
-StopLogger --> End([Operation stopped])
+StopLogger --> End("Operation stopped")
 style Start fill:#4ECDC4,stroke:#333
 style End fill:#4ECDC4,stroke:#333
 style InitCheck fill:#FFD700,stroke:#333
