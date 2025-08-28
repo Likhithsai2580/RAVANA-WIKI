@@ -1,31 +1,112 @@
+:root {
+  --color-primary: #6366f1;
+  --color-primary-focus: #4f46e5;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #f97316;
+  --color-secondary-focus: #ea580c;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #8b5cf6;
+  --color-accent-focus: #7c3aed;
+  --color-accent-content: #ffffff;
+
+  --color-neutral: #1e293b;
+  --color-neutral-focus: #334155;
+  --color-neutral-content: #cbd5e1;
+
+  --color-base-100: #0f172a;
+  --color-base-200: #1e293b;
+  --color-base-300: #334155;
+  --color-base-content: #f1f5f9;
+
+  --color-info: #22d3ee;
+  --color-success: #4ade80;
+  --color-warning: #facc15;
+  --color-error: #f87171;
+
+  --color-wiki-blue: #3b82f6;
+  --color-wiki-blue-dark: #2563eb;
+  --color-wiki-dark-bg: #0f172a;
+  --color-wiki-content-bg: #1e293b;
+  --color-wiki-content-bg-hover: #334155;
+  --color-wiki-text-light: #f1f5f9;
+  --color-wiki-text-muted: #94a3b8;
+  --color-wiki-border: #334155;
+  --color-wiki-accent: #8b5cf6;
+}
+
+.light {
+  --color-primary: #6366f1;
+  --color-primary-focus: #4f46e5;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #f97316;
+  --color-secondary-focus: #ea580c;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #8b5cf6;
+  --color-accent-focus: #7c3aed;
+  --color-accent-content: #ffffff;
+
+  --color-neutral: #f1f5f9;
+  --color-neutral-focus: #e2e8f0;
+  --color-neutral-content: #475569;
+
+  --color-base-100: #ffffff;
+  --color-base-200: #f1f5f9;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #1e293b;
+
+  --color-info: #22d3ee;
+  --color-success: #4ade80;
+  --color-warning: #facc15;
+  --color-error: #f87171;
+
+  --color-wiki-blue: #3b82f6;
+  --color-wiki-blue-dark: #2563eb;
+  --color-wiki-dark-bg: #f1f5f9;
+  --color-wiki-content-bg: #ffffff;
+  --color-wiki-content-bg-hover: #f1f5f9;
+  --color-wiki-text-light: #1e293b;
+  --color-wiki-text-muted: #475569;
+  --color-wiki-border: #e2e8f0;
+  --color-wiki-accent: #8b5cf6;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-base-100 text-base-content;
+    @apply bg-base-100 text-base-content leading-loose; /* Increased line-height */
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold mb-4 mt-6 text-base-content;
+    @apply font-bold mb-4 mt-8 text-wiki-text-light; /* Brighter heading color */
   }
   
   h1 {
-    @apply text-5xl;
+    @apply text-4xl md:text-5xl border-b border-base-300 pb-4 mb-6;
   }
   
   h2 {
-    @apply text-3xl border-b border-base-300 pb-2;
+    @apply text-3xl md:text-4xl border-b border-base-300 pb-3 mb-5 mt-10;
   }
   
   h3 {
-    @apply text-2xl;
+    @apply text-2xl md:text-3xl mt-8 mb-4;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl mt-6 mb-3;
   }
   
   p {
-    @apply mb-4 text-base-content leading-relaxed;
+    @apply mb-6 text-wiki-text-muted leading-relaxed; /* Softer text color */
   }
   
   a {
@@ -33,11 +114,11 @@
   }
   
   code {
-    @apply bg-base-200 text-base-content rounded px-2 py-1 text-sm font-mono border border-base-300 shadow-sm;
+    @apply bg-base-200 text-accent rounded px-2 py-1 text-sm font-mono border border-base-300 shadow-sm;
   }
   
   pre {
-    @apply bg-base-200 text-base-content p-4 rounded-lg overflow-x-auto mb-4 border border-base-300 shadow-lg;
+    @apply bg-base-300 text-base-content p-4 rounded-lg overflow-x-auto mb-6 border border-base-300 shadow-lg;
   }
   
   pre code {
@@ -45,36 +126,36 @@
   }
   
   blockquote {
-    @apply border-l-4 border-primary pl-4 italic my-4 text-neutral-content bg-base-200/50 py-2 rounded-r;
+    @apply border-l-4 border-accent pl-6 italic my-6 text-neutral-content bg-base-200/50 py-4 rounded-r;
   }
   
   ul, ol {
-    @apply mb-4 ml-8 text-base-content;
+    @apply mb-6 ml-6 text-wiki-text-muted list-disc;
   }
   
   li {
-    @apply mb-2;
+    @apply mb-3;
   }
   
   table {
-    @apply min-w-full border-collapse mb-4 border border-base-300 rounded-lg overflow-hidden shadow;
+    @apply min-w-full border-collapse mb-6 border border-base-300 rounded-lg overflow-hidden shadow;
   }
   
   th, td {
-    @apply border border-base-300 px-4 py-2 text-base-content;
+    @apply border border-base-300 px-6 py-3 text-wiki-text-muted;
   }
   
   th {
-    @apply bg-base-200 font-bold;
+    @apply bg-base-200 font-semibold text-wiki-text-light;
   }
   
   hr {
-    @apply border-base-300 my-6;
+    @apply border-base-300 my-8;
   }
   
   /* Enhanced code block styling */
   pre[class*="language-"] {
-    @apply bg-base-200 border border-base-300 rounded-lg shadow-lg p-4 mb-4 overflow-x-auto;
+    @apply bg-base-300 border border-base-300 rounded-lg shadow-lg p-4 mb-6 overflow-x-auto;
   }
   
   code[class*="language-"] {
