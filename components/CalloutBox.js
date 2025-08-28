@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Renders a callout box with a specified type and content.
+ */
 const CalloutBox = ({ type = 'note', children }) => {
   const calloutConfig = {
     note: {
