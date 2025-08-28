@@ -1,6 +1,8 @@
 # Project Overview
 
+Welcome to the RAVANA AGI project documentation. This documentation provides comprehensive information about the RAVANA autonomous Artificial General Intelligence system.
 
+The source code for this project is available on [GitHub](https://github.com/OpenSource-Syndicate/RAVANA).
 
 ## Table of Contents
 1. [Project Overview](#project-overview)

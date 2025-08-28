@@ -2,6 +2,8 @@
 
 A modern, responsive documentation system for the RAVANA AGI platform built with Next.js and Tailwind CSS.
 
+The source code for this project is available on [GitHub](https://github.com/OpenSource-Syndicate/RAVANA).
+
 ## Features
 
 - **Modern UI/UX**: Clean, responsive design with dark/light mode support
