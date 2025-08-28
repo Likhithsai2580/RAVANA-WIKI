@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 import StickyTOC from './StickyTOC';
 
+/**
+ * Renders a floating table of contents (TOC) for the document.
+ *
+ * This component extracts headings (h2 and h3) from the article and creates a TOC that can be toggled open or closed.
+ * It uses the `useEffect` hook to gather heading data on component mount and stores it in the state.
+ * The TOC is only displayed if there are headings available, and it includes a button to toggle its visibility.
+ */
 const FloatingTOC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [headings, setHeadings] = useState([]);
@@ -17,6 +24,7 @@ const FloatingTOC = () => {
     setHeadings(headingData);
   }, []);
 
+  /** Toggles the state of the table of contents. */
   const toggleTOC = () => {
     setIsOpen(!isOpen);
   };
