@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+/**
+ * Renders a breadcrumb navigation based on the document's slug.
+ */
 const Breadcrumb = ({ doc }) => {
   // Split the slug into parts for breadcrumb navigation
   const slugParts = doc.slug.split('/');
