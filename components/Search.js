@@ -1,6 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
+/**
+ * Search component for filtering and displaying documentation based on user input.
+ *
+ * This component maintains a search query and results state, filtering the provided docs based on the query.
+ * It opens a dropdown to display results when the query length exceeds two characters and closes when clicking outside.
+ * The user can navigate to the selected documentation by submitting the search form.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.docs - An array of documentation objects to search through.
+ * @returns {JSX.Element} The rendered search component.
+ */
 const Search = ({ docs }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -23,6 +34,9 @@ const Search = ({ docs }) => {
 
   // Close dropdown when clicking outside
   useEffect(() => {
+    /**
+     * Closes the search dropdown if the click is outside of the search reference.
+     */
     function handleClickOutside(event) {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -34,6 +48,9 @@ const Search = ({ docs }) => {
     };
   }, [searchRef]);
 
+  /**
+   * Handles the search event and redirects to the first result's documentation.
+   */
   const handleSearch = (e) => {
     e.preventDefault();
     if (results.length > 0) {

@@ -5,6 +5,11 @@ import path from 'path';
 import DocCard from '../components/DocCard';
 import Search from '../components/Search';
 
+/**
+ * Renders the Home component for the RAVANA AGI Documentation.
+ * @param {Object} props - The component props.
+ * @param {Array} props.docs - The documentation items to display.
+ */
 export default function Home({ docs }) {
   return (
     <div className="min-h-screen flex flex-col bg-base-100">
@@ -67,9 +72,22 @@ export default function Home({ docs }) {
   );
 }
 
+/**
+ * Retrieve static properties for documentation files.
+ *
+ * This function reads all markdown files from the 'docs' directory, excluding 'README.md' files.
+ * It extracts the title and an excerpt from each markdown file, constructs a slug, and returns
+ * an object containing these properties sorted by title. The helper function getAllFiles is used
+ * to recursively gather all file paths in the specified directory.
+ *
+ * @returns An object containing the props with an array of documentation file details.
+ */
 export async function getStaticProps() {
   const docsDir = path.join(process.cwd(), 'docs');
   
+  /**
+   * Recursively retrieves all files from a directory.
+   */
   async function getAllFiles(dir) {
     const dirents = await readdir(dir, { withFileTypes: true });
     const files = await Promise.all(dirents.map((dirent) => {

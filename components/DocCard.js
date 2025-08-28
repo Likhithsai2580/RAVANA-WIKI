@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+/**
+ * Renders a document card component displaying the document title and excerpt.
+ */
 const DocCard = ({ doc }) => {
   return (
     <article className="bg-base-200 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-base-300 transform hover:-translate-y-1 animate-fade-in">
