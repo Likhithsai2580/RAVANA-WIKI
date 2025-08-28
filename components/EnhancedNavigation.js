@@ -2,6 +2,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useCallback } from 'react';
 
+/**
+ * Enhanced navigation component for documentation.
+ *
+ * This component organizes documentation into categories, manages expanded sections based on user interaction and localStorage, and filters documents based on a search query. It utilizes hooks like useEffect for side effects and useCallback for memoizing functions to optimize performance. The component also handles URL-safe comparisons to determine the current document and updates the UI accordingly.
+ *
+ * @param {Object} props - The component props.
+ * @param {Array} props.docs - An array of documentation objects to be displayed.
+ * @returns {JSX.Element} The rendered navigation component.
+ */
 const EnhancedNavigation = ({ docs }) => {
   const router = useRouter();
   const [expandedSections, setExpandedSections] = useState({});
