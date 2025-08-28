@@ -75,14 +75,14 @@ export default function DocPage({ doc, docs }) {
             
             {/* Desktop TOC - hidden on mobile */}
             <div className="hidden md:block w-64 flex-shrink-0 self-start sticky top-20">
-              <StickyTOC />
+              <StickyTOC content={doc.content} />
             </div>
           </div>
         </main>
       </div>
       
       {/* Floating TOC for mobile devices */}
-      <FloatingTOC />
+      <FloatingTOC content={doc.content} />
       
       <footer className="bg-base-200 text-base-content py-6 px-4 md:px-6 border-t border-base-300">
         <div className="container mx-auto text-center">

@@ -1,12 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
 
-const StickyTOC = () => {
+const StickyTOC = ({ content }) => {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState('');
   const [expandedSections, setExpandedSections] = useState({});
   const observer = useRef();
 
   useEffect(() => {
+    // Clean up previous observer
+    if (observer.current) {
+      observer.current.disconnect();
+    }
+    
     // Extract headings from the document
     const headingElements = document.querySelectorAll('article h2, article h3');
     const headingData = Array.from(headingElements).map(heading => ({
@@ -65,7 +70,7 @@ const StickyTOC = () => {
         observer.current.disconnect();
       }
     };
-  }, []);
+  }, [content]); // Add content as dependency so TOC updates when content changes
 
   const scrollToHeading = (id) => {
     const element = document.getElementById(id);

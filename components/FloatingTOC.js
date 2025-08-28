@@ -1,28 +1,14 @@
 import { useState, useEffect } from 'react';
-import StickyTOC from './StickyTOC';
 
-const FloatingTOC = () => {
+const FloatingTOC = ({ content }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [headings, setHeadings] = useState([]);
-
-  useEffect(() => {
-    // Extract headings from the document
-    const headingElements = document.querySelectorAll('article h2, article h3');
-    const headingData = Array.from(headingElements).map(heading => ({
-      id: heading.id || heading.textContent.replace(/\s+/g, '-').toLowerCase(),
-      text: heading.textContent,
-      level: parseInt(heading.tagName.charAt(1)) - 1 // Convert H2/H3 to level 1/2
-    }));
-    
-    setHeadings(headingData);
-  }, []);
 
   const toggleTOC = () => {
     setIsOpen(!isOpen);
   };
 
-  // Don't show floating TOC if there are no headings
-  if (headings.length === 0) return null;
+  // Don't show floating TOC if content is not provided
+  if (!content) return null;
 
   return (
     <div className="md:hidden fixed bottom-6 right-6 z-40">
@@ -51,7 +37,7 @@ const FloatingTOC = () => {
               <h3 className="font-bold text-lg text-base-content">Table of Contents</h3>
             </div>
             <div className="max-h-[70vh] overflow-y-auto">
-              <StickyTOC />
+              <StickyTOC content={content} />
             </div>
           </div>
         </div>
