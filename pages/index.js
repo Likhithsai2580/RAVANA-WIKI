@@ -7,33 +7,50 @@ import Search from '../components/Search';
 
 export default function Home({ docs }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-base-100">
       <Head>
         <title>RAVANA AGI Documentation</title>
         <meta name="description" content="Documentation for the RAVANA AGI system" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </Head>
 
-      <header className="bg-wiki-content-bg text-wiki-text-light p-4 shadow-xl border-b border-wiki-border">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-wiki-blue to-wiki-accent bg-clip-text text-transparent">RAVANA AGI Documentation</h1>
+      <header className="bg-base-200/80 backdrop-blur-lg sticky top-0 z-50 p-4 shadow-lg border-b border-base-300 animate-slide-in-up">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4 md:gap-2">
+          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            RAVANA AGI Docs
+          </h1>
           <Search docs={docs} />
           <nav>
-            <ul className="flex space-x-4">
-              <li><Link href="/" className="hover:text-wiki-blue transition-colors duration-200">Home</Link></li>
+            <ul className="flex space-x-6">
+              <li><Link href="/" className="text-base-content hover:text-primary transition-colors duration-300 font-medium">Home</Link></li>
             </ul>
           </nav>
         </div>
       </header>
 
-      <main className="flex-grow container mx-auto p-4">
-        <section className="mb-12 text-center">
-          <h2 className="text-3xl font-bold mb-4">Documentation</h2>
-          <p className="mb-8 max-w-2xl mx-auto text-lg text-wiki-text-muted">Welcome to the RAVANA AGI system documentation. Explore the topics below to learn more about the system architecture, components, and implementation details.</p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <main className="flex-grow container mx-auto p-4 md:p-8">
+        <section className="mb-16 text-center animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-base-content">Welcome to RAVANA AGI</h2>
+          <p className="mb-8 max-w-3xl mx-auto text-base md:text-lg text-neutral-content">
+            Your central hub for all documentation related to the RAVANA AGI system.
+            Dive deep into our architecture, APIs, and tutorials.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/docs/Project%20Overview" className="bg-primary text-primary-content px-6 py-3 rounded-lg font-bold hover:bg-primary-focus transition-all duration-300 shadow-lg transform hover:scale-105">
+              Get Started
+            </Link>
+            <Link href="/docs/API%20Reference" className="bg-neutral text-neutral-content px-6 py-3 rounded-lg font-bold hover:bg-neutral-focus transition-all duration-300 shadow-lg transform hover:scale-105">
+              API Reference
+            </Link>
+          </div>
+        </section>
+
+        <section className="animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-base-content">Explore Topics</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {docs.map((doc) => (
               <DocCard key={doc.slug} doc={doc} />
             ))}
@@ -41,9 +58,9 @@ export default function Home({ docs }) {
         </section>
       </main>
 
-      <footer className="bg-wiki-content-bg text-wiki-text-light p-6 border-t border-wiki-border">
+      <footer className="bg-base-200 text-base-content p-6 border-t border-base-300">
         <div className="container mx-auto text-center">
-          <p className="text-wiki-text-muted">© {new Date().getFullYear()} RAVANA AGI System Documentation</p>
+          <p className="text-neutral-content">© {new Date().getFullYear()} RAVANA AGI System. All rights reserved.</p>
         </div>
       </footer>
     </div>
@@ -51,38 +68,42 @@ export default function Home({ docs }) {
 }
 
 export async function getStaticProps() {
-  // List all markdown files in the docs directory
   const docsDir = path.join(process.cwd(), 'docs');
-  const docFiles = await readdir(docsDir);
   
-  // Filter out directories and non-markdown files
-  const markdownFiles = docFiles.filter(file => 
-    file.endsWith('.md') && !file.endsWith('README.md')
+  async function getAllFiles(dir) {
+    const dirents = await readdir(dir, { withFileTypes: true });
+    const files = await Promise.all(dirents.map((dirent) => {
+      const res = path.resolve(dir, dirent.name);
+      return dirent.isDirectory() ? getAllFiles(res) : res;
+    }));
+    return Array.prototype.concat(...files);
+  }
+
+  const allFiles = await getAllFiles(docsDir);
+
+  const markdownFiles = allFiles.filter(file =>
+    file.endsWith('.md') && !path.basename(file).endsWith('README.md')
   );
-  
-  // Read and process each markdown file to extract title and excerpt
+
   const docs = await Promise.all(
-    markdownFiles.map(async (file) => {
-      const filePath = path.join(docsDir, file);
+    markdownFiles.map(async (filePath) => {
       const content = await readFile(filePath, 'utf8');
+      const slug = path.relative(docsDir, filePath).replace(/\.md$/, '').replace(/\\/g, '/');
       
-      // Extract title (first # header)
       const titleMatch = content.match(/^#\s+(.*)$/m);
-      const title = titleMatch ? titleMatch[1] : file.replace('.md', '');
+      const title = titleMatch ? titleMatch[1] : path.basename(filePath, '.md');
       
-      // Extract first paragraph as excerpt
       const excerptMatch = content.match(/^[^#>].*$/m);
       const excerpt = excerptMatch ? excerptMatch[0].substring(0, 150) + '...' : 'Documentation file';
       
       return {
-        slug: file.replace('.md', ''),
+        slug,
         title,
         excerpt
       };
     })
   );
-  
-  // Sort docs alphabetically by title
+
   docs.sort((a, b) => a.title.localeCompare(b.title));
   
   return {

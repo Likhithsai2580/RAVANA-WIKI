@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 const Search = ({ docs }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const searchRef = useRef(null);
 
   useEffect(() => {
     if (query.length > 2) {
@@ -20,45 +21,59 @@ const Search = ({ docs }) => {
     }
   }, [query, docs]);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchRef]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (results.length > 0) {
-      // Navigate to the first result
       window.location.href = `/docs/${results[0].slug}`;
     }
   };
 
   return (
-    <div className="relative w-full max-w-md">
-      <form onSubmit={handleSearch}>
+    <div className="relative w-full max-w-md" ref={searchRef}>
+      <form onSubmit={handleSearch} className="relative">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onFocus={() => query.length > 2 && setIsOpen(true)}
           placeholder="Search documentation..."
-          className="w-full px-4 py-2 rounded-lg border border-wiki-border bg-wiki-content-bg text-wiki-text-light focus:outline-none focus:ring-2 focus:ring-wiki-blue focus:border-transparent"
+          className="w-full pl-10 pr-4 py-2 rounded-lg border border-base-300 bg-base-200 text-base-content focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
         />
+        <svg className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-content" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
       </form>
       
       {isOpen && (
-        <div className="absolute z-10 w-full mt-1 bg-wiki-content-bg rounded-lg shadow-lg border border-wiki-border max-h-60 overflow-y-auto">
+        <div className="absolute z-10 w-full mt-2 bg-base-200 rounded-lg shadow-2xl border border-base-300 max-h-72 overflow-y-auto animate-fade-in">
           {results.length > 0 ? (
             <ul>
-              {results.map((doc) => (
-                <li key={doc.slug}>
+              {results.map((doc, index) => (
+                <li key={doc.slug} style={{ animationDelay: `${index * 50}ms` }} className="animate-slide-in-up">
                   <Link 
                     href={`/docs/${doc.slug}`}
-                    className="block px-4 py-3 hover:bg-wiki-content-bg-hover border-b border-wiki-border last:border-b-0"
+                    className="block px-4 py-3 hover:bg-base-300 border-b border-base-300 last:border-b-0 transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    <div className="font-medium text-wiki-blue">{doc.title}</div>
-                    <div className="text-sm text-wiki-text-muted truncate">{doc.excerpt}</div>
+                    <div className="font-medium text-primary">{doc.title}</div>
+                    <div className="text-sm text-neutral-content truncate">{doc.excerpt}</div>
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="px-4 py-3 text-wiki-text-muted">No results found</div>
+            <div className="px-4 py-3 text-neutral-content">No results found for "{query}"</div>
           )}
         </div>
       )}
