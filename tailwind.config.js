@@ -67,6 +67,14 @@ module.exports = {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'smooth-slide-down': 'smoothSlideDown 0.3s ease-out forwards',
         'smooth-slide-up': 'smoothSlideUp 0.3s ease-out forwards',
+        'bounce-in': 'bounceIn 0.6s ease-out',
+        'float': 'float 3s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 2s infinite',
+        'gradient-shift': 'gradientShift 8s ease infinite',
+        'rotate-in': 'rotateIn 0.5s ease-out',
+        'fade-in-up': 'fadeInUp 0.5s ease-out',
+        'zoom-in': 'zoomIn 0.3s ease-out',
+        'slide-in-right': 'slideInRight 0.3s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -88,6 +96,42 @@ module.exports = {
         smoothSlideUp: {
           '0%': { 'max-height': '500px', opacity: '1' },
           '100%': { 'max-height': '0', opacity: '0' },
+        },
+        bounceIn: {
+          '0%': { transform: 'scale(0.8)', opacity: '0' },
+          '50%': { transform: 'scale(1.05)', opacity: '1' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        float: {
+          '0%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+          '100%': { transform: 'translateY(0px)' },
+        },
+        pulseGlow: {
+          '0%': { boxShadow: '0 0 0 0 rgba(99, 102, 241, 0.4)' },
+          '70%': { boxShadow: '0 0 0 10px rgba(99, 102, 241, 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(99, 102, 241, 0)' },
+        },
+        gradientShift: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        rotateIn: {
+          '0%': { transform: 'rotate(-10deg) scale(0.8)', opacity: '0' },
+          '100%': { transform: 'rotate(0deg) scale(1)', opacity: '1' },
+        },
+        fadeInUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        zoomIn: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(30px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
         },
       },
     },

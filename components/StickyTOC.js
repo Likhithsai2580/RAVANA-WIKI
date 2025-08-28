@@ -104,17 +104,17 @@ const StickyTOC = ({ content }) => {
   if (headings.length === 0) return null;
 
   return (
-    <div className="bg-base-200 rounded-lg shadow-md p-4 mb-6 border border-base-300 sticky top-4 overflow-auto max-h-[calc(100vh-14rem)]">
+    <div className="bg-base-200 rounded-lg shadow-md p-4 mb-6 border border-base-300 sticky top-4 overflow-auto max-h-[calc(100vh-14rem)] animate-slide-in-right">
       <h3 className="font-bold text-lg mb-3 text-base-content">Table of Contents</h3>
       <ul className="space-y-1 pr-1 overflow-visible">
         {Object.values(groupedHeadings).map((heading) => (
-          <li key={heading.id}>
-            <div className="flex items-start">
+          <li key={heading.id} className="animate-fade-in">
+            <div className="flex items-start hover-scale">
               <button
                 onClick={() => scrollToHeading(heading.id)}
                 className={`flex-grow text-left py-2 px-2 rounded hover:bg-wiki-content-bg-hover transition-all duration-300 ${
                   activeId === heading.id 
-                    ? 'text-wiki-blue font-semibold bg-wiki-content-bg-hover' 
+                    ? 'text-wiki-blue font-semibold bg-wiki-content-bg-hover animate-pulse' 
                     : 'text-wiki-text-muted'
                 }`}
               >
@@ -123,10 +123,10 @@ const StickyTOC = ({ content }) => {
               {heading.children.length > 0 && (
                 <button
                   onClick={() => toggleSection(heading.id)}
-                  className="p-2 text-wiki-text-muted hover:text-wiki-text-light rounded-full hover:bg-wiki-content-bg-hover transition-all duration-300"
+                  className="p-2 text-wiki-text-muted hover:text-wiki-text-light rounded-full hover:bg-wiki-content-bg-hover transition-all duration-300 hover-tilt"
                 >
                   <svg 
-                    className={`w-4 h-4 transform transition-transform duration-300 ${expandedSections[heading.id] ? 'rotate-180' : ''}`}
+                    className={`w-4 h-4 transform transition-transform duration-500 ${expandedSections[heading.id] ? 'rotate-180 animate-rotate-in' : 'animate-rotate-in'}`}
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -139,11 +139,15 @@ const StickyTOC = ({ content }) => {
             
             {heading.children.length > 0 && (
               <div 
-                className={`overflow-hidden transition-all duration-300 ${expandedSections[heading.id] ? 'max-h-[400px] opacity-100 mt-1' : 'max-h-0 opacity-0'}`}
+                className={`overflow-hidden transition-all duration-500 ease-in-out transform ${
+                  expandedSections[heading.id] 
+                    ? 'max-h-[400px] opacity-100 scale-y-100 mt-1 animate-fade-in' 
+                    : 'max-h-0 opacity-0 scale-y-90'
+                }`}
               >
                 <ul className="ml-4 space-y-1 border-l-2 border-wiki-border pl-2">
                   {heading.children.map((child) => (
-                    <li key={child.id}>
+                    <li key={child.id} className="animate-fade-in-up">
                       <button
                         onClick={() => scrollToHeading(child.id)}
                         className={`block w-full text-left py-2 px-2 rounded text-sm hover:bg-wiki-content-bg-hover transition-all duration-300 ${
