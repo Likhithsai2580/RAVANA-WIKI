@@ -1,25 +1,28 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 const EnhancedNavigation = ({ docs }) => {
   const router = useRouter();
   const [expandedSections, setExpandedSections] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [sectionHeights, setSectionHeights] = useState({});
 
-  // Group docs by category for better organization
-  const groupedDocs = docs.reduce((acc, doc) => {
-    // Extract category from slug (first part before '/')
-    const category = doc.slug.includes('/') 
-      ? doc.slug.split('/')[0] 
-      : 'General';
-    
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(doc);
-    return acc;
-  }, {});
+  // Group docs by category for better organization with useMemo for performance
+  const groupedDocs = useMemo(() => {
+    return docs.reduce((acc, doc) => {
+      // Extract category from slug (first part before '/')
+      const category = doc.slug.includes('/') 
+        ? doc.slug.split('/')[0] 
+        : 'General';
+      
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(doc);
+      return acc;
+    }, {});
+  }, [docs]);
 
   // Initialize expanded sections from localStorage
   useEffect(() => {
@@ -39,9 +42,13 @@ const EnhancedNavigation = ({ docs }) => {
     }
   }, [groupedDocs]);
 
-  // Save expanded sections to localStorage
+  // Debounced save expanded sections to localStorage
   useEffect(() => {
-    localStorage.setItem('expandedSections', JSON.stringify(expandedSections));
+    const timer = setTimeout(() => {
+      localStorage.setItem('expandedSections', JSON.stringify(expandedSections));
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, [expandedSections]);
 
   const toggleSection = useCallback((category) => {
@@ -58,22 +65,27 @@ const EnhancedNavigation = ({ docs }) => {
   }, [router.query.slug]);
 
   // Filter docs based on search query
-  const filteredDocs = {};
-  if (searchQuery) {
-    Object.keys(groupedDocs).forEach(category => {
-      filteredDocs[category] = groupedDocs[category].filter(doc => 
-        doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        doc.slug.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    });
-  } else {
-    Object.assign(filteredDocs, groupedDocs);
-  }
+  const filteredDocs = useMemo(() => {
+    const result = {};
+    if (searchQuery) {
+      Object.keys(groupedDocs).forEach(category => {
+        result[category] = groupedDocs[category].filter(doc => 
+          doc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          doc.slug.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+      });
+    } else {
+      Object.assign(result, groupedDocs);
+    }
+    return result;
+  }, [groupedDocs, searchQuery]);
 
   // Filter out empty categories
-  const nonEmptyCategories = Object.keys(filteredDocs).filter(
-    category => filteredDocs[category].length > 0
-  );
+  const nonEmptyCategories = useMemo(() => {
+    return Object.keys(filteredDocs).filter(
+      category => filteredDocs[category].length > 0
+    );
+  }, [filteredDocs]);
 
   // Expand section if current doc is in that section
   useEffect(() => {
@@ -94,6 +106,34 @@ const EnhancedNavigation = ({ docs }) => {
       }
     }
   }, [router.query.slug, groupedDocs, expandedSections, searchQuery]);
+
+  // Calculate section heights for smooth animations
+  const calculateSectionHeight = useCallback((category) => {
+    if (typeof window === 'undefined') return;
+    
+    const element = document.getElementById(`section-${category}`);
+    if (element) {
+      const height = element.scrollHeight;
+      setSectionHeights(prev => ({
+        ...prev,
+        [category]: height
+      }));
+    }
+  }, []);
+
+  // Recalculate heights when sections expand/collapse or content changes
+  useEffect(() => {
+    // Use requestAnimationFrame to ensure DOM is updated
+    const frameId = requestAnimationFrame(() => {
+      nonEmptyCategories.forEach(category => {
+        if (expandedSections[category]) {
+          calculateSectionHeight(category);
+        }
+      });
+    });
+    
+    return () => cancelAnimationFrame(frameId);
+  }, [nonEmptyCategories, expandedSections, calculateSectionHeight]);
 
   return (
     <nav className="w-full md:w-64 flex-shrink-0">
@@ -142,14 +182,19 @@ const EnhancedNavigation = ({ docs }) => {
               </button>
               
               <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedSections[category] ? 'opacity-100' : 'max-h-0 opacity-0'}`}
-                style={expandedSections[category] ? { maxHeight: '1000px' } : { maxHeight: '0' }}
+                id={`section-${category}`}
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  expandedSections[category] 
+                    ? 'max-h-[var(--expanded-height)] opacity-100' 
+                    : 'max-h-0 opacity-0'
+                }`}
+                style={{ '--expanded-height': `${sectionHeights[category] || 1000}px` }}
               >
                 <ul className="ml-2 mt-1 space-y-1">
                   {filteredDocs[category].map(doc => (
                     <li key={doc.slug}>
                       <Link 
-                        href={`/docs/${encodeURIComponent(doc.slug)}`}
+                        href={`/docs/${doc.slug}`}
                         className={`block py-2 px-3 rounded-lg transition-all duration-200 ease-in-out ${
                           isCurrentDoc(doc.slug) 
                             ? 'bg-wiki-blue text-white shadow-md transform translate-x-1' 
