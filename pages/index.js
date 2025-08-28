@@ -7,6 +7,11 @@ import Search from '../components/Search';
 import ThemeToggle from '../components/ThemeToggle';
 import GitHubLink from '../components/GitHubLink';
 
+/**
+ * Renders the Home component for the RAVANA AGI Documentation.
+ * @param {Object} props - The component props.
+ * @param {Array} props.docs - The documentation items to display.
+ */
 export default function Home({ docs }) {
   return (
     <div className="min-h-screen flex flex-col bg-base-100">
