@@ -15,6 +15,18 @@ import MermaidRenderer from '../../components/MermaidRenderer';
 import ThemeToggle from '../../components/ThemeToggle';
 import GitHubLink from '../../components/GitHubLink';
 
+/**
+ * Renders the documentation page for a specific document.
+ *
+ * This component utilizes the Next.js router and includes client-side effects for syntax highlighting using Prism.
+ * It sets the document title and description based on the provided `doc` object, and renders the layout including
+ * a header, main content area with navigation, and a footer. The layout adapts for mobile and desktop views,
+ * incorporating components like `ThemeToggle`, `GitHubLink`, and `FloatingTOC`.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.doc - The document object containing title and content.
+ * @param {Array} props.docs - An array of documents for navigation.
+ */
 export default function DocPage({ doc, docs }) {
   const router = useRouter();
   
