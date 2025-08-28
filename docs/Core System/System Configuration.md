@@ -32,7 +32,7 @@ The RAVANA system employs a multi-layered configuration system that combines env
 ## Configuration Architecture
 The RAVANA configuration system follows a hierarchical architecture that combines multiple configuration sources with clear precedence rules. The architecture consists of three primary layers: environment variables (highest precedence), Python class defaults (medium precedence), and JSON configuration files (structural configuration). This layered approach enables users to override settings at runtime while maintaining a comprehensive configuration structure in files.
 
-``mermaid
+```mermaid
 graph TD
 A[Configuration System] --> B[Environment Variables]
 A --> C[Python Config Class]
@@ -44,7 +44,6 @@ E --> H[Final Configuration]
 F --> H
 G --> H
 H --> I[RAVANA System]
-
 ```
 
 **Diagram sources**
@@ -175,7 +174,7 @@ The JSON structure organizes configuration into provider-specific sections (zuki
 ## Configuration Loading Process
 The configuration loading process in RAVANA involves multiple components that read and combine configuration from different sources. The process begins with the Config class, which automatically reads environment variables and applies default values. Simultaneously, the llm.py module loads the config.json file directly into a global config dictionary.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant Main as main.py
 participant Config as config.py
@@ -189,7 +188,6 @@ LLM->>JSON : Read config.json file
 JSON-->>LLM : Return JSON content
 LLM->>LLM : Store in global config variable
 Main->>System : Use configuration from both sources
-
 ```
 
 **Diagram sources**
@@ -266,7 +264,7 @@ These parameters control the Conversational AI module:
 ## LLM Provider Configuration
 The LLM provider configuration in config.json defines the available language model providers, their credentials, endpoints, and supported models. This configuration enables the system to route requests to different providers based on availability and model requirements.
 
-``mermaid
+```mermaid
 classDiagram
 class LLMProvider {
 +string api_key
@@ -296,7 +294,6 @@ LLMProvider <|-- ZukiProvider
 LLMProvider <|-- ElectronHubProvider
 LLMProvider <|-- ZanityProvider
 LLMProvider <|-- A4FProvider
-
 ```
 
 **Diagram sources**

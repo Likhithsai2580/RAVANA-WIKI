@@ -27,7 +27,6 @@ C --> D[Memory API Server]
 D --> E[ChromaDB]
 D --> F[SentenceTransformer]
 D --> G[LLM]
-
 ```
 
 **Diagram sources**
@@ -111,7 +110,6 @@ class MemoryRecord {
 +int access_count
 +string type
 }
-
 ```
 
 **Diagram sources**
@@ -175,7 +173,6 @@ MS->>API : POST /save_memories/
 API->>DB : Add with metadata
 DB-->>API : Confirmation
 API-->>MS : Save status
-
 ```
 
 **Diagram sources**

@@ -32,7 +32,7 @@ The SharedState class serves as the central repository for dynamic runtime data 
 ## Project Structure
 The project follows a modular architecture with clear separation of concerns. The core functionality resides in the `core` directory, while specialized capabilities are organized into distinct modules. The SharedState class is located in the core package, reflecting its fundamental role in the system's operation.
 
-``mermaid
+```mermaid
 graph TD
 subgraph "Core System"
 State[state.py<br>SharedState]
@@ -65,7 +65,6 @@ System --> KnowledgeService
 System --> MemoryService
 System --> Shutdown
 System --> Snake
-
 ```
 
 **Diagram sources**
@@ -88,7 +87,7 @@ The core components of the state management system include the SharedState class
 ## Architecture Overview
 The architecture centers around the AGISystem class, which maintains a single instance of SharedState accessible to all modules. State changes propagate through a well-defined sequence of operations: situation generation, memory retrieval, decision making, action execution, and mood updating. This loop ensures consistent state evolution while allowing for autonomous operation. The ShutdownCoordinator manages the graceful shutdown process, including state persistence, while the SnakeAgent operates as a background process with its own state that is integrated into the system's persistence mechanism.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant AGISystem as "AGISystem"
 participant State as "SharedState"
@@ -115,7 +114,6 @@ Shutdown->>Snake : _cleanup_snake_agent()
 Shutdown->>Shutdown : _phase_state_persistence()
 Shutdown->>Shutdown : _collect_system_state()
 Shutdown-->>AGISystem : Shutdown complete
-
 ```
 
 **Diagram sources**
@@ -128,7 +126,7 @@ Shutdown-->>AGISystem : Shutdown complete
 ### SharedState Class Analysis
 The SharedState class is a simple yet powerful data structure designed to hold the dynamic state of the AGI system. It uses Python's built-in types for maximum compatibility and ease of serialization.
 
-``mermaid
+```mermaid
 classDiagram
 class SharedState {
 +Dict[str, float] mood
@@ -143,7 +141,6 @@ class SharedState {
 +__init__(initial_mood : Dict[str, float])
 +get_state_summary() str
 }
-
 ```
 
 **Diagram sources**
@@ -239,9 +236,9 @@ State transitions occur through a well-defined sequence in the AGISystem's run_i
 
 The propagation of state changes is primarily push-based, with the AGISystem actively pushing updates to the shared state. However, some modules like CuriosityTrigger can also push updates directly when they generate new information.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("Start Iteration") --> ExternalUpdates["Update from external sources"]
+Start([Start Iteration]) --> ExternalUpdates["Update from external sources"]
 ExternalUpdates --> BehaviorHandling["Handle behavior modifiers"]
 BehaviorHandling --> Curiosity["Process curiosity"]
 Curiosity --> Situation["Generate situation"]
@@ -249,10 +246,9 @@ Situation --> Memory["Retrieve memories"]
 Memory --> Decision["Make decision"]
 Decision --> Action["Execute action"]
 Action --> MoodUpdate["Update mood"]
-MoodUpdate --> End("End Iteration")
+MoodUpdate --> End([End Iteration])
 style Start fill:#f9f,stroke:#333
 style End fill:#f9f,stroke:#333
-
 ```
 
 **Diagram sources**

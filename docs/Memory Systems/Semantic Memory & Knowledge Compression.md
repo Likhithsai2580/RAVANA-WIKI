@@ -36,7 +36,6 @@ C --> D[Compressed Knowledge]
 D --> E[Knowledge Service]
 E --> F[(Database)]
 F --> G[Retrieval & Search]
-
 ```
 
 **Diagram sources**
@@ -73,7 +72,6 @@ LLM-->>Main : summary text
 Main->>Storage : save_summary(entry)
 Main->>DB : add_knowledge(summary)
 DB->>DB : Deduplicate & Store
-
 ```
 
 **Diagram sources**
@@ -117,33 +115,35 @@ The `KnowledgeService` class imports `compress_knowledge` from the compression m
 ```mermaid
 classDiagram
 class CompressedMemory {
-+COMPRESSED_FILE : str
-+save_summary(entry)
-+load_summaries()
+  +COMPRESSED_FILE : str
+  +save_summary(entry)
+  +load_summaries()
 }
-class KnowledgeService {
--engine
--embedding_model
--faiss_index
--id_map
-+add_knowledge(content, source, category)
-+get_knowledge_by_category(category, limit)
-+get_recent_knowledge(hours, limit)
-+search_knowledge(query, limit)
-+compress_and_save_knowledge()
-}
-class Summary {
-+id : int
-+timestamp : str
-+summary_text : str
-+source : str
-+category : str
-+content_hash : str
-}
-CompressedMemory --> "writes to" Summary : via KnowledgeService
-KnowledgeService --> Summary : manages
-Summary ..> "database" : stored in
 
+class KnowledgeService {
+  -engine
+  -embedding_model
+  -faiss_index
+  -id_map
+  +add_knowledge(content, source, category)
+  +get_knowledge_by_category(category, limit)
+  +get_recent_knowledge(hours, limit)
+  +search_knowledge(query, limit)
+  +compress_and_save_knowledge()
+}
+
+class Summary {
+  +id : int
+  +timestamp : str
+  +summary_text : str
+  +source : str
+  +category : str
+  +content_hash : str
+}
+
+CompressedMemory --> Summary : writes to
+KnowledgeService --> Summary : manages
+note for Summary "Stored in database"
 ```
 
 **Diagram sources**
@@ -293,7 +293,6 @@ E --> |Yes| D
 D --> G[Compression Candidate]
 G --> H[LLM Summarization]
 H --> I[Semantic Knowledge]
-
 ```
 
 **Diagram sources**
@@ -363,7 +362,6 @@ G --> H[Verify Deduplication Logic]
 D --> I[Test LLM Call Directly]
 F --> J[Check Database Service]
 H --> K[Review Content Hashing]
-
 ```
 
 **Diagram sources**

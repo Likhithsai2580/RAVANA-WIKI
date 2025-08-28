@@ -53,7 +53,6 @@ Registry --> MultiModal
 AM --> DataService
 EAM --> DataService
 EAM --> KnowledgeService
-
 ```
 
 **Diagram sources**
@@ -92,7 +91,6 @@ classDef component fill:#f9f,stroke:#333;
 class ActionManager,EnhancedActionManager component;
 class ActionRegistry component;
 class Action component;
-
 ```
 
 **Diagram sources**
@@ -146,7 +144,6 @@ Action <|-- LogMessageAction
 Action <|-- WritePythonCodeAction
 Action <|-- ExecutePythonFileAction
 Action <|-- ProcessImageAction
-
 ```
 
 **Diagram sources**
@@ -182,7 +179,6 @@ class ActionManager {
 }
 ActionManager --> ActionRegistry
 ActionRegistry --> Action
-
 ```
 
 **Diagram sources**
@@ -197,7 +193,7 @@ The action execution lifecycle follows a well-defined sequence of steps that ens
 
 ```mermaid
 flowchart TD
-Start("Start Execution") --> ParseDecision["Parse Decision Input"]
+Start([Start Execution]) --> ParseDecision["Parse Decision Input"]
 ParseDecision --> DecisionType{"Decision Type?"}
 DecisionType --> |Parsed Action| UseDirect["Use action and params directly"]
 DecisionType --> |Raw LLM Response| ExtractJSON["Extract JSON from response"]
@@ -216,12 +212,11 @@ ExecuteAction --> LogSuccess["Log successful execution"]
 ExecuteAction --> |Exception| LogError["Log error"]
 LogSuccess --> ReturnResult["Return result"]
 LogError --> ReturnError4["Return error result"]
-ReturnResult --> End("End")
+ReturnResult --> End([End])
 ReturnError1 --> End
 ReturnError2 --> End
 ReturnError3 --> End
 ReturnError4 --> End
-
 ```
 
 **Diagram sources**
@@ -262,7 +257,6 @@ end
 end
 end
 Registry-->>AM : Ready for action lookup
-
 ```
 
 **Diagram sources**
@@ -285,7 +279,7 @@ These extension points allow for behavior modification without changing the core
 
 ```mermaid
 flowchart TD
-Start("Enhanced Execution") --> CheckCache["Check cache for action"]
+Start([Enhanced Execution]) --> CheckCache["Check cache for action"]
 CheckCache --> CacheHit{"Cache hit?"}
 CacheHit --> |Yes| ReturnCached["Return cached result"]
 CacheHit --> |No| ApplyTimeout["Execute with timeout"]
@@ -296,10 +290,9 @@ ShouldCache --> |No| Continue
 StoreCache --> ReturnResult["Return result"]
 Continue --> ReturnResult
 ApplyTimeout --> |Timeout| HandleTimeout["Return timeout error"]
-ReturnCached --> End("End")
+ReturnCached --> End([End])
 ReturnResult --> End
 HandleTimeout --> End
-
 ```
 
 **Diagram sources**
@@ -316,32 +309,31 @@ The EnhancedActionManager implements parallel execution capabilities through the
 
 ```mermaid
 sequenceDiagram
-participant Client as ("Client")
-participant EAM as ("EnhancedActionManager")
-participant Semaphore as ("Semaphore")
-participant Task1 as ("Task1")
-participant Task2 as ("Task2")
-participant Task3 as ("Task3")
-Client-->>EAM : execute_parallel_actions("d1,d2,d3")
-EAM-->>Semaphore : Create with limit=3
-EAM-->>EAM : Create tasks with semaphore
-Task1-->>Semaphore : Acquire
-Task2-->>Semaphore : Acquire
-Task3-->>Semaphore : Acquire
+participant Client
+participant EAM as EnhancedActionManager
+participant Semaphore
+participant Task1
+participant Task2
+participant Task3
+Client->>EAM : execute_parallel_actions([d1,d2,d3])
+EAM->>Semaphore : Create with limit=3
+EAM->>EAM : Create tasks with semaphore
+Task1->>Semaphore : Acquire
+Task2->>Semaphore : Acquire
+Task3->>Semaphore : Acquire
 Semaphore-->>Task1 : Granted
 Semaphore-->>Task2 : Granted
 Semaphore-->>Task3 : Granted
-Task1-->>AM : execute_action_enhanced(d1)
-Task2-->>AM : execute_action_enhanced(d2)
-Task3-->>AM : execute_action_enhanced(d3)
+Task1->>AM : execute_action_enhanced(d1)
+Task2->>AM : execute_action_enhanced(d2)
+Task3->>AM : execute_action_enhanced(d3)
 AM-->>Task1 : Result
 AM-->>Task2 : Result
 AM-->>Task3 : Result
-Task1-->>Semaphore : Release
-Task2-->>Semaphore : Release
-Task3-->>Semaphore : Release
+Task1->>Semaphore : Release
+Task2->>Semaphore : Release
+Task3->>Semaphore : Release
 EAM-->>Client : Array of results
-
 ```
 
 **Diagram sources**

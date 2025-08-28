@@ -42,7 +42,6 @@ Memory --> LLM
 DataService --> LLM
 MultiModal --> LLM
 LLM --> Config
-
 ```
 
 **Diagram sources**
@@ -85,7 +84,6 @@ I --> K
 K --> |Yes| L[Return Response]
 K --> |No| M[Next Provider]
 J --> N[Return Response]
-
 ```
 
 **Diagram sources**
@@ -143,7 +141,6 @@ Fallback-->>Orchestrator : Response
 Orchestrator-->>User : Return response
 end
 end
-
 ```
 
 **Diagram sources**
@@ -211,14 +208,13 @@ Model selection occurs in two stages: first, the provider strategy is selected; 
 
 ```mermaid
 flowchart TD
-Start("Select Model") --> CheckPreferred{"Preferred Model Specified?"}
+Start([Select Model]) --> CheckPreferred{"Preferred Model Specified?"}
 CheckPreferred --> |Yes| CheckAvailable{"Model Available in Provider?"}
 CheckPreferred --> |No| UseFirst["Use First Model in List"]
 CheckAvailable --> |Yes| UsePreferred["Use Preferred Model"]
 CheckAvailable --> |No| UseFirst
-UsePreferred --> End("Model Selected")
+UsePreferred --> End([Model Selected])
 UseFirst --> End
-
 ```
 
 **Diagram sources**

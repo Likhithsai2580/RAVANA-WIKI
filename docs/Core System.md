@@ -30,7 +30,7 @@ This document provides a comprehensive analysis of the core system components of
 ## Project Structure
 The RAVANA project is structured into several core directories: `core`, `database`, `modules`, `services`, and `tests`. The `core` directory contains the fundamental system components such as the AGISystem, configuration, state management, and action system. The `database` directory handles data persistence. The `modules` directory contains specialized AI functionalities like adaptive learning, emotional intelligence, and event detection. The `services` directory provides high-level services for data, knowledge, memory, and multi-modal operations. The `tests` directory contains unit and integration tests.
 
-``mermaid
+```mermaid
 graph TD
 A[RAVANA Project] --> B[core]
 A --> C[database]
@@ -54,7 +54,6 @@ D --> D8[information_processing]
 D --> D9[knowledge_compression]
 D --> D10[personality]
 D --> D11[situation_generator]
-
 ```
 
 **Diagram sources**
@@ -81,7 +80,7 @@ The core components of the RAVANA AGI system are centered around the AGISystem c
 ## Architecture Overview
 The RAVANA AGI system follows a modular, event-driven architecture with a central AGISystem orchestrating various components. The system initializes with a comprehensive setup of services, modules, and state management. The main execution loop runs autonomously, processing situations, making decisions, executing actions, and updating state. Background tasks handle periodic operations like data collection, event detection, knowledge compression, and memory consolidation. The system supports graceful shutdown with a coordinated cleanup process through the enhanced ShutdownCoordinator, which manages an 8-phase shutdown process with timeout handling, component notification, resource cleanup, and state persistence. The Conversational AI module has been refactored to use direct asyncio tasks for bot startup, improving connectivity management and error handling.
 
-``mermaid
+```mermaid
 graph TD
 A[AGISystem] --> B[Data Service]
 A --> C[Knowledge Service]
@@ -125,7 +124,6 @@ P --> PA[Discord Bot]
 P --> PB[Telegram Bot]
 PA --> PC[Async Task Runner]
 PB --> PD[Async Task Runner]
-
 ```
 
 **Diagram sources**
@@ -143,7 +141,7 @@ PB --> PD[Async Task Runner]
 The AGISystem class is the central orchestrator of the RAVANA AGI system. It manages the initialization of all components, the main autonomous loop, and graceful shutdown.
 
 #### Class Diagram
-``mermaid
+```mermaid
 classDiagram
 class AGISystem {
 +engine : Engine
@@ -220,7 +218,6 @@ AGISystem --> SnakeAgent : "uses"
 AGISystem --> ConversationalAI : "uses"
 AGISystem --> SharedState : "owns"
 AGISystem --> ShutdownCoordinator : "owns"
-
 ```
 
 **Diagram sources**
@@ -233,7 +230,7 @@ AGISystem --> ShutdownCoordinator : "owns"
 The shared state in the RAVANA AGI system is managed through the SharedState class, which maintains critical information about the system's current situation, mood, memories, and goals.
 
 #### Class Diagram
-``mermaid
+```mermaid
 classDiagram
 class SharedState {
 +mood : Dict[str, float]
@@ -248,7 +245,6 @@ class SharedState {
 +__init__(initial_mood : Dict[str, float])
 }
 AGISystem --> SharedState : "owns"
-
 ```
 
 **Diagram sources**
@@ -261,7 +257,7 @@ AGISystem --> SharedState : "owns"
 The enhanced shutdown system is managed through the ShutdownCoordinator class, which implements an 8-phase graceful shutdown process with timeout handling, component coordination, and state persistence.
 
 #### Class Diagram
-``mermaid
+```mermaid
 classDiagram
 class ShutdownCoordinator {
 +agi_system : AGISystem
@@ -317,7 +313,6 @@ AGISystem --> ShutdownCoordinator : "owns"
 ShutdownCoordinator --> ShutdownPhase : "uses"
 ShutdownCoordinator --> ShutdownPriority : "uses"
 ShutdownCoordinator --> ComponentRegistration : "contains"
-
 ```
 
 **Diagram sources**
@@ -330,7 +325,7 @@ ShutdownCoordinator --> ComponentRegistration : "contains"
 The StateManager class provides enhanced state management capabilities with persistence, recovery, validation, and backup features for reliable system state management across restarts.
 
 #### Class Diagram
-``mermaid
+```mermaid
 classDiagram
 class StateManager {
 +base_dir : Path
@@ -351,7 +346,6 @@ class StateManager {
 +_cleanup_old_backups(max_backups : int) void
 }
 AGISystem --> StateManager : "uses"
-
 ```
 
 **Diagram sources**
@@ -364,7 +358,7 @@ AGISystem --> StateManager : "uses"
 The startup sequence of the RAVANA AGI system is initiated through the main.py file, which sets up logging, creates the database, initializes the AGISystem, and starts the autonomous loop or handles specific tasks. The Conversational AI module has been updated to use direct asyncio tasks for bot startup, improving connectivity management and error handling.
 
 #### Sequence Diagram
-``mermaid
+```mermaid
 sequenceDiagram
 participant Main as "main.py"
 participant AGISystem as "AGISystem"
@@ -392,7 +386,6 @@ AGISystem->>AGISystem : Sleep
 end
 end
 Main->>AGISystem : stop("system_shutdown")
-
 ```
 
 **Diagram sources**
@@ -407,40 +400,39 @@ Main->>AGISystem : stop("system_shutdown")
 The enhanced shutdown sequence of the RAVANA AGI system is managed by the ShutdownCoordinator, which executes an 8-phase process for graceful shutdown with timeout handling and state persistence.
 
 #### Sequence Diagram
-``mermaid
+```mermaid
 sequenceDiagram
 participant AGISystem as "AGISystem"
 participant Coordinator as "ShutdownCoordinator"
 participant Components as "Registered Components"
 participant StateManager as "StateManager"
-AGISystem-->>Coordinator : initiate_shutdown(reason)
-Coordinator-->>Coordinator : Set shutdown_in_progress = true
-Coordinator-->>Coordinator : Record shutdown_start_time
-Coordinator-->>Components : _phase_pre_shutdown_validation()
-Coordinator-->>AGISystem : _phase_signal_received()
-AGISystem-->>AGISystem : _shutdown.set()
-Coordinator-->>Components : _phase_component_notification()
+AGISystem->>Coordinator : initiate_shutdown(reason)
+Coordinator->>Coordinator : Set shutdown_in_progress = true
+Coordinator->>Coordinator : Record shutdown_start_time
+Coordinator->>Components : _phase_pre_shutdown_validation()
+Coordinator->>AGISystem : _phase_signal_received()
+AGISystem->>AGISystem : _shutdown.set()
+Coordinator->>Components : _phase_component_notification()
 loop For each component
-Components-->>Components : prepare_shutdown()
+Components->>Components : prepare_shutdown()
 end
-Coordinator-->>AGISystem : _phase_stop_background_tasks()
-AGISystem-->>AGISystem : Cancel background tasks
-Coordinator-->>Coordinator : _phase_resource_cleanup()
-Coordinator-->>Coordinator : Execute cleanup handlers
-Coordinator-->>Components : _phase_service_shutdown()
+Coordinator->>AGISystem : _phase_stop_background_tasks()
+AGISystem->>AGISystem : Cancel background tasks
+Coordinator->>Coordinator : _phase_resource_cleanup()
+Coordinator->>Coordinator : Execute cleanup handlers
+Coordinator->>Components : _phase_service_shutdown()
 loop For each component
-Components-->>Components : shutdown()
+Components->>Components : shutdown()
 end
-Coordinator-->>Coordinator : _phase_state_persistence()
-Coordinator-->>Coordinator : _collect_system_state()
-Coordinator-->>Coordinator : _validate_state_data()
-Coordinator-->>Coordinator : Save state to file
-Coordinator-->>Coordinator : _create_state_backup()
-Coordinator-->>Coordinator : _phase_final_validation()
-Coordinator-->>Coordinator : Validate state file
-Coordinator-->>Coordinator : Persist ChromaDB
-Coordinator-->>Coordinator : _log_shutdown_summary()
-
+Coordinator->>Coordinator : _phase_state_persistence()
+Coordinator->>Coordinator : _collect_system_state()
+Coordinator->>Coordinator : _validate_state_data()
+Coordinator->>Coordinator : Save state to file
+Coordinator->>Coordinator : _create_state_backup()
+Coordinator->>Coordinator : _phase_final_validation()
+Coordinator->>Coordinator : Validate state file
+Coordinator->>Coordinator : Persist ChromaDB
+Coordinator->>Coordinator : _log_shutdown_summary()
 ```
 
 **Diagram sources**
@@ -455,9 +447,9 @@ Coordinator-->>Coordinator : _log_shutdown_summary()
 The main execution loop of the RAVANA AGI system is implemented in the run_autonomous_loop method of the AGISystem class. It continuously processes iterations of the AGI's thought process, handling both planned tasks and autonomous situation generation.
 
 #### Flowchart
-``mermaid
+```mermaid
 flowchart TD
-Start("Start Autonomous Loop") --> BackgroundTasks["Start Background Tasks"]
+Start([Start Autonomous Loop]) --> BackgroundTasks["Start Background Tasks"]
 BackgroundTasks --> LoopStart{Loop: Not Shutdown?}
 LoopStart --> |Yes| ExperimentCheck{"Active Experiment?"}
 ExperimentCheck --> |Yes| RunExperimentStep["Run Experimentation Engine Step"]
@@ -465,8 +457,7 @@ ExperimentCheck --> |No| RunIteration["Run Single Iteration"]
 RunExperimentStep --> Sleep["Sleep for LOOP_SLEEP_DURATION"]
 RunIteration --> Sleep
 Sleep --> LoopStart
-LoopStart --> |No| Stop("Stop Loop")
-
+LoopStart --> |No| Stop([Stop Loop])
 ```
 
 **Diagram sources**
@@ -478,7 +469,7 @@ LoopStart --> |No| Stop("Stop Loop")
 ## Dependency Analysis
 The RAVANA AGI system has a well-defined dependency structure with the AGISystem class at the center, depending on various services, modules, and utilities. The system uses a layered architecture with clear separation of concerns. The enhanced shutdown system introduces new dependencies through the ShutdownCoordinator and StateManager classes, which coordinate the shutdown process and manage state persistence. The Conversational AI module has updated dependencies for improved bot connectivity management.
 
-``mermaid
+```mermaid
 graph TD
 A[AGISystem] --> B[Config]
 A --> C[DataService]
@@ -514,7 +505,6 @@ V --> VA[Discord Bot]
 V --> VB[Telegram Bot]
 VA --> VC[Async Task Runner]
 VB --> VD[Async Task Runner]
-
 ```
 
 **Diagram sources**

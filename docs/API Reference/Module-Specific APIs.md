@@ -132,7 +132,6 @@ ReflectionEngine->>LLM : Diagnose test failure
 LLM-->>ReflectionEngine : New fix proposal
 end
 end
-
 ```
 
 **Diagram sources**
@@ -263,7 +262,6 @@ class MoodProcessor {
 +process_action_natural(action_output)
 }
 EmotionalIntelligence --> MoodProcessor : "uses"
-
 ```
 
 **Diagram sources**
@@ -298,7 +296,7 @@ The `AGISystem` manages the system's lifecycle through several key methods:
 
 ```mermaid
 flowchart TD
-Start("AGISystem Init") --> InitModules["Initialize all Modules and Services"]
+Start([AGISystem Init]) --> InitModules["Initialize all Modules and Services"]
 InitModules --> CreateState["Create SharedState"]
 CreateState --> StartLoop["Start run_autonomous_loop"]
 StartLoop --> CheckSearch["Check for Search Results"]
@@ -314,8 +312,7 @@ Sleep --> CheckShutdown{"Shutdown Event Set?"}
 CheckShutdown --> |No| StartLoop
 CheckShutdown --> |Yes| CancelTasks["Cancel Background Tasks"]
 CancelTasks --> CloseSession["Close DB Session"]
-CloseSession --> End("Shutdown Complete")
-
+CloseSession --> End([Shutdown Complete])
 ```
 
 **Diagram sources**

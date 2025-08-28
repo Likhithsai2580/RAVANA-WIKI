@@ -28,7 +28,7 @@ The RAVANA system is an advanced Artificial General Intelligence (AGI) framework
 
 ## Project Structure
 
-``mermaid
+```mermaid
 graph TD
 A[RAVANA Root] --> B[core]
 A --> C[database]
@@ -65,7 +65,6 @@ E --> E1[data_service.py]
 E --> E2[knowledge_service.py]
 E --> E3[memory_service.py]
 E --> E4[multi_modal_service.py]
-
 ```
 
 **Diagram sources**
@@ -88,7 +87,7 @@ The RAVANA system is built on a modular, component-based architecture with clear
 
 ## Architecture Overview
 
-``mermaid
+```mermaid
 graph TB
 subgraph "External Systems"
 LLM[(Large Language Model)]
@@ -180,7 +179,6 @@ style ProcessManager fill:#795548,stroke:#5D4037
 style FileMonitor fill:#607D8B,stroke:#455A64
 style LogManager fill:#FF5722,stroke:#D84315
 style DB fill:#607D8B,stroke:#455A64
-
 ```
 
 **Diagram sources**
@@ -196,7 +194,7 @@ style DB fill:#607D8B,stroke:#455A64
 ### AGISystem Analysis
 The AGISystem class serves as the central singleton orchestrator that manages state, initializes modules, and coordinates execution flow. It acts as the brain of the RAVANA system, integrating all components and services. With the recent enhancement, it now supports the Enhanced Snake Agent which provides advanced threading, multiprocessing, and inter-process communication capabilities.
 
-``mermaid
+```mermaid
 classDiagram
 class AGISystem {
 +engine : Engine
@@ -248,7 +246,6 @@ AGISystem --> EmotionalIntelligence : "uses"
 AGISystem --> CuriosityTrigger : "uses"
 AGISystem --> SharedState : "manages"
 AGISystem --> EnhancedSnakeAgent : "manages"
-
 ```
 
 **Diagram sources**
@@ -260,7 +257,7 @@ AGISystem --> EnhancedSnakeAgent : "manages"
 ### Action Management Analysis
 The action management system handles the execution of various tasks and operations within the RAVANA framework. The EnhancedActionManager extends the base ActionManager with multi-modal capabilities and enhanced error handling.
 
-``mermaid
+```mermaid
 classDiagram
 class EnhancedActionManager {
 +system : AGISystem
@@ -297,7 +294,6 @@ EnhancedActionManager --> ActionRegistry : "contains"
 ActionRegistry --> Action : "registers"
 EnhancedActionManager --> MultiModalService : "uses"
 EnhancedActionManager --> DataService : "logs to"
-
 ```
 
 **Diagram sources**
@@ -311,7 +307,7 @@ EnhancedActionManager --> DataService : "logs to"
 The service layer provides essential functionality for data management, knowledge processing, memory handling, and multi-modal content processing. These services are designed to be reusable across different modules and components.
 
 #### Data Service
-``mermaid
+```mermaid
 classDiagram
 class DataService {
 +engine : Engine
@@ -335,7 +331,6 @@ DataService --> MoodLog : "persists"
 DataService --> SituationLog : "persists"
 DataService --> DecisionLog : "persists"
 DataService --> ExperimentLog : "persists"
-
 ```
 
 **Diagram sources**
@@ -345,7 +340,7 @@ DataService --> ExperimentLog : "persists"
 - [services/data_service.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\services\data_service.py#L9-L155)
 
 #### Knowledge Service
-``mermaid
+```mermaid
 classDiagram
 class KnowledgeService {
 +engine : Engine
@@ -367,7 +362,6 @@ KnowledgeService --> Engine : "uses"
 KnowledgeService --> Summary : "persists"
 KnowledgeService --> FAISS : "uses"
 KnowledgeService --> SentenceTransformer : "uses"
-
 ```
 
 **Diagram sources**
@@ -377,7 +371,7 @@ KnowledgeService --> SentenceTransformer : "uses"
 - [services/knowledge_service.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\services\knowledge_service.py#L14-L255)
 
 #### Memory Service
-``mermaid
+```mermaid
 classDiagram
 class MemoryService {
 +get_relevant_memories(query_text : str) Any
@@ -387,7 +381,6 @@ class MemoryService {
 }
 MemoryService --> episodic_memory : "delegates"
 MemoryService --> API : "calls"
-
 ```
 
 **Diagram sources**
@@ -397,7 +390,7 @@ MemoryService --> API : "calls"
 - [services/memory_service.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\services\memory_service.py#L8-L20)
 
 #### Multi-Modal Service
-``mermaid
+```mermaid
 classDiagram
 class MultiModalService {
 +supported_image_formats : Set[str]
@@ -414,7 +407,6 @@ class MultiModalService {
 MultiModalService --> Gemini : "calls"
 MultiModalService --> LLM : "calls"
 MultiModalService --> tempfile : "uses"
-
 ```
 
 **Diagram sources**
@@ -427,7 +419,7 @@ MultiModalService --> tempfile : "uses"
 The module layer contains specialized components that provide advanced cognitive and behavioral capabilities to the AGI system.
 
 #### Personality Module
-``mermaid
+```mermaid
 classDiagram
 class Personality {
 +name : str
@@ -449,7 +441,6 @@ class Personality {
 +pick_idea_to_pursue(ideas : List[Dict]) Dict
 }
 Personality --> AGISystem : "influences"
-
 ```
 
 **Diagram sources**
@@ -459,7 +450,7 @@ Personality --> AGISystem : "influences"
 - [modules/personality/personality.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\modules\personality\personality.py#L6-L204)
 
 #### Emotional Intelligence Module
-``mermaid
+```mermaid
 classDiagram
 class EmotionalIntelligence {
 +BASIC_MOODS : List[str]
@@ -483,7 +474,6 @@ class EmotionalIntelligence {
 }
 EmotionalIntelligence --> Config : "loads"
 EmotionalIntelligence --> MoodProcessor : "uses"
-
 ```
 
 **Diagram sources**
@@ -493,7 +483,7 @@ EmotionalIntelligence --> MoodProcessor : "uses"
 - [modules/emotional_intellegence/emotional_intellegence.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\modules\emotional_intellegence\emotional_intellegence.py#L8-L66)
 
 #### Curiosity Trigger Module
-``mermaid
+```mermaid
 classDiagram
 class CuriosityTrigger {
 +WIKI_DYK_URL : str
@@ -525,7 +515,6 @@ CuriosityTrigger --> Reddit : "fetches from"
 CuriosityTrigger --> HackerNews : "fetches from"
 CuriosityTrigger --> arXiv : "fetches from"
 CuriosityTrigger --> LLM : "calls"
-
 ```
 
 **Diagram sources**
@@ -535,7 +524,7 @@ CuriosityTrigger --> LLM : "calls"
 - [modules/curiosity_trigger/curiosity_trigger.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\modules\curiosity_trigger\curiosity_trigger.py#L71-L531)
 
 #### Adaptive Learning Engine
-``mermaid
+```mermaid
 classDiagram
 class AdaptiveLearningEngine {
 +agi_system : AGISystem
@@ -557,7 +546,6 @@ class AdaptiveLearningEngine {
 AdaptiveLearningEngine --> AGISystem : "uses"
 AdaptiveLearningEngine --> ActionLog : "reads from"
 AdaptiveLearningEngine --> DecisionLog : "reads from"
-
 ```
 
 **Diagram sources**
@@ -569,9 +557,9 @@ AdaptiveLearningEngine --> DecisionLog : "reads from"
 ### Autonomous Loop Analysis
 The autonomous loop is the core execution flow of the RAVANA system, continuously processing situations, making decisions, and executing actions.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("Start Loop") --> CheckResults["Check for Search Results"]
+Start([Start Loop]) --> CheckResults["Check for Search Results"]
 CheckResults --> HandleModifiers["Handle Behavior Modifiers"]
 HandleModifiers --> HandleCuriosity["Handle Curiosity"]
 HandleCuriosity --> Decision{"Has Plan or Task?"}
@@ -588,7 +576,6 @@ CheckPlan --> |No| EndLoop["End of Iteration"]
 ContinuePlan --> ExecuteAction
 style Start fill:#4CAF50,stroke:#388E3C
 style EndLoop fill:#F44336,stroke:#D32F2F
-
 ```
 
 **Diagram sources**
@@ -603,7 +590,7 @@ The Enhanced Snake Agent represents a significant architectural enhancement to t
 ### Enhanced Snake Agent Architecture
 The Enhanced Snake Agent follows a multi-layered architecture with specialized components for different aspects of concurrent processing:
 
-``mermaid
+```mermaid
 classDiagram
 class EnhancedSnakeAgent {
 +agi_system : AGISystem
@@ -651,7 +638,6 @@ EnhancedSnakeAgent --> SnakeThreadingManager : "manages"
 EnhancedSnakeAgent --> SnakeProcessManager : "manages"
 EnhancedSnakeAgent --> ContinuousFileMonitor : "manages"
 EnhancedSnakeAgent --> LLM : "uses"
-
 ```
 
 **Diagram sources**
@@ -663,7 +649,7 @@ EnhancedSnakeAgent --> LLM : "uses"
 ### Configuration System
 The Enhanced Snake Agent uses a comprehensive configuration system that allows for fine-tuning of its behavior and resource usage:
 
-``mermaid
+```mermaid
 classDiagram
 class SnakeAgentConfiguration {
 +max_threads : int = 8
@@ -680,7 +666,6 @@ class SnakeAgentConfiguration {
 +to_dict() Dict[str, Any]
 +validate() List[str]
 }
-
 ```
 
 **Diagram sources**
@@ -692,7 +677,7 @@ class SnakeAgentConfiguration {
 ### Threading Manager
 The SnakeThreadingManager handles concurrent operations using Python's threading module, managing multiple worker threads for different types of tasks:
 
-``mermaid
+```mermaid
 classDiagram
 class SnakeThreadingManager {
 +config : SnakeAgentConfiguration
@@ -735,7 +720,6 @@ SnakeThreadingManager --> SnakeAgentConfiguration : "uses"
 SnakeThreadingManager --> SnakeLogManager : "uses"
 SnakeThreadingManager --> ThreadState : "manages"
 SnakeThreadingManager --> WorkerMetrics : "manages"
-
 ```
 
 **Diagram sources**
@@ -747,7 +731,7 @@ SnakeThreadingManager --> WorkerMetrics : "manages"
 ### Process Manager
 The SnakeProcessManager handles CPU-intensive tasks using multiprocessing, allowing for true parallel execution across multiple CPU cores:
 
-``mermaid
+```mermaid
 classDiagram
 class SnakeProcessManager {
 +config : SnakeAgentConfiguration
@@ -784,7 +768,6 @@ class SnakeProcessManager {
 SnakeProcessManager --> SnakeAgentConfiguration : "uses"
 SnakeProcessManager --> SnakeLogManager : "uses"
 SnakeProcessManager --> ProcessState : "manages"
-
 ```
 
 **Diagram sources**
@@ -796,7 +779,7 @@ SnakeProcessManager --> ProcessState : "manages"
 ### File Monitoring System
 The ContinuousFileMonitor provides real-time monitoring of the file system, detecting changes to code and configuration files:
 
-``mermaid
+```mermaid
 classDiagram
 class ContinuousFileMonitor {
 +snake_agent : EnhancedSnakeAgent
@@ -846,7 +829,6 @@ ContinuousFileMonitor --> SnakeAgentConfiguration : "uses"
 ContinuousFileMonitor --> SnakeLogManager : "uses"
 ContinuousFileMonitor --> FileMetadata : "manages"
 ContinuousFileMonitor --> FileChangeEvent : "creates"
-
 ```
 
 **Diagram sources**
@@ -858,7 +840,7 @@ ContinuousFileMonitor --> FileChangeEvent : "creates"
 ### Logging System
 The SnakeLogManager provides structured logging with separate log files for different types of activities:
 
-``mermaid
+```mermaid
 classDiagram
 class SnakeLogManager {
 +log_dir : Path
@@ -896,7 +878,6 @@ SnakeLogManager --> ImprovementRecord : "logs"
 SnakeLogManager --> ExperimentRecord : "logs"
 SnakeLogManager --> AnalysisRecord : "logs"
 SnakeLogManager --> CommunicationRecord : "logs"
-
 ```
 
 **Diagram sources**
@@ -908,7 +889,7 @@ SnakeLogManager --> CommunicationRecord : "logs"
 ### Data Models
 The Enhanced Snake Agent uses a set of data models to represent various entities and events:
 
-``mermaid
+```mermaid
 classDiagram
 class FileChangeEvent {
 +event_id : str
@@ -975,7 +956,6 @@ class ProcessState {
 FileChangeEvent --> ThreadState : "processed by"
 AnalysisTask --> ThreadState : "processed by"
 CommunicationMessage --> ThreadState : "processed by"
-
 ```
 
 **Diagram sources**
@@ -988,7 +968,7 @@ CommunicationMessage --> ThreadState : "processed by"
 
 ## Dependency Analysis
 
-``mermaid
+```mermaid
 graph TD
 AGI[AGISystem] --> ActionManager
 AGI --> DataService
@@ -1047,7 +1027,6 @@ style Wikipedia fill:#FFEB3B,stroke:#FBC02D
 style Reddit fill:#FFEB3B,stroke:#FBC02D
 style HackerNews fill:#FFEB3B,stroke:#FBC02D
 style arXiv fill:#FFEB3B,stroke:#FBC02D
-
 ```
 
 **Diagram sources**

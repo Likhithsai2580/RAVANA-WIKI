@@ -19,7 +19,7 @@ The Multi-Modal Memory system is an advanced episodic memory module within the R
 ## Project Structure
 The multi-modal memory system is organized into a modular structure within the `modules/episodic_memory` directory. The core components include API endpoints, data models, database operations, embedding generation, and specialized processors for different media types. The system is designed for extensibility and integration with the broader RAVANA framework.
 
-``mermaid
+```mermaid
 graph TB
 subgraph "API Layer"
 A[memory.py] --> B[FastAPI Endpoints]
@@ -52,7 +52,6 @@ C --> Q
 C --> U
 I --> K
 M --> K
-
 ```
 
 **Diagram sources**
@@ -82,7 +81,7 @@ The Multi-Modal Memory system comprises several core components that work togeth
 ## Architecture Overview
 The Multi-Modal Memory system follows a layered architecture with clear separation of concerns. The API layer, implemented with FastAPI, exposes endpoints for memory operations and search. The service layer, centered around `MultiModalMemoryService`, coordinates all business logic and integrates various components. The data layer uses PostgreSQL with pgvector for persistent storage of memory records and their embeddings. The processing layer handles the generation of embeddings for different modalities and the extraction of features from audio and image content.
 
-``mermaid
+```mermaid
 graph TD
 A[Client] --> B[API Layer]
 B --> C[Service Layer]
@@ -118,7 +117,6 @@ style B fill:#f9f,stroke:#333
 style C fill:#bbf,stroke:#333
 style D fill:#f96,stroke:#333
 style E fill:#6f9,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -133,7 +131,7 @@ style E fill:#6f9,stroke:#333
 ### MultiModalMemoryService Analysis
 The `MultiModalMemoryService` is the central orchestrator of the multi-modal memory system. It integrates the PostgreSQL store, embedding service, Whisper audio processor, and search engine to provide a unified interface for memory operations. The service is initialized with a database URL and model configurations, and it manages the lifecycle of its components through `initialize()` and `close()` methods.
 
-``mermaid
+```mermaid
 classDiagram
 class MultiModalMemoryService {
 -database_url : str
@@ -210,7 +208,6 @@ AdvancedSearchEngine --> PostgreSQLStore : "uses"
 AdvancedSearchEngine --> EmbeddingService : "uses"
 AdvancedSearchEngine --> WhisperAudioProcessor : "uses"
 EmbeddingService --> WhisperAudioProcessor : "uses"
-
 ```
 
 **Diagram sources**
@@ -226,104 +223,116 @@ EmbeddingService --> WhisperAudioProcessor : "uses"
 ### Memory Record and Data Models
 The data model for the multi-modal memory system is defined in `models.py` using Pydantic. The `MemoryRecord` class is the core data structure, capable of storing information from various modalities. It includes fields for text, audio, image, and video content, along with their respective metadata and embeddings. The model supports validation through Pydantic validators, ensuring data integrity.
 
-``mermaid
+```mermaid
 classDiagram
 class MemoryRecord {
-id : Optional[UUID]
-content_type : ContentType
-content_text : Optional[str]
-content_metadata : Dict[str, Any]
-file_path : Optional[str]
-text_embedding : Optional[List[float]]
-image_embedding : Optional[List[float]]
-audio_embedding : Optional[List[float]]
-unified_embedding : Optional[List[float]]
-created_at : Optional[datetime]
-last_accessed : Optional[datetime]
-access_count : int
-memory_type : MemoryType
-emotional_valence : Optional[float]
-confidence_score : float
-tags : List[str]
-audio_metadata : Optional[AudioMetadata]
-image_metadata : Optional[ImageMetadata]
-video_metadata : Optional[VideoMetadata]
+  id : Optional[UUID]
+  content_type : ContentType
+  content_text : Optional[str]
+  content_metadata : Dict[str, Any]
+  file_path : Optional[str]
+  text_embedding : Optional[List[float]]
+  image_embedding : Optional[List[float]]
+  audio_embedding : Optional[List[float]]
+  unified_embedding : Optional[List[float]]
+  created_at : Optional[datetime]
+  last_accessed : Optional[datetime]
+  access_count : int
+  memory_type : MemoryType
+  emotional_valence : Optional[float]
+  confidence_score : float
+  tags : List[str]
+  audio_metadata : Optional[AudioMetadata]
+  image_metadata : Optional[ImageMetadata]
+  video_metadata : Optional[VideoMetadata]
 }
-class AudioMetadata {
-transcript : Optional[str]
-language_code : Optional[str]
-confidence_scores : Dict[str, float]
-duration_seconds : Optional[float]
-audio_features : Dict[str, Any]
-sample_rate : Optional[int]
-channels : Optional[int]
-}
-class ImageMetadata {
-width : Optional[int]
-height : Optional[int]
-object_detections : Dict[str, Any]
-scene_description : Optional[str]
-image_hash : Optional[str]
-color_palette : Dict[str, Any]
-image_features : Dict[str, Any]
-}
-class VideoMetadata {
-duration_seconds : Optional[float]
-frame_rate : Optional[float]
-width : Optional[int]
-height : Optional[int]
-video_features : Dict[str, Any]
-thumbnail_path : Optional[str]
-}
-class SearchRequest {
-query : str
-content_types : Optional[List[ContentType]]
-memory_types : Optional[List[MemoryType]]
-search_mode : SearchMode
-limit : int
-similarity_threshold : float
-include_metadata : bool
-tags : Optional[List[str]]
-query_content_type : Optional[ContentType]
-target_content_types : Optional[List[ContentType]]
-created_after : Optional[datetime]
-created_before : Optional[datetime]
-}
-class SearchResult {
-memory_record : MemoryRecord
-similarity_score : float
-rank : int
-search_metadata : Dict[str, Any]
-}
-class SearchResponse {
-results : List[SearchResult]
-total_found : int
-search_time_ms : int
-search_mode : SearchMode
-query_metadata : Dict[str, Any]
-}
-enum ContentType {
-TEXT
-AUDIO
-IMAGE
-VIDEO
-}
-enum MemoryType {
-EPISODIC
-SEMANTIC
-CONSOLIDATED
-WORKING
-}
-enum SearchMode {
-VECTOR
-TEXT
-HYBRID
-CROSS_MODAL
-}
-MemoryRecord --> AudioMetadata : "has"
-MemoryRecord --> ImageMetadata : "has"
-MemoryRecord --> VideoMetadata : "has"
 
+class AudioMetadata {
+  transcript : Optional[str]
+  language_code : Optional[str]
+  confidence_scores : Dict[str, float]
+  duration_seconds : Optional[float]
+  audio_features : Dict[str, Any]
+  sample_rate : Optional[int]
+  channels : Optional[int]
+}
+
+class ImageMetadata {
+  width : Optional[int]
+  height : Optional[int]
+  object_detections : Dict[str, Any]
+  scene_description : Optional[str]
+  image_hash : Optional[str]
+  color_palette : Dict[str, Any]
+  image_features : Dict[str, Any]
+}
+
+class VideoMetadata {
+  duration_seconds : Optional[float]
+  frame_rate : Optional[float]
+  width : Optional[int]
+  height : Optional[int]
+  video_features : Dict[str, Any]
+  thumbnail_path : Optional[str]
+}
+
+class SearchRequest {
+  query : str
+  content_types : Optional[List[ContentType]]
+  memory_types : Optional[List[MemoryType]]
+  search_mode : SearchMode
+  limit : int
+  similarity_threshold : float
+  include_metadata : bool
+  tags : Optional[List[str]]
+  query_content_type : Optional[ContentType]
+  target_content_types : Optional[List[ContentType]]
+  created_after : Optional[datetime]
+  created_before : Optional[datetime]
+}
+
+class SearchResult {
+  memory_record : MemoryRecord
+  similarity_score : float
+  rank : int
+  search_metadata : Dict[str, Any]
+}
+
+class SearchResponse {
+  results : List[SearchResult]
+  total_found : int
+  search_time_ms : int
+  search_mode : SearchMode
+  query_metadata : Dict[str, Any]
+}
+
+class ContentType {
+  <<enumeration>>
+  TEXT
+  AUDIO
+  IMAGE
+  VIDEO
+}
+
+class MemoryType {
+  <<enumeration>>
+  EPISODIC
+  SEMANTIC
+  CONSOLIDATED
+  WORKING
+}
+
+class SearchMode {
+  <<enumeration>>
+  VECTOR
+  TEXT
+  HYBRID
+  CROSS_MODAL
+}
+
+MemoryRecord --> AudioMetadata : has
+MemoryRecord --> ImageMetadata : has
+MemoryRecord --> VideoMetadata : has
 ```
 
 **Diagram sources**
@@ -335,7 +344,7 @@ MemoryRecord --> VideoMetadata : "has"
 ### API Endpoints and Request Flow
 The API endpoints are implemented in `memory.py` using FastAPI. The system supports both legacy endpoints for backward compatibility and new endpoints for multi-modal operations. The request flow for processing an audio file involves uploading the file, transcribing it with Whisper, generating embeddings, and storing the memory record in PostgreSQL.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant Client
 participant API as memory.py
@@ -359,7 +368,6 @@ DB-->>Service : saved_record
 Service-->>API : ProcessingResult
 API-->>Client : 200 OK (ProcessingResult)
 Note over Client,DB : Audio memory processing flow
-
 ```
 
 **Diagram sources**
@@ -375,59 +383,62 @@ Note over Client,DB : Audio memory processing flow
 ### Database Schema and Migration
 The database schema is defined in `schema.sql` and managed through `setup_database.py`. The system uses PostgreSQL with the pgvector extension to store memory records and their embeddings. The migration process allows for seamless transition from the legacy ChromaDB storage to the new PostgreSQL-based system, including data migration and schema creation.
 
-``mermaid
+```mermaid
 erDiagram
-memory_records ||--o{ audio_memories : "1:1"
-memory_records ||--o{ image_memories : "1:1"
-memory_records ||--o{ video_memories : "1:1"
-memory_records {
-uuid id PK
-string content_type
-text content_text
-jsonb content_metadata
-string file_path
-vector text_embedding
-vector image_embedding
-vector audio_embedding
-vector unified_embedding
-timestamp created_at
-timestamp last_accessed
-int access_count
-string memory_type
-float emotional_valence
-float confidence_score
-string[] tags
-}
-audio_memories {
-uuid memory_id PK FK
-text transcript
-string language_code
-jsonb confidence_scores
-float duration_seconds
-jsonb audio_features
-int sample_rate
-int channels
-}
-image_memories {
-uuid memory_id PK FK
-int width
-int height
-jsonb object_detections
-text scene_description
-string image_hash
-jsonb color_palette
-jsonb image_features
-}
-video_memories {
-uuid memory_id PK FK
-float duration_seconds
-float frame_rate
-int width
-int height
-jsonb video_features
-string thumbnail_path
-}
+    memory_records ||--o{ audio_memories : "1:1"
+    memory_records ||--o{ image_memories : "1:1"
+    memory_records ||--o{ video_memories : "1:1"
 
+    memory_records {
+        uuid id PK
+        string content_type
+        string content_text "text"
+        string content_metadata "jsonb"
+        string file_path
+        string text_embedding "vector"
+        string image_embedding "vector"
+        string audio_embedding "vector"
+        string unified_embedding "vector"
+        date created_at "timestamp"
+        date last_accessed "timestamp"
+        int access_count
+        string memory_type
+        float emotional_valence
+        float confidence_score
+        string tags "array"
+    }
+
+    audio_memories {
+        uuid memory_id PK
+        string transcript "text"
+        string language_code
+        string confidence_scores "jsonb"
+        float duration_seconds
+        string audio_features "jsonb"
+        int sample_rate
+        int channels
+    }
+
+    image_memories {
+        uuid memory_id PK
+        int width
+        int height
+        string object_detections "jsonb"
+        string scene_description "text"
+        string image_hash
+        string color_palette "jsonb"
+        string image_features "jsonb"
+    }
+
+    video_memories {
+        uuid memory_id PK
+        float duration_seconds
+        float frame_rate
+        int width
+        int height
+        string video_features "jsonb"
+        string thumbnail_path
+    }
 ```
 
 **Diagram sources**
@@ -441,7 +452,7 @@ string thumbnail_path
 ## Dependency Analysis
 The Multi-Modal Memory system has a well-defined dependency structure. The core dependencies include FastAPI for the web framework, asyncpg for PostgreSQL connectivity, sentence-transformers for text embeddings, and faster-whisper for audio processing. The system also depends on pgvector for vector similarity search in PostgreSQL. The component dependencies are managed through Python's import system, with clear interfaces between modules.
 
-``mermaid
+```mermaid
 graph TD
 A[FastAPI] --> B[memory.py]
 B --> C[multi_modal_service.py]
@@ -464,7 +475,6 @@ style K fill:#f96,stroke:#333
 style L fill:#f96,stroke:#333
 style M fill:#f96,stroke:#333
 style N fill:#f96,stroke:#333
-
 ```
 
 **Diagram sources**

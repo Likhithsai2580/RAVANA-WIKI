@@ -49,7 +49,6 @@ DataService --> |Triggers| Detector
 end
 RSS --> TrendEngine
 WebContent --> TrendEngine
-
 ```
 
 **Diagram sources**
@@ -70,14 +69,13 @@ The core of the event detection system relies on sentence embeddings and cluster
 
 ```mermaid
 flowchart TD
-Start("Text Input") --> Embedding["Generate Sentence Embeddings<br/>using all-MiniLM-L6-v2"]
+Start([Text Input]) --> Embedding["Generate Sentence Embeddings<br/>using all-MiniLM-L6-v2"]
 Embedding --> Clustering["Cluster Documents using<br/>AgglomerativeClustering"]
 Clustering --> |Cosine Distance| Threshold["Apply Distance Threshold<br/>(default: 0.5)"]
 Threshold --> Groups["Form Document Groups<br/>(Clusters)"]
 Groups --> Filter["Filter Noise Clusters<br/>(ID: -1)"]
 Filter --> Output["Identify Event Clusters"]
-Output --> End("Event Detection Complete")
-
+Output --> End([Event Detection Complete])
 ```
 
 **Diagram sources**
@@ -90,13 +88,12 @@ Before clustering, the system applies content filtering based on sentiment analy
 
 ```mermaid
 flowchart TD
-Start("Document") --> Sentiment["Analyze Sentiment<br/>using transformers pipeline"]
+Start([Document]) --> Sentiment["Analyze Sentiment<br/>using transformers pipeline"]
 Sentiment --> |Output| Result{"Sentiment: NEGATIVE?<br/>Score > 0.8?"}
 Result --> |Yes| Filter["Mark as Irrelevant"]
 Result --> |No| Keep["Mark as Relevant"]
-Filter --> End1("Filtered Out")
-Keep --> End2("Processed Further")
-
+Filter --> End1([Filtered Out])
+Keep --> End2([Processed Further])
 ```
 
 **Diagram sources**
@@ -109,7 +106,7 @@ The final stage of event detection involves generating alerts for significant cl
 
 ```mermaid
 flowchart TD
-Start("("Clustered Documents")") --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
+Start([Clustered Documents]) --> SizeCheck{"Cluster Size ≥<br/>min_cluster_size?"}
 SizeCheck --> |No| Skip["Skip Small Cluster"]
 SizeCheck --> |Yes| Valid["Valid Event Candidate"]
 Valid --> NoiseCheck{"Cluster ID = -1?<br/>(Noise)?"}
@@ -119,8 +116,7 @@ Generate --> Summary["Create Summary<br/>(First Document Text)"]
 Summary --> Keywords["Extract Keywords<br/>(Placeholder)"]
 Keywords --> Count["Count Documents<br/>(doc_count)"]
 Count --> Output["Create Event Object"]
-Output --> End("("Event Alert Generated")")
-
+Output --> End([Event Alert Generated])
 ```
 
 **Diagram sources**
@@ -133,7 +129,7 @@ The `generate_event_alerts` function processes clustered documents and creates E
 ### Input Data Formats and Parsing Strategies
 The event detection system accepts input as a list of text strings, typically representing headlines, article summaries, or social media posts. The primary input format is JSON through the API endpoint `/process/`, which expects a structure containing a "texts" array.
 
-```
+```json
 {
   "texts": [
     "Massive solar flare expected to hit Earth tomorrow.",
@@ -154,16 +150,15 @@ participant TrendEngine as Trend Analysis Engine
 participant Detector as Event Detector
 participant Generator as Situation Generator
 participant DecisionEngine as Decision Engine
-TrendEngine-->>Detector : Provide recent article titles
-Detector-->>Detector : Process texts for events
-Detector-->>Detector : Generate embeddings and clusters
-Detector-->>Detector : Apply filtering and thresholds
-Detector-->>Generator : Return detected events
-Generator-->>Generator : Select random significant event
-Generator-->>Generator : Create prompt from event summary
-Generator-->>DecisionEngine : Submit new situation
-DecisionEngine-->>DecisionEngine : Process situation as new task
-
+TrendEngine->>Detector : Provide recent article titles
+Detector->>Detector : Process texts for events
+Detector->>Detector : Generate embeddings and clusters
+Detector->>Detector : Apply filtering and thresholds
+Detector->>Generator : Return detected events
+Generator->>Generator : Select random significant event
+Generator->>Generator : Create prompt from event summary
+Generator->>DecisionEngine : Submit new situation
+DecisionEngine->>DecisionEngine : Process situation as new task
 ```
 
 **Diagram sources**
@@ -227,7 +222,7 @@ The event detection system provides several configurable parameters that control
 ### Detecting Breaking News
 To detect breaking news about a developing situation, such as a natural disaster or political event, the system would process a stream of news headlines:
 
-```
+```bash
 curl -X POST "http://127.0.0.1:8001/process/" -H "Content-Type: application/json" -d '{
   "texts": [
     "Earthquake of magnitude 7.2 strikes near Tokyo",
@@ -244,7 +239,7 @@ The system would generate embeddings for these texts, cluster them based on sema
 ### Identifying Scientific Discoveries
 For scientific breakthroughs, the system can detect emerging research trends from academic news and science journalism:
 
-```
+```python
 sample_data = [
     "CRISPR gene editing successfully treats sickle cell disease in clinical trial",
     "New gene therapy shows promise for treating inherited blood disorders",
@@ -260,7 +255,7 @@ These related articles about gene therapy would likely cluster together, trigger
 ### Monitoring Market Shifts
 The system can also detect significant economic or market changes by monitoring financial news:
 
-```
+```python
 market_news = [
     "Federal Reserve announces 0.75% interest rate hike",
     "Stock markets plunge after aggressive rate hike announcement",

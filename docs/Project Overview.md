@@ -166,7 +166,6 @@ SR --> MM
 AL --> MM
 Config --> System
 LLM --> System
-
 ```
 
 **Diagram sources**

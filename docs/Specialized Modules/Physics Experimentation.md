@@ -46,7 +46,6 @@ E --> F[Sandboxed Execution]
 F --> G[Result Interpretation]
 G --> H[Online Validation]
 H --> I[Knowledge Storage]
-
 ```
 
 **Diagram sources**
@@ -107,7 +106,6 @@ Sandbox-->>LLM : Return results
 LLM->>Validator : Validate online
 Validator-->>LLM : Verification results
 LLM-->>User : Final verdict and insights
-
 ```
 
 **Diagram sources**
@@ -173,13 +171,12 @@ After testing, a comprehensive report is generated with statistics on success ra
 
 ```mermaid
 flowchart TD
-Start("Start Test Suite") --> Phase1["Phase 1: Individual Experiments"]
+Start([Start Test Suite]) --> Phase1["Phase 1: Individual Experiments"]
 Phase1 --> Phase2["Phase 2: Discovery Mode"]
 Phase2 --> Phase3["Phase 3: AGI Integration"]
 Phase3 --> Report["Generate Report"]
 Report --> Save["Save to physics_experiment_test_report.txt"]
-Save --> End("Test Complete")
-
+Save --> End([Test Complete])
 ```
 
 **Diagram sources**

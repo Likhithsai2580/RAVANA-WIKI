@@ -93,7 +93,6 @@ M --> P
 N --> P
 O --> P
 P --> Q
-
 ```
 
 **Diagram sources**
@@ -190,7 +189,6 @@ M --> I
 M --> J
 M --> K
 M --> L
-
 ```
 
 **Diagram sources**
@@ -233,7 +231,6 @@ F --> G[Execute Action and Memorize]
 G --> H[Update Mood and Reflect]
 H --> I[Sleep Before Next Iteration]
 I --> A
-
 ```
 
 **Diagram sources**
@@ -323,7 +320,6 @@ class Action {
 +execute(params : Dict) : Any
 }
 ActionRegistry --> Action : "contains"
-
 ```
 
 **Diagram sources**
@@ -520,7 +516,6 @@ I --> E
 I --> F
 I --> G
 end
-
 ```
 
 **Diagram sources**
@@ -597,7 +592,6 @@ J --> L[Safe Code Improvement Application]
 L --> M[Git Backup and Versioning]
 M --> N[Communication to RAVANA]
 N --> O[Log Improvement Applied]
-
 ```
 
 **Diagram sources**
@@ -706,7 +700,6 @@ E --> F
 F --> G
 G --> H
 H --> I
-
 ```
 
 **Diagram sources**
@@ -772,7 +765,6 @@ I --> J{Shutdown Complete?}
 J --> |Yes| K[Log Summary]
 J --> |No| L[Force Shutdown]
 L --> K
-
 ```
 
 **Diagram sources**

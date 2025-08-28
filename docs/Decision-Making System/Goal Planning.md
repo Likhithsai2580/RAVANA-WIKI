@@ -64,7 +64,6 @@ C --> D{All Sub-Goals Complete?}
 D --> |Yes| E[Mark Goal as Complete]
 D --> |No| F[Continue Working]
 B --> |No| F
-
 ```
 
 **Diagram sources**
@@ -102,7 +101,6 @@ GP-->>DM : Return Goals
 DM->>GP : Execute Task
 end
 GP-->>DM : Update Status
-
 ```
 
 **Diagram sources**
@@ -207,7 +205,6 @@ class MemoryService {
 EmotionalIntelligence --> MoodProcessor : "uses"
 EmotionalIntelligence --> MemoryService : "accesses"
 MoodProcessor --> EmotionalIntelligence : "updates"
-
 ```
 
 **Diagram sources**

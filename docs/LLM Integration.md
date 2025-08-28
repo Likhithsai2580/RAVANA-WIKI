@@ -41,7 +41,6 @@ C --> J[Rate Limiting]
 D --> K[Decision Making]
 D --> L[Experimentation]
 D --> M[Self-Reflection]
-
 ```
 
 **Diagram sources**
@@ -84,7 +83,6 @@ H --> I[Retry Logic]
 I --> J[Fallback to Gemini]
 J --> K[Final Response]
 K --> A
-
 ```
 
 **Diagram sources**
@@ -111,7 +109,6 @@ LLM->>Gemini : call_gemini_with_fallback
 Gemini-->>LLM : Response or Error
 LLM-->>App : Return Response
 end
-
 ```
 
 **Diagram sources**
@@ -153,7 +150,6 @@ LLMProvider <|-- ElectronHubProvider
 LLMProvider <|-- ZanityProvider
 LLMProvider <|-- A4FProvider
 LLMProvider <|-- GeminiProvider
-
 ```
 
 **Diagram sources**
@@ -308,7 +304,6 @@ I --> K[Wait for Reset]
 J --> L{Consecutive Failures >= 5?}
 L --> |Yes| M[Mark Unavailable]
 L --> |No| N[Continue]
-
 ```
 
 **Diagram sources**

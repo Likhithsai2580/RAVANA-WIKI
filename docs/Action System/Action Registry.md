@@ -27,7 +27,7 @@ The Action Registry is a central component of the Ravana AGI system responsible 
 
 The ActionRegistry serves as a centralized repository for all actions that the AGI can perform. It enables the system to dynamically discover and register action classes, making it easy to extend the AGI's capabilities without modifying core system components.
 
-``mermaid
+```mermaid
 classDiagram
 class ActionRegistry {
 +actions : Dict[str, Action]
@@ -52,7 +52,6 @@ class Action {
 +to_json() : str
 }
 ActionRegistry --> Action : "contains"
-
 ```
 
 **Diagram sources**
@@ -79,21 +78,20 @@ This dictionary serves as the core registry, where:
 
 The mapping structure supports O(1) average-case time complexity for both registration and retrieval operations, making it highly efficient for the AGI system's needs.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("Action Registration") --> CheckName{"Action name exists?"}
+Start([Action Registration]) --> CheckName{"Action name exists?"}
 CheckName --> |Yes| LogWarning["Log warning: Action will be overwritten"]
 CheckName --> |No| Continue[Continue registration]
 LogWarning --> Continue
 Continue --> StoreAction["Store action in dictionary: actions[name] = action"]
-StoreAction --> End("Registration Complete")
-RetrieveStart("Action Retrieval") --> FindAction["Look up action by name in dictionary"]
+StoreAction --> End([Registration Complete])
+RetrieveStart([Action Retrieval]) --> FindAction["Look up action by name in dictionary"]
 FindAction --> ActionExists{"Action exists?"}
 ActionExists --> |Yes| ReturnAction["Return action instance"]
 ActionExists --> |No| RaiseError["Raise ValueError: Action not found"]
-ReturnAction --> End2("Retrieval Complete")
-RaiseError --> End2("Retrieval Complete")
-
+ReturnAction --> End2([Retrieval Complete])
+RaiseError --> End2
 ```
 
 **Diagram sources**
@@ -141,32 +139,31 @@ except Exception as e:
 
 This try-except block ensures that failures in instantiating individual actions do not prevent the registration of other valid actions, maintaining system resilience.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant Client as "Action Client"
 participant Registry as "ActionRegistry"
 participant Action as "Action Instance"
-Client-->>Registry : register_action(action)
-Registry-->>Registry : Check if action.name exists
+Client->>Registry : register_action(action)
+Registry->>Registry : Check if action.name exists
 alt Action name already exists
-Registry-->>Registry : Log warning about overwrite
+Registry->>Registry : Log warning about overwrite
 end
-Registry-->>Registry : Store action in actions dictionary
+Registry->>Registry : Store action in actions dictionary
 Registry-->>Client : Registration complete
-Client-->>Registry : discover_actions()
-Registry-->>Registry : Walk through core.actions package
-Registry-->>Registry : Import each module
-Registry-->>Registry : Find Action subclasses
+Client->>Registry : discover_actions()
+Registry->>Registry : Walk through core.actions package
+Registry->>Registry : Import each module
+Registry->>Registry : Find Action subclasses
 loop For each Action class
-Registry-->>Registry : Try to instantiate class
+Registry->>Registry : Try to instantiate class
 alt Instantiation succeeds
-Registry-->>Registry : Register the action instance
+Registry->>Registry : Register the action instance
 else Instantiation fails
-Registry-->>Registry : Log error, continue with next class
+Registry->>Registry : Log error, continue with next class
 end
 end
 Registry-->>Client : Discovery complete
-
 ```
 
 **Diagram sources**
@@ -224,9 +221,9 @@ class ActionManager:
 
 During initialization, the ActionManager creates an ActionRegistry instance, which automatically registers several built-in actions in its constructor, and then the system can call `discover_actions()` to find additional actions.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("System Startup") --> CreateRegistry["Create ActionRegistry instance"]
+Start([System Startup]) --> CreateRegistry["Create ActionRegistry instance"]
 CreateRegistry --> RegisterBuiltIn["Register built-in actions in constructor"]
 RegisterBuiltIn --> CreateActionManager["Create ActionManager instance"]
 CreateActionManager --> InitializeRegistry["Initialize with ActionRegistry"]
@@ -238,7 +235,6 @@ ImportModule --> FindClasses["Find Action subclasses"]
 FindClasses --> Instantiate["Instantiate action classes"]
 Instantiate --> RegisterActions["Register actions in dictionary"]
 RegisterActions --> Complete["Discovery Complete"]
-
 ```
 
 **Diagram sources**
@@ -301,24 +297,23 @@ class EnhancedActionManager(ActionManager):
 
 This demonstrates how the ActionRegistry can be extended with specialized actions while maintaining the same interface.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant DecisionEngine as "Decision Engine"
 participant ActionManager as "ActionManager"
 participant Registry as "ActionRegistry"
 participant Action as "Action Instance"
 participant System as "AGISystem"
-DecisionEngine-->>ActionManager : execute_action(decision)
-ActionManager-->>ActionManager : Parse decision JSON
-ActionManager-->>Registry : get_action(action_name)
-Registry-->>Registry : Look up action in dictionary
+DecisionEngine->>ActionManager : execute_action(decision)
+ActionManager->>ActionManager : Parse decision JSON
+ActionManager->>Registry : get_action(action_name)
+Registry->>Registry : Look up action in dictionary
 Registry-->>ActionManager : Return action instance
-ActionManager-->>Action : execute(**params)
-Action-->>System : Access system resources
+ActionManager->>Action : execute(**params)
+Action->>System : Access system resources
 Action-->>ActionManager : Return execution result
-ActionManager-->>ActionManager : Log action execution
+ActionManager->>ActionManager : Log action execution
 ActionManager-->>DecisionEngine : Return result
-
 ```
 
 **Diagram sources**
@@ -401,9 +396,9 @@ class HelloWorldAction(Action):
 
 Once created, the action will be automatically discovered and registered when the `discover_actions()` method is called, as it scans all modules in the `core.actions` package for classes that inherit from the Action base class.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("Create Custom Action") --> CreateFile["Create Python file in core/actions/"]
+Start([Create Custom Action]) --> CreateFile["Create Python file in core/actions/"]
 CreateFile --> DefineClass["Define class inheriting from Action"]
 DefineClass --> ImplementName["Implement name property"]
 ImplementName --> ImplementDescription["Implement description property"]
@@ -417,7 +412,6 @@ FindModule --> FindClass["Find Action subclass"]
 FindClass --> Instantiate["Instantiate the action"]
 Instantiate --> Register["Register in ActionRegistry"]
 Register --> Available["Action available for use"]
-
 ```
 
 **Diagram sources**
@@ -479,9 +473,9 @@ if action.name in self.actions:
 | Module import failure | Action not discovered, import error in logs | Verify module path and dependencies |
 | Collaborative task action failure | Error in conversational AI integration | Verify system references and user ID parameters |
 
-``mermaid
+```mermaid
 flowchart TD
-Start("Troubleshooting") --> CheckLogs["Check system logs for error messages"]
+Start([Troubleshooting]) --> CheckLogs["Check system logs for error messages"]
 CheckLogs --> IdentifyIssue["Identify the specific issue"]
 subgraph ImportFailures
 IdentifyIssue --> ImportError{"Import error?"}
@@ -508,7 +502,6 @@ ProvideAll --> TestFix
 TestFix --> VerifySuccess{"Issue resolved?"}
 VerifySuccess --> |Yes| Complete["Troubleshooting complete"]
 VerifySuccess --> |No| Repeat["Repeat troubleshooting process"]
-
 ```
 
 **Section sources**

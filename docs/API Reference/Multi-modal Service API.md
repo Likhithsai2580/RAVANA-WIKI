@@ -29,29 +29,28 @@ The Multi-modal Service API follows a layered architecture that separates concer
 graph TB
 subgraph "Multi-modal Service"
 MultiModalService[MultiModalService]
-ProcessImage[process_image()]
-ProcessAudio[process_audio()]
-CrossModal[cross_modal_analysis()]
-GenerateSummary[generate_content_summary()]
-ProcessDirectory[process_directory()]
+ProcessImage["process_image()"]
+ProcessAudio["process_audio()"]
+CrossModal["cross_modal_analysis()"]
+GenerateSummary["generate_content_summary()"]
+ProcessDirectory["process_directory()"]
 end
 subgraph "Action System"
-ActionManager[EnhancedActionManager]
-ActionRegistry[ActionRegistry]
+ActionManager["EnhancedActionManager"]
+ActionRegistry["ActionRegistry"]
 end
 subgraph "LLM Integration"
-LLM[LLM Module]
-Gemini[Gemini API]
+LLM["LLM Module"]
+Gemini["Gemini API"]
 end
 subgraph "Knowledge System"
-KnowledgeService[KnowledgeService]
+KnowledgeService["KnowledgeService"]
 end
 MultiModalService --> LLM
 ActionManager --> MultiModalService
 ActionManager --> KnowledgeService
 LLM --> Gemini
 ActionRegistry --> ActionManager
-
 ```
 
 **Diagram sources**
@@ -79,7 +78,6 @@ class MultiModalService {
 +process_directory(directory_path : str, recursive : bool) : List[Dict]
 +cleanup_temp_files(max_age_hours : int) : None
 }
-
 ```
 
 **Diagram sources**
@@ -202,7 +200,7 @@ async def cross_modal_analysis(self, content_list: List[Dict[str, Any]], analysi
             Content types: {', '.join(set(content_types))}
             
             Content descriptions:
-            {chr(10).join("f"{i+1}. {desc}" for i, desc in enumerate(descriptions)")}
+            {chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
             
             Please provide:
             1. Common themes and patterns across all content
@@ -256,7 +254,6 @@ Gemini-->>LLM : Return image description
 LLM-->>Service : Return description
 Service->>Service : Extract metadata
 Service-->>Client : Return result dictionary
-
 ```
 
 **Diagram sources**
@@ -400,7 +397,7 @@ The EnhancedActionManager provides parallel execution capabilities with a concur
 
 ```mermaid
 flowchart TD
-Start("Execute Parallel Actions") --> CheckEmpty{"Decisions List Empty?"}
+Start([Execute Parallel Actions]) --> CheckEmpty{"Decisions List Empty?"}
 CheckEmpty --> |Yes| ReturnEmpty[Return Empty List]
 CheckEmpty --> |No| CreateSemaphore[Create Semaphore with Limit]
 CreateSemaphore --> CreateTasks[Create Execution Tasks]
@@ -408,9 +405,8 @@ CreateTasks --> ExecuteTasks[Execute Tasks with Semaphore]
 ExecuteTasks --> GatherResults[Gather Results with asyncio.gather]
 GatherResults --> LogCompletion[Log Completion]
 LogCompletion --> ReturnResults[Return Results]
-ReturnEmpty --> End("End")
+ReturnEmpty --> End([End])
 ReturnResults --> End
-
 ```
 
 The system uses a semaphore with a default parallel limit of 3 to prevent overwhelming external APIs or system resources.

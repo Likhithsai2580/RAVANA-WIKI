@@ -22,37 +22,37 @@ The multi-modal functionality is distributed across several key modules in the R
 ```mermaid
 graph TB
     subgraph "Core Actions"
-        A[("ProcessImageAction")]
-        B[("ProcessAudioAction")]
-        C[("AnalyzeDirectoryAction")]
-        D[("CrossModalAnalysisAction")]
+        A[ProcessImageAction]
+        B[ProcessAudioAction]
+        C[AnalyzeDirectoryAction]
+        D[CrossModalAnalysisAction]
     end
     
     subgraph "Services"
-        E[("MultiModalService")]
-        F[("process_image")]
-        G[("process_audio")]
-        H[("cross_modal_analysis")]
-        I[("process_directory")]
+        E[MultiModalService]
+        F[process_image]
+        G[process_audio]
+        H[cross_modal_analysis]
+        I[process_directory]
     end
     
     subgraph "Action Management"
-        J[("EnhancedActionManager")]
-        K[("process_image_action")]
-        L[("process_audio_action")]
-        M[("cross_modal_analysis_action")]
+        J[EnhancedActionManager]
+        K[process_image_action]
+        L[process_audio_action]
+        M[cross_modal_analysis_action]
     end
     
     subgraph "LLM Integration"
-        N[("call_gemini_image_caption")]
-        O[("call_gemini_audio_description")]
-        P[("safe_call_llm")]
+        N[call_gemini_image_caption]
+        O[call_gemini_audio_description]
+        P[safe_call_llm]
     end
     
     subgraph "Memory System"
-        Q[("MultiModalMemoryService")]
-        R[("process_image_memory")]
-        S[("search_memories")]
+        Q[MultiModalMemoryService]
+        R[process_image_memory]
+        S[search_memories]
     end
     
     A --> J
@@ -65,16 +65,7 @@ graph TB
     N --> P
     O --> P
     E --> Q
-    J --> K
-    J --> L
-    J --> M
-    E --> F
-    E --> G
-    E --> H
-    E --> I
-    Q --> R
-    Q --> S
-
+    J
 ```
 
 **Referenced Files in This Document**   

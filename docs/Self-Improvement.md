@@ -46,7 +46,6 @@ subgraph "Blog Integration"
 H[autonomous_blog_scheduler.py] --> A
 I[autonomous_learning_blog_generator.py] --> H
 end
-
 ```
 
 **Diagram sources**
@@ -100,7 +99,6 @@ S --> U[Log Successful Modification]
 T --> V[Log Failed Attempt]
 U --> W[New Codebase]
 V --> W
-
 ```
 
 **Diagram sources**
@@ -208,7 +206,7 @@ The `run_self_modification` function orchestrates a multi-step process:
 
 ```mermaid
 flowchart TD
-Start("Start Self-Modification") --> FindActionable["Find Actionable Reflections"]
+Start([Start Self-Modification]) --> FindActionable["Find Actionable Reflections"]
 FindActionable --> CheckFound{"Found Any?"}
 CheckFound --> |No| EndNo["No Bugs Found"]
 CheckFound --> |Yes| ProcessEntry["Process Next Reflection"]
@@ -233,9 +231,8 @@ SkipEntry --> NextEntry
 NextEntry --> CheckMore{"More Reflections?"}
 CheckMore --> |Yes| ProcessEntry
 CheckMore --> |No| EndYes["Process Complete"]
-EndNo --> End("End")
+EndNo --> End([End])
 EndYes --> End
-
 ```
 
 **Diagram sources**
@@ -342,7 +339,7 @@ class AutonomousLearningBlogGenerator:
 ## Dependency Analysis
 The self-improvement system has a well-defined set of dependencies. Its primary external dependency is the `core/llm.py` module, which provides the interface to various LLM providers and critical utility functions like `is_lazy_llm_response`. It also depends on the `episodic_memory` module for context, although this is currently imported via a path manipulation in `main.py`. The module uses standard Python libraries for file I/O, JSON handling, and subprocess management. The optional use of LangChain is noted in the README, indicating a soft dependency for enhanced reflection workflows. A new dependency is the autonomous blog scheduler, which enables automatic publishing of insights.
 
-```
+```mermaid
 graph LR
 A[agent_self_reflection] --> B[core/llm.py]
 A --> C[episodic_memory]

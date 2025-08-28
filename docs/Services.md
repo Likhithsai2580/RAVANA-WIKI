@@ -45,7 +45,7 @@ The Ravana AGI system implements six primary services that handle different aspe
 
 These services are designed to be loosely coupled, allowing for independent development and replacement. They provide a clean API that abstracts away the complexity of underlying resources, enabling the core system and modules to interact with external systems through a consistent interface.
 
-``mermaid
+```mermaid
 graph TB
 subgraph "Core System"
 AGISystem[AGISystem]
@@ -83,7 +83,6 @@ MultiModalService --> LLM
 MultiModalService --> Files
 BlogScheduler --> BlogAPI
 BlogGenerator --> LLM
-
 ```
 
 **Diagram sources**
@@ -139,7 +138,7 @@ class DataService:
 
 The DataService interacts with the following database models defined in `database/models.py`:
 
-``mermaid
+```mermaid
 erDiagram
 ARTICLE ||--o{ EVENT : "triggers"
 ARTICLE {
@@ -189,7 +188,6 @@ string timestamp
 string hypothesis
 string results
 }
-
 ```
 
 **Diagram sources**
@@ -237,7 +235,7 @@ class KnowledgeService:
 
 The KnowledgeService primarily interacts with the Summary model:
 
-``mermaid
+```mermaid
 erDiagram
 SUMMARY {
 int id PK
@@ -247,7 +245,6 @@ string source
 string category
 string content_hash UK
 }
-
 ```
 
 The service also manages a FAISS vector index for semantic search, stored in external files:
@@ -298,7 +295,7 @@ class MemoryService:
 
 The MemoryService interacts with a ChromaDB collection for memory storage, with the following schema:
 
-``mermaid
+```mermaid
 erDiagram
 MEMORY {
 string id PK
@@ -308,7 +305,6 @@ string last_accessed
 int access_count
 string type
 }
-
 ```
 
 Each memory record includes metadata such as creation time, access statistics, and type classification.
@@ -572,7 +568,7 @@ The coordination with LLMs follows an asynchronous pattern to prevent blocking t
 
 Services are integrated with core modules through dependency injection:
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant System as AGISystem
 participant ActionManager as ActionManager
@@ -581,17 +577,16 @@ participant KnowledgeService as KnowledgeService
 participant MultiModalService as MultiModalService
 participant BlogScheduler as AutonomousBlogScheduler
 participant BlogGenerator as AutonomousLearningBlogGenerator
-System-->>ActionManager : Initialize with services
-ActionManager-->>DataService : Execute actions, log results
-ActionManager-->>KnowledgeService : Add knowledge from action results
-ActionManager-->>MultiModalService : Process multi-modal content
-MultiModalService-->>KnowledgeService : Add analysis to knowledge base
-System-->>MemoryService : Retrieve memories for decision making
-System-->>MemoryService : Save new memories after actions
-System-->>BlogScheduler : Register learning events
-BlogScheduler-->>BlogGenerator : Generate specialized blog content
-BlogScheduler-->>ActionManager : Trigger blog publishing
-
+System->>ActionManager : Initialize with services
+ActionManager->>DataService : Execute actions, log results
+ActionManager->>KnowledgeService : Add knowledge from action results
+ActionManager->>MultiModalService : Process multi-modal content
+MultiModalService->>KnowledgeService : Add analysis to knowledge base
+System->>MemoryService : Retrieve memories for decision making
+System->>MemoryService : Save new memories after actions
+System->>BlogScheduler : Register learning events
+BlogScheduler->>BlogGenerator : Generate specialized blog content
+BlogScheduler->>ActionManager : Trigger blog publishing
 ```
 
 **Diagram sources**

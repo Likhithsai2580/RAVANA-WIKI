@@ -112,7 +112,6 @@ class EmotionalEvent {
 }
 EmotionalIntelligence --> MoodProcessor : "has"
 EmotionalIntelligence --> EmotionalEvent : "contains"
-
 ```
 
 **Diagram sources**
@@ -330,7 +329,7 @@ This prevents oscillation by providing a stable reference for behavioral influen
 
 ``mermaid
 flowchart TD
-Start("Process Action Result") --> Decay["Apply Decay (0.05)"]
+Start([Process Action Result]) --> Decay["Apply Decay (0.05)"]
 Decay --> CheckTriggers["Check Action Result Triggers"]
 CheckTriggers --> TriggerExists{"Trigger Active?"}
 TriggerExists --> |Yes| GetUpdate["Retrieve Update Rule"]
@@ -342,9 +341,8 @@ ExtractJSON --> ApplyLLM["Apply LLM-Generated Deltas"]
 ApplyDirect --> UpdateComplete
 ApplyLLM --> UpdateComplete
 UpdateComplete --> LogState["Log Final Mood Vector"]
-LogState --> End("Update Complete")
+LogState --> End([Update Complete])
 TriggerExists --> |No| UpdateComplete
-
 ```
 
 **Diagram sources**
@@ -479,7 +477,6 @@ note left of Frustrated
 Optimistic : ×0.5 gain<br/>
 Pessimistic : ×1.5 gain
 end note
-
 ```
 
 **Diagram sources**
@@ -601,7 +598,6 @@ LLM-->>MP : mood deltas
 MP->>EI : update_mood() for each delta
 EI->>A : influence_behavior()
 A->>M : store memory with mood_vector
-
 ```
 
 **Diagram sources**

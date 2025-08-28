@@ -53,7 +53,6 @@ style LogManager fill:#96CEB4,stroke:#333
 style ThreadingManager fill:#FFEAA7,stroke:#333
 style ProcessManager fill:#DDA0DD,stroke:#333
 style FileMonitor fill:#F7DC6F,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -121,7 +120,6 @@ style G fill:#039BE5,stroke:#333
 style H fill:#0288D1,stroke:#333
 style I fill:#0277BD,stroke:#333
 style J fill:#01579B,stroke:#333,color:white
-
 ```
 
 **Diagram sources**
@@ -217,7 +215,6 @@ EnhancedSnakeAgent --> SnakeLogManager
 EnhancedSnakeAgent --> SnakeThreadingManager
 EnhancedSnakeAgent --> SnakeProcessManager
 EnhancedSnakeAgent --> ContinuousFileMonitor
-
 ```
 
 **Diagram sources**
@@ -262,7 +259,6 @@ ESA->>ESA : _load_state()
 ESA->>ESA : Set initialized = true
 ESA->>ESA : Log initialization complete
 ESA-->>ESA : Return True
-
 ```
 
 **Diagram sources**
@@ -281,41 +277,41 @@ Once initialized, the Enhanced Snake Agent enters a continuous coordination loop
 #### Flowchart
 ```mermaid
 flowchart TD
-Start("Start Autonomous Operation") --> InitCheck{"Initialized?"}
-InitCheck --> |No| Initialize[initialize()]
-InitCheck --> |Yes| SetRunning[Set running = true]
-SetRunning --> StartComponents[Start all components]
-StartComponents --> CoordinationLoop[Enter coordination_loop()]
-CoordinationLoop --> CheckHealth{"5-min interval?"}
-CheckHealth --> |Yes| PerformHealth[perform_health_check()]
-CheckHealth --> |No| CheckMetrics{"10-min interval?"}
-CheckMetrics --> |Yes| LogMetrics[log_performance_metrics()]
-CheckMetrics --> |No| SaveState[save_state()]
-PerformHealth --> Wait
-LogMetrics --> Wait
-SaveState --> Wait
-Wait[Wait 10 seconds] --> CoordinationLoop
-CoordinationLoop --> |Shutdown requested| Cleanup[Run _cleanup()]
-Cleanup --> StopComponents[Stop all components]
-StopComponents --> SaveFinalState[_save_state()]
-SaveFinalState --> StopLogger[Stop log_manager]
-StopLogger --> End("Operation stopped")
-style Start fill:#4ECDC4,stroke:#333
-style End fill:#4ECDC4,stroke:#333
-style InitCheck fill:#FFD700,stroke:#333
-style Initialize fill:#FF6B6B,stroke:#333
-style SetRunning fill:#4ECDC4,stroke:#333
-style StartComponents fill:#4ECDC4,stroke:#333
-style CoordinationLoop fill:#45B7D1,stroke:#333
-style PerformHealth fill:#96CEB4,stroke:#333
-style LogMetrics fill:#96CEB4,stroke:#333
-style SaveState fill:#96CEB4,stroke:#333
-style Wait fill:#DDA0DD,stroke:#333
-style Cleanup fill:#4ECDC4,stroke:#333
-style StopComponents fill:#4ECDC4,stroke:#333
-style SaveFinalState fill:#4ECDC4,stroke:#333
-style StopLogger fill:#4ECDC4,stroke:#333
+    Start([Start Autonomous Operation]) --> InitCheck{"Initialized?"}
+    InitCheck --> |No| Initialize[Initialize]
+    InitCheck --> |Yes| SetRunning[Set running = true]
+    SetRunning --> StartComponents[Start all components]
+    StartComponents --> CoordinationLoop[Enter coordination loop]
+    CoordinationLoop --> CheckHealth{"5-min interval?"}
+    CheckHealth --> |Yes| PerformHealth[Perform health check]
+    CheckHealth --> |No| CheckMetrics{"10-min interval?"}
+    CheckMetrics --> |Yes| LogMetrics[Log performance metrics]
+    CheckMetrics --> |No| SaveState[Save state]
+    PerformHealth --> Wait
+    LogMetrics --> Wait
+    SaveState --> Wait
+    Wait[Wait 10 seconds] --> CoordinationLoop
+    CoordinationLoop --> |Shutdown requested| Cleanup[Run cleanup]
+    Cleanup --> StopComponents[Stop all components]
+    StopComponents --> SaveFinalState[Save final state]
+    SaveFinalState --> StopLogger[Stop log manager]
+    StopLogger --> End([Operation stopped])
 
+    style Start fill:#4ECDC4,stroke:#333
+    style End fill:#4ECDC4,stroke:#333
+    style InitCheck fill:#FFD700,stroke:#333
+    style Initialize fill:#FF6B6B,stroke:#333
+    style SetRunning fill:#4ECDC4,stroke:#333
+    style StartComponents fill:#4ECDC4,stroke:#333
+    style CoordinationLoop fill:#45B7D1,stroke:#333
+    style PerformHealth fill:#96CEB4,stroke:#333
+    style LogMetrics fill:#96CEB4,stroke:#333
+    style SaveState fill:#96CEB4,stroke:#333
+    style Wait fill:#DDA0DD,stroke:#333
+    style Cleanup fill:#4ECDC4,stroke:#333
+    style StopComponents fill:#4ECDC4,stroke:#333
+    style SaveFinalState fill:#4ECDC4,stroke:#333
+    style StopLogger fill:#4ECDC4,stroke:#333
 ```
 
 **Diagram sources**
@@ -352,7 +348,6 @@ style TM fill:#0288D1,stroke:#333,color:white
 style PM fill:#039BE5,stroke:#333,color:white
 style FM fill:#03A9F4,stroke:#333,color:white
 style Config fill:#29B6F6,stroke:#333,color:white
-
 ```
 
 **Diagram sources**

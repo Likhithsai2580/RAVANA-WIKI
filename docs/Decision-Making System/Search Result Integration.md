@@ -28,7 +28,6 @@ D --> |RAG Context| E[DecisionMakerLoop]
 E --> |Informed Decision| F[Action Execution]
 C --> |Save to| G[MemoryService]
 C --> |Add to| H[KnowledgeService]
-
 ```
 
 **Diagram sources**
@@ -84,7 +83,6 @@ class queue.Queue {
 +get_nowait() item
 }
 SearchResultManager --> queue.Queue : "uses"
-
 ```
 
 **Diagram sources**
@@ -164,7 +162,6 @@ else Queue empty
 SRM-->>DS : None
 end
 end
-
 ```
 
 **Diagram sources**
@@ -232,7 +229,6 @@ K --> M[Available for Future Retrieval]
 L --> M
 I --> N[Provide as RAG Context]
 N --> O[Decision Maker Uses in Prompt]
-
 ```
 
 **Diagram sources**
@@ -324,7 +320,6 @@ SearchResultManager --> SharedState : "adds to search_results"
 SharedState --> MemoryService : "provides context"
 SharedState --> KnowledgeService : "provides content"
 SearchResultManager ..> queue.Queue : "uses"
-
 ```
 
 **Diagram sources**

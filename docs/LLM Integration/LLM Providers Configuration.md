@@ -20,7 +20,7 @@ The system implements a multi-layered configuration loading mechanism that prior
 
 ```mermaid
 flowchart TD
-Start("Configuration Loading") --> EnvCheck["Check Environment Variables"]
+Start([Configuration Loading]) --> EnvCheck["Check Environment Variables"]
 EnvCheck --> ConfigFile["Load config.json"]
 ConfigFile --> Merge["Merge Configurations"]
 Merge --> Default["Apply Default Values"]
@@ -28,7 +28,6 @@ Default --> Validation["Validate Configuration"]
 Validation --> Ready["Configuration Ready"]
 style Start fill:#4CAF50,stroke:#388E3C
 style Ready fill:#4CAF50,stroke:#388E3C
-
 ```
 
 **Diagram sources**
@@ -108,7 +107,6 @@ class GeminiKeyStatus {
 +last_success : Optional[datetime]
 }
 GeminiKeyManager --> GeminiKeyStatus : "manages"
-
 ```
 
 **Diagram sources**
@@ -164,7 +162,7 @@ The LLM providers are initialized through a systematic process that handles API 
 ### Initialization Flow
 ```mermaid
 flowchart TD
-InitStart("Provider Initialization") --> KeyCheck["Retrieve API Key"]
+InitStart([Provider Initialization]) --> KeyCheck["Retrieve API Key"]
 KeyCheck --> EnvVar["Check Environment Variables"]
 EnvVar --> ConfigFile["Check config.json"]
 ConfigFile --> Default["Use Default/Fallback Key"]
@@ -174,7 +172,6 @@ ModelSelect --> ClientSetup["Initialize API Client"]
 ClientSetup --> Ready["Provider Ready"]
 style InitStart fill:#4CAF50,stroke:#388E3C
 style Ready fill:#4CAF50,stroke:#388E3C
-
 ```
 
 **Diagram sources**
@@ -259,7 +256,6 @@ end
 end
 end
 end
-
 ```
 
 **Diagram sources**

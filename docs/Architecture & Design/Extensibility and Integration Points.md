@@ -48,7 +48,6 @@ class Action {
 ActionRegistry --> Action : "registers"
 Action <|-- HelloWorldAction : "implements"
 Action <|-- WritePythonCodeAction : "implements"
-
 ```
 
 **Diagram sources**
@@ -105,7 +104,6 @@ J --> |No| H
 K --> L{Success?}
 L --> |Yes| H
 L --> |No| M[Return Error]
-
 ```
 
 **Diagram sources**
@@ -130,7 +128,6 @@ TE->>TE : fetch_feeds(feed_urls)
 TE-->>DS : new_articles
 DS->>DB : Save articles to database
 DS-->>DB : Commit transaction
-
 ```
 
 **Diagram sources**
@@ -146,7 +143,6 @@ B --> C[Cluster Documents]
 C --> D[Filter by Sentiment]
 D --> E[Generate Event Alerts]
 E --> F[Save Events to Database]
-
 ```
 
 **Diagram sources**

@@ -64,7 +64,6 @@ A --> J
 A --> Q
 G --> Q
 J --> Q
-
 ```
 
 **Diagram sources**
@@ -113,7 +112,6 @@ H --> I[Database]
 D --> I
 F --> I
 G --> I
-
 ```
 
 **Diagram sources**
@@ -133,7 +131,7 @@ The generator uses a probabilistic selection process to choose the type of situa
 
 ```mermaid
 flowchart TD
-Start("Generate Situation") --> CheckSearchResults{"Search results available?"}
+Start([Generate Situation]) --> CheckSearchResults{"Search results available?"}
 CheckSearchResults --> |Yes| GenerateSearchResult[Generate search result analysis]
 CheckSearchResults --> |No| CheckHypothesis{"New hypothesis?"}
 CheckHypothesis --> |Yes| GenerateHypothesis[Generate hypothesis test]
@@ -160,7 +158,6 @@ GenerateHypothetical --> Return
 GenerateEthical --> Return
 GenerateCreative --> Return
 GenerateReflection --> Return
-
 ```
 
 **Diagram sources**
@@ -176,7 +173,7 @@ The decision engine can take several types of actions, including executing tasks
 
 ```mermaid
 flowchart TD
-Start("Process Situation") --> CheckExperiment{"Analyzing experiment outcome?"}
+Start([Process Situation]) --> CheckExperiment{"Analyzing experiment outcome?"}
 CheckExperiment --> |Yes| AnalyzeOutcome[Analyze experiment outcome]
 CheckExperiment --> |No| ConsiderExperiment{"Consider starting experiment?"}
 ConsiderExperiment --> |Yes| GenerateHypothesis[Generate new hypothesis]
@@ -198,8 +195,7 @@ ProposeInvention --> |Yes| ReturnDecision
 ProposeInvention --> |No| Wait[Return wait action]
 CompleteTask --> ReturnDecision
 CreateNewGoal --> ReturnDecision
-ReturnDecision --> End("Return decision")
-
+ReturnDecision --> End([Return decision])
 ```
 
 **Diagram sources**
@@ -248,7 +244,6 @@ class ActionRegistry {
 }
 ActionManager <|-- EnhancedActionManager
 ActionManager --> ActionRegistry
-
 ```
 
 **Diagram sources**
@@ -274,26 +269,25 @@ This cycle is continuous, with each iteration building on the previous one to cr
 
 ```mermaid
 sequenceDiagram
-participant SG as ("SituationGenerator")
-participant DE as ("DecisionEngine")
-participant AM as ("ActionManager")
-participant EI as ("EmotionalIntelligence")
-participant EM as ("EpisodicMemory")
-participant KC as ("KnowledgeCompression")
-participant SR as ("AgentSelfReflection")
-SG-->>DE : Generated situation
-DE-->>AM : Decision
-AM-->>AM : Execute action
-AM-->>EI : Update mood
-AM-->>EM : Store action log
-EI-->>EM : Store mood state
-EM-->>KC : Trigger compression
-KC-->>EM : Store compressed memory
-EM-->>SR : Provide memory for reflection
-SR-->>SG : Modify behavior
-SR-->>DE : Update hypotheses
-SR-->>AM : Update action registry
-
+participant SG as SituationGenerator
+participant DE as DecisionEngine
+participant AM as ActionManager
+participant EI as EmotionalIntelligence
+participant EM as EpisodicMemory
+participant KC as KnowledgeCompression
+participant SR as AgentSelfReflection
+SG->>DE : Generated situation
+DE->>AM : Decision
+AM->>AM : Execute action
+AM->>EI : Update mood
+AM->>EM : Store action log
+EI->>EM : Store mood state
+EM->>KC : Trigger compression
+KC->>EM : Store compressed memory
+EM->>SR : Provide memory for reflection
+SR->>SG : Modify behavior
+SR->>DE : Update hypotheses
+SR->>AM : Update action registry
 ```
 
 **Diagram sources**
@@ -337,7 +331,6 @@ D --> F[Fast Similarity Search]
 E --> G[Persistent Storage]
 F --> H[Retrieve Similar Memories]
 G --> I[Retrieve Complete Memory]
-
 ```
 
 **Diagram sources**
@@ -374,7 +367,6 @@ G --> H[New Actions]
 H --> A
 E --> |Hypothesis invalid| C
 F --> |No improvement| D
-
 ```
 
 **Diagram sources**
@@ -415,7 +407,6 @@ J --> K[Generate hypothesis for improvement]
 K --> L[Test hypothesis]
 L --> M[Implement fix]
 M --> N[Prevent future errors]
-
 ```
 
 **Diagram sources**
@@ -460,7 +451,6 @@ F --> I[Non-blocking execution]
 G --> I
 H --> I
 I --> J[Improve system responsiveness]
-
 ```
 
 **Diagram sources**

@@ -132,7 +132,6 @@ AGISystem --> AdaptiveLearningEngine : "uses"
 AGISystem --> MultiModalService : "uses"
 AGISystem --> Personality : "uses"
 AGISystem --> SharedState : "contains"
-
 ```
 
 **Diagram sources**
@@ -188,20 +187,19 @@ participant Main as main.py
 participant System as AGISystem
 participant DB as Database
 participant Service as Service Modules
-Main-->>Main : Parse command line arguments
-Main-->>DB : create_db_and_tables()
-Main-->>System : AGISystem(engine)
-System-->>Service : Initialize all services and modules
-Main-->>System : Call appropriate method based on arguments
+Main->>Main : Parse command line arguments
+Main->>DB : create_db_and_tables()
+Main->>System : AGISystem(engine)
+System->>Service : Initialize all services and modules
+Main->>System : Call appropriate method based on arguments
 alt Autonomous Mode
-System-->>System : run_autonomous_loop()
+System->>System : run_autonomous_loop()
 else Single Task
-System-->>System : run_single_task(prompt)
+System->>System : run_single_task(prompt)
 else Physics Experiment
-System-->>System : run_physics_experiment()
+System->>System : run_physics_experiment()
 end
-Main-->>System : await agi_system.stop() on exit
-
+Main->>System : await agi_system.stop() on exit
 ```
 
 **Diagram sources**
@@ -270,7 +268,6 @@ M --> Q[Curiosity Topics]
 M --> R[Search Results]
 M --> S[Current Task]
 style A fill:#f9f,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -356,7 +353,6 @@ M --> |No| N[Sleep & Repeat]
 M --> |Yes| O[Stop Background Tasks]
 O --> P[Close Session]
 P --> Q[Exit Loop]
-
 ```
 
 **Diagram sources**

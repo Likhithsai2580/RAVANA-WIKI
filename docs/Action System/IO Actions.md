@@ -65,7 +65,6 @@ Action <|-- LogMessageAction
 Action <|-- WritePythonCodeAction
 Action <|-- ExecutePythonFileAction
 Action <|-- AnalyzeDirectoryAction
-
 ```
 
 **Diagram sources**
@@ -126,17 +125,16 @@ These tools use UTF-8 encoding and preserve line endings. They are critical for 
 
 ```mermaid
 flowchart TD
-Start("read_file") --> CheckExistence{"File exists?"}
+Start([read_file]) --> CheckExistence{"File exists?"}
 CheckExistence --> |No| ReturnError["Return 'File not found'"]
 CheckExistence --> |Yes| ReadContent["Read all lines"]
 ReadContent --> Output["Return file content"]
-EditStart("edit_file") --> ReadLines["Read all lines"]
+EditStart([edit_file]) --> ReadLines["Read all lines"]
 ReadLines --> ValidateRange{"Valid line range?"}
 ValidateRange --> |No| RangeError["Return invalid range error"]
 ValidateRange --> |Yes| ReplaceLines["Replace lines start-end"]
 ReplaceLines --> WriteFile["Write updated content"]
 WriteFile --> Success["Return success message"]
-
 ```
 
 **Diagram sources**
@@ -164,9 +162,9 @@ This action enables batch processing of media files within a directory. It suppo
 
 ```mermaid
 sequenceDiagram
-participant A as ("AnalyzeDirectoryAction")
-participant M as ("MultiModalService")
-participant K as ("KnowledgeService")
+participant A as AnalyzeDirectoryAction
+participant M as MultiModalService
+participant K as KnowledgeService
 A->>M : process_directory(path, recursive)
 M->>M : rglob() or iterdir()
 M->>M : Filter by format
@@ -177,7 +175,6 @@ M-->>A : List of results
 A->>M : generate_content_summary(results)
 A->>K : add_knowledge(summary)
 A-->>Client : Success with summary
-
 ```
 
 **Diagram sources**
@@ -220,7 +217,6 @@ F --> E[ExecutePythonFileAction]
 E --> S[Subprocess Execution]
 S --> C[Capture Output/Error]
 C --> R[Return Result]
-
 ```
 
 **Diagram sources**
@@ -263,7 +259,6 @@ class ExperimentLog {
 }
 DataService --> ActionLog : "Persists"
 DataService --> ExperimentLog : "Persists"
-
 ```
 
 **Diagram sources**

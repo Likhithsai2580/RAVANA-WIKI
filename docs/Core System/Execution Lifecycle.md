@@ -33,7 +33,7 @@ This document provides a comprehensive analysis of the execution lifecycle of th
 ## Project Structure
 The RAVANA project follows a modular architecture with clear separation of concerns. The core system logic resides in the `core/` directory, while specialized cognitive functions are implemented as independent modules in the `modules/` directory. Services for data, memory, knowledge, and multi-modal processing are located in the `services/` directory. The system supports multiple entry points: `main.py` for general operation, `physics_cli.py` for physics experimentation, and various module-specific `main.py` files for isolated execution. The enhanced Snake Agent is implemented in `core/snake_agent_enhanced.py` and integrated into the main system through configuration. The Conversational AI module is located in `modules/conversational_ai/` and provides independent conversational capabilities through Discord and Telegram.
 
-``mermaid
+```mermaid
 graph TD
 A[Entry Points] --> B[main.py]
 A --> C[physics_cli.py]
@@ -66,7 +66,6 @@ S --> AC[Discord Bot]
 S --> AD[Telegram Bot]
 S --> AE[Emotional Intelligence]
 S --> AF[RAVANA Bridge]
-
 ```
 
 **Diagram sources**
@@ -90,7 +89,7 @@ The execution lifecycle is governed by several core components that work togethe
 ## Architecture Overview
 The RAVANA AGI system follows a modular, event-driven architecture centered around the `AGISystem` class. The system initializes by loading configuration, setting up services and modules, and establishing database connections. Once initialized, it enters an autonomous loop that continuously cycles through cognitive processes. The loop can operate in continuous mode or be directed toward specific tasks. A sophisticated shutdown coordination system manages termination, ensuring proper cleanup of resources and persistence of state. The enhanced Snake Agent operates as a parallel autonomous system that monitors the codebase, performs analysis, and proposes improvements through concurrent threading and multiprocessing. The Conversational AI module runs in a background thread, providing independent conversational capabilities through Discord and Telegram while sharing the same memory infrastructure and communicating with the main AGI system.
 
-``mermaid
+```mermaid
 graph TD
 A[Startup] --> B[Initialize Configuration]
 B --> C[Setup Logging]
@@ -133,7 +132,6 @@ E --> X
 E --> AE
 Q --> S
 Q --> T
-
 ```
 
 **Diagram sources**
@@ -148,7 +146,7 @@ Q --> T
 ### System Initialization and Startup
 The system startup process begins with the execution of `main.py`, which sets up logging, parses command-line arguments, and initializes the database. The `AGISystem` is then instantiated with the database engine, triggering the initialization of all core services, modules, and the shared state. Signal handlers are registered to enable graceful shutdown on interruption. The enhanced Snake Agent is conditionally initialized based on configuration settings and integrated into the system's background tasks. The Conversational AI module is also conditionally initialized and started in a background thread with a configurable delay, allowing the main system to initialize first.
 
-```
+```mermaid
 sequenceDiagram
 participant Main as main.py
 participant System as AGISystem
@@ -157,24 +155,24 @@ participant Config as Config
 participant Logger as Logging
 participant Snake as EnhancedSnakeAgent
 participant ConversationalAI as ConversationalAI
-Main-->>Logger : setup_logging()
-Main-->>Config : Parse arguments
-Main-->>DB : create_db_and_tables()
-Main-->>System : AGISystem(engine)
-System-->>System : Initialize services
-System-->>System : Initialize modules
-System-->>System : Initialize shared state
-System-->>System : Register cleanup handlers
-System-->>Snake : Initialize if SNAKE_AGENT_ENABLED
-Snake-->>Snake : Initialize threading and process managers
-Snake-->>Snake : Setup file monitoring
-System-->>System : Register Snake cleanup handler
-System-->>ConversationalAI : Initialize if CONVERSATIONAL_AI_ENABLED
-ConversationalAI-->>ConversationalAI : Configure bots from config.json
-ConversationalAI-->>ConversationalAI : Start in background thread
-System-->>System : Register ConversationalAI cleanup handler
-Main-->>Main : setup_signal_handlers()
-Main-->>Main : Start event loop
+Main->>Logger : setup_logging()
+Main->>Config : Parse arguments
+Main->>DB : create_db_and_tables()
+Main->>System : AGISystem(engine)
+System->>System : Initialize services
+System->>System : Initialize modules
+System->>System : Initialize shared state
+System->>System : Register cleanup handlers
+System->>Snake : Initialize if SNAKE_AGENT_ENABLED
+Snake->>Snake : Initialize threading and process managers
+Snake->>Snake : Setup file monitoring
+System->>System : Register Snake cleanup handler
+System->>ConversationalAI : Initialize if CONVERSATIONAL_AI_ENABLED
+ConversationalAI->>ConversationalAI : Configure bots from config.json
+ConversationalAI->>ConversationalAI : Start in background thread
+System->>System : Register ConversationalAI cleanup handler
+Main->>Main : setup_signal_handlers()
+Main->>Main : Start event loop
 ```
 
 **Diagram sources**
@@ -193,7 +191,7 @@ Main-->>Main : Start event loop
 The autonomous loop is the core processing cycle of the AGI system, implemented in the `run_autonomous_loop` method of the `AGISystem` class. The loop executes a series of cognitive phases in each iteration, creating a continuous cycle of perception, decision-making, action, and reflection. The loop continues until a shutdown signal is received. The enhanced Snake Agent operates as a parallel autonomous system that runs concurrently with the main loop, performing continuous code analysis and improvement. The Conversational AI module runs independently in a background thread, handling user interactions through Discord and Telegram while synchronizing emotional context and insights with the main AGI system.
 
 #### Autonomous Loop Phases
-``mermaid
+```mermaid
 flowchart TD
 A[Start Loop Iteration] --> B{Check for<br>Search Results}
 B --> C[Handle Behavior<br>Modifiers]
@@ -227,7 +225,6 @@ AB --> AC[Generate Response]
 AC --> AD[Update User Profile]
 AD --> AE[Synchronize with AGI]
 AE --> Z
-
 ```
 
 **Diagram sources**
@@ -245,7 +242,7 @@ AE --> Z
 ### Enhanced Snake Agent Integration
 The enhanced Snake Agent is a specialized component that operates concurrently with the main AGI system to continuously analyze, experiment, and improve the codebase. It uses a combination of threading and multiprocessing to perform parallel analysis and experimentation. The agent monitors file changes, analyzes code quality, runs experiments, and proposes improvements through a structured communication protocol with the main AGI system.
 
-``mermaid
+```mermaid
 flowchart TD
 A[Enhanced Snake Agent] --> B[Initialize Components]
 B --> C[Start File Monitor]
@@ -265,7 +262,6 @@ N --> |No| P[Log Results]
 O --> Q[Communicate with AGI]
 Q --> R[Apply Improvement]
 R --> A
-
 ```
 
 **Diagram sources**
@@ -279,7 +275,7 @@ R --> A
 ### Conversational AI Module Integration
 The Conversational AI module provides independent conversational capabilities through Discord and Telegram while sharing the same memory infrastructure as the main AGI system. The module runs in a background thread with a configurable startup delay, allowing the main system to initialize first. It uses a shared memory interface to maintain consistent personality and knowledge across platforms. The module can communicate with the main AGI system through a RAVANA communication bridge, enabling task delegation, proactive messaging, and status updates.
 
-``mermaid
+```mermaid
 flowchart TD
 A[Conversational AI Module] --> B[Initialize Components]
 B --> C[Load Configuration]
@@ -304,7 +300,6 @@ R[Shutdown Signal] --> S[Stop Bots]
 S --> T[Stop Bridge]
 T --> U[Cleanup Resources]
 U --> V[Module Stopped]
-
 ```
 
 **Diagram sources**
@@ -331,7 +326,6 @@ H --> I[Final Validation]
 I --> J[Shutdown Complete]
 style A fill:#f9f,stroke:#333
 style J fill:#9f9,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -370,7 +364,6 @@ S --> T[Save Analysis Metrics]
 T --> U[Restore on Startup]
 V[Conversational AI State] --> W[No Independent Persistence]
 W --> X[Rely on Shared Memory]
-
 ```
 
 **Diagram sources**
@@ -409,7 +402,6 @@ H --> R[RAVANACommunicator]
 H --> S[EmotionalIntelligence]
 I --> J
 B --> J
-
 ```
 
 **Diagram sources**

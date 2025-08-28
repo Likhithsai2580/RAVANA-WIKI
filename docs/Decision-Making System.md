@@ -48,7 +48,6 @@ System --> AdaptiveLearning
 System --> SituationGenerator
 System --> DataService
 DataService --> EventDetection
-
 ```
 
 **Diagram sources**
@@ -111,7 +110,6 @@ EI-->>SS : Update Mood
 DM->>AL : Record Outcome
 DM->>SS : Update State
 deactivate DM
-
 ```
 
 **Diagram sources**
@@ -145,7 +143,6 @@ class Goal {
 +context : str
 }
 GoalPlanner --> Goal : "manages"
-
 ```
 
 **Diagram sources**
@@ -166,7 +163,7 @@ The `decision_maker_loop` function in `llm.py` is responsible for evaluating opt
 
 ```mermaid
 flowchart TD
-Start("Start Decision Loop") --> PrepareContext["Prepare Context<br/>(Situation, Mood, Memory, RAG)"]
+Start([Start Decision Loop]) --> PrepareContext["Prepare Context<br/>(Situation, Mood, Memory, RAG)"]
 PrepareContext --> ConstructPrompt["Construct LLM Prompt"]
 ConstructPrompt --> CallLLM["Call LLM with safe_call_llm"]
 CallLLM --> ExtractDecision["Extract Decision with extract_decision"]
@@ -175,8 +172,7 @@ ParseJSON --> |Yes| UseData["Use analysis, plan, action, confidence"]
 ParseJSON --> |No| Fallback["Use fallback plan, log error"]
 UseData --> ReturnDecision["Return Decision"]
 Fallback --> ReturnDecision
-ReturnDecision --> End("End")
-
+ReturnDecision --> End([End])
 ```
 
 **Diagram sources**
@@ -201,7 +197,6 @@ ED->>ED : cluster_documents()
 ED->>ED : generate_event_alerts()
 ED-->>DS : return events
 DS->>DB : save events to database
-
 ```
 
 **Diagram sources**
@@ -223,7 +218,6 @@ C --> D[Action Execution]
 D --> E[Mood Update]
 E --> F[Learning & Memory]
 F --> A
-
 ```
 
 **Section sources**
@@ -260,7 +254,6 @@ class AdaptiveLearningEngine {
 }
 SharedState <.. EmotionalIntelligence : "updates"
 SharedState <.. AdaptiveLearningEngine : "uses"
-
 ```
 
 **Diagram sources**
@@ -292,7 +285,6 @@ SituationGenerator --> EmotionalIntelligence
 SituationGenerator --> CuriosityTrigger
 DataService --> EventDetector
 DataService --> Database
-
 ```
 
 **Diagram sources**

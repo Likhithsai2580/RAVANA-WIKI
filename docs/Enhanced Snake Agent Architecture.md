@@ -44,7 +44,7 @@ The core components are organized in the `core` directory, with specialized modu
 
 This structure enables the Enhanced Snake Agent to perform multiple tasks concurrently while maintaining clear separation between different types of operations and their associated resources.
 
-``mermaid
+```mermaid
 graph TD
 subgraph "Enhanced Snake Agent Core Components"
 A[EnhancedSnakeAgent] --> B[SnakeThreadingManager]
@@ -62,7 +62,6 @@ D --> M[MessageChannels]
 D --> N[ComponentRegistry]
 D --> O[MessageRouter]
 end
-
 ```
 
 **Diagram sources**
@@ -87,7 +86,7 @@ These components work together to create a robust system that can analyze code c
 
 The EnhancedSnakeAgent serves as the central coordinator, initializing all components, setting up callbacks between them, and managing the overall operation lifecycle. It uses a coordination loop to periodically check system health and log performance metrics.
 
-``mermaid
+```mermaid
 classDiagram
 class EnhancedSnakeAgent {
 +agi_system
@@ -262,7 +261,6 @@ EnhancedSnakeAgent --> SnakeProcessManager
 EnhancedSnakeAgent --> SnakeIPCManager
 EnhancedSnakeAgent --> SnakeLogManager
 EnhancedSnakeAgent --> SnakeFileMonitor
-
 ```
 
 **Diagram sources**
@@ -284,7 +282,7 @@ The architecture consists of three main layers:
 
 The system uses a producer-consumer pattern where the main agent produces tasks that are consumed by worker threads and processes. This design enables the agent to process multiple tasks concurrently while maintaining clear separation between different types of operations.
 
-``mermaid
+```mermaid
 graph TD
 subgraph "Enhanced Snake Agent Architecture"
 subgraph "Threading Layer"
@@ -324,7 +322,6 @@ EnhancedSnakeAgent --> |Log Events| K
 EnhancedSnakeAgent --> |Save State| M
 EnhancedSnakeAgent --> |Read Config| L
 end
-
 ```
 
 **Diagram sources**
@@ -351,9 +348,9 @@ The agent follows a clear initialization sequence:
 
 This sequential initialization ensures that all components are properly set up before the agent begins its autonomous operation.
 
-``mermaid
+```mermaid
 flowchart TD
-Start("EnhancedSnakeAgent Initialization") --> ValidateConfig["Validate Configuration"]
+Start([EnhancedSnakeAgent Initialization]) --> ValidateConfig["Validate Configuration"]
 ValidateConfig --> InitLogManager["Initialize Log Manager"]
 InitLogManager --> InitLLM["Initialize LLM Interfaces"]
 InitLLM --> InitThreading["Initialize Threading Manager"]
@@ -362,15 +359,14 @@ InitProcess --> InitFileMonitor["Initialize File Monitor"]
 InitFileMonitor --> SetupCallbacks["Set Up Component Callbacks"]
 SetupCallbacks --> LoadState["Load Previous State"]
 LoadState --> MarkInitialized["Mark as Initialized"]
-MarkInitialized --> End("Initialization Complete")
+MarkInitialized --> End([Initialization Complete])
 ValidateConfig --> |Configuration Issues| LogError["Log Error and Return False"]
-LogError --> EndError("Initialization Failed")
+LogError --> EndError([Initialization Failed])
 InitLogManager --> |Failure| LogError
 InitLLM --> |Failure| LogError
 InitThreading --> |Failure| LogError
 InitProcess --> |Failure| LogError
 InitFileMonitor --> |Failure| LogError
-
 ```
 
 **Diagram sources**
@@ -388,7 +384,7 @@ The threading manager creates four types of worker threads:
 
 Each worker thread runs a dedicated worker function that continuously checks its assigned queue for tasks, processes them, and updates thread state accordingly.
 
-``mermaid
+```mermaid
 classDiagram
 class ThreadState {
 +thread_id
@@ -458,7 +454,6 @@ class SnakeThreadingManager {
 }
 SnakeThreadingManager --> ThreadState
 SnakeThreadingManager --> WorkerMetrics
-
 ```
 
 **Diagram sources**
@@ -476,7 +471,7 @@ The process manager creates three types of worker processes:
 
 Each worker process runs independently and communicates with the main process through multiprocessing queues. The process manager uses a result collector loop to collect results from worker processes and dispatch them to appropriate callbacks.
 
-``mermaid
+```mermaid
 classDiagram
 class ProcessState {
 +process_id
@@ -528,7 +523,6 @@ class SnakeProcessManager {
 +shutdown() bool
 }
 SnakeProcessManager --> ProcessState
-
 ```
 
 **Diagram sources**
@@ -557,7 +551,7 @@ Each worker thread runs a dedicated worker function that follows a standard patt
 
 This design ensures that worker threads remain responsive and can be gracefully shut down when needed.
 
-``mermaid
+```mermaid
 sequenceDiagram
 participant TM as "SnakeThreadingManager"
 participant WT as "Worker Thread"
@@ -582,7 +576,6 @@ end
 TM->>WT : Set Shutdown Event
 WT->>WT : Stop Processing
 WT->>TM : Thread Stopped
-
 ```
 
 **Diagram sources**
@@ -602,7 +595,7 @@ The multiprocessing architecture consists of three types of worker processes:
 
 The process manager uses multiprocessing queues for inter-process communication, allowing tasks to be distributed to worker processes and results to be collected efficiently.
 
-``mermaid
+```mermaid
 flowchart TD
 subgraph "Main Process"
 A[SnakeProcessManager]
@@ -635,7 +628,6 @@ style E fill:#9f9,stroke:#333
 style F fill:#9f9,stroke:#333
 style G fill:#9f9,stroke:#333
 style H fill:#9f9,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -656,7 +648,7 @@ The IPC system uses several key patterns:
 
 The IPC manager uses both multiprocessing queues (for cross-process communication) and threading queues (for same-process communication) to ensure efficient message delivery.
 
-``mermaid
+```mermaid
 classDiagram
 class MessageType {
 TASK_REQUEST
@@ -756,7 +748,6 @@ SnakeIPCManager --> MessageRouter
 SnakeIPCManager --> MessageChannel
 MessageChannel --> IPCMessage
 MessageRouter --> ComponentRegistry
-
 ```
 
 **Diagram sources**
@@ -777,31 +768,301 @@ The primary interaction patterns include:
 
 The EnhancedSnakeAgent serves as the central coordinator, setting up callbacks between components during initialization and managing the overall flow of information.
 
-```
+```mermaid
 sequenceDiagram
 participant ESA as "EnhancedSnakeAgent"
 participant STM as "SnakeThreadingManager"
 participant SPM as "SnakeProcessManager"
 participant SFM as "SnakeFileMonitor"
 participant IPC as "SnakeIPCManager"
-ESA-->>ESA : initialize()
-ESA-->>STM : set_callbacks()
-ESA-->>SPM : set_callbacks()
-ESA-->>SFM : set_change_callback()
-SFM-->>STM : file_change_callback()
-STM-->>STM : _handle_file_change()
-STM-->>STM : queue_analysis_task()
-STM-->>STM : _analysis_worker()
-STM-->>STM : analysis_callback()
-STM-->>SPM : distribute_task(experiment)
-SPM-->>SPM : _experiment_worker()
-SPM-->>SPM : result_queue.put()
-SPM-->>SPM : _result_collector_loop()
-SPM-->>ESA : experiment_callback()
-ESA-->>ESA : _handle_experiment_result()
-ESA-->>SPM : distribute_task(improvement)
-SPM-->>SPM : _improvement_worker()
-SPM-->>SPM : result_queue.put()
-SPM-->>SPM : _result_collector_loop()
-SPM-->>ESA : improvement_callback()
-ESA-->>ESA : _handle_improvement_result()
+ESA->>ESA : initialize()
+ESA->>STM : set_callbacks()
+ESA->>SPM : set_callbacks()
+ESA->>SFM : set_change_callback()
+SFM->>STM : file_change_callback()
+STM->>STM : _handle_file_change()
+STM->>STM : queue_analysis_task()
+STM->>STM : _analysis_worker()
+STM->>STM : analysis_callback()
+STM->>SPM : distribute_task(experiment)
+SPM->>SPM : _experiment_worker()
+SPM->>SPM : result_queue.put()
+SPM->>SPM : _result_collector_loop()
+SPM->>ESA : experiment_callback()
+ESA->>ESA : _handle_experiment_result()
+ESA->>SPM : distribute_task(improvement)
+SPM->>SPM : _improvement_worker()
+SPM->>SPM : result_queue.put()
+SPM->>SPM : _result_collector_loop()
+SPM->>ESA : improvement_callback()
+ESA->>ESA : _handle_improvement_result()
+```
+
+**Diagram sources**
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py#L123-L159)
+- [core/snake_threading_manager.py](file://core/snake_threading_manager.py#L200-L600)
+- [core/snake_process_manager.py](file://core/snake_process_manager.py#L108-L307)
+
+## State Management
+
+The Enhanced Snake Agent implements a robust state management system that persists key metrics and configuration across restarts. This ensures that the agent can resume its operations with continuity, maintaining counts of improvements applied, experiments completed, files analyzed, and communications sent.
+
+The state is stored in a JSON file (`enhanced_snake_state.json`) and includes the following information:
+
+- Start time of the agent
+- Count of improvements applied
+- Count of experiments completed
+- Count of files analyzed
+- Count of communications sent
+- Configuration settings
+- Timestamp of last save
+
+The agent saves its state periodically during the coordination loop and always saves the final state during shutdown. This approach ensures that state is preserved even in the event of unexpected termination.
+
+```mermaid
+flowchart TD
+A[EnhancedSnakeAgent] --> B[_coordination_loop]
+B --> C{Periodic Check}
+C --> |Time to Save| D[_save_state]
+D --> E[Serialize State Data]
+E --> F[Write to JSON File]
+F --> G[Handle Errors]
+G --> H[Continue Loop]
+A --> I[stop]
+I --> J[Save Final State]
+J --> K[_save_state]
+K --> L[Serialize State Data]
+L --> M[Write to JSON File]
+M --> N[Handle Errors]
+N --> O[Continue Shutdown]
+A --> P[_cleanup]
+P --> Q[Save State]
+Q --> R[_save_state]
+R --> S[Serialize State Data]
+S --> T[Write to JSON File]
+T --> U[Handle Errors]
+U --> V[Continue Cleanup]
+```
+
+**Diagram sources**
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py#L200-L248)
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py#L567-L601)
+
+## Error Handling and Recovery
+
+The Enhanced Snake Agent implements comprehensive error handling and recovery mechanisms to ensure system stability and reliability. The architecture includes multiple layers of error handling, from individual worker threads and processes to the main agent coordination loop.
+
+Key error handling features include:
+
+1. **Exception Handling**: Comprehensive try-catch blocks around critical operations
+2. **Graceful Degradation**: The system continues to operate even if individual components fail
+3. **Error Logging**: All errors are logged with detailed context for debugging
+4. **Health Checks**: Regular health checks detect and report component failures
+5. **Automatic Recovery**: Failed components can be restarted automatically
+6. **Resource Monitoring**: System resources are monitored to prevent exhaustion
+
+The agent uses a combination of synchronous and asynchronous error handling, with critical errors logged synchronously to ensure they are recorded even if the system crashes.
+
+```mermaid
+flowchart TD
+A[Operation] --> B{Success?}
+B --> |Yes| C[Continue]
+B --> |No| D[Log Error]
+D --> E[Update Component State]
+E --> F{Critical Error?}
+F --> |Yes| G[Alert Main Agent]
+F --> |No| H[Continue]
+G --> I[Handle Error in Coordination Loop]
+I --> J{Can Recover?}
+J --> |Yes| K[Attempt Recovery]
+J --> |No| L[Mark Component as Failed]
+K --> M{Recovery Successful?}
+M --> |Yes| N[Resume Operation]
+M --> |No| L
+L --> O[Continue with Degraded Functionality]
+```
+
+**Section sources**
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py#L186-L220)
+- [core/snake_threading_manager.py](file://core/snake_threading_manager.py#L200-L600)
+- [core/snake_process_manager.py](file://core/snake_process_manager.py#L108-L307)
+
+## Performance Monitoring
+
+The Enhanced Snake Agent includes built-in performance monitoring capabilities that track key metrics and system health. The monitoring system collects data from multiple sources and provides insights into the agent's operation.
+
+Performance metrics collected include:
+
+- **Uptime**: Duration the agent has been running
+- **Improvements Applied**: Count of successful improvements implemented
+- **Experiments Completed**: Count of experiments conducted
+- **Files Analyzed**: Count of files processed for potential improvements
+- **Communications Sent**: Count of messages sent to the RAVANA system
+- **Improvements per Hour**: Rate of improvements applied
+- **Experiments per Hour**: Rate of experiments conducted
+- **Thread and Process Status**: Health and activity of worker threads and processes
+- **Queue Sizes**: Length of task queues to detect bottlenecks
+- **CPU and Memory Usage**: System resource consumption
+
+The agent logs performance metrics every 10 minutes and performs health checks every 5 minutes, providing regular insights into system performance.
+
+```mermaid
+flowchart TD
+A[EnhancedSnakeAgent] --> B[_coordination_loop]
+B --> C{Time for Metrics?}
+C --> |Yes| D[_log_performance_metrics]
+D --> E[Calculate Uptime]
+E --> F[Calculate Rates]
+F --> G[Collect Component Status]
+G --> H[Log Metrics]
+H --> I[Handle Errors]
+I --> J[Continue Loop]
+B --> K{Time for Health Check?}
+K --> |Yes| L[_perform_health_check]
+L --> M[Check Threading Manager]
+M --> N[Check Process Manager]
+N --> O[Check File Monitor]
+O --> P[Log Health Status]
+P --> Q[Handle Errors]
+Q --> R[Continue Loop]
+```
+
+**Diagram sources**
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py#L200-L248)
+
+## Logging System
+
+The Enhanced Snake Agent features a comprehensive logging system that separates different types of activities into dedicated log files. This approach enables efficient monitoring and analysis of the agent's operations.
+
+The logging system includes five specialized loggers:
+
+1. **Improvement Logger**: Records all improvement-related activities including proposals, tests, and implementations
+2. **Experiment Logger**: Logs details of experiments conducted, including hypotheses, methodologies, and results
+3. **Analysis Logger**: Captures code analysis findings and suggestions
+4. **Communication Logger**: Tracks all communication with the RAVANA system
+5. **System Logger**: Records system events, errors, and operational status
+
+Each logger writes to both a text log file and a structured JSON log file, enabling both human-readable logs and machine-readable data for analysis.
+
+```mermaid
+classDiagram
+class ImprovementRecord {
++id
++type
++description
++file_path
++before_state
++after_state
++impact_score
++safety_score
++timestamp
++worker_id
++status
++to_dict() Dict[str, Any]
+}
+class ExperimentRecord {
++id
++file_path
++experiment_type
++description
++hypothesis
++methodology
++result
++success
++safety_score
++duration
++timestamp
++worker_id
++to_dict() Dict[str, Any]
+}
+class AnalysisRecord {
++id
++file_path
++analysis_type
++findings
++suggestions
++priority
++confidence
++processing_time
++timestamp
++worker_id
++to_dict() Dict[str, Any]
+}
+class CommunicationRecord {
++id
++direction
++message_type
++content
++priority
++status
++response_time
++timestamp
++worker_id
++to_dict() Dict[str, Any]
+}
+class SnakeLogManager {
++log_dir
++formatter
++json_formatter
++improvement_logger
++experiment_logger
++analysis_logger
++communication_logger
++system_logger
++log_queue
++log_worker_thread
++worker_running
++shutdown_event
++logs_processed
++queue_high_water_mark
++_create_logger() logging.Logger
++start_log_processor()
++stop_log_processor()
++_close_all_handlers()
++_log_processor_worker()
++_process_log_entry()
++_get_logger_for_type() Optional[logging.Logger]
++log_improvement()
++log_experiment()
++log_analysis()
++log_communication()
++log_system_event()
++get_log_statistics() Dict[str, Any]
++get_recent_logs() List[Dict[str, Any]]
++cleanup_old_logs()
+}
+SnakeLogManager --> ImprovementRecord
+SnakeLogManager --> ExperimentRecord
+SnakeLogManager --> AnalysisRecord
+SnakeLogManager --> CommunicationRecord
+```
+
+**Diagram sources**
+- [core/snake_log_manager.py](file://core/snake_log_manager.py#L50-L117)
+- [core/snake_data_models.py](file://core/snake_data_models.py#L122-L180)
+
+## Conclusion
+
+The Enhanced Snake Agent Architecture represents a sophisticated and robust system for autonomous code improvement. By combining threading and multiprocessing with a comprehensive inter-process communication system, the agent achieves high performance while maintaining system stability and safety.
+
+Key architectural strengths include:
+
+- **Modularity**: Clear separation of concerns between components
+- **Scalability**: Ability to handle increasing workloads through configurable thread and process counts
+- **Reliability**: Comprehensive error handling and recovery mechanisms
+- **Observability**: Detailed logging and performance monitoring
+- **Persistence**: State management that survives restarts
+- **Safety**: Multiple safeguards to prevent system damage
+
+The architecture demonstrates a thoughtful approach to concurrent programming, leveraging the strengths of both threading and multiprocessing while mitigating their respective weaknesses. The use of dedicated logging, state management, and IPC systems ensures that the agent can operate autonomously for extended periods while providing visibility into its operations.
+
+This design enables the Enhanced Snake Agent to continuously improve the RAVANA system through a cycle of monitoring, analysis, experimentation, and implementation, all while maintaining the stability and integrity of the underlying codebase.
+
+**Referenced Files in This Document**   
+- [core/snake_agent_enhanced.py](file://core/snake_agent_enhanced.py)
+- [core/snake_threading_manager.py](file://core/snake_threading_manager.py)
+- [core/snake_process_manager.py](file://core/snake_process_manager.py)
+- [core/snake_ipc_manager.py](file://core/snake_ipc_manager.py)
+- [core/snake_log_manager.py](file://core/snake_log_manager.py)
+- [core/snake_data_models.py](file://core/snake_data_models.py)
+- [ENHANCED_SNAKE_IMPLEMENTATION.md](file://ENHANCED_SNAKE_IMPLEMENTATION.md)

@@ -51,7 +51,6 @@ Action <|-- ProposeAndTestInventionAction
 Action <|-- ProcessImageAction
 Action <|-- BlogPublishAction
 Action <|-- CollaborativeTaskAction
-
 ```
 
 **Diagram sources**
@@ -92,7 +91,6 @@ class ActionRegistry {
 +get_action_definitions() : str
 }
 ActionRegistry --> Action : "contains"
-
 ```
 
 **Diagram sources**
@@ -157,7 +155,6 @@ Action-->>ActionManager : Raise exception
 ActionManager->>DataService : save_action_log(error)
 ActionManager-->>DecisionEngine : Return error object
 end
-
 ```
 
 **Diagram sources**
@@ -307,7 +304,6 @@ class BlogPublishAction {
 BlogPublishAction --|> Action : "inherits"
 BlogPublishAction --> BlogAPIInterface : "uses"
 BlogPublishAction --> BlogContentGenerator : "uses"
-
 ```
 
 **Diagram sources**
@@ -367,7 +363,6 @@ class CollaborativeTaskAction {
 +_get_most_active_users() : Dict[str, int]
 }
 CollaborativeTaskAction --|> Action : "inherits"
-
 ```
 
 **Diagram sources**
@@ -416,7 +411,6 @@ class PromptManager {
 }
 PromptManager --> PromptRepository : "uses"
 PromptManager --> PromptEnhancer : "uses"
-
 ```
 
 **Diagram sources**

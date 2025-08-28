@@ -28,7 +28,6 @@ B --> E[Data Ingestion]
 B --> F[Database Operations]
 B --> G[Trend Analysis]
 B --> H[Main Loop]
-
 ```
 
 **Diagram sources**
@@ -62,7 +61,6 @@ G --> H
 H --> I[Action Execution]
 I --> J[Knowledge Service]
 J --> K[Episodic Memory]
-
 ```
 
 **Diagram sources**
@@ -78,7 +76,7 @@ The trend_engine.py module implements the core functionality for data ingestion 
 #### Data Ingestion Flow
 ```mermaid
 flowchart TD
-Start("("Start")") --> FetchFeeds["Fetch RSS Feeds"]
+Start([Start]) --> FetchFeeds["Fetch RSS Feeds"]
 FetchFeeds --> ParseEntries["Parse Feed Entries"]
 ParseEntries --> SaveArticle["Save Article to Database"]
 SaveArticle --> NextFeed["Next Feed URL?"]
@@ -86,7 +84,6 @@ NextFeed --> |Yes| FetchFeeds
 NextFeed --> |No| AnalyzeTrends["Analyze Trends"]
 AnalyzeTrends --> Sleep["Sleep 15 Minutes"]
 Sleep --> Start
-
 ```
 
 **Diagram sources**
@@ -108,7 +105,6 @@ string published
 string source
 int timestamp
 }
-
 ```
 
 **Diagram sources**
@@ -129,7 +125,6 @@ SM-->>ED : Return vector representations
 ED->>AC : Cluster documents
 AC-->>ED : Return cluster labels
 ED->>TA : Return detected events
-
 ```
 
 **Diagram sources**
@@ -152,7 +147,6 @@ A --> F[os]
 G[situation_generator.py] --> A
 H[data_service.py] --> A
 I[event_detector.py] --> A
-
 ```
 
 **Diagram sources**

@@ -42,7 +42,6 @@ core --> services
 modules --> services
 episodic_memory --> memory_service
 emotional_intelligence --> episodic_memory
-
 ```
 
 **Diagram sources**
@@ -81,7 +80,6 @@ Processing --> Whisper[Whisper Processor]
 Processing --> ImageProcessor[Image Processor]
 classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
 class Client,API,Service,Storage,Processing,PostgreSQL,ChromaDB,EmbeddingService,Whisper,ImageProcessor default;
-
 ```
 
 **Diagram sources**
@@ -96,9 +94,9 @@ The MemoryService class provides the primary interface for memory operations wit
 #### For API/Service Components:
 ```mermaid
 sequenceDiagram
-participant Client as ("Client App")
-participant MemoryService as ("MemoryService")
-participant MemoryAPI as ("Memory API")
+participant Client as "Client App"
+participant MemoryService as "MemoryService"
+participant MemoryAPI as "Memory API"
 Client->>MemoryService : save_memories(memories)
 MemoryService->>MemoryAPI : save_memories(memories)
 MemoryAPI-->>MemoryService : StatusResponse
@@ -111,7 +109,6 @@ Client->>MemoryService : consolidate_memories()
 MemoryService->>MemoryAPI : consolidate_memories_api()
 MemoryAPI-->>MemoryService : StatusResponse
 MemoryService-->>Client : Return consolidation result
-
 ```
 
 **Diagram sources**
@@ -167,7 +164,6 @@ MemoryService --> MemoryRecord : "saves"
 MemoryService --> RelevantMemoriesResponse : "returns"
 MemoryService --> StatusResponse : "returns"
 MemoryService --> QueryRequest : "uses"
-
 ```
 
 **Diagram sources**
@@ -182,21 +178,20 @@ The MultiModalMemoryService class provides advanced functionality for processing
 #### For Complex Logic Components:
 ```mermaid
 flowchart TD
-Start("Process Audio Memory") --> ValidateInput["Validate audio file path"]
+Start([Process Audio Memory]) --> ValidateInput["Validate audio file path"]
 ValidateInput --> ProcessAudio["Process audio with Whisper"]
 ProcessAudio --> CreateMetadata["Create audio metadata"]
 CreateMetadata --> CreateRecord["Create MemoryRecord"]
 CreateRecord --> GenerateEmbeddings["Generate embeddings"]
 GenerateEmbeddings --> SaveToDB["Save to PostgreSQL"]
 SaveToDB --> ReturnResult["Return saved record"]
-StartImage("Process Image Memory") --> ValidateImage["Validate image file path"]
+StartImage([Process Image Memory]) --> ValidateImage["Validate image file path"]
 ValidateImage --> ExtractFeatures["Extract image features"]
 ExtractFeatures --> CreateImageMetadata["Create image metadata"]
 CreateImageMetadata --> CreateImageRecord["Create MemoryRecord"]
 CreateImageRecord --> GenerateImageEmbeddings["Generate embeddings"]
 GenerateImageEmbeddings --> SaveImageToDB["Save to PostgreSQL"]
 SaveImageToDB --> ReturnImageResult["Return saved record"]
-
 ```
 
 **Diagram sources**
@@ -221,7 +216,6 @@ MemoryService --> numpy
 MemoryService --> torch
 classDef library fill:#e0f7fa,stroke:#00695c;
 class FastAPI,ChromaDB,PostgreSQL,sentence_transformers,Whisper,PIL,asyncpg,numpy,torch library;
-
 ```
 
 **Diagram sources**

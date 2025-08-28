@@ -36,7 +36,6 @@ F --> G
 H --> G
 I --> G
 J --> K
-
 ```
 
 **Diagram sources**
@@ -130,7 +129,6 @@ G --> I[Log Audit]
 H --> I
 C --> J[Generate Insight]
 J --> K[Store in Knowledge Base]
-
 ```
 
 **Diagram sources**
@@ -220,7 +218,6 @@ C --> D[Parse JSON]
 D --> E[Cache in Memory]
 E --> F[Return Data]
 B --> |Yes| F
-
 ```
 
 **Diagram sources**

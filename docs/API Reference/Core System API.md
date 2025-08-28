@@ -55,7 +55,6 @@ AGISystem --> ReflectionModule
 AGISystem --> ExperimentationEngine
 AGISystem --> AdaptiveLearningEngine
 AGISystem --> Personality
-
 ```
 
 **Diagram sources**
@@ -78,35 +77,43 @@ The RAVANA framework employs an event-driven, asynchronous architecture centered
 
 ```mermaid
 sequenceDiagram
-participant System as AGISystem
-participant Loop as Autonomous Loop
-participant Decision as Decision Engine
-participant Action as Action Manager
-participant Memory as Memory Service
-participant Knowledge as Knowledge Service
-System->>System : Initialize()
-System->>Loop : run_autonomous_loop()
-Loop->>System : Check search results
-Loop->>System : Handle behavior modifiers
-Loop->>System : Handle curiosity
-alt With current plan
-Loop->>System : Continue plan execution
-else With current task
-Loop->>Memory : Retrieve relevant memories
-Memory-->>System : Return memories
-Loop->>Decision : Make decision
-Decision-->>System : Return decision
-else Autonomous mode
-Loop->>System : Generate situation
-Loop->>Decision : Make decision
-Decision-->>System : Return decision
-end
-Loop->>Action : Execute action
-Action-->>System : Return action output
-Loop->>System : Update mood and reflect
-Loop->>Memory : Memorize interaction
-Loop->>Loop : Sleep (LOOP_SLEEP_DURATION)
+    participant System as AGISystem
+    participant MainLoop as Autonomous Loop  %% Renamed to avoid keyword conflict
+    participant Decision as Decision Engine
+    participant Action as Action Manager
+    participant Memory as Memory Service
+    participant Knowledge as Knowledge Service
 
+    %% System Initialization
+    System->>System : Initialize()
+    System->>MainLoop : Start autonomous loop  %% Changed from "Loop" to "MainLoop"
+
+    %% Autonomous loop begins
+    loop Autonomous Loop Iteration
+        MainLoop->>System : Check search results
+        MainLoop->>System : Handle behavior modifiers
+        MainLoop->>System : Handle curiosity
+
+        alt Current plan exists
+            MainLoop->>System : Continue plan execution
+        else Current task exists
+            MainLoop->>Memory : Retrieve relevant memories
+            Memory-->>MainLoop : Return memories
+            MainLoop->>Decision : Make decision
+            Decision-->>MainLoop : Return decision
+        else Fully autonomous mode
+            MainLoop->>System : Generate situation
+            MainLoop->>Decision : Make decision
+            Decision-->>MainLoop : Return decision
+        end
+
+        MainLoop->>Action : Execute action
+        Action-->>MainLoop : Return action output
+
+        MainLoop->>System : Update mood and reflect
+        MainLoop->>Memory : Memorize interaction
+        MainLoop->>MainLoop : Sleep (LOOP_SLEEP_DURATION)
+    end
 ```
 
 **Diagram sources**
@@ -178,7 +185,6 @@ class SharedState {
 +current_task : str
 }
 AGISystem --> SharedState : "contains"
-
 ```
 
 **Diagram sources**
@@ -352,7 +358,6 @@ Registry-->>ActionManager : Return available actions
 ActionManager->>Action : Execute action based on decision
 Action-->>ActionManager : Return action output
 ActionManager-->>System : Return action output
-
 ```
 
 **Diagram sources**
@@ -377,7 +382,6 @@ E --> F[LLM generates response]
 F --> G[Parse JSON response]
 G --> H[Extract action and plan]
 H --> I[Return decision to AGISystem]
-
 ```
 
 **Diagram sources**
@@ -409,7 +413,6 @@ MemoryService : +get_relevant_memories(query)
 MemoryService : +extract_memories(content, context)
 MemoryService : +save_memories(memories)
 MemoryService : +consolidate_memories()
-
 ```
 
 **Diagram sources**
@@ -448,7 +451,6 @@ MemoryService --> EpisodicMemory
 ReflectionModule --> AGISystem
 AGIExperimentationEngine --> AGISystem
 AdaptiveLearningEngine --> AGISystem
-
 ```
 
 **Diagram sources**

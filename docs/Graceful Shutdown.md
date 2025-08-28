@@ -36,7 +36,7 @@ The graceful shutdown functionality is primarily located in the `core` module of
 
 The system follows a modular architecture where components register themselves with the `ShutdownCoordinator`, which then orchestrates their orderly shutdown through a phased process.
 
-``mermaid
+```mermaid
 graph TD
 A[Application Start] --> B[Component Registration]
 B --> C[Normal Operation]
@@ -46,7 +46,6 @@ E --> F[Execute Shutdown Phases]
 F --> G[State Persistence]
 G --> H[Resource Cleanup]
 H --> I[Application Exit]
-
 ```
 
 **Diagram sources**
@@ -73,7 +72,7 @@ These components enable a structured approach to application termination, allowi
 ## Architecture Overview
 The graceful shutdown architecture follows a phased execution model where each phase performs specific cleanup and preparation tasks. The system is designed to be resilient, with timeout handling and forced shutdown fallbacks to prevent indefinite hangs during termination.
 
-``mermaid
+```mermaid
 classDiagram
 class ShutdownCoordinator {
 +agi_system : Any
@@ -121,7 +120,6 @@ ShutdownCoordinator --> ComponentRegistration : "manages"
 ShutdownCoordinator --> ShutdownPhase : "uses"
 ShutdownCoordinator --> ShutdownPriority : "uses"
 ComponentRegistration --> Shutdownable : "implements"
-
 ```
 
 **Diagram sources**
@@ -133,9 +131,9 @@ ComponentRegistration --> Shutdownable : "implements"
 The `ShutdownCoordinator` class is the central orchestrator of the graceful shutdown process. It manages the execution of shutdown phases, tracks component registration, and handles error conditions during termination.
 
 #### Shutdown Phases Flowchart
-``mermaid
+```mermaid
 flowchart TD
-Start("Initiate Shutdown") --> Phase1["Phase 1: Pre-shutdown Validation"]
+Start([Initiate Shutdown]) --> Phase1["Phase 1: Pre-shutdown Validation"]
 Phase1 --> Phase2["Phase 2: Signal Received"]
 Phase2 --> Phase3["Phase 3: Component Notification"]
 Phase3 --> Phase4["Phase 4: Stop Background Tasks"]
@@ -146,33 +144,31 @@ Phase7 --> Phase8["Phase 8: Final Validation"]
 Phase8 --> Complete["Phase 9: Shutdown Complete"]
 style Start fill:#4CAF50,stroke:#388E3C
 style Complete fill:#4CAF50,stroke:#388E3C
-
 ```
 
 **Diagram sources**
 - [shutdown_coordinator.py](file://c:\Users\ASUS\Documents\GitHub\RAVANA\core\shutdown_coordinator.py#L219-L250)
 
 #### Shutdown Execution Sequence
-``mermaid
+```mermaid
 sequenceDiagram
 participant Coordinator as ShutdownCoordinator
 participant Component as Component
 participant System as AGI System
 participant Logger as Logger
-Logger-->>Coordinator : Log initialization
-Coordinator-->>System : Register shutdown handlers
-System-->>Coordinator : Register components
-Coordinator-->>Coordinator : initiate_shutdown(reason)
-Coordinator-->>Logger : Log shutdown initiation
-Coordinator-->>Coordinator : _execute_shutdown_phases()
+Logger->>Coordinator : Log initialization
+Coordinator->>System : Register shutdown handlers
+System->>Coordinator : Register components
+Coordinator->>Coordinator : initiate_shutdown(reason)
+Coordinator->>Logger : Log shutdown initiation
+Coordinator->>Coordinator : _execute_shutdown_phases()
 loop Each Phase
-Coordinator-->>Coordinator : _execute_phase(phase, handler)
-Coordinator-->>Logger : Log phase start
-Coordinator-->>Coordinator : Execute phase handler
-Coordinator-->>Logger : Log phase completion
+Coordinator->>Coordinator : _execute_phase(phase, handler)
+Coordinator->>Logger : Log phase start
+Coordinator->>Coordinator : Execute phase handler
+Coordinator->>Logger : Log phase completion
 end
-Coordinator-->>Logger : Log shutdown summary
-
+Coordinator->>Logger : Log shutdown summary
 ```
 
 **Section sources**
@@ -182,9 +178,9 @@ Coordinator-->>Logger : Log shutdown summary
 The graceful shutdown behavior is highly configurable through environment variables and default settings in the `Config` class. These settings control timeouts, persistence options, and various cleanup operations.
 
 #### Shutdown Configuration Parameters
-``mermaid
+```mermaid
 flowchart TD
-A("Shutdown Configuration") --> B["SHUTDOWN_TIMEOUT: 30s"]
+A[Shutdown Configuration] --> B["SHUTDOWN_TIMEOUT: 30s"]
 A --> C["FORCE_SHUTDOWN_AFTER: 60s"]
 A --> D["STATE_PERSISTENCE_ENABLED: True"]
 A --> E["SHUTDOWN_STATE_FILE: shutdown_state.json"]
@@ -199,7 +195,6 @@ A --> M["ACTION_CACHE_PERSIST: True"]
 A --> N["RESOURCE_CLEANUP_TIMEOUT: 10s"]
 A --> O["SHUTDOWN_STATE_VALIDATION_ENABLED: True"]
 A --> P["SHUTDOWN_VALIDATION_ENABLED: True"]
-
 ```
 
 **Diagram sources**
@@ -211,22 +206,22 @@ A --> P["SHUTDOWN_VALIDATION_ENABLED: True"]
 ## Dependency Analysis
 The graceful shutdown system integrates with various components throughout the RAVANA AGI framework. The dependency graph shows how different modules interact with the shutdown coordinator.
 
-``mermaid
+```mermaid
 graph TD
-ShutdownCoordinator --> AGISystem
-ShutdownCoordinator --> Config
-ShutdownCoordinator --> Logger
-ShutdownCoordinator --> MemoryService
-ShutdownCoordinator --> ActionManager
-AGISystem --> BackgroundTasks
-AGISystem --> EmotionalIntelligence
-AGISystem --> SnakeAgent
-MemoryService --> ChromaDB
-ActionManager --> Cache
-ShutdownCoordinator --> TempFiles
-AGISystem --> ShutdownCoordinator : "registers components"
-ShutdownCoordinator --> StatePersistence : "handles state saving"
-StatePersistence --> BackupSystem : "creates backups"
+    ShutdownCoordinator --> AGISystem
+    ShutdownCoordinator --> Config
+    ShutdownCoordinator --> Logger
+    ShutdownCoordinator --> MemoryService
+    ShutdownCoordinator --> ActionManager
+    AGISystem --> BackgroundTasks
+    AGISystem --> EmotionalIntelligence
+    AGISystem --> SnakeAgent
+    MemoryService --> ChromaDB
+    ActionManager --> Cache
+    ShutdownCoordinator --> TempFiles
+    AGISystem -->|registers components| ShutdownCoordinator
+    ShutdownCoordinator -->|handles state saving| StatePersistence
+    StatePersistence -->|creates backups| BackupSystem
 
 ```
 
@@ -254,9 +249,9 @@ The two-tier timeout system (graceful timeout and force shutdown timeout) ensure
 When issues occur during graceful shutdown, the following patterns and solutions can help diagnose and resolve problems:
 
 ### Common Issues and Solutions
-``mermaid
+```mermaid
 flowchart TD
-A("Shutdown Issues") --> B{"Timeout Exceeded?"}
+A[Shutdown Issues] --> B{"Timeout Exceeded?"}
 B --> |Yes| C["Check COMPONENT_SHUTDOWN_TIMEOUT setting"]
 B --> |No| D{"Errors in Logs?"}
 D --> |Yes| E["Review component-specific shutdown methods"]
@@ -270,7 +265,6 @@ J --> |No| L["Check file permissions for state directory"]
 A --> M{"Force Shutdown Triggered?"}
 M --> |Yes| N["Review _force_shutdown() logs"]
 M --> |No| O["Normal shutdown sequence"]
-
 ```
 
 **Section sources**

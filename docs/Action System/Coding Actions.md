@@ -35,7 +35,6 @@ B --> L[llm.py]
 D --> M[multi_modal_service.py]
 C --> N[decision_engine]
 C --> O[agi_experimentation_engine.py]
-
 ```
 
 **Diagram sources**
@@ -70,7 +69,6 @@ AM --> |Logs| DS[DataService]
 DS --> |Persists| DB[(Database)]
 style WPCA fill:#f9f,stroke:#333
 style EPFA fill:#f9f,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -85,21 +83,19 @@ The `WritePythonCodeAction` is responsible for generating Python code based on a
 
 ```mermaid
 sequenceDiagram
-participant User
-participant DM as Decision Engine
-participant AM as ActionManager
-participant WPCA as WritePythonCodeAction
-participant LLM
-participant FS as File System
-User->>DM : Request to test a hypothesis
-DM->>LLM : Generate decision with action
-LLM-->>DM : JSON with action=write_python_code
-DM->>AM : Execute decision
-AM->>WPCA : execute(file_path, hypothesis, test_plan)
-WPCA->>LLM : Send CODE_GENERATION_PROMPT
-LLM-->>WPCA : Response with code in
-
-```python block
+    participant User
+    participant DM as Decision Engine
+    participant AM as ActionManager
+    participant WPCA as WritePythonCodeAction
+    participant LLM
+    participant FS as File System
+    User->>DM : Request to test a hypothesis
+    DM->>LLM : Generate decision with action
+    LLM-->>DM : JSON with action=write_python_code
+    DM->>AM : Execute decision
+    AM->>WPCA : execute(file_path, hypothesis, test_plan)
+    WPCA->>LLM : Send CODE_GENERATION_PROMPT
+    LLM-->>WPCA : Response with Python code
     WPCA->>WPCA: Extract code using regex
     WPCA->>FS: Write code to file_path
     WPCA-->>AM: Return success and code
@@ -127,6 +123,7 @@ sequenceDiagram
     Subprocess->>FS: Execute script.py
     FS-->>Subprocess: stdout, stderr, return_code
     Subprocess-->>EPFA: stdout, stderr, return_code
+```
 
 **Referenced Files in This Document**   
 - [coding.py](file://core/actions/coding.py)

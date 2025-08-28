@@ -64,7 +64,6 @@ class ActionManager {
 ActionManager --> ActionRegistry : "uses"
 ActionRegistry --> Action : "contains"
 ActionManager --> Action : "executes"
-
 ```
 
 **Diagram sources**
@@ -153,7 +152,6 @@ class ProposeAndTestInventionAction {
 Action <|-- WritePythonCodeAction
 Action <|-- LogMessageAction
 Action <|-- ProposeAndTestInventionAction
-
 ```
 
 **Diagram sources**
@@ -233,7 +231,6 @@ end
 end
 end
 ActionRegistry-->>User : All actions discovered and registered
-
 ```
 
 **Diagram sources**
@@ -269,7 +266,7 @@ The `execute_action()` method follows a structured process:
 
 ```mermaid
 flowchart TD
-Start("Execute Action") --> ParseDecision["Parse Decision Dictionary"]
+Start([Execute Action]) --> ParseDecision["Parse Decision Dictionary"]
 ParseDecision --> DecisionType{"Decision Type?"}
 DecisionType --> |Parsed Action| UseActionData["Use action and params directly"]
 DecisionType --> |Raw Response| ExtractJSON["Extract JSON from raw_response"]
@@ -285,12 +282,11 @@ ExecuteAction --> |Other Exception| LogUnexpectedError["Log unexpected error"]
 LogSuccess --> ReturnResult["Return execution result"]
 LogActionError --> ReturnActionErrorResult["Return action error result"]
 LogUnexpectedError --> ReturnUnexpectedError["Return unexpected error"]
-ReturnResult --> End("Action Complete")
+ReturnResult --> End([Action Complete])
 ReturnActionErrorResult --> End
 ReturnUnexpectedError --> End
 ReturnParseError --> End
 ReturnActionError --> End
-
 ```
 
 **Diagram sources**
@@ -353,7 +349,6 @@ HandleFormatError --> ReturnFormatError
 ReturnFormatError --> [*]
 HandleActionError --> ReturnActionNotFoundError
 ReturnActionNotFoundError --> [*]
-
 ```
 
 **Diagram sources**
@@ -438,27 +433,24 @@ class HelloWorldAction(Action):
 
 ```mermaid
 classDiagram
-class Action {
-<<abstract>>
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-}
-class CustomAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-}
-Action <|-- CustomAction
-note right of CustomAction
-Must implement :
-• name property
-• description property
-• parameters property
-• execute method
-end note
+    class Action {
+        <<abstract>>
+        +name : str
+        +description : str
+        +parameters : List[Dict]
+        +execute(**kwargs) : Any
+    }
+
+    class CustomAction {
+        +name : str
+        +description : str
+        +parameters : List[Dict]
+        +execute(**kwargs) : Any
+    }
+
+    Action <|-- CustomAction
+
+    note for CustomAction "Must implement:\n- name property\n- description property\n- parameters property\n- execute method"
 
 ```
 
@@ -516,7 +508,6 @@ DataService-->>ActionManager : Log confirmation
 ActionManager-->>DecisionEngine : Return error response
 end
 end
-
 ```
 
 **Diagram sources**

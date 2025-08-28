@@ -39,7 +39,6 @@ LLM --> call_llm
 CT --> Embeddings[Semantic Analysis]
 Embeddings --> SentenceTransformer
 Test --> CT
-
 ```
 
 **Diagram sources**
@@ -73,7 +72,6 @@ I --> J[Action Execution]
 K[External Sources] --> CT
 L[LLM] --> CT
 M[Caching Layer] --> CT
-
 ```
 
 **Diagram sources**
@@ -88,7 +86,7 @@ The CuriosityTrigger module calculates curiosity scores through a multi-faceted 
 
 ```mermaid
 flowchart TD
-Start("Start") --> Input["Input: recent_topics, lateralness"]
+Start([Start]) --> Input["Input: recent_topics, lateralness"]
 Input --> Hash["Create cache key from topics hash"]
 Hash --> CacheCheck{"Cache hit?"}
 CacheCheck --> |Yes| ReturnCached["Return cached topics"]
@@ -109,9 +107,8 @@ Filter --> EmbeddingFilter["Use _filter_similar_topics with threshold=0.6"]
 EmbeddingFilter --> EnsureN["Ensure n topics returned"]
 EnsureN --> CacheStore["Store in _TOPIC_CACHE"]
 CacheStore --> Return["Return topics"]
-Return --> End("End")
+Return --> End([End])
 ReturnCached --> End
-
 ```
 
 **Diagram sources**
@@ -159,7 +156,6 @@ CuriosityTrigger --> WikipediaSource
 CuriosityTrigger --> RedditSource
 CuriosityTrigger --> HackerNewsSource
 CuriosityTrigger --> ArXivSource
-
 ```
 
 **Diagram sources**
@@ -189,7 +185,6 @@ SG->>SS : Update context with curiosity data
 SG->>DE : Return curiosity_exploration situation
 DE->>DE : Prioritize curiosity-driven tasks
 DE->>DE : Generate action plan
-
 ```
 
 **Diagram sources**
@@ -215,7 +210,6 @@ SYS[AGISystem] --> CT
 SG[SituationGenerator] --> CT
 CT --> |Generates| SIT[Situations]
 SIT --> DE[DecisionEngine]
-
 ```
 
 **Diagram sources**

@@ -58,7 +58,6 @@ H --> |No| J[Reject Patch]
 I --> K[Log Audit]
 J --> K
 K --> L[Next Reflection]
-
 ```
 
 **Diagram sources**
@@ -98,7 +97,6 @@ ExperimentationSystem->>OutcomeAnalyzer : Provide situation_prompt and outcome
 OutcomeAnalyzer->>LLM : Send analysis prompt with hypothesis, situation, and outcome
 LLM-->>OutcomeAnalyzer : Return JSON analysis
 OutcomeAnalyzer->>ReflectionDB : Save new reflection with conclusion and new_principle
-
 ```
 
 **Diagram sources**

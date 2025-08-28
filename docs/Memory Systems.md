@@ -34,7 +34,7 @@ The RAVANA system implements a dual-memory architecture combining episodic and s
 
 ## Memory Architecture Overview
 
-``mermaid
+```mermaid
 graph TB
 subgraph "Memory Systems"
 EM[Episodic Memory]
@@ -86,7 +86,6 @@ VIM --> MI
 style EM fill:#f9f,stroke:#333
 style SM fill:#bbf,stroke:#333
 style VLTM fill:#9f9,stroke:#333
-
 ```
 
 **Diagram sources**
@@ -110,7 +109,7 @@ The episodic memory system captures and stores specific events and interactions 
 
 Episodic memories are stored in PostgreSQL with pgvector extension, providing a production-grade database solution for vector similarity search. The system uses SentenceTransformers to generate embeddings for memory texts, enabling semantic search capabilities.
 
-``mermaid
+```mermaid
 classDiagram
 class MemoryRecord {
 +uuid id
@@ -143,7 +142,6 @@ class MultiModalMemoryService {
 PostgreSQLStore --> MemoryRecord : "stores"
 MultiModalMemoryService --> PostgreSQLStore : "uses"
 MultiModalMemoryService --> MemoryRecord : "manages"
-
 ```
 
 **Diagram sources**
@@ -223,7 +221,7 @@ The EmbeddingService provides multi-modal embedding generation for text, audio, 
 
 The embedding service supports multiple content types with specialized processing:
 
-``mermaid
+```mermaid
 flowchart TD
 A[Input Content] --> B{Content Type}
 B --> C[Text]
@@ -239,7 +237,6 @@ I --> L[Generate Unified Embedding]
 J --> L
 K --> L
 L --> M[Store unified_embedding]
-
 ```
 
 **Diagram sources**
@@ -295,7 +292,7 @@ async def generate_audio_embedding(self, audio_features: Dict[str, Any]) -> List
     
     if "spectral_centroid" in audio_features:
         sc = audio_features["spectral_centroid"]
-        features.extend("sc.get("mean", 0.0), sc.get("std", 0.0)")
+        features.extend([sc.get("mean", 0.0), sc.get("std", 0.0)])
     
     # Pad or truncate to desired dimension
     if len(features) < self.audio_embedding_dim:
@@ -321,20 +318,20 @@ async def generate_image_embedding(self, image_path: str) -> List[float]:
         # Color statistics
         for channel in range(3):  # RGB
             channel_data = img_array[:, :, channel].flatten()
-            features.extend("
+            features.extend([
                 float(np.mean(channel_data)),
                 float(np.std(channel_data)),
                 float(np.median(channel_data)),
                 float(np.percentile(channel_data, 25)),
                 float(np.percentile(channel_data, 75))
-            ")
+            ])
         
         # Image dimensions
-        features.extend("
+        features.extend([
             float(image.width),
             float(image.height),
             float(image.width * image.height)  # Area
-        ")
+        ])
         
         # Histogram features
         hist, _ = np.histogram(img_array.flatten(), bins=32, range=(0, 256))
@@ -523,7 +520,7 @@ The MultiModalMemoryService orchestrates all components of the memory system, pr
 
 ### Service Architecture
 
-``mermaid
+```mermaid
 classDiagram
 class MultiModalMemoryService {
 +initialize()
@@ -560,7 +557,6 @@ MultiModalMemoryService --> PostgreSQLStore : "uses"
 MultiModalMemoryService --> EmbeddingService : "uses"
 MultiModalMemoryService --> WhisperAudioProcessor : "uses"
 MultiModalMemoryService --> AdvancedSearchEngine : "uses"
-
 ```
 
 **Diagram sources**
@@ -736,7 +732,7 @@ The semantic memory system transforms episodic experiences into structured knowl
 
 The knowledge compression pipeline converts raw experiences into semantic summaries using LLM-driven analysis:
 
-``mermaid
+```mermaid
 flowchart TD
 A[Raw Experiences] --> B{Knowledge<br>Compression}
 B --> C[Pattern Recognition]
@@ -745,7 +741,6 @@ D --> E[Deduplicate Redundant Info]
 E --> F[Generalize Specifics]
 F --> G[Create Summary]
 G --> H[Store in Semantic Memory]
-
 ```
 
 **Diagram sources**
@@ -809,7 +804,7 @@ class Summary(SQLModel, table=True):
 
 The `MemoryService` provides a unified interface for memory management operations, abstracting the underlying storage mechanisms.
 
-``mermaid
+```mermaid
 classDiagram
 class MemoryService {
 +get_relevant_memories(query_text)
@@ -824,7 +819,6 @@ class MemoryAPI {
 +consolidate_memories_api(request)
 }
 MemoryService --> MemoryAPI : "delegates"
-
 ```
 
 **Diagram sources**
@@ -898,11 +892,11 @@ async def vector_search(self,
     if content_types:
         param_count += 1
         where_conditions.append(f"content_type = ANY(${param_count})")
-        params.append("ct.value for ct in content_types")
+        params.append([ct.value for ct in content_types])
     
     param_count += 1
     where_conditions.append(f"1 - ({embedding_column} <=> ${param_count}) >= ${param_count + 1}")
-    params.extend("embedding, similarity_threshold")
+    params.extend([embedding, similarity_threshold])
     
     query = f"""
         SELECT *, 1 - ({embedding_column} <=> $1) as similarity
@@ -998,14 +992,13 @@ The memory system incorporates several performance optimizations and scalability
 
 ### Vector Search Optimization
 
-``mermaid
+```mermaid
 flowchart TD
 A[Query Text] --> B[Generate Embedding]
 B --> C[Vector Search in PostgreSQL]
 C --> D[Filter by Similarity]
 D --> E[Update Access Metadata]
 E --> F[Return Results]
-
 ```
 
 **Diagram sources**
@@ -1121,7 +1114,7 @@ The Very Long-Term Memory (VLTM) system provides strategic knowledge management 
 
 The VLTM data models use junction tables to correctly implement many-to-many relationships:
 
-``mermaid
+```mermaid
 classDiagram
 class VeryLongTermMemory {
 +memory_id: str
@@ -1175,7 +1168,6 @@ MemoryConsolidation "1" -- "0..*" ConsolidationPattern : has
 ConsolidationPattern "0..*" -- "0..*" MemoryPattern : links
 StrategicKnowledge "1" -- "0..*" PatternStrategicKnowledge : has
 PatternStrategicKnowledge "0..*" -- "0..*" MemoryPattern : links
-
 ```
 
 **Diagram sources**
@@ -1227,7 +1219,7 @@ The MemoryIntegrationManager coordinates memory flow between existing memory sys
 
 #### Integration Architecture
 
-``mermaid
+```mermaid
 classDiagram
 class MemoryIntegrationManager {
 +initialize()
@@ -1268,7 +1260,6 @@ MemoryIntegrationManager --> MemoryBridge : "manages"
 MemoryIntegrationManager --> IntegrationStats : "tracks"
 MemoryIntegrationManager --> MemoryFlowDirection : "uses"
 MemoryIntegrationManager --> IntegrationMode : "uses"
-
 ```
 
 **Diagram sources**

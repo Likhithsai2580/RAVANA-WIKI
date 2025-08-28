@@ -53,7 +53,6 @@ E --> J
 E --> K
 E --> L
 E --> M
-
 ```
 
 **Diagram sources**
@@ -94,7 +93,6 @@ LLM-->>Service : Return image description
 Service->>Service : Extract metadata
 Service->>Logger : Log success
 Service-->>Client : Return analysis results
-
 ```
 
 **Diagram sources**
@@ -119,7 +117,6 @@ LLM-->>Service : Return audio description
 Service->>Service : Extract metadata
 Service->>Logger : Log success
 Service-->>Client : Return analysis results
-
 ```
 
 **Diagram sources**
@@ -150,7 +147,7 @@ async def cross_modal_analysis(self, content_list: List[Dict[str, Any]], analysi
         Content types: {', '.join(set(content_types))}
         
         Content descriptions:
-        {chr(10).join("f"{i+1}. {desc}" for i, desc in enumerate(descriptions)")}
+        {chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
         
         Please provide:
         1. Common themes and patterns across all content
@@ -264,7 +261,6 @@ Action <|-- ProcessImageAction
 Action <|-- ProcessAudioAction
 Action <|-- AnalyzeDirectoryAction
 Action <|-- CrossModalAnalysisAction
-
 ```
 
 **Diagram sources**
@@ -294,7 +290,6 @@ Service-->>ActionManager : Return result
 ActionManager->>KnowledgeService : add_knowledge(description)
 KnowledgeService-->>ActionManager : Confirmation
 ActionManager-->>DecisionEngine : Return action result
-
 ```
 
 **Diagram sources**
@@ -325,7 +320,6 @@ J --> K[Store in Knowledge Base]
 K --> L[Cross-modal Analysis]
 L --> M[Generate Summary]
 M --> N[Structured Text Output]
-
 ```
 
 **Diagram sources**
@@ -379,7 +373,6 @@ C --> F[Return Transcribed Text]
 E --> F
 F --> G[Detect Language]
 G --> H[Return Results]
-
 ```
 
 **Diagram sources**
@@ -463,7 +456,7 @@ Perform a comprehensive cross-modal analysis of the following content:
 Content types: {', '.join(set(content_types))}
 
 Content descriptions:
-{chr(10).join("f"{i+1}. {desc}" for i, desc in enumerate(descriptions)")}
+{chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
 
 Please provide:
 1. Common themes and patterns across all content

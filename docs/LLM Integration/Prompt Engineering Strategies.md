@@ -36,7 +36,6 @@ B --> F["reflection_db.py"]
 C --> G["physics_experiment_prompts.py"]
 A --> H["Core LLM Interface"]
 H --> I["llm.py"]
-
 ```
 
 **Diagram sources**
@@ -79,7 +78,6 @@ LLM-->>Client : Return response
 Client->>Response : Process response
 Response->>Response : Validate format
 Response->>Client : Return structured result
-
 ```
 
 **Diagram sources**
@@ -199,7 +197,6 @@ class ReflectionDB {
 }
 ReflectionModule --> LLMInterface : "uses"
 ReflectionModule --> ReflectionDB : "persists to"
-
 ```
 
 **Diagram sources**
@@ -293,7 +290,6 @@ class DiscoveryPrompt {
 }
 PhysicsExperimentSystem --> Experiment : "contains"
 PhysicsExperimentSystem --> DiscoveryPrompt : "contains"
-
 ```
 
 **Diagram sources**
@@ -318,7 +314,6 @@ style B fill:#bbf,stroke:#333
 style D fill:#bbf,stroke:#333
 style E fill:#9f9,stroke:#333
 style F fill:#9f9,stroke:#333
-
 ```
 
 **Diagram sources**

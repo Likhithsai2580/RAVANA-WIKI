@@ -26,7 +26,6 @@ B --> C["Thread Pool Executor"]
 C --> D["Blocking LLM Call"]
 D --> E["Return Result"]
 E --> F["Resume Async Context"]
-
 ```
 
 **Diagram sources**  
