@@ -4,40 +4,40 @@
 
 @layer base {
   body {
-    @apply bg-wiki-dark-bg text-wiki-text-light;
+    @apply bg-base-100 text-base-content;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold mb-4 mt-6 text-wiki-text-light;
+    @apply font-bold mb-4 mt-6 text-base-content;
   }
   
   h1 {
-    @apply text-4xl;
+    @apply text-5xl;
   }
   
   h2 {
-    @apply text-2xl border-b border-wiki-border pb-2;
+    @apply text-3xl border-b border-base-300 pb-2;
   }
   
   h3 {
-    @apply text-xl;
+    @apply text-2xl;
   }
   
   p {
-    @apply mb-4 text-wiki-text-light leading-relaxed;
+    @apply mb-4 text-base-content leading-relaxed;
   }
   
   a {
-    @apply text-wiki-blue hover:underline transition-colors duration-200;
+    @apply text-primary hover:text-primary-focus transition-colors duration-300;
   }
   
   code {
-    @apply bg-wiki-content-bg text-wiki-text-light rounded px-1.5 py-0.5 text-sm font-mono border border-wiki-border shadow-sm;
+    @apply bg-base-200 text-base-content rounded px-2 py-1 text-sm font-mono border border-base-300 shadow-sm;
   }
   
   pre {
-    @apply bg-wiki-content-bg text-wiki-text-light p-4 rounded-lg overflow-x-auto mb-4 border border-wiki-border shadow-lg;
+    @apply bg-base-200 text-base-content p-4 rounded-lg overflow-x-auto mb-4 border border-base-300 shadow-lg;
   }
   
   pre code {
@@ -45,11 +45,11 @@
   }
   
   blockquote {
-    @apply border-l-4 border-wiki-blue pl-4 italic my-4 text-wiki-text-light bg-wiki-content-bg/50 py-2 rounded-r;
+    @apply border-l-4 border-primary pl-4 italic my-4 text-neutral-content bg-base-200/50 py-2 rounded-r;
   }
   
   ul, ol {
-    @apply mb-4 ml-8 text-wiki-text-light;
+    @apply mb-4 ml-8 text-base-content;
   }
   
   li {
@@ -57,39 +57,39 @@
   }
   
   table {
-    @apply min-w-full border-collapse mb-4 border border-wiki-border rounded-lg overflow-hidden shadow;
+    @apply min-w-full border-collapse mb-4 border border-base-300 rounded-lg overflow-hidden shadow;
   }
   
   th, td {
-    @apply border border-wiki-border px-4 py-2 text-wiki-text-light;
+    @apply border border-base-300 px-4 py-2 text-base-content;
   }
   
   th {
-    @apply bg-wiki-content-bg font-bold;
+    @apply bg-base-200 font-bold;
   }
   
   hr {
-    @apply border-wiki-border my-6;
+    @apply border-base-300 my-6;
   }
   
   /* Enhanced code block styling */
   pre[class*="language-"] {
-    @apply bg-wiki-content-bg border border-wiki-border rounded-lg shadow-lg p-4 mb-4 overflow-x-auto;
+    @apply bg-base-200 border border-base-300 rounded-lg shadow-lg p-4 mb-4 overflow-x-auto;
   }
   
   code[class*="language-"] {
-    @apply text-wiki-text-light;
+    @apply text-base-content;
   }
   
   .token.comment,
   .token.prolog,
   .token.doctype,
   .token.cdata {
-    @apply text-wiki-text-muted;
+    @apply text-neutral-content;
   }
   
   .token.punctuation {
-    @apply text-wiki-text-light;
+    @apply text-base-content;
   }
   
   .token.property,
@@ -99,7 +99,7 @@
   .token.constant,
   .token.symbol,
   .token.deleted {
-    @apply text-wiki-blue;
+    @apply text-primary;
   }
   
   .token.selector,
@@ -108,7 +108,7 @@
   .token.char,
   .token.builtin,
   .token.inserted {
-    @apply text-wiki-accent;
+    @apply text-accent;
   }
   
   .token.operator,
@@ -116,24 +116,24 @@
   .token.url,
   .language-css .token.string,
   .style .token.string {
-    @apply text-wiki-text-light;
+    @apply text-base-content;
   }
   
   .token.atrule,
   .token.attr-value,
   .token.keyword {
-    @apply text-wiki-blue;
+    @apply text-primary;
   }
   
   .token.function,
   .token.class-name {
-    @apply text-wiki-accent;
+    @apply text-accent;
   }
   
   .token.regex,
   .token.important,
   .token.variable {
-    @apply text-wiki-text-light;
+    @apply text-base-content;
   }
 }
 
