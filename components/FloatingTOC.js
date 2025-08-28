@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 import StickyTOC from './StickyTOC';
 
+/**
+ * Renders a floating table of contents (TOC) component.
+ *
+ * The FloatingTOC component displays a button that toggles the visibility of a table of contents.
+ * It only renders if the `content` prop is provided. When the button is clicked, it updates the
+ * state to show or hide the TOC panel, which contains a StickyTOC component populated with the
+ * provided content.
+ *
+ * @param {Object} props - The component props.
+ * @param {any} props.content - The content to be displayed in the table of contents.
+ */
 const FloatingTOC = ({ content }) => {
   const [isOpen, setIsOpen] = useState(false);
 

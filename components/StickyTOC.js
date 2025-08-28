@@ -1,5 +1,14 @@
 import { useEffect, useState, useRef } from 'react';
 
+/**
+ * Renders a sticky table of contents (TOC) for the headings in the provided content.
+ *
+ * This component extracts headings from the content, organizes them into a hierarchical structure, and allows users to scroll to specific sections. It utilizes an Intersection Observer to track the active heading as the user scrolls. The TOC supports expandable sections for nested headings and maintains the state of expanded sections and the currently active heading.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.content - The content from which to extract headings.
+ * @returns {JSX.Element|null} The rendered TOC or null if no headings are found.
+ */
 const StickyTOC = ({ content }) => {
   const [headings, setHeadings] = useState([]);
   const [activeId, setActiveId] = useState('');
