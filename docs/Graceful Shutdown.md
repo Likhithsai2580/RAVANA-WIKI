@@ -133,7 +133,7 @@ The `ShutdownCoordinator` class is the central orchestrator of the graceful shut
 #### Shutdown Phases Flowchart
 ```mermaid
 flowchart TD
-Start([Initiate Shutdown]) --> Phase1["Phase 1: Pre-shutdown Validation"]
+Start["Initiate Shutdown"] --> Phase1["Phase 1: Pre-shutdown Validation"]
 Phase1 --> Phase2["Phase 2: Signal Received"]
 Phase2 --> Phase3["Phase 3: Component Notification"]
 Phase3 --> Phase4["Phase 4: Stop Background Tasks"]

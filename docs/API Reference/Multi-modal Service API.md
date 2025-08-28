@@ -200,7 +200,7 @@ async def cross_modal_analysis(self, content_list: List[Dict[str, Any]], analysi
             Content types: {', '.join(set(content_types))}
             
             Content descriptions:
-            {chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
+            {chr(10).join["f"{i+1}. {desc}" for i, desc in enumerate(descriptions)"]}
             
             Please provide:
             1. Common themes and patterns across all content
@@ -397,7 +397,7 @@ The EnhancedActionManager provides parallel execution capabilities with a concur
 
 ```mermaid
 flowchart TD
-Start([Execute Parallel Actions]) --> CheckEmpty{"Decisions List Empty?"}
+Start["Execute Parallel Actions"] --> CheckEmpty{"Decisions List Empty?"}
 CheckEmpty --> |Yes| ReturnEmpty[Return Empty List]
 CheckEmpty --> |No| CreateSemaphore[Create Semaphore with Limit]
 CreateSemaphore --> CreateTasks[Create Execution Tasks]
@@ -405,7 +405,7 @@ CreateTasks --> ExecuteTasks[Execute Tasks with Semaphore]
 ExecuteTasks --> GatherResults[Gather Results with asyncio.gather]
 GatherResults --> LogCompletion[Log Completion]
 LogCompletion --> ReturnResults[Return Results]
-ReturnEmpty --> End([End])
+ReturnEmpty --> End["End"]
 ReturnResults --> End
 ```
 

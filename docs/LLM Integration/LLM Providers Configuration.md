@@ -20,7 +20,7 @@ The system implements a multi-layered configuration loading mechanism that prior
 
 ```mermaid
 flowchart TD
-Start([Configuration Loading]) --> EnvCheck["Check Environment Variables"]
+Start["Configuration Loading"] --> EnvCheck["Check Environment Variables"]
 EnvCheck --> ConfigFile["Load config.json"]
 ConfigFile --> Merge["Merge Configurations"]
 Merge --> Default["Apply Default Values"]
@@ -162,7 +162,7 @@ The LLM providers are initialized through a systematic process that handles API 
 ### Initialization Flow
 ```mermaid
 flowchart TD
-InitStart([Provider Initialization]) --> KeyCheck["Retrieve API Key"]
+InitStart["Provider Initialization"] --> KeyCheck["Retrieve API Key"]
 KeyCheck --> EnvVar["Check Environment Variables"]
 EnvVar --> ConfigFile["Check config.json"]
 ConfigFile --> Default["Use Default/Fallback Key"]

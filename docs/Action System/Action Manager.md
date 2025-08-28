@@ -193,7 +193,7 @@ The action execution lifecycle follows a well-defined sequence of steps that ens
 
 ```mermaid
 flowchart TD
-Start([Start Execution]) --> ParseDecision["Parse Decision Input"]
+Start["Start Execution"] --> ParseDecision["Parse Decision Input"]
 ParseDecision --> DecisionType{"Decision Type?"}
 DecisionType --> |Parsed Action| UseDirect["Use action and params directly"]
 DecisionType --> |Raw LLM Response| ExtractJSON["Extract JSON from response"]
@@ -212,7 +212,7 @@ ExecuteAction --> LogSuccess["Log successful execution"]
 ExecuteAction --> |Exception| LogError["Log error"]
 LogSuccess --> ReturnResult["Return result"]
 LogError --> ReturnError4["Return error result"]
-ReturnResult --> End([End])
+ReturnResult --> End["End"]
 ReturnError1 --> End
 ReturnError2 --> End
 ReturnError3 --> End
@@ -279,7 +279,7 @@ These extension points allow for behavior modification without changing the core
 
 ```mermaid
 flowchart TD
-Start([Enhanced Execution]) --> CheckCache["Check cache for action"]
+Start["Enhanced Execution"] --> CheckCache["Check cache for action"]
 CheckCache --> CacheHit{"Cache hit?"}
 CacheHit --> |Yes| ReturnCached["Return cached result"]
 CacheHit --> |No| ApplyTimeout["Execute with timeout"]
@@ -290,7 +290,7 @@ ShouldCache --> |No| Continue
 StoreCache --> ReturnResult["Return result"]
 Continue --> ReturnResult
 ApplyTimeout --> |Timeout| HandleTimeout["Return timeout error"]
-ReturnCached --> End([End])
+ReturnCached --> End["End"]
 ReturnResult --> End
 HandleTimeout --> End
 ```
@@ -315,7 +315,7 @@ participant Semaphore
 participant Task1
 participant Task2
 participant Task3
-Client->>EAM : execute_parallel_actions([d1,d2,d3])
+Client->>EAM : execute_parallel_actions["d1,d2,d3"]
 EAM->>Semaphore : Create with limit=3
 EAM->>EAM : Create tasks with semaphore
 Task1->>Semaphore : Acquire

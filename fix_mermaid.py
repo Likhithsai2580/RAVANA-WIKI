@@ -9,13 +9,12 @@ def fix_mermaid_syntax(file_path):
         print(f"Error reading {file_path}: {e}")
         return
 
+    # Fix round bracket nodes: ([text]) -> ("text")
     # Pattern for ([...])
     pattern1 = re.compile(r'([a-zA-Z0-9_]+)\(\[([^\]]+)\]\)')
-    # Pattern for ([("...")])
-    pattern2 = re.compile(r'([a-zA-Z0-9_]+)\(\[\("([^"]+)"\)\]\)')
-
-    new_content = pattern1.sub(r'\1("\2")', content)
-    new_content = pattern2.sub(r'\1("\2")', new_content)
+    
+    # Replace with ("text") format
+    new_content = pattern1.sub(r'\1["\2"]', content)
 
     if new_content != content:
         try:

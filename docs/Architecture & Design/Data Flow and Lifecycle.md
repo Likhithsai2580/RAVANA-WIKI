@@ -131,7 +131,7 @@ The generator uses a probabilistic selection process to choose the type of situa
 
 ```mermaid
 flowchart TD
-Start([Generate Situation]) --> CheckSearchResults{"Search results available?"}
+Start["Generate Situation"] --> CheckSearchResults{"Search results available?"}
 CheckSearchResults --> |Yes| GenerateSearchResult[Generate search result analysis]
 CheckSearchResults --> |No| CheckHypothesis{"New hypothesis?"}
 CheckHypothesis --> |Yes| GenerateHypothesis[Generate hypothesis test]
@@ -173,7 +173,7 @@ The decision engine can take several types of actions, including executing tasks
 
 ```mermaid
 flowchart TD
-Start([Process Situation]) --> CheckExperiment{"Analyzing experiment outcome?"}
+Start["Process Situation"] --> CheckExperiment{"Analyzing experiment outcome?"}
 CheckExperiment --> |Yes| AnalyzeOutcome[Analyze experiment outcome]
 CheckExperiment --> |No| ConsiderExperiment{"Consider starting experiment?"}
 ConsiderExperiment --> |Yes| GenerateHypothesis[Generate new hypothesis]
@@ -195,7 +195,7 @@ ProposeInvention --> |Yes| ReturnDecision
 ProposeInvention --> |No| Wait[Return wait action]
 CompleteTask --> ReturnDecision
 CreateNewGoal --> ReturnDecision
-ReturnDecision --> End([Return decision])
+ReturnDecision --> End["Return decision"]
 ```
 
 **Diagram sources**

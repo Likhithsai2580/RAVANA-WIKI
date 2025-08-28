@@ -61,7 +61,7 @@ The Situation Generator operates as a central orchestrator, pulling data from va
 
 ```mermaid
 flowchart TD
-Start([Generate Situation]) --> CheckSearch{"Search results available?"}
+Start["Generate Situation"] --> CheckSearch{"Search results available?"}
 CheckSearch --> |Yes| GenSearch[Generate Search Result Analysis]
 CheckSearch --> |No| CheckHypothesis{"New hypothesis?"}
 CheckHypothesis --> |Yes| GenHypothesis[Generate Hypothesis Test]
@@ -88,7 +88,7 @@ GenHypothetical --> Return
 GenEthical --> Return
 GenCreative --> Return
 GenReflection --> Return
-Return([Return Situation])
+Return["Return Situation"]
 ```
 
 **Diagram sources**

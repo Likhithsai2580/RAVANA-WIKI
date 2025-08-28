@@ -178,14 +178,14 @@ The MultiModalMemoryService class provides advanced functionality for processing
 #### For Complex Logic Components:
 ```mermaid
 flowchart TD
-Start([Process Audio Memory]) --> ValidateInput["Validate audio file path"]
+Start["Process Audio Memory"] --> ValidateInput["Validate audio file path"]
 ValidateInput --> ProcessAudio["Process audio with Whisper"]
 ProcessAudio --> CreateMetadata["Create audio metadata"]
 CreateMetadata --> CreateRecord["Create MemoryRecord"]
 CreateRecord --> GenerateEmbeddings["Generate embeddings"]
 GenerateEmbeddings --> SaveToDB["Save to PostgreSQL"]
 SaveToDB --> ReturnResult["Return saved record"]
-StartImage([Process Image Memory]) --> ValidateImage["Validate image file path"]
+StartImage["Process Image Memory"] --> ValidateImage["Validate image file path"]
 ValidateImage --> ExtractFeatures["Extract image features"]
 ExtractFeatures --> CreateImageMetadata["Create image metadata"]
 CreateImageMetadata --> CreateImageRecord["Create MemoryRecord"]

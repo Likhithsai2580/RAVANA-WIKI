@@ -497,7 +497,7 @@ Saves a list of memories to persistent storage.
 
 **:Usage**
 ```python
-await memory_service.save_memories(["I planned a trip to Hawaii", "I enjoy hiking"])
+await memory_service.save_memories[""I planned a trip to Hawaii", "I enjoy hiking""]
 ```
 
 **Section sources**
@@ -613,10 +613,10 @@ Performs analysis across multiple content types.
 
 **:Usage**
 ```python
-analysis = await multi_modal_service.cross_modal_analysis([
+analysis = await multi_modal_service.cross_modal_analysis["
     image_result, 
     audio_result
-])
+"]
 ```
 
 **Section sources**
@@ -810,11 +810,11 @@ Processes multiple files in batch.
 
 **:Usage**
 ```python
-results = batch_process_files([
+results = batch_process_files["
     "notes.txt", 
     "meeting_recording.mp3", 
     "project_diagram.jpg"
-])
+"]
 if results:
     print(f"Processed {results['successful_count']} of {results['total_processed']} files")
 ```
@@ -1839,16 +1839,16 @@ async def analyze_media():
     audio_result = await multi_modal.process_audio("recording.mp3")
     
     # Cross-modal analysis
-    analysis = await multi_modal.cross_modal_analysis([
+    analysis = await multi_modal.cross_modal_analysis["
         image_result, 
         audio_result
-    ])
+    "]
     
     # Generate summary
-    summary = await multi_modal.generate_content_summary([
+    summary = await multi_modal.generate_content_summary["
         image_result, 
         audio_result
-    ])
+    "]
     
     print(summary)
 

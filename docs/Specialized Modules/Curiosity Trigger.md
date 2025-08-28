@@ -86,7 +86,7 @@ The CuriosityTrigger module calculates curiosity scores through a multi-faceted 
 
 ```mermaid
 flowchart TD
-Start([Start]) --> Input["Input: recent_topics, lateralness"]
+Start["Start"] --> Input["Input: recent_topics, lateralness"]
 Input --> Hash["Create cache key from topics hash"]
 Hash --> CacheCheck{"Cache hit?"}
 CacheCheck --> |Yes| ReturnCached["Return cached topics"]
@@ -107,7 +107,7 @@ Filter --> EmbeddingFilter["Use _filter_similar_topics with threshold=0.6"]
 EmbeddingFilter --> EnsureN["Ensure n topics returned"]
 EnsureN --> CacheStore["Store in _TOPIC_CACHE"]
 CacheStore --> Return["Return topics"]
-Return --> End([End])
+Return --> End["End"]
 ReturnCached --> End
 ```
 

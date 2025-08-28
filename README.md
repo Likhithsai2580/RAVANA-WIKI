@@ -1,132 +1,104 @@
 # RAVANA AGI Documentation System
 
-This is a Node.js-based documentation website for the RAVANA AGI system, built with Next.js, Tailwind CSS, and supporting Mermaid diagrams.
+A modern, responsive documentation system for the RAVANA AGI platform built with Next.js and Tailwind CSS.
 
 ## Features
 
-- **Next.js Framework**: Modern React-based framework for production-ready applications
-- **Markdown Support**: Full support for Markdown files with GitHub Flavored Markdown
-- **Mermaid Diagrams**: Automatic rendering of Mermaid diagrams in documentation
-- **Code Syntax Highlighting**: Syntax highlighting for multiple programming languages
-- **Responsive Design**: Mobile-friendly interface with Tailwind CSS
-- **GitHub Pages Deployment**: Automated deployment via GitHub Actions
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm (comes with Node.js)
-
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd wiki
-   ```
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Development
-
-To start the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the documentation.
-
-### Building for Production
-
-To create a production build:
-
-```bash
-npm run build
-```
-
-To serve the production build locally:
-
-```bash
-npm run start
-```
+- **Modern UI/UX**: Clean, responsive design with dark/light mode support
+- **Enhanced Typography**: Improved readability with proper font sizing and line spacing
+- **Collapsible Navigation**: Organized sidebar with collapsible sections
+- **Sticky Table of Contents**: Easy navigation with expandable sections
+- **Callout Boxes**: Special formatting for notes, warnings, and tips
+- **Syntax Highlighting**: Code snippets with Prism.js
+- **Mermaid Diagrams**: Support for diagrams and flowcharts
+- **Mobile Responsive**: Fully responsive design for all devices
+- **Animations**: Smooth transitions and interactive elements
+- **Search Functionality**: Easy document discovery
 
 ## Project Structure
 
 ```
 /wiki-nodejs/
-├── pages/                  # Next.js pages
-│   ├── index.js            # Main documentation index
-│   ├── docs/[slug].js      # Dynamic documentation pages
-│   └── 404.js              # Custom 404 page
-├── lib/                    # Business logic and utilities
-│   └── markdown.js         # Markdown processing utilities
-├── styles/                 # Global styles
-│   └── globals.css         # Tailwind CSS and custom styles
-├── docs/                   # Documentation content (existing Markdown files)
-├── public/                 # Static assets
-├── scripts/                # Utility scripts
-│   └── mermaid-debug.js    # Mermaid diagram debugging script
-└── components/             # Reusable UI components (to be added)
+├── components/             # UI components
+├── lib/                    # Markdown processing utilities
+├── pages/                  # Next.js routes
+├── scripts/                # Debugging tools
+├── styles/                 # CSS styling
+├── docs/                   # Markdown documentation
+└── public/                 # Static assets
 ```
 
-## Documentation Format
+## Getting Started
 
-The documentation system supports:
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+4. Build for production: `npm run build`
+5. Start production server: `npm run start`
 
-1. **Standard Markdown**: All GitHub Flavored Markdown features
-2. **Mermaid Diagrams**: Enclosed in ```mermaid code blocks
-3. **Code Syntax Highlighting**: For JavaScript, TypeScript, Python, Bash, JSON, YAML, and more
-4. **Frontmatter**: YAML frontmatter for page metadata (optional)
+## Documentation Guidelines
 
-Example Mermaid diagram:
-```markdown
-\```mermaid
+### Creating New Documents
+
+1. Add markdown files to the `/docs` directory
+2. Use proper heading hierarchy (#, ##, ###, etc.)
+3. Include frontmatter for titles if needed
+
+### Callout Boxes
+
+Use special syntax to create callout boxes:
+
+```
+> [!NOTE]
+> This is a note callout box with important information.
+
+> [!WARNING]
+> This is a warning callout box for critical information.
+
+> [!TIP]
+> This is a tip callout box with helpful advice.
+```
+
+### Code Blocks
+
+Use triple backticks with language specification:
+
+```javascript
+console.log('Hello, world!');
+```
+
+### Mermaid Diagrams
+
+Use mermaid code blocks for diagrams:
+
+```mermaid
 graph TD
-  A[Start] --> B[Process]
-  B --> C[End]
-\```
+    A[Start] --> B[Process]
+    B --> C[End]
 ```
 
-## Debugging Mermaid Diagrams
+## Customization
 
-A debugging script is available to identify issues with Mermaid diagrams in documentation files:
+### Theme Colors
 
-```bash
-npm run mermaid:debug
-```
+The system uses a dark theme by default with light theme support. Colors can be customized in `tailwind.config.js`.
 
-This script scans all documentation files and reports:
-- Missing diagram type declarations
-- Metadata sections that should be removed
-- Style directives that might cause issues
-- Round bracket node syntax that needs conversion
-- Inconsistent arrow syntax
-- Missing line breaks between node definitions
-- Unbalanced quotes
+### Typography
+
+Font sizes and line heights are defined in `styles/globals.css`. The primary font is Inter, and monospace font is Roboto Mono.
 
 ## Deployment
 
-The documentation is automatically deployed to GitHub Pages using GitHub Actions. The workflow is defined in `.github/workflows/deploy-wiki.yml`.
+The documentation system is designed for static export and can be deployed to any static hosting service. GitHub Pages deployment is configured via GitHub Actions.
 
 ## Contributing
 
-To contribute to the documentation:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a pull request
 
-1. Edit the Markdown files in the `docs/` directory
-2. Run the Mermaid debugging script to check for issues:
-   ```bash
-   npm run mermaid:debug
-   ```
-3. Fix any issues identified by the script
-4. Submit a pull request with your changes
+## License
 
-The documentation website will be automatically updated when changes are merged to the `main` branch.
+MIT License - see LICENSE file for details.

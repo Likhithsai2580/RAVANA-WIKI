@@ -1,20 +1,17 @@
-import { useEffect } from 'react';
 import Mermaid from './Mermaid';
 
 const MermaidRenderer = ({ content }) => {
-  // Extract mermaid diagrams from content
+  // Simple regex to extract mermaid diagrams
   const extractDiagrams = (htmlContent) => {
-    // Handle case where content might be null or undefined
     if (!htmlContent) {
       return [{ type: 'text', content: '' }];
     }
     
-    // Enhanced regex to catch all variations of Mermaid div containers
-    // This pattern handles various class formats and whitespace variations
-    const mermaidRegex = /<div\s+class=["']mermaid["'][^>]*>([\s\S]*?)<\/div>|<div\s+[^>]*?class=["'][^"']*?mermaid[^"']*?["'][^>]*?>([\s\S]*?)<\/div>/gi;
+    // Simple regex to match mermaid div containers
+    const mermaidRegex = /<div\s+class=["']mermaid["'][^>]*>([\s\S]*?)<\/div>/gi;
     const parts = [];
-    let match;
     let lastIndex = 0;
+    let match;
 
     while ((match = mermaidRegex.exec(htmlContent)) !== null) {
       // Add text before the match
@@ -25,11 +22,10 @@ const MermaidRenderer = ({ content }) => {
         });
       }
 
-      // Add the mermaid diagram (use whichever captured group contains content)
-      const diagramContent = match[1] || match[2];
+      // Add the mermaid diagram
       parts.push({
         type: 'mermaid',
-        content: diagramContent.trim()
+        content: match[1].trim()
       });
 
       lastIndex = match.index + match[0].length;

@@ -9,68 +9,8 @@ const Mermaid = ({ chart }) => {
     
     const renderChart = async () => {
       try {
-        // Normalize chart syntax with improved handling
-        const normalizeChartSyntax = (chartText) => {
-          // First, check if there's a "Diagram sources" section that needs to be removed
-          if (chartText.includes('**Diagram sources**') || 
-              chartText.includes('**Section sources**')) {
-            // Split at first occurrence of these markers and only use the content before them
-            const sourcesIndex = Math.min(
-              chartText.includes('**Diagram sources**') ? chartText.indexOf('**Diagram sources**') : Number.MAX_SAFE_INTEGER,
-              chartText.includes('**Section sources**') ? chartText.indexOf('**Section sources**') : Number.MAX_SAFE_INTEGER
-            );
-            
-            if (sourcesIndex !== Number.MAX_SAFE_INTEGER) {
-              chartText = chartText.substring(0, sourcesIndex).trim();
-            }
-          }
-          
-          // Handle style directives - remove them properly
-          if (chartText.includes('style ')) {
-            // Extract just the flowchart definition without style sections
-            const styleMatch = chartText.match(/([\s\S]*?)\bstyle\s+[A-Za-z0-9_-]+/);
-            if (styleMatch && styleMatch[1]) {
-              chartText = styleMatch[1].trim();
-            } else {
-              // If we can't cleanly extract, just remove all style directives
-              chartText = chartText.replace(/\bstyle\s+[A-Za-z0-9_-]+\s+[^\n]+/g, '');
-            }
-          }
-          
-          // Handle round bracket nodes - ([text]) -> ("text")
-          chartText = chartText.replace(/([A-Za-z0-9_-]+)\(\[([^\]]+)\]\)/g, '$1(["$2"])');
-          
-          // Handle alphanumeric node identifiers with underscores/hyphens
-          chartText = chartText.replace(/([A-Za-z0-9_-]+)\[([^\]]+)\]\s*(-->|->)\s*([A-Za-z0-9_-]+)/g, '$1[$2]\n$1 $3 $4');
-          
-          // Standardize arrow syntax
-          chartText = chartText.replace(/->/g, '-->');
-          
-          // Add line breaks between nodes
-          chartText = chartText.replace(/([A-Za-z0-9_-]+)\[([^\]]+)\]\s+([A-Za-z0-9_-]+)\[/g, '$1[$2]\n$3[');
-          
-          // Handle edge labels
-          chartText = chartText.replace(/([A-Za-z0-9_-]+)\s+-->\s+\|([^|]+)\|\s+([A-Za-z0-9_-]+)/g, '$1 -->|$2| $3');
-          
-          // Ensure diagram type is declared
-          if (!chartText.match(/^\s*(graph|flowchart|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|journey|requirementDiagram|gitGraph|erDiagram|quadrantChart)/)) {
-            // Try to detect diagram type from content or default to flowchart
-            if (chartText.includes('-->') || chartText.includes('-->|')) {
-              chartText = 'flowchart TD\n' + chartText;
-            } else {
-              chartText = 'graph TD\n' + chartText;
-            }
-          }
-          
-          // Clean up multiple consecutive spaces and newlines
-          chartText = chartText.replace(/\s{2,}/g, ' ');
-          chartText = chartText.replace(/\n{3,}/g, '\n\n');
-          
-          return chartText.trim();
-        };
-        
-        // Function to attempt recovery of malformed charts
-        const attemptChartRecovery = (chartText) => {
+        // Simple preprocessing to clean up common issues
+        const preprocessChart = (chartText) => {
           // Remove any "Diagram sources" or "Section sources" sections
           if (chartText.includes('**Diagram sources**') || 
               chartText.includes('**Section sources**')) {
@@ -84,59 +24,23 @@ const Mermaid = ({ chart }) => {
             }
           }
           
-          // Handle style directives
-          if (chartText.includes('style ')) {
-            const styleMatch = chartText.match(/([\s\S]*?)\bstyle\s+[A-Za-z0-9_-]+/);
-            if (styleMatch && styleMatch[1]) {
-              chartText = styleMatch[1].trim();
-            } else {
-              chartText = chartText.replace(/\bstyle\s+[A-Za-z0-9_-]+\s+[^\n]+/g, '');
-            }
-          }
-          
-          // Remove invalid characters
-          let cleaned = chartText.replace(/[\u0000-\u0008\u000B-\u000C\u000E-\u001F]/g, '');
-          
-          // Handle the specific case with 'graph TD A[Application Start] --> B' format
-          if (cleaned.match(/(?:graph|flowchart)\s+TD\s+[A-Za-z0-9_-]+\[[^\]]+\]\s*(-->|->)\s*[A-Za-z0-9_-]+/)) {
-            cleaned = cleaned.replace(/^((?:graph|flowchart)\s+TD)\s+/, '$1\n');
-            cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\[([^\]]+)\]\s*(-->|->)\s*([A-Za-z0-9_-]+)/g, '$1[$2]\n$1 --> $4');
-            cleaned = cleaned.replace(/->/g, '-->');
-            cleaned = cleaned.replace(/\s{2,}/g, ' ');
-            cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\s+-->\s+([A-Za-z0-9_-]+)\{/g, '$1 --> $2\n$2{');
-          }
-          
-          // Handle round bracket nodes
-          cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\(\[([^\]]+)\]\)/g, '$1(["$2"])');
-          
-          // Fix edge labels
-          cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\s+-->\s+\|([^|]+)\|\s+([A-Za-z0-9_-]+)/g, '$1 -->|$2| $3');
-          
           // Ensure diagram type is declared
-          if (!cleaned.match(/^\s*(graph|flowchart|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|journey|requirementDiagram|gitGraph|erDiagram|quadrantChart)/)) {
-            if (cleaned.includes('-->') || cleaned.includes('-->|')) {
-              cleaned = 'flowchart TD\n' + cleaned;
+          if (!chartText.match(/^\s*(graph|flowchart|sequenceDiagram|classDiagram|stateDiagram|pie|gantt|journey|requirementDiagram|gitGraph|erDiagram|quadrantChart)/)) {
+            // Try to detect diagram type from content or default to flowchart
+            if (chartText.includes('-->') || chartText.includes('-->|')) {
+              chartText = 'flowchart TD\n' + chartText;
             } else {
-              cleaned = 'graph TD\n' + cleaned;
+              chartText = 'graph TD\n' + chartText;
             }
           }
           
-          // Fix common arrow syntax issues
-          cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\s*->/g, '$1 -->');
+          // Clean up multiple consecutive newlines
+          chartText = chartText.replace(/\n{3,}/g, '\n\n');
           
-          // Add missing line breaks between nodes
-          cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\[([^\]]+)\]\s+([A-Za-z0-9_-]+)\[/g, '$1[$2]\n$3[');
-          
-          // Handle alphanumeric node identifiers
-          cleaned = cleaned.replace(/([A-Za-z0-9_-]+)\s+-->\s+([A-Za-z0-9_-]+)/g, '$1 --> $2');
-          
-          // Clean up whitespace
-          cleaned = cleaned.replace(/\s{2,}/g, ' ').trim();
-          
-          return cleaned;
+          return chartText.trim();
         };
 
-        const normalizedChart = normalizeChartSyntax(chart);
+        const processedChart = preprocessChart(chart);
         
         // Import mermaid dynamically
         const { default: mermaid } = await import('mermaid');
@@ -147,10 +51,7 @@ const Mermaid = ({ chart }) => {
           theme: 'dark',
           securityLevel: 'loose',
           flowchart: { useMaxWidth: true },
-          logLevel: 'error',
-          parseError: (err, hash) => {
-            console.error('Mermaid parse error:', err);
-          }
+          logLevel: 'error'
         });
         
         // Generate a unique ID for this chart
@@ -160,7 +61,7 @@ const Mermaid = ({ chart }) => {
         containerRef.current.innerHTML = '';
         
         // Render the chart
-        const { svg, bindFunctions } = await mermaid.render(id, normalizedChart);
+        const { svg, bindFunctions } = await mermaid.render(id, processedChart);
         containerRef.current.innerHTML = svg;
         
         // Bind functions if they exist (for interactivity)
@@ -169,27 +70,15 @@ const Mermaid = ({ chart }) => {
         }
       } catch (error) {
         console.error('Error rendering mermaid chart:', error);
-        // Try to recover by attempting to fix common syntax issues
-        try {
-          const { default: mermaid } = await import('mermaid');
-          const recoveredChart = attemptChartRecovery(chart);
-          const id = `mermaid-recovery-${Math.random().toString(36).substring(2, 9)}`;
-          const { svg, bindFunctions } = await mermaid.render(id, recoveredChart);
-          containerRef.current.innerHTML = svg;
-          if (bindFunctions) {
-            bindFunctions(containerRef.current);
-          }
-        } catch (recoveryError) {
-          // Recovery failed, show the error
-          containerRef.current.innerHTML = `
-            <pre class="text-red-500 p-4 bg-red-100 dark:bg-red-900/20 rounded my-4 overflow-auto">
-              Error rendering chart: ${error.message}
-              
-              Chart content:
-              ${chart.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
-            </pre>
-          `;
-        }
+        // Show the error
+        containerRef.current.innerHTML = `
+          <pre class="text-red-500 p-4 bg-red-100 dark:bg-red-900/20 rounded my-4 overflow-auto">
+            Error rendering chart: ${error.message}
+            
+            Chart content:
+            ${chart.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+          </pre>
+        `;
       }
     };
     

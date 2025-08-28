@@ -133,7 +133,7 @@ The `add_knowledge()` method implements a robust workflow for ingesting new know
 
 ```mermaid
 flowchart TD
-Start([Add Knowledge]) --> Hash["Generate SHA-256 hash"]
+Start["Add Knowledge"] --> Hash["Generate SHA-256 hash"]
 Hash --> CheckDB["Query database for duplicate"]
 CheckDB --> Exists{"Content exists?"}
 Exists --> |Yes| ReturnExisting["Return existing knowledge"]
@@ -143,7 +143,7 @@ SaveDB --> Embed["Generate embedding"]
 Embed --> UpdateIndex["Add to FAISS index"]
 UpdateIndex --> Persist["Save index to disk"]
 Persist --> ReturnNew["Return new knowledge"]
-ReturnExisting --> End([Exit])
+ReturnExisting --> End["Exit"]
 ReturnNew --> End
 ```
 

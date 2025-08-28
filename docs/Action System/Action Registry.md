@@ -80,17 +80,17 @@ The mapping structure supports O(1) average-case time complexity for both regist
 
 ```mermaid
 flowchart TD
-Start([Action Registration]) --> CheckName{"Action name exists?"}
+Start["Action Registration"] --> CheckName{"Action name exists?"}
 CheckName --> |Yes| LogWarning["Log warning: Action will be overwritten"]
 CheckName --> |No| Continue[Continue registration]
 LogWarning --> Continue
 Continue --> StoreAction["Store action in dictionary: actions[name] = action"]
-StoreAction --> End([Registration Complete])
-RetrieveStart([Action Retrieval]) --> FindAction["Look up action by name in dictionary"]
+StoreAction --> End["Registration Complete"]
+RetrieveStart["Action Retrieval"] --> FindAction["Look up action by name in dictionary"]
 FindAction --> ActionExists{"Action exists?"}
 ActionExists --> |Yes| ReturnAction["Return action instance"]
 ActionExists --> |No| RaiseError["Raise ValueError: Action not found"]
-ReturnAction --> End2([Retrieval Complete])
+ReturnAction --> End2["Retrieval Complete"]
 RaiseError --> End2
 ```
 
@@ -223,7 +223,7 @@ During initialization, the ActionManager creates an ActionRegistry instance, whi
 
 ```mermaid
 flowchart TD
-Start([System Startup]) --> CreateRegistry["Create ActionRegistry instance"]
+Start["System Startup"] --> CreateRegistry["Create ActionRegistry instance"]
 CreateRegistry --> RegisterBuiltIn["Register built-in actions in constructor"]
 RegisterBuiltIn --> CreateActionManager["Create ActionManager instance"]
 CreateActionManager --> InitializeRegistry["Initialize with ActionRegistry"]
@@ -398,7 +398,7 @@ Once created, the action will be automatically discovered and registered when th
 
 ```mermaid
 flowchart TD
-Start([Create Custom Action]) --> CreateFile["Create Python file in core/actions/"]
+Start["Create Custom Action"] --> CreateFile["Create Python file in core/actions/"]
 CreateFile --> DefineClass["Define class inheriting from Action"]
 DefineClass --> ImplementName["Implement name property"]
 ImplementName --> ImplementDescription["Implement description property"]
@@ -475,7 +475,7 @@ if action.name in self.actions:
 
 ```mermaid
 flowchart TD
-Start([Troubleshooting]) --> CheckLogs["Check system logs for error messages"]
+Start["Troubleshooting"] --> CheckLogs["Check system logs for error messages"]
 CheckLogs --> IdentifyIssue["Identify the specific issue"]
 subgraph ImportFailures
 IdentifyIssue --> ImportError{"Import error?"}

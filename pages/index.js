@@ -4,6 +4,7 @@ import { readdir, readFile } from 'fs/promises';
 import path from 'path';
 import DocCard from '../components/DocCard';
 import Search from '../components/Search';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function Home({ docs }) {
   return (
@@ -11,10 +12,6 @@ export default function Home({ docs }) {
       <Head>
         <title>RAVANA AGI Documentation</title>
         <meta name="description" content="Documentation for the RAVANA AGI system" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
       </Head>
 
       <header className="bg-base-200/80 backdrop-blur-lg sticky top-0 z-50 p-4 shadow-lg border-b border-base-300 animate-slide-in-up">
@@ -22,7 +19,10 @@ export default function Home({ docs }) {
           <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             RAVANA AGI Docs
           </h1>
-          <Search docs={docs} />
+          <div className="flex items-center space-x-4">
+            <Search docs={docs} />
+            <ThemeToggle />
+          </div>
           <nav>
             <ul className="flex space-x-6">
               <li><Link href="/" className="text-base-content hover:text-primary transition-colors duration-300 font-medium">Home</Link></li>

@@ -163,7 +163,7 @@ The `decision_maker_loop` function in `llm.py` is responsible for evaluating opt
 
 ```mermaid
 flowchart TD
-Start([Start Decision Loop]) --> PrepareContext["Prepare Context<br/>(Situation, Mood, Memory, RAG)"]
+Start["Start Decision Loop"] --> PrepareContext["Prepare Context<br/>(Situation, Mood, Memory, RAG)"]
 PrepareContext --> ConstructPrompt["Construct LLM Prompt"]
 ConstructPrompt --> CallLLM["Call LLM with safe_call_llm"]
 CallLLM --> ExtractDecision["Extract Decision with extract_decision"]
@@ -172,7 +172,7 @@ ParseJSON --> |Yes| UseData["Use analysis, plan, action, confidence"]
 ParseJSON --> |No| Fallback["Use fallback plan, log error"]
 UseData --> ReturnDecision["Return Decision"]
 Fallback --> ReturnDecision
-ReturnDecision --> End([End])
+ReturnDecision --> End["End"]
 ```
 
 **Diagram sources**

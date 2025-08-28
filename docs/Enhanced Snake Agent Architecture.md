@@ -350,7 +350,7 @@ This sequential initialization ensures that all components are properly set up b
 
 ```mermaid
 flowchart TD
-Start([EnhancedSnakeAgent Initialization]) --> ValidateConfig["Validate Configuration"]
+Start["EnhancedSnakeAgent Initialization"] --> ValidateConfig["Validate Configuration"]
 ValidateConfig --> InitLogManager["Initialize Log Manager"]
 InitLogManager --> InitLLM["Initialize LLM Interfaces"]
 InitLLM --> InitThreading["Initialize Threading Manager"]
@@ -359,9 +359,9 @@ InitProcess --> InitFileMonitor["Initialize File Monitor"]
 InitFileMonitor --> SetupCallbacks["Set Up Component Callbacks"]
 SetupCallbacks --> LoadState["Load Previous State"]
 LoadState --> MarkInitialized["Mark as Initialized"]
-MarkInitialized --> End([Initialization Complete])
+MarkInitialized --> End["Initialization Complete"]
 ValidateConfig --> |Configuration Issues| LogError["Log Error and Return False"]
-LogError --> EndError([Initialization Failed])
+LogError --> EndError["Initialization Failed"]
 InitLogManager --> |Failure| LogError
 InitLLM --> |Failure| LogError
 InitThreading --> |Failure| LogError

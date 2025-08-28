@@ -208,12 +208,12 @@ Model selection occurs in two stages: first, the provider strategy is selected; 
 
 ```mermaid
 flowchart TD
-Start([Select Model]) --> CheckPreferred{"Preferred Model Specified?"}
+Start["Select Model"] --> CheckPreferred{"Preferred Model Specified?"}
 CheckPreferred --> |Yes| CheckAvailable{"Model Available in Provider?"}
 CheckPreferred --> |No| UseFirst["Use First Model in List"]
 CheckAvailable --> |Yes| UsePreferred["Use Preferred Model"]
 CheckAvailable --> |No| UseFirst
-UsePreferred --> End([Model Selected])
+UsePreferred --> End["Model Selected"]
 UseFirst --> End
 ```
 

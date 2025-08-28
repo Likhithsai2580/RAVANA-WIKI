@@ -99,16 +99,16 @@ The Data Service ingests data primarily from RSS feeds using the `fetch_feeds` f
 
 ```mermaid
 flowchart TD
-Start([Start]) --> Fetch["fetch_feeds(feed_urls)"]
+Start["Start"] --> Fetch["fetch_feeds(feed_urls)"]
 Fetch --> Articles{"Articles Retrieved?"}
-Articles --> |No| End1([No New Articles])
+Articles --> |No| End1["No New Articles"]
 Articles --> |Yes| Loop["For each article"]
 Loop --> Exists["Already in DB?"]
 Exists --> |Yes| Skip
 Exists --> |No| Create["Create Article Object"]
 Create --> Save["session.add(article)"]
 Save --> Commit["session.commit()"]
-Commit --> End2([Saved])
+Commit --> End2["Saved"]
 Skip --> End2
 ```
 

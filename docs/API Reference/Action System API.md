@@ -266,7 +266,7 @@ The `execute_action()` method follows a structured process:
 
 ```mermaid
 flowchart TD
-Start([Execute Action]) --> ParseDecision["Parse Decision Dictionary"]
+Start["Execute Action"] --> ParseDecision["Parse Decision Dictionary"]
 ParseDecision --> DecisionType{"Decision Type?"}
 DecisionType --> |Parsed Action| UseActionData["Use action and params directly"]
 DecisionType --> |Raw Response| ExtractJSON["Extract JSON from raw_response"]
@@ -282,7 +282,7 @@ ExecuteAction --> |Other Exception| LogUnexpectedError["Log unexpected error"]
 LogSuccess --> ReturnResult["Return execution result"]
 LogActionError --> ReturnActionErrorResult["Return action error result"]
 LogUnexpectedError --> ReturnUnexpectedError["Return unexpected error"]
-ReturnResult --> End([Action Complete])
+ReturnResult --> End["Action Complete"]
 ReturnActionErrorResult --> End
 ReturnUnexpectedError --> End
 ReturnParseError --> End

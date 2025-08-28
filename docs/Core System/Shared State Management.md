@@ -238,7 +238,7 @@ The propagation of state changes is primarily push-based, with the AGISystem act
 
 ```mermaid
 flowchart TD
-Start([Start Iteration]) --> ExternalUpdates["Update from external sources"]
+Start["Start Iteration"] --> ExternalUpdates["Update from external sources"]
 ExternalUpdates --> BehaviorHandling["Handle behavior modifiers"]
 BehaviorHandling --> Curiosity["Process curiosity"]
 Curiosity --> Situation["Generate situation"]
@@ -246,7 +246,7 @@ Situation --> Memory["Retrieve memories"]
 Memory --> Decision["Make decision"]
 Decision --> Action["Execute action"]
 Action --> MoodUpdate["Update mood"]
-MoodUpdate --> End([End Iteration])
+MoodUpdate --> End["End Iteration"]
 style Start fill:#f9f,stroke:#333
 style End fill:#f9f,stroke:#333
 ```

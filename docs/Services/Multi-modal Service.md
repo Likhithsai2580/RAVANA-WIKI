@@ -147,7 +147,7 @@ async def cross_modal_analysis(self, content_list: List[Dict[str, Any]], analysi
         Content types: {', '.join(set(content_types))}
         
         Content descriptions:
-        {chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
+        {chr(10).join["f"{i+1}. {desc}" for i, desc in enumerate(descriptions)"]}
         
         Please provide:
         1. Common themes and patterns across all content
@@ -456,7 +456,7 @@ Perform a comprehensive cross-modal analysis of the following content:
 Content types: {', '.join(set(content_types))}
 
 Content descriptions:
-{chr(10).join([f"{i+1}. {desc}" for i, desc in enumerate(descriptions)])}
+{chr(10).join["f"{i+1}. {desc}" for i, desc in enumerate(descriptions)"]}
 
 Please provide:
 1. Common themes and patterns across all content
