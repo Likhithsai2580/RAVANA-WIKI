@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,41 +9,41 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#6366f1',
-        'primary-focus': '#4f46e5',
-        'primary-content': '#ffffff',
+        'primary': 'var(--color-primary)',
+        'primary-focus': 'var(--color-primary-focus)',
+        'primary-content': 'var(--color-primary-content)',
 
-        'secondary': '#f97316',
-        'secondary-focus': '#ea580c',
-        'secondary-content': '#ffffff',
+        'secondary': 'var(--color-secondary)',
+        'secondary-focus': 'var(--color-secondary-focus)',
+        'secondary-content': 'var(--color-secondary-content)',
 
-        'accent': '#8b5cf6',
-        'accent-focus': '#7c3aed',
-        'accent-content': '#ffffff',
+        'accent': 'var(--color-accent)',
+        'accent-focus': 'var(--color-accent-focus)',
+        'accent-content': 'var(--color-accent-content)',
 
-        'neutral': '#1e293b',
-        'neutral-focus': '#334155',
-        'neutral-content': '#cbd5e1',
+        'neutral': 'var(--color-neutral)',
+        'neutral-focus': 'var(--color-neutral-focus)',
+        'neutral-content': 'var(--color-neutral-content)',
 
-        'base-100': '#0f172a',
-        'base-200': '#1e293b',
-        'base-300': '#334155',
-        'base-content': '#f1f5f9',
+        'base-100': 'var(--color-base-100)',
+        'base-200': 'var(--color-base-200)',
+        'base-300': 'var(--color-base-300)',
+        'base-content': 'var(--color-base-content)',
 
-        'info': '#22d3ee',
-        'success': '#4ade80',
-        'warning': '#facc15',
-        'error': '#f87171',
+        'info': 'var(--color-info)',
+        'success': 'var(--color-success)',
+        'warning': 'var(--color-warning)',
+        'error': 'var(--color-error)',
 
-        'wiki-blue': '#3b82f6',
-        'wiki-blue-dark': '#2563eb',
-        'wiki-dark-bg': '#0f172a',
-        'wiki-content-bg': '#1e293b',
-        'wiki-content-bg-hover': '#334155',
-        'wiki-text-light': '#f1f5f9',
-        'wiki-text-muted': '#94a3b8',
-        'wiki-border': '#334155',
-        'wiki-accent': '#8b5cf6',
+        'wiki-blue': 'var(--color-wiki-blue)',
+        'wiki-blue-dark': 'var(--color-wiki-blue-dark)',
+        'wiki-dark-bg': 'var(--color-wiki-dark-bg)',
+        'wiki-content-bg': 'var(--color-wiki-content-bg)',
+        'wiki-content-bg-hover': 'var(--color-wiki-content-bg-hover)',
+        'wiki-text-light': 'var(--color-wiki-text-light)',
+        'wiki-text-muted': 'var(--color-wiki-text-muted)',
+        'wiki-border': 'var(--color-wiki-border)',
+        'wiki-accent': 'var(--color-wiki-accent)',
       },
       transitionProperty: {
         'height': 'height',

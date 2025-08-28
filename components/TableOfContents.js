@@ -1,55 +1,95 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 const TableOfContents = () => {
   const [headings, setHeadings] = useState([]);
+  const [activeId, setActiveId] = useState('');
+  const [isTocOpen, setIsTocOpen] = useState(false);
+  const observer = useRef(null);
 
   useEffect(() => {
-    // Extract headings from the document
-    const headingElements = document.querySelectorAll('article h2, article h3');
-    const headingData = Array.from(headingElements).map(heading => ({
-      id: heading.id || heading.textContent.replace(/\s+/g, '-').toLowerCase(),
-      text: heading.textContent,
-      level: parseInt(heading.tagName.charAt(1)) - 1 // Convert H2/H3 to level 1/2
-    }));
-    
-    setHeadings(headingData);
-    
-    // Add IDs to headings if they don't have them
-    headingElements.forEach(heading => {
-      if (!heading.id) {
-        heading.id = heading.textContent.replace(/\s+/g, '-').toLowerCase();
-      }
+    const headingElements = Array.from(document.querySelectorAll('article h2, article h3'));
+
+    const headingData = headingElements.map((heading, index) => {
+      const id = heading.id || `heading-${index}`;
+      heading.id = id;
+      return {
+        id,
+        text: heading.textContent,
+        level: parseInt(heading.tagName.charAt(1)),
+      };
     });
+
+    setHeadings(headingData);
+
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -80% 0px' }
+    );
+
+    headingElements.forEach((heading) => {
+      observer.current.observe(heading);
+    });
+
+    return () => {
+      if(observer.current) {
+        observer.current.disconnect();
+      }
+    };
   }, []);
 
   const scrollToHeading = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => setActiveId(id), 500);
     }
   };
 
   if (headings.length === 0) return null;
 
   return (
-    <div className="bg-wiki-content-bg rounded-lg shadow p-4 mb-6 border border-wiki-border">
-      <h3 className="font-bold text-lg mb-3 text-wiki-text-light">Table of Contents</h3>
-      <ul className="space-y-1">
-        {headings.map((heading, index) => (
-          <li 
-            key={index} 
-            className={`${heading.level > 1 ? 'ml-4' : ''}`}
-          >
-            <button
-              onClick={() => scrollToHeading(heading.id)}
-              className="text-left text-wiki-text-muted hover:text-wiki-blue py-1 px-2 rounded hover:bg-wiki-content-bg-hover w-full text-sm transition-colors duration-200"
-            >
-              {heading.text}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="xl:hidden mb-4">
+        <button
+          onClick={() => setIsTocOpen(!isTocOpen)}
+          className="font-semibold text-wiki-text-light flex items-center"
+        >
+          Table of Contents
+          <svg className={`w-5 h-5 ml-2 transition-transform ${isTocOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        </button>
+      </div>
+      <div className={`xl:block ${isTocOpen ? 'block' : 'hidden'}`}>
+        <div className="sticky top-20">
+          <div className="bg-wiki-content-bg rounded-lg shadow p-4 border border-wiki-border">
+            <h3 className="font-bold text-lg mb-3 text-wiki-text-light">On this page</h3>
+            <ul className="space-y-2">
+              {headings.map((heading) => (
+                <li key={heading.id} style={{ paddingLeft: `${(heading.level - 2) * 1}rem` }}>
+                  <button
+                    onClick={() => scrollToHeading(heading.id)}
+                    className={`w-full text-left text-sm transition-colors duration-200 py-1 px-2 rounded
+                      ${
+                        activeId === heading.id
+                          ? 'text-wiki-blue bg-wiki-blue/10'
+                          : 'text-wiki-text-muted hover:text-wiki-text-light hover:bg-wiki-content-bg-hover'
+                      }
+                    `}
+                  >
+                    {heading.text}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
