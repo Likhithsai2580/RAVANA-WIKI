@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Renders a content card with an optional title and children.
+ */
 const ContentCard = ({ title, children, className = '' }) => {
   return (
     <div className={`bg-wiki-content-bg rounded-lg shadow-lg border border-wiki-border p-6 mb-6 transition-all duration-300 hover:shadow-xl ${className}`}>
