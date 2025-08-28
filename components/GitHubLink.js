@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+/**
+ * Renders a GitHub link and a random popup to encourage users to visit the GitHub repository.
+ *
+ * The component uses state to manage the visibility of the popup and the count of popups shown.
+ * It checks if the current page is a documentation page and randomly decides whether to show the
+ * popup after a delay, limited to two popups per session. The popup contains options to visit
+ * the GitHub repository or dismiss the popup.
+ */
 const GitHubLink = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupCount, setPopupCount] = useState(0);
 
   // Check if we should show a popup (random chance)
+  /** Determines if a popup should be shown based on a 20% chance. */
   const shouldShowPopup = () => {
     // 20% chance to show popup
     return Math.random() < 0.2;
@@ -30,10 +39,14 @@ const GitHubLink = () => {
     }
   }, [popupCount]);
 
+  /** Closes the popup by setting showPopup to false. */
   const closePopup = () => {
     setShowPopup(false);
   };
 
+  /**
+   * Opens the RAVANA GitHub repository in a new tab and closes the popup.
+   */
   const visitGitHub = () => {
     window.open('https://github.com/OpenSource-Syndicate/RAVANA', '_blank');
     closePopup();
