@@ -15,6 +15,16 @@ const classDiagramRegex = /```mermaid\s*\n\s*classDiagram\s*\n([\s\S]*?)```/g;
 const inheritanceArrowRegex = /(<\|--|--\|>)/g;
 
 // Function to scan a file for problematic class diagrams
+/**
+ * Scans a file for problematic class diagrams.
+ *
+ * This function reads the content of a specified file and searches for class diagrams using a regular expression.
+ * It counts the diagrams and checks for the presence of problematic inheritance arrows. If found, it records the
+ * issues along with their line numbers and relevant messages. In case of a file read error, it captures the error
+ * message and adds it to the issues list.
+ *
+ * @param {string} filePath - The path to the file to be scanned for diagrams.
+ */
 function scanFileForProblematicDiagrams(filePath) {
   const issues = [];
   try {
@@ -53,11 +63,24 @@ function scanFileForProblematicDiagrams(filePath) {
 }
 
 // Function to get line number from character index
+/**
+ * Returns the line number of a character at a given index in the content.
+ */
 function getLineNumber(content, index) {
   return content.substring(0, index).split('\n').length;
 }
 
 // Function to recursively scan directory for markdown files
+/**
+ * Scans a directory for Markdown files and problematic diagrams.
+ *
+ * The function reads the contents of the specified directory and iterates through each entry.
+ * If an entry is a directory, it recursively scans that directory. If it is a Markdown file,
+ * it checks for problematic diagrams using the scanFileForProblematicDiagrams function.
+ * All identified issues are collected and returned as an array.
+ *
+ * @param {string} dirPath - The path of the directory to scan.
+ */
 function scanDirectory(dirPath) {
   const issues = [];
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
@@ -76,6 +99,14 @@ function scanDirectory(dirPath) {
 }
 
 // Function to generate a suggested fix for a class diagram
+/**
+ * Generate a flowchart representation from class definitions and relationships in a diagram content string.
+ *
+ * The function processes the input string to extract class names and their relationships, constructs a flowchart in a specific format, and applies styling to the nodes. It handles class definitions, relationships, and ignores stereotype lines. The final flowchart string is returned for further use.
+ *
+ * @param diagramContent - A string containing class definitions and relationships.
+ * @returns A string representing the flowchart in a specific format.
+ */
 function generateFlowchartFix(diagramContent) {
   // Extract class definitions and relationships
   const lines = diagramContent.split('\n').map(line => line.trim()).filter(line => line);
@@ -136,6 +167,15 @@ function generateFlowchartFix(diagramContent) {
 }
 
 // Function to format and display issues
+/**
+ * Display issues related to class diagrams, categorized by priority.
+ *
+ * The function first checks if there are any issues to display. If not, it logs a message indicating that no problematic class diagrams were found.
+ * It then categorizes the issues into high, medium, and low priority based on the file names and logs each category along with a summary of the counts.
+ * Additionally, it provides a suggested fix for the first issue if available, using the generateFlowchartFix function.
+ *
+ * @param issues - An array of issue objects, each containing file and diagramContent properties.
+ */
 function displayIssues(issues) {
   if (issues.length === 0) {
     console.log('✅ No problematic class diagrams found!');
@@ -186,6 +226,9 @@ function displayIssues(issues) {
   }
 }
 
+/**
+ * Displays the issue group by logging file paths and messages.
+ */
 function displayIssueGroup(issues) {
   for (const issue of issues) {
     console.log(`  📄 ${path.relative(process.cwd(), issue.file)}:${issue.line}`);
@@ -194,6 +237,9 @@ function displayIssueGroup(issues) {
 }
 
 // Main execution
+/**
+ * Main function to scan for class diagrams and display issues.
+ */
 function main() {
   const docsPath = path.join(__dirname, '..', 'docs');
   
