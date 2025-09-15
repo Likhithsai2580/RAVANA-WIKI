@@ -15,26 +15,30 @@
 The exception hierarchy for action-related errors is structured to provide clear categorization and inheritance for different types of failures. The base class `ActionError` serves as the root for all action-specific exceptions, while `ActionException` is used for execution-level failures.
 
 ```mermaid
-classDiagram
-    class Exception {
-        <<base>>
-    }
-    class ActionError {
-        <<Exception>>
-    }
-    class InvalidActionError {
-        <<Exception>>
-    }
-    class InvalidActionParams {
-        <<Exception>>
-    }
-    class ActionException {
-        <<Exception>>
-    }
-    ActionError <|-- InvalidActionError
-    ActionError <|-- InvalidActionParams
-    Exception <|-- ActionError
-    Exception <|-- ActionException
+flowchart TD
+    Exception["Exception<br/><i>Base exception class</i><br/>+message: string<br/>+__init__(message)"]
+    ActionError["ActionError<br/><i>Base action exception</i><br/>+action_name: string<br/>+__init__(action_name, message)"]
+    ActionException["ActionException<br/><i>Execution failure exception</i><br/>+context: dict<br/>+__init__(message, context)"]
+    InvalidActionError["InvalidActionError<br/><i>Action not found in registry</i><br/>+__init__(action_name)"]
+    InvalidActionParams["InvalidActionParams<br/><i>Invalid action parameters</i><br/>+params: dict<br/>+__init__(params, message)"]
+    
+    Exception --> ActionError
+    Exception --> ActionException
+    ActionError --> InvalidActionError
+    ActionError --> InvalidActionParams
+    
+    %% Styling
+    style Exception fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style ActionError fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style ActionException fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style InvalidActionError fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style InvalidActionParams fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#7b1fa2,stroke-width:2px
+    linkStyle 3 stroke:#7b1fa2,stroke-width:2px
 ```
 
 **Diagram sources**

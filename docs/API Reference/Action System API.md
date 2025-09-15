@@ -30,40 +30,26 @@ The action system consists of three primary components:
 These components work together to provide a flexible and extensible mechanism for the AGI to perform tasks, with built-in support for dynamic action discovery, parameter validation, error handling, and execution logging.
 
 ```mermaid
-classDiagram
-class Action {
-<<abstract>>
-+system : AGISystem
-+data_service : DataService
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-+validate_params(params) : None
-+to_dict() : Dict
-+to_json() : str
-}
-class ActionRegistry {
--actions : Dict[str, Action]
-+__init__(system, data_service)
-+_register_action(action)
-+register_action(action)
-+discover_actions()
-+get_action(name)
-+get_all_actions()
-+get_action_definitions()
-}
-class ActionManager {
-+system : AGISystem
-+data_service : DataService
-+action_registry : ActionRegistry
-+__init__(system, data_service)
-+log_available_actions()
-+execute_action(decision)
-}
-ActionManager --> ActionRegistry : "uses"
-ActionRegistry --> Action : "contains"
-ActionManager --> Action : "executes"
+flowchart TD
+    Action["Action<br/><i>Abstract base class</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Any<br/>+validate_params(params): None<br/>+to_dict(): Dict<br/>+to_json(): str"]
+    
+    ActionRegistry["ActionRegistry<br/><i>Central registry for actions</i><br/>-actions: Dict[str, Action]<br/>+__init__(system, data_service)<br/>+_register_action(action)<br/>+register_action(action)<br/>+discover_actions()<br/>+get_action(name)<br/>+get_all_actions()<br/>+get_action_definitions()"]
+    
+    ActionManager["ActionManager<br/><i>Action orchestrator</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+action_registry: ActionRegistry<br/>+__init__(system, data_service)<br/>+log_available_actions()<br/>+execute_action(decision)"]
+    
+    ActionManager --> ActionRegistry
+    ActionRegistry --> Action
+    ActionManager --> Action
+    
+    %% Styling
+    style Action fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style ActionRegistry fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style ActionManager fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#7b1fa2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#f57c00,stroke-width:2px
 ```
 
 **Diagram sources**
@@ -118,40 +104,29 @@ The base class provides several utility methods:
 - **to_json()**: Returns a JSON string of the action schema
 
 ```mermaid
-classDiagram
-class Action {
-<<abstract>>
-+system : AGISystem
-+data_service : DataService
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-+validate_params(params) : None
-+to_dict() : Dict
-+to_json() : str
-}
-class WritePythonCodeAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Dict
-}
-class LogMessageAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Dict
-}
-class ProposeAndTestInventionAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Dict
-}
-Action <|-- WritePythonCodeAction
-Action <|-- LogMessageAction
-Action <|-- ProposeAndTestInventionAction
+flowchart TD
+    Action["Action<br/><i>Abstract base class</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Any<br/>+validate_params(params): None<br/>+to_dict(): Dict<br/>+to_json(): str"]
+    
+    WritePythonCodeAction["WritePythonCodeAction<br/><i>Code generation action</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Dict"]
+    
+    LogMessageAction["LogMessageAction<br/><i>Logging action</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Dict"]
+    
+    ProposeAndTestInventionAction["ProposeAndTestInventionAction<br/><i>Experimental action</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Dict"]
+    
+    Action --> WritePythonCodeAction
+    Action --> LogMessageAction
+    Action --> ProposeAndTestInventionAction
+    
+    %% Styling
+    style Action fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style WritePythonCodeAction fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style LogMessageAction fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style ProposeAndTestInventionAction fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#1976d2,stroke-width:2px
 ```
 
 **Diagram sources**

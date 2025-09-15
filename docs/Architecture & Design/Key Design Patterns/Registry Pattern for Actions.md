@@ -59,67 +59,45 @@ The system's core components include the `Action` base class, the `ActionRegistr
 The architecture follows a modular, layered design. At the base is the `Action` interface, which all concrete actions must implement. The `ActionRegistry` sits above this, acting as a factory and catalog for action instances. It is initialized with a set of predefined actions and can discover new ones dynamically. The `ActionManager` uses the registry to execute actions based on LLM-generated decisions. Error handling and logging are integrated at each level, ensuring robustness and traceability.
 
 ```mermaid
-classDiagram
-class Action {
-<<abstract>>
-+system : AGISystem
-+data_service : DataService
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-+validate_params(params) : None
-+to_dict() : Dict
-+to_json() : str
-}
-class ActionRegistry {
--actions : Dict[str, Action]
-+__init__(system, data_service)
-+_register_action(action)
-+register_action(action)
-+discover_actions()
-+get_action(name)
-+get_all_actions()
-+get_action_definitions()
-}
-class ActionManager {
-+system : AGISystem
-+data_service : DataService
-+action_registry : ActionRegistry
-+__init__(system, data_service)
-+log_available_actions()
-+execute_action(decision)
-}
-class WritePythonCodeAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs)
-}
-class ExecutePythonFileAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs)
-}
-class LogMessageAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs)
-}
-class ProposeAndTestInventionAction {
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs)
-}
-Action <|-- WritePythonCodeAction
-Action <|-- ExecutePythonFileAction
-Action <|-- LogMessageAction
-Action <|-- ProposeAndTestInventionAction
-ActionRegistry --> Action : "stores"
-ActionManager --> ActionRegistry : "uses"
+flowchart TD
+    Action["Action<br/><i>Abstract base class</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Any<br/>+validate_params(params): None<br/>+to_dict(): Dict<br/>+to_json(): str"]
+    
+    ActionRegistry["ActionRegistry<br/><i>Action management</i><br/>-actions: Dict[str, Action]<br/>+__init__(system, data_service)<br/>+_register_action(action)<br/>+register_action(action)<br/>+discover_actions()<br/>+get_action(name)<br/>+get_all_actions()<br/>+get_action_definitions()"]
+    
+    ActionManager["ActionManager<br/><i>Action orchestrator</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+action_registry: ActionRegistry<br/>+__init__(system, data_service)<br/>+log_available_actions()<br/>+execute_action(decision)"]
+    
+    WritePythonCodeAction["WritePythonCodeAction<br/><i>Code generation</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs)"]
+    
+    ExecutePythonFileAction["ExecutePythonFileAction<br/><i>Code execution</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs)"]
+    
+    LogMessageAction["LogMessageAction<br/><i>Logging</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs)"]
+    
+    ProposeAndTestInventionAction["ProposeAndTestInventionAction<br/><i>Experimentation</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs)"]
+    
+    Action --> WritePythonCodeAction
+    Action --> ExecutePythonFileAction
+    Action --> LogMessageAction
+    Action --> ProposeAndTestInventionAction
+    
+    ActionRegistry --> Action
+    ActionManager --> ActionRegistry
+    
+    %% Styling
+    style Action fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style ActionRegistry fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style ActionManager fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style WritePythonCodeAction fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style ExecutePythonFileAction fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    style LogMessageAction fill:#fff8e1,stroke:#fbc02d,stroke-width:2px,color:#000
+    style ProposeAndTestInventionAction fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#1976d2,stroke-width:2px
+    linkStyle 3 stroke:#1976d2,stroke-width:2px
+    linkStyle 4 stroke:#7b1fa2,stroke-width:2px
+    linkStyle 5 stroke:#f57c00,stroke-width:2px
 ```
 
 **Diagram sources**

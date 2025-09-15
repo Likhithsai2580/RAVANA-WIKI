@@ -29,25 +29,29 @@ The Action Registry is the core mechanism for extending RAVANA's capabilities. I
 The `ActionRegistry` class in `core/actions/registry.py` manages all available actions. It uses Python's `pkgutil.walk_packages` to automatically discover action classes within the `core.actions` package. When a new action class is found, it is instantiated and registered in the registry. This process occurs during system initialization, ensuring that all actions are available when the system starts.
 
 ```mermaid
-classDiagram
-class ActionRegistry {
-+actions : Dict[str, Action]
-+__init__(system : AGISystem, data_service : DataService)
-+register_action(action : Action)
-+discover_actions()
-+get_action(name : str) : Action
-+get_all_actions() : List[Action]
-}
-class Action {
-<<abstract>>
-+name : str
-+description : str
-+parameters : List[Dict]
-+execute(**kwargs) : Any
-}
-ActionRegistry --> Action : "registers"
-Action <|-- HelloWorldAction : "implements"
-Action <|-- WritePythonCodeAction : "implements"
+flowchart TD
+    ActionRegistry["ActionRegistry<br/><i>Action management system</i><br/>+actions: Dict[str, Action]<br/>+__init__(system, data_service)<br/>+register_action(action)<br/>+discover_actions()<br/>+get_action(name): Action<br/>+get_all_actions(): List[Action]"]
+    
+    Action["Action<br/><i>Abstract base class</i><br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Any"]
+    
+    HelloWorldAction["HelloWorldAction<br/><i>Example implementation</i><br/>+name: 'hello_world'<br/>+description: 'Simple greeting'<br/>+execute(**kwargs): str"]
+    
+    WritePythonCodeAction["WritePythonCodeAction<br/><i>Code generation</i><br/>+name: 'write_python_code'<br/>+description: 'Generate Python code'<br/>+execute(**kwargs): Dict"]
+    
+    ActionRegistry --> Action
+    Action --> HelloWorldAction
+    Action --> WritePythonCodeAction
+    
+    %% Styling
+    style ActionRegistry fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style Action fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
+    style HelloWorldAction fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style WritePythonCodeAction fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#7b1fa2,stroke-width:2px
+    linkStyle 2 stroke:#7b1fa2,stroke-width:2px
 ```
 
 **Diagram sources**

@@ -212,38 +212,24 @@ The ActionManager is responsible for executing the decisions made by the Decisio
 The EnhancedActionManager extends the basic ActionManager with additional capabilities, including multi-modal support, parallel execution, and action caching. It can process images, audio, and perform cross-modal analysis.
 
 ```mermaid
-classDiagram
-class ActionManager {
-+system : AGISystem
-+data_service : DataService
-+action_registry : ActionRegistry
-+__init__(system, data_service)
-+execute_action(decision) : Dict
-+log_available_actions()
-}
-class EnhancedActionManager {
-+multi_modal_service : MultiModalService
-+action_cache : Dict
-+parallel_limit : int
-+__init__(agi_system, data_service)
-+execute_action_enhanced(decision) : Any
-+execute_parallel_actions(decisions) : List[Any]
-+process_image_action(image_path, analysis_prompt) : dict
-+process_audio_action(audio_path, analysis_prompt) : dict
-+analyze_directory_action(directory_path, recursive) : dict
-+cross_modal_analysis_action(content_paths, analysis_prompt) : dict
-+clear_cache(max_size)
-+get_action_statistics() : dict
-}
-class ActionRegistry {
-+system : AGISystem
-+data_service : DataService
-+actions : Dict[str, Action]
-+register_action(action)
-+get_action(action_name) : Action
-}
-ActionManager <|-- EnhancedActionManager
-ActionManager --> ActionRegistry
+flowchart TD
+    ActionManager["ActionManager<br/><i>Basic action execution</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+action_registry: ActionRegistry<br/>+__init__(system, data_service)<br/>+execute_action(decision): Dict<br/>+log_available_actions()"]
+    
+    EnhancedActionManager["EnhancedActionManager<br/><i>Advanced action execution</i><br/>+multi_modal_service: MultiModalService<br/>+action_cache: Dict<br/>+parallel_limit: int<br/>+__init__(agi_system, data_service)<br/>+execute_action_enhanced(decision): Any<br/>+execute_parallel_actions(decisions): List[Any]<br/>+process_image_action(...): dict<br/>+process_audio_action(...): dict<br/>+analyze_directory_action(...): dict<br/>+cross_modal_analysis_action(...): dict<br/>+clear_cache(max_size)<br/>+get_action_statistics(): dict"]
+    
+    ActionRegistry["ActionRegistry<br/><i>Action management</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+actions: Dict[str, Action]<br/>+register_action(action)<br/>+get_action(action_name): Action"]
+    
+    ActionManager --> EnhancedActionManager
+    ActionManager --> ActionRegistry
+    
+    %% Styling
+    style ActionManager fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style EnhancedActionManager fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style ActionRegistry fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#7b1fa2,stroke-width:2px
 ```
 
 **Diagram sources**

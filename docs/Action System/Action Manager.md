@@ -103,47 +103,34 @@ class Action component;
 The Action class serves as the foundation for all executable actions in the system. It defines a consistent interface that ensures all actions can be discovered, validated, and executed in a uniform manner.
 
 ```mermaid
-classDiagram
-class Action {
-<<abstract>>
-+AGISystem system
-+DataService data_service
-+name : str
-+description : str
-+parameters : List[Dict[str, Any]]
-+execute(**kwargs) : Any
-+validate_params(params) : None
-+to_dict() : Dict[str, Any]
-+to_json() : str
-}
-class LogMessageAction {
-+name : str
-+description : str
-+parameters : List[Dict[str, Any]]
-+execute(message : str) : Dict[str, Any]
-}
-class WritePythonCodeAction {
-+name : str
-+description : str
-+parameters : List[Dict[str, Any]]
-+execute(filename : str, code : str) : Dict[str, Any]
-}
-class ExecutePythonFileAction {
-+name : str
-+description : str
-+parameters : List[Dict[str, Any]]
-+execute(filename : str) : Dict[str, Any]
-}
-class ProcessImageAction {
-+name : str
-+description : str
-+parameters : List[Dict[str, Any]]
-+execute(image_path : str, analysis_prompt : str) : Dict[str, Any]
-}
-Action <|-- LogMessageAction
-Action <|-- WritePythonCodeAction
-Action <|-- ExecutePythonFileAction
-Action <|-- ProcessImageAction
+flowchart TD
+    Action["Action<br/><i>Abstract base class</i><br/>+system: AGISystem<br/>+data_service: DataService<br/>+name: str<br/>+description: str<br/>+parameters: List[Dict]<br/>+execute(**kwargs): Any<br/>+validate_params(params): None<br/>+to_dict(): Dict<br/>+to_json(): str"]
+    
+    LogMessageAction["LogMessageAction<br/><i>Logging action</i><br/>+name: 'log_message'<br/>+description: 'Log a message'<br/>+execute(message): Dict"]
+    
+    WritePythonCodeAction["WritePythonCodeAction<br/><i>Code generation</i><br/>+name: 'write_python_code'<br/>+description: 'Generate Python code'<br/>+execute(filename, code): Dict"]
+    
+    ExecutePythonFileAction["ExecutePythonFileAction<br/><i>Code execution</i><br/>+name: 'execute_python_file'<br/>+description: 'Execute Python file'<br/>+execute(filename): Dict"]
+    
+    ProcessImageAction["ProcessImageAction<br/><i>Image processing</i><br/>+name: 'process_image'<br/>+description: 'Analyze images'<br/>+execute(image_path, prompt): Dict"]
+    
+    Action --> LogMessageAction
+    Action --> WritePythonCodeAction
+    Action --> ExecutePythonFileAction
+    Action --> ProcessImageAction
+    
+    %% Styling
+    style Action fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style LogMessageAction fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style WritePythonCodeAction fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style ExecutePythonFileAction fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style ProcessImageAction fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#1976d2,stroke-width:2px
+    linkStyle 3 stroke:#1976d2,stroke-width:2px
 ```
 
 **Diagram sources**

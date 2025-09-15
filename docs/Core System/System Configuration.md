@@ -265,35 +265,34 @@ These parameters control the Conversational AI module:
 The LLM provider configuration in config.json defines the available language model providers, their credentials, endpoints, and supported models. This configuration enables the system to route requests to different providers based on availability and model requirements.
 
 ```mermaid
-classDiagram
-class LLMProvider {
-+string api_key
-+string base_url
-+list[str] models
-}
-class ZukiProvider {
-+string api_key
-+string base_url
-+list[str] models
-}
-class ElectronHubProvider {
-+string api_key
-+string base_url
-+list[str] models
-}
-class ZanityProvider {
-+string api_key
-+string base_url
-+list[str] models
-}
-class A4FProvider {
-+string api_key
-+string base_url
-}
-LLMProvider <|-- ZukiProvider
-LLMProvider <|-- ElectronHubProvider
-LLMProvider <|-- ZanityProvider
-LLMProvider <|-- A4FProvider
+flowchart TD
+    LLMProvider["LLMProvider<br/><i>Base configuration</i><br/>+api_key: string<br/>+base_url: string<br/>+models: list[str]"]
+    
+    ZukiProvider["ZukiProvider<br/><i>ZukiJourney provider</i><br/>+api_key: string<br/>+base_url: string<br/>+models: list[str]<br/>gpt-4o, deepseek-chat"]
+    
+    ElectronHubProvider["ElectronHubProvider<br/><i>ElectronHub provider</i><br/>+api_key: string<br/>+base_url: string<br/>+models: list[str]"]
+    
+    ZanityProvider["ZanityProvider<br/><i>Zanity provider</i><br/>+api_key: string<br/>+base_url: string<br/>+models: list[str]"]
+    
+    A4FProvider["A4FProvider<br/><i>A4F provider</i><br/>+api_key: string<br/>+base_url: string<br/>+models: gemini-2.0-flash, llama-4-scout"]
+    
+    LLMProvider --> ZukiProvider
+    LLMProvider --> ElectronHubProvider
+    LLMProvider --> ZanityProvider
+    LLMProvider --> A4FProvider
+    
+    %% Styling
+    style LLMProvider fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    style ZukiProvider fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    style ElectronHubProvider fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    style ZanityProvider fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    style A4FProvider fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    
+    %% Link styling
+    linkStyle 0 stroke:#1976d2,stroke-width:2px
+    linkStyle 1 stroke:#1976d2,stroke-width:2px
+    linkStyle 2 stroke:#1976d2,stroke-width:2px
+    linkStyle 3 stroke:#1976d2,stroke-width:2px
 ```
 
 **Diagram sources**
